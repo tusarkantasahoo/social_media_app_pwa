@@ -3,8 +3,8 @@ import PostMessageBox from "./postMessgaeBox/PostMessageBox.js";
 export default class HomeSocial extends Component {
   constructor(props) {
     super(props);
-    this.state = { width: props.props.width, height: props.props.height };
-    // this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.state = { width: 0, height: 0 };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
     render() {
       console.log("height in social",this.state.height);
@@ -22,5 +22,19 @@ export default class HomeSocial extends Component {
         </div>
        </>
       );
+    }
+
+    componentDidMount() {
+      this.updateWindowDimensions();
+      window.addEventListener('resize', this.updateWindowDimensions);
+    }
+    
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.updateWindowDimensions);
+      console.log("dimensions",this.state.width,this.state.height)
+    }
+    
+    updateWindowDimensions() {
+      this.setState({ width: window.innerWidth, height: window.innerHeight });
     }
   }
