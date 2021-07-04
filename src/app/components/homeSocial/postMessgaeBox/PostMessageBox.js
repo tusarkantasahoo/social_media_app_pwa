@@ -8,10 +8,11 @@ export default class PostMessageBox extends Component {
       <>
         <div
           className="message-container"
-          style={{ width: "60%", border: "0.2px solid black" }}
+          style={{boxShadow: "4px 10px 8px  #dbd8d7",marginTop: "2%",borderRadius:"15px"}}
         >
+          <div className="container-fluid" style={{height:"200px"}} >
           <div className="row">
-            <div className="col-2">
+            <div className="col-1" style={{textAlign: "left"}}>
               <img
               className="home-page-user-image-box"
                 src={userImage}
@@ -21,12 +22,12 @@ export default class PostMessageBox extends Component {
               <div className="div-box-input-share-thoughts">
                 <input
                   className="input-post"
-                  placeholder="Share Your thoughts?"
+                  placeholder="Share / Ask what's on your mind?"
                 ></input>
               </div>
             </div>
           </div>
-          <div className="row" id="filed-for-image-postbutton">
+          <div className="row" id="filed-for-image-postbutton" >
               <div className="col-2"></div>
             <div className="col-6" id="upload-image-image-field">
               <img className="upload-image-before-post" src={uploadImage} /><img className="upload-image-before-post" src={uploadImage}  />
@@ -37,6 +38,7 @@ export default class PostMessageBox extends Component {
               </button>
             </div>
           </div>
+        </div>
         </div>
       </>
     );

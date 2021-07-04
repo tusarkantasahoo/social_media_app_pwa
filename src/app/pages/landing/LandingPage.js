@@ -11,12 +11,12 @@ export default class Landing extends Component {
       
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-3" id="home-options" style={{border:"0.5px solid black",height:`${this.state.height.toString()}px`}}> 
+          <div className="col-2" id="home-options" style={{boxShadow: "4px 10px 8px #dbd8d7",height:`${this.state.height.toString()}px`}}> 
           <HomeOptions />
           </div>
-          <div className="col-9" id="home-social">
+          <div className="col-10" id="home-social">
           <HomeSocial />
           </div>
         </div>

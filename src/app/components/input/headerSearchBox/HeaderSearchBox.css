@@ -1,0 +1,27 @@
+.header-search-box {
+  height: 40px;
+  background-color: #f2f3f0;
+  border-radius: 20px;
+}
+.container-input-box-header {
+  border-radius: 10px;
+}
+.input-box-header-search {
+  padding: 5px;
+  border-radius: 10px;
+  height: 30px;
+  width: 13vw;
+  border: none;
+  background-color: #f2f3f0;
+}
+
+.header-search-input-component {
+  margin-top: 0px;
+  background-color: #f2f3f0;
+  border: none;
+  margin-left: 5px;
+  height: 40px;
+  width: 144%;
+  border-radius: 25px;
+  outline: 0;
+}

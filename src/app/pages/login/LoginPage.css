@@ -1,7 +1,7 @@
 #namePart-loginfield {
   text-align: left;
   background-color: #0089ff;
-  margin-top: 5%;
+  margin-top: 0%;
 }
 .loginpage-welcometext {
   margin-top: 50%;
@@ -19,7 +19,7 @@
 }
 #loginOrSignupPart-loginfield {
   background-color: #f0f2f5;
-  margin-top: 5%;
+  margin-top: 0%;
   height: 100%;
 }
 .login-top-message {
