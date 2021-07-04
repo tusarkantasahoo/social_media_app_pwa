@@ -17,11 +17,11 @@ export default class Landing extends Component {
       <div className="container-fluid">
         
         <div className="row">
-          <div className="col-2" id="home-options" style={{boxShadow: "4px 10px 8px #dbd8d7",height:`${this.state.height.toString()}px`}}> 
+          <div className="col-2" id="home-options" style={{boxShadow: "4px 10px 8px #dbd8d7",height:`${this.state.height.toString()-60}px`}}> 
           <HomeOptions />
           </div>
           <div className="col-10" id="home-social">
-          <HomeSocial />
+          <HomeSocial props={this.state}/>
           </div>
         </div>
         </div>
