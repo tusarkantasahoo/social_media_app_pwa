@@ -1,0 +1,102 @@
+#namePart-loginfield {
+  text-align: left;
+  background-color: #0089ff;
+  margin-top: 5%;
+}
+.loginpage-welcometext {
+  margin-top: 50%;
+  font-family: sans-serif;
+  font-size: 26px;
+  color: white;
+  margin-left: 2%;
+}
+.loginpage-monastree {
+  font-family: sans-serif;
+  font-size: 45px;
+  color: white;
+  margin-bottom: 40%;
+  margin-left: 2%;
+}
+#loginOrSignupPart-loginfield {
+  background-color: #f0f2f5;
+  margin-top: 5%;
+  height: 100%;
+}
+.login-top-message {
+  text-align: left;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10%;
+}
+.login-box {
+  border-radius: 25px;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  height: 80%;
+  width: 70%;
+  margin-left: 10%;
+  margin-top: 0;
+  margin-bottom: 10%;
+}
+.top-msg-login-box {
+  color: #1da1f2;
+  font-size: 20px;
+}
+.signin-inputfield-username {
+  border-radius: 10px;
+  width: 85%;
+  height: 50px;
+  border: 0.5px solid #bfc2bb;
+}
+.signin-inputfield-password {
+  margin-top: 2.5%;
+  border-radius: 10px;
+  width: 85%;
+  height: 50px;
+  border: 0.5px solid #bfc2bb;
+}
+.signin-submit-button {
+  border-radius: 5px;
+  border: 0.5px solid #2f302e;
+  margin-top: 20px;
+  width: 85%;
+  height: 35px;
+  background-color: #1da1f2;
+}
+.submit-button-text {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.container-forgotten-password {
+  text-align: center;
+}
+.forgotten-password-text {
+  margin-top: 1%;
+  color: #1da1f2;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.line-after-forgetpassword {
+  text-align: center;
+}
+.line-after-forgettpass {
+  border: none;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: -2%;
+  height: 0.5;
+  background-color: black;
+}
+.container-new-account {
+  margin-top: -3.5%;
+  text-align: center;
+}
+.text-new-account {
+  color: #1da1f2;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}

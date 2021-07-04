@@ -1,0 +1,51 @@
+.input-post {
+  height: 100%;
+  font-size: 30px;
+  border: none;
+  background-color: none;
+  outline: 0;
+  box-sizing: none;
+  width: 110%;
+}
+.post-button {
+  background-color: #1da1f2;
+  border: none;
+  width: 100px;
+  border-radius: 12px;
+  height: 35px;
+  margin-right: 10px;
+}
+.home-page-user-image-box {
+  border-radius: 60px;
+
+  margin-top: 10px;
+  height: 70px;
+  width: 70px;
+}
+#field-for-text-thoughts {
+  text-align: left;
+}
+.div-box-input-share-thoughts {
+  height: 50px;
+  text-align: left;
+}
+#filed-for-image-postbutton {
+  margin-top: 35px;
+  padding-bottom: 5px;
+}
+#upload-image-image-field {
+  text-align: left;
+}
+.upload-image-before-post {
+  height: 35px;
+  width: 35px;
+}
+#filed-for-post-button {
+  text-align: right;
+}
+.post-text-home {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  margin-top: 2px;
+}
