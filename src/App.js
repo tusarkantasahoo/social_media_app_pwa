@@ -10,7 +10,7 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        <AppHeader />
+        {/* <AppHeader /> */}
         <Switch>
           <Route path="/signin" component={LoginPage} />
           <Route path="/signup" component={SignUp} />
