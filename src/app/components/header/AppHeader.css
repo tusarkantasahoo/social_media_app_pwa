@@ -1,0 +1,12 @@
+.navThreeLines div {
+  height: 4px;
+  background-color: white;
+  margin: 5px 0;
+  border-radius: 25px;
+}
+.navThreeLines {
+  width: 30px;
+  display: block;
+  margin: 1em 00 1em;
+  cursor: pointer;
+}

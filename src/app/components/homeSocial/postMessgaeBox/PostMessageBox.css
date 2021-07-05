@@ -30,6 +30,7 @@
 .div-box-input-share-thoughts {
   height: 50px;
   text-align: left;
+  margin-left: 10px;
 }
 #filed-for-image-postbutton {
   margin-top: 75px;
@@ -39,8 +40,9 @@
   text-align: left;
 }
 .upload-image-before-post {
-  height: 35px;
-  width: 35px;
+  height: 40px;
+  width: 40px;
+  margin-left: 25px;
 }
 #filed-for-post-button {
   text-align: right;
