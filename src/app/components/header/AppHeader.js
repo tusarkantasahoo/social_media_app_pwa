@@ -16,7 +16,7 @@ export default class AppHeader extends Component {
          style={{ backgroundColor: "#0089ff", height: "50px" }}>
 <div className="row">
     <div className="col-3">
-      <div className="navThreeLines" onClick={()=>{this.props.toggleOptionMenu()}}>
+      <div className="navThreeLines" >
         <div className="one">
         </div>
         <div className="two">

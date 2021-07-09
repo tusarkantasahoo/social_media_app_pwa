@@ -13,7 +13,7 @@
   width: 100px;
   border-radius: 12px;
   height: 35px;
-  margin-right: 10px;
+  color: white;
 }
 .home-page-user-image-box {
   border-radius: 60px;
@@ -40,8 +40,8 @@
   text-align: left;
 }
 .upload-image-before-post {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   margin-left: 25px;
 }
 #filed-for-post-button {
@@ -52,4 +52,11 @@
   font-weight: bold;
   color: white;
   margin-top: 2px;
+}
+.post-box-dropdown-list-upload {
+  margin-top: 10px;
+}
+.upload-image-before-post-dropdown {
+  height: 30px;
+  width: 30px;
 }

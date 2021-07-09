@@ -1,0 +1,28 @@
+.input-create-Account-Homepage {
+  height: 40px;
+  font-size: 15px;
+  background-color: #e5f2f8;
+  width: 60%;
+  border-radius: 5px;
+  border: 0.1px solid rgb(233, 233, 241);
+  outline: 0;
+}
+.Create-account-submit-button-homepage {
+  margin-left: 20px;
+  border-radius: 3px;
+  background-color: #1da1f2;
+  color: white;
+  width: 30%;
+  height: 40px;
+  outline: 0;
+  border: none;
+}
+.get-started-submit-button-homepage {
+  border-radius: 3px;
+  background-color: #1da1f2;
+  color: white;
+  width: 30%;
+  height: 40px;
+  outline: 0;
+  border: none;
+}
