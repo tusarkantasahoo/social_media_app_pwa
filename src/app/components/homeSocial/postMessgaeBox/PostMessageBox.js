@@ -24,8 +24,8 @@ export default class PostMessageBox extends Component {
       { image: clip, name: "video",isPrimary:true },
       { image: checklist, name: "Documents",isPrimary:true },
       { image: askImage, name: "Ask A Question",isPrimary:true },
-      { image: imageJobs, name: "Post Jobs" },
-      { image: imageSurvey, name: "Create Survey" },
+      { image: imageJobs, name: "Post Jobs",isPrimary:true },
+      { image: imageSurvey, name: "Create Survey",isPrimary:true },
       { image: imageDebate, name: "Create Debate" },
       { image: imageRecomend, name: "Recomendations" },
     ];

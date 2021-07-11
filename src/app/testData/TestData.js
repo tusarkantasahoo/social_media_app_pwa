@@ -5,7 +5,7 @@
 
  const dataForPostRooms = [
     {
-        title:"Conditionally Display ClientTemplate for Kendo UI Grid using Razor Variabledffffffffffffffffffffffs",
+        title:"Conditionally Display ClientTemplate for Kendo UI Grid using Razor Variabledfs",
         description:"I need to conditionally display buttons in a client template based on a razor variable. Here is where I get the variable: @{ ViewBag.Title = ; Layout =",
         image:news1
 
