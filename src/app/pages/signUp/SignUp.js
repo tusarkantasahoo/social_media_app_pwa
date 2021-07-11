@@ -11,7 +11,7 @@ export default class SignUp extends Component {
 
   render(){
     return (
-      <div className="container-fluid" >
+      <div className="container-fluid" style={{marginTop:"10%",width:"90%",boxShadow: "15px 15px 10px #dbd8d7"}}>
         <div className="row" >
           <div className="col-lg-7 col-sm-12" id="namePart-loginfield">
               <div className="row">
@@ -20,7 +20,7 @@ export default class SignUp extends Component {
             <p className="loginpage-monastree">Monastree</p>
             </div>
             <div className="col-3" >
-            <img style={{marginTop:"110%",marginLeft:"70%"}} height="340px" width="180px" src={loginTree}></img>
+            {/* <img style={{marginTop:"110%",marginLeft:"70%"}} height="340px" width="180px" src={loginTree}></img> */}
             </div>
             </div>
           </div>

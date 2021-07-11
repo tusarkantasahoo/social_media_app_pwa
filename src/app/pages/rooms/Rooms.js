@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PostMessageBox from "../../components/homeSocial/postMessgaeBox/PostMessageBox.js";
 import dataForPostRooms from "../../testData/TestData.js";
 import Post from "../../components/posts/Post.js";
+import SinglePostView from "../../components/openPosts/SinglePostView.js";
 export default class Rooms extends Component {
   constructor(props) {
     super(props);
@@ -22,28 +23,17 @@ export default class Rooms extends Component {
   }
   setNewsItem(item) {
     this.setState({ fullScreenNewsContent: item });
-    console.log("News set",item);
+    console.log("News set", item);
   }
   render() {
     return (
       <>
         {/* </div> */}
         {this.state.isAnyNewsClicked === true ? (
-          <div style={{ backgroundColor: "White" }}>
-            <div className="row">
-              <div className="col-6">
-
-              </div>
-              <div className="col-6" style={{textAlign: "right"}} onClick={()=>{this.handelNewsClose()}}>
-                Close
-              </div>
-
-            </div>
-            Description {this.state.fullScreenNewsContent.description}
-            <div>
-
-            </div>
-          </div>
+          <SinglePostView
+            props={this.state}
+            handelNewsClose={this.handelNewsClose}
+          />
         ) : (
           <>
             <PostMessageBox />

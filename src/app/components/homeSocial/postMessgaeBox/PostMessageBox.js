@@ -108,7 +108,7 @@ export default class PostMessageBox extends Component {
                       className="post-button"
                       type="submit"
                       value="Submit"
-                      style={{ marginTop: "350%" }}
+                      style={{ position: "relative",bottom: "-22em"}}
                     >
                       <p className="post-text-home">Post</p>
                     </button>
