@@ -19,7 +19,7 @@ export default class Home extends Component {
             Where individuals meets Education / Career / Jobs <br></br>
             Skills / Community at single Platform
           </p>
-          <img src={allIconsHome} style={{height:"300",width:"90%"}}></img>
+          <img src={allIconsHome} style={{height:"21em",width:"60em"}}></img>
         </div>
         <div style={{ marginTop: "15%" }}>
           <div className="row">
