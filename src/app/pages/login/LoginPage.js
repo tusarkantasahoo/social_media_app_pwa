@@ -1,25 +1,34 @@
 import React,{ Component } from "react";
 import "./LoginPage.css";
+import "../../../App.css"
 import loginTree from "../../../assets/images/LoginTree.png";
 import Login from "../../../auth/Login.js";
+import {authResponseStoredValue} from "../../../utils/Constant.js";
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username:"",
       password : ""
-    }
+    };
 
     this._onClickLoginSubmit= this._onClickLoginSubmit.bind(this);
   }
 
- async _onClickLoginSubmit(){
+async _onClickLoginSubmit(){
    var postJsonLogin={
     username:this.state.username,
     password:this.state.password
    }
    console.log("Logindata",postJsonLogin)
-  var loginResponse = await Login(postJsonLogin);
+    var loginResponse = await Login(postJsonLogin);
+    if(loginResponse.status===200){
+      console.log("loginResponse:",loginResponse);
+      localStorage.setItem(authResponseStoredValue,JSON.stringify(loginResponse.data));
+       this.props.updateAuthState(loginResponse.data);
+    }
+ 
+
   }
   render(){
     console.log(this.props);
@@ -45,7 +54,7 @@ export default class LoginPage extends Component {
             </div>
             <div className="login-box">
               <p className="top-msg-login-box">Login in to Monastree</p>
-            
+           
                 <div className="login-container-username">
                   <input
                     className="signin-inputfield-username"
@@ -67,12 +76,13 @@ export default class LoginPage extends Component {
                 </div>
                 <button
                   className="signin-submit-button"
-                  // type="submit"
-                  // value="Submit"
-                  onClick={()=>this._onClickLoginSubmit()}
+                  //  type="submit"
+                  //  value="Submit"
+                   onClick={this._onClickLoginSubmit}
                 >
                   <p className="submit-button-text">Login</p>
                 </button>
+             
              
               <div className="container-forgotten-password">
                 <p className="forgotten-password-text">Forgotten password?</p>

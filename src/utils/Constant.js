@@ -1,0 +1,1 @@
+export const authResponseStoredValue = "auth-response-stored-value";
