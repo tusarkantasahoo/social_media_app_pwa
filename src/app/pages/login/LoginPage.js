@@ -2,7 +2,7 @@ import React,{ Component } from "react";
 import "./LoginPage.css";
 import "../../../App.css"
 import loginTree from "../../../assets/images/LoginTree.png";
-import Login from "../../../auth/Login.js";
+import {Login} from "../../../auth/AuthApi.js";
 import {authResponseStoredValue} from "../../../utils/Constant.js";
 export default class LoginPage extends Component {
   constructor(props) {
@@ -24,8 +24,15 @@ async _onClickLoginSubmit(){
     var loginResponse = await Login(postJsonLogin);
     if(loginResponse.status===200){
       console.log("loginResponse:",loginResponse);
-      localStorage.setItem(authResponseStoredValue,JSON.stringify(loginResponse.data));
-       this.props.updateAuthState(loginResponse.data);
+      if(loginResponse.data.message==="Login successful"){
+        localStorage.setItem(authResponseStoredValue,JSON.stringify(loginResponse.data));
+        this.props.updateAuthState(loginResponse.data);
+      }
+      else{
+        console.log("Unsuccessful",loginResponse.data);
+        alert(loginResponse.data.message)
+      }
+
     }
  
 
@@ -96,7 +103,9 @@ async _onClickLoginSubmit(){
               </div>
               <div className="container-new-account">
                 <p className="text-new-account" onClick={()=>{
-                  this.props.history.push("/signup")
+                  // this.props.history.push("/signup")
+                  console.log("props",this.props);
+                  this.props.updateRouteToPage("signup")
                 }}>New Account?</p>
               </div>
             </div>

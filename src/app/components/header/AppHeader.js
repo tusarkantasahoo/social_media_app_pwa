@@ -30,7 +30,7 @@ export default class AppHeader extends Component {
         <HeaderSearchBox />
     </div>
     <div className="col-4" style={{textAlign:"right",cursor: "pointer"}}>
-        <HeaderUser />
+        <HeaderUser updateAuthState={this.props.updateAuthState} />
     </div>
 
 </div>

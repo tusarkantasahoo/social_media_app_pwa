@@ -2,11 +2,43 @@ import React,{ Component } from "react";
 import "./SignUp.css";
 import DatePicker from 'react-date-picker';
 import loginTree from "../../../assets/images/LoginTree.png";
+import {Signup} from "../../../auth/AuthApi.js";
 export default class SignUp extends Component {
     constructor(props) {
         super(props);
-        this.state = { date: new Date()};
+        this.state = { 
+          userFullName:"",
+          email:"",
+          phone : "",
+          password:"",
+          dob: new Date()
+        };
         
+
+       this.createAccountForUser = this.createAccountForUser.bind(this); 
+      }
+
+  
+      async createAccountForUser(){
+        var modifiedDob = this.state.dob.toString().split(" ");
+        
+        console.log(modifiedDob)
+        modifiedDob = modifiedDob[2]+"/"+modifiedDob[1]+"/"+modifiedDob[3];
+        var signupUserData = {
+        name: this.state.userFullName,
+        email: this.state.email,
+        phone: this.state.phone,
+        dob: modifiedDob,
+        password :this.state.password
+        }
+        console.log("createAccountForUser",signupUserData)
+
+        var responseSignupUser = await Signup(signupUserData);
+
+        if(responseSignupUser.status === 200){
+          console.log("User registered Succcessfully");
+          console.log("Server response",responseSignupUser)
+        }
       }
 
   render(){
@@ -32,14 +64,34 @@ export default class SignUp extends Component {
            
             <div className="login-box">
               <p className="top-msg-login-box">SignUp in to Monastree</p>
-              <form>
-                <div className="login-container-username">
+              <div className="login-container-username">
                   <input
                     className="signin-inputfield-username"
                     type="text"
                     name="name"
-                    placeholder="Email, username or Phone No"
+                    placeholder="User full name"
+                    onChange={(e) => {this.setState({userFullName:e.target.value})}}
                   />
+                  <br></br>
+                </div>
+                <div className="login-container-password">
+                  <input
+                    className="signin-inputfield-password"
+                    type="text"
+                    name="name"
+                    placeholder="Email or username "
+                    onChange={(e) => {this.setState({email:e.target.value})}}
+                  />
+                </div>
+                <div className="login-container-password">
+                  <input
+                    className="signin-inputfield-password"
+                    type="text"
+                    name="name"
+                    placeholder="phone number"
+                    onChange={(e) => {this.setState({phone:e.target.value})}}
+                  />
+                  <br></br>
                 </div>
                 <div className="login-container-password">
                   <input
@@ -47,6 +99,8 @@ export default class SignUp extends Component {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    onChange={(e) => {
+                      this.setState({password: e.target.value})}}
                   />
                   <br></br>
                 </div>
@@ -56,12 +110,15 @@ export default class SignUp extends Component {
                     type="password"
                     name="password"
                     placeholder="Confirm Password"
+                    onChange={(e) => {
+                      this.setState({password: e.target.value})}}
                   />
                   <br></br>
                 </div>
                 <div className="signup-datepicker">
-                Date of Birth {" "}<DatePicker value={this.state.date} onChange={(e)=>{
-                    this.setState({date:e});
+                Date of Birth {" "}<DatePicker value={this.state.dob} onChange={(e)=>{
+                    this.setState({dob:e});
+                    console.log("dat",e.toString().split(" ")[0]);
                 }}/>
                     
                 </div>
@@ -70,9 +127,12 @@ export default class SignUp extends Component {
                   type="submit"
                   value="Submit"
                 >
-                  <p onClick={()=>{this.props.history.push('/signup');}} className="submit-button-text">Sign Up</p>
-                </button>
-              </form>
+                  <p onClick={()=>{
+                    
+                      this.createAccountForUser();
+                    
+                    }} className="submit-button-text">Sign Up</p>
+                </button> 
             </div>
           </div>
           </div>
