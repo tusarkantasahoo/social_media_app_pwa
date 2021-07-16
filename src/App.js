@@ -7,6 +7,8 @@ import "./App.css";
 import AppHeader from "./app/components/header/AppHeader.js";
 import { authResponseStoredValue } from "./utils/Constant.js";
 import { userReloginCheckToken } from "./auth/AuthApi.js";
+import ForgotPassword from "./app/pages/forgotPassword/ForgotPassword.js";
+import ResetPassword from "./app/pages/forgotPassword/ResetPassword.js";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +49,15 @@ export default class App extends Component {
             updateRouteToPage={this.updateRouteToPage}
           />
         );
+
+      case "forgotPassword":
+        return (
+          <ForgotPassword
+            updateAuthState={this.updateAuthState}
+            updateRouteToPage={this.updateRouteToPage}
+          />
+        );
+
       default:
         return null;
     }
@@ -77,8 +88,7 @@ export default class App extends Component {
                 <>{this.renderSocialPages()}</>
               )}
             </Route>
-            <Route path="/forgotten-password" exact>
-            
+            <Route path="/forgotPasswordUpdate/:username/:token" exact component={ResetPassword} >
             </Route>
           </Switch>
         </Router>

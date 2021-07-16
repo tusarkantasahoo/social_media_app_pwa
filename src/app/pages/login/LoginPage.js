@@ -92,7 +92,7 @@ async _onClickLoginSubmit(){
              
              
               <div className="container-forgotten-password">
-                <p className="forgotten-password-text">Forgotten password?</p>
+                <p className="forgotten-password-text" onClick={()=>this.props.updateRouteToPage("forgotPassword")}>Forgotten password?</p>
               </div>
               {/* <p onClick={()=>{this.props.history.push('/signup');}}>Login</p> */}
               <div

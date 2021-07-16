@@ -67,5 +67,51 @@ export  function Signup(signupData) {
       });
     })
     }
+
+    export  function generateLinkForPasswordUpdate(postData) {
+
+      var config = {
+        method: 'post',
+        url: 'http://localhost:5000/api/auth/resetPasswordMail',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : postData
+      };
+      
+      return new Promise((resolve, reject) => {
+        axios(config)
+        .then(function (response) {
+          console.log("response",response);
+          resolve(response);
+        })
+        .catch(function (error) {
+          console.log("error:",error);
+        });
+      })
+      }
+
+      export  function finalUpdatePasswordInDb(postData) {
+
+        var config = {
+          method: 'post',
+          url: 'http://localhost:5000/api/auth/updatePassword',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : postData
+        };
+        
+        return new Promise((resolve, reject) => {
+          axios(config)
+          .then(function (response) {
+            console.log("response",response);
+            resolve(response);
+          })
+          .catch(function (error) {
+            console.log("error:",error);
+          });
+        })
+        }
     
   
