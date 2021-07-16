@@ -38,6 +38,8 @@ export default class SignUp extends Component {
         if(responseSignupUser.status === 200){
           console.log("User registered Succcessfully");
           console.log("Server response",responseSignupUser)
+          alert("user registered successfully");
+          this.props.updateRouteToPage("login")
         }
       }
 
@@ -115,7 +117,7 @@ export default class SignUp extends Component {
                   />
                   <br></br>
                 </div>
-                <div className="signup-datepicker">
+                <div className="signup-datepicker" >
                 Date of Birth {" "}<DatePicker value={this.state.dob} onChange={(e)=>{
                     this.setState({dob:e});
                     console.log("dat",e.toString().split(" ")[0]);

@@ -6,7 +6,7 @@ import SignUp from "./app/pages/signUp/SignUp.js";
 import "./App.css";
 import AppHeader from "./app/components/header/AppHeader.js";
 import { authResponseStoredValue } from "./utils/Constant.js";
-import {userReloginCheckToken} from "./auth/AuthApi.js";
+import { userReloginCheckToken } from "./auth/AuthApi.js";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +32,6 @@ export default class App extends Component {
   }
 
   renderAuthPages() {
-
     switch (this.state.routeToAuthPage) {
       case "login":
         return (
@@ -42,23 +41,26 @@ export default class App extends Component {
           />
         );
       case "signup":
-        return <SignUp updateAuthState={this.updateAuthState} />;
+        return (
+          <SignUp
+            updateAuthState={this.updateAuthState}
+            updateRouteToPage={this.updateRouteToPage}
+          />
+        );
       default:
         return null;
     }
   }
 
-   renderSocialPages() {
-      switch (this.state.routeToSocialPage) {
-        case "landing":
-          return (<Landing updateAuthState={this.updateAuthState}/>)
-  
-        default: return null
-      }
+  renderSocialPages() {
+    switch (this.state.routeToSocialPage) {
+      case "landing":
+        return <Landing updateAuthState={this.updateAuthState} />;
+
+      default:
+        return null;
     }
-
-
-  
+  }
 
   render() {
     var authResponse = JSON.parse(
@@ -66,33 +68,43 @@ export default class App extends Component {
     );
     return (
       <div>
-        {authResponse === null ||
-        authResponse === undefined ? (
-          <>{this.renderAuthPages()}</>
-        ) : (
-          <>
-          {this.renderSocialPages()}
-          </>
-       ) 
-          }
+        <Router>
+          <Switch>
+            <Route path="/" exact>
+              {authResponse === null || authResponse === undefined ? (
+                <>{this.renderAuthPages()}</>
+              ) : (
+                <>{this.renderSocialPages()}</>
+              )}
+            </Route>
+            <Route path="/forgotten-password" exact>
+            
+            </Route>
+          </Switch>
+        </Router>
       </div>
     );
   }
 
-  componentDidMount(){
+  componentDidMount() {
     var authResponse = JSON.parse(
       localStorage.getItem(authResponseStoredValue)
     );
 
-    if(authResponse!==null&&authResponse!==undefined){
+    if (authResponse !== null && authResponse !== undefined) {
       userReloginCheckToken(authResponse.token)
-      .then((response)=>{
-        if(response.status !==200 || response.data.details !== "reloggedin"){
-          localStorage.setItem(authResponseStoredValue,null)
-          this.setState({authResponseData:"restricted"})
-        }
-      })
-      .catch((e)=>{console.log(e)})
+        .then((response) => {
+          if (
+            response.status !== 200 ||
+            response.data.details !== "reloggedin"
+          ) {
+            localStorage.setItem(authResponseStoredValue, null);
+            this.setState({ authResponseData: "restricted" });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
   }
 }
