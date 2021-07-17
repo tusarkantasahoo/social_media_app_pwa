@@ -2,8 +2,11 @@ import React,{ Component } from "react";
 import "./LoginPage.css";
 import "../../../App.css"
 import loginTree from "../../../assets/images/LoginTree.png";
-import {Login} from "../../../auth/AuthApi.js";
+import {Login,signinUserFromSocialSites} from "../../../auth/AuthApi.js";
 import {authResponseStoredValue} from "../../../utils/Constant.js";
+import {facebookProvider,googleProvider} from "../../../config/authMethod.js";
+import socialMediaAuth from "../../../service/auth.js";
+import googlelogin from "../../../assets/images/googlelogin.png";
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +16,7 @@ export default class LoginPage extends Component {
     };
 
     this._onClickLoginSubmit= this._onClickLoginSubmit.bind(this);
+    this.handelOnClick = this.handelOnClick.bind(this);
   }
 
 async _onClickLoginSubmit(){
@@ -34,15 +38,43 @@ async _onClickLoginSubmit(){
       }
 
     }
- 
+  }
+async handelOnClick(provider){
+const res = await socialMediaAuth(provider)
+console.log(res);
+if(res!==null&&res!==undefined){
+  var userData = {
+    name:res.displayName,
+    email:res.email,
+    phone:res.phoneNumber,
+    image:res.photoURL,
+    dataFrom:"google"
+  }
+
+  console.log("user data",userData);
+
+  var responseForUser = await signinUserFromSocialSites(userData);
+  if(responseForUser.status===200){
+    console.log("loginResponse:",responseForUser);
+    if(responseForUser.data.message==="Login successful"){
+      localStorage.setItem(authResponseStoredValue,JSON.stringify(responseForUser.data));
+      this.props.updateAuthState(responseForUser.data);
+    }
+    else{
+      console.log("Unsuccessful",responseForUser.data);
+      alert(responseForUser.data.message)
+    }
 
   }
+}
+
+}
   render(){
     console.log(this.props);
     return (
 
       <div className="container-fluid" style={{marginTop:"10%",width:"90%",boxShadow: "15px 15px 10px #dbd8d7"}}>
- 
+
         <div className="row" >
           <div className="col-lg-7 col-sm-12" id="namePart-loginfield">
               <div className="row">
@@ -89,6 +121,13 @@ async _onClickLoginSubmit(){
                 >
                   <p className="submit-button-text">Login</p>
                 </button>
+
+                <div style={{textAlign: "center",marginTop:"20px",cursor: "pointer"}}
+                  onClick={() => this.handelOnClick(googleProvider)}
+                >
+                  
+                  <img src={googlelogin} style={{height:"45px",width:"45px"}}></img>
+                </div>
              
              
               <div className="container-forgotten-password">
