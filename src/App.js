@@ -85,7 +85,11 @@ export default class App extends Component {
               {authResponse === null || authResponse === undefined ? (
                 <>{this.renderAuthPages()}</>
               ) : (
-                <>{this.renderSocialPages()}</>
+                <>
+                <div className="App">
+                {this.renderSocialPages()}
+                </div>
+                </>
               )}
             </Route>
             <Route path="/forgotPasswordUpdate/:username/:token" exact component={ResetPassword} >
@@ -110,6 +114,9 @@ export default class App extends Component {
           ) {
             localStorage.setItem(authResponseStoredValue, null);
             this.setState({ authResponseData: "restricted" });
+          }
+          else{
+            localStorage.setItem(authResponseStoredValue, JSON.stringify(response.data));
           }
         })
         .catch((e) => {

@@ -17,8 +17,8 @@ render(){
                 {this.props.props.fullScreenNewsContent.title}
               </div>
               <div className="col-2" style={{textAlign: "right",display: "flex", flexDirection: "row" }} onClick={()=>{this.props.handelNewsClose()}}>
-                  <img src={cancel} style={{height:"25px",width:"25px",marginTop:"0.5em"}}></img>
-                <p style={{fontSize: "25px"}}>Close</p>
+                  <img src={cancel} style={{height:"25px",width:"25px",marginTop:"1em"}}></img>
+               
               </div>
 
             </div>

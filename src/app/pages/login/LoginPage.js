@@ -122,11 +122,18 @@ if(res!==null&&res!==undefined){
                   <p className="submit-button-text">Login</p>
                 </button>
 
-                <div style={{textAlign: "center",marginTop:"20px",cursor: "pointer"}}
+                <div className="row" style={{marginTop:"20px",cursor: "pointer",width:"80%",marginLeft:"5%",border:"0.25px solid 1da1f2"}}
                   onClick={() => this.handelOnClick(googleProvider)}
                 >
-                  
+                  <div className="col-4" style={{textAlign:"center",border:"0.01px solid #1da1f2"}}>
                   <img src={googlelogin} style={{height:"45px",width:"45px"}}></img>
+                  </div>
+                  
+                  
+                  <div className="col-8" style={{textAlign:"left",backgroundColor:"#1da1f2"}}>
+                    <p style={{color:"white",marginTop:"0.5em"}}>Sign in with Google</p>
+                    </div>
+                  
                 </div>
              
              

@@ -1,0 +1,17 @@
+{
+    "DEV": {
+        "core": ""
+    },
+    "PROD": {
+        "core": ""
+    },
+    "LOCAL":{
+        "core":"http://localhost:5000/"
+    },
+    "user_login"  :"api/auth/login",
+    "user_signup":"api/user/store",
+    "user_relogin":"api/auth/relogin",
+    "generate_link_for_PW_update":"api/auth/resetPasswordMail",
+    "update_PW_in_DB" :"auth/updatePassword",
+    "signin_fron_social_sites":"api/auth/userLoginFromSocialMediaSite"
+}
