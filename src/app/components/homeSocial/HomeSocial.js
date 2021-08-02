@@ -24,8 +24,8 @@ export default class HomeSocial extends Component {
     }
     renderSocialPage(currentOption){
       switch(currentOption.code){
-        case "home": return <Home />;
-        case "rooms":return <Rooms />;
+        case "home": return <Home isLoggedIn={this.props.isLoggedIn} />;
+        case "rooms":return <Rooms isLoggedIn={this.props.isLoggedIn}/>;
         default:
       }
     }

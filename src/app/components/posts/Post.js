@@ -11,11 +11,11 @@ export default class Post extends Component {
     render() {
       switch(this.props.props.postType){
         case "image":return(
-          <ImagePost props={this.props.props} handelNewsClick={this.props.handelNewsClick} setNewsItem={this.props.setNewsItem} />
+          <ImagePost props={this.props.props} handelNewsClick={this.props.handelNewsClick} setNewsItem={this.props.setNewsItem} isLoggedIn={this.props.isLoggedIn}/>
         )
 
         case "video":return(
-          <VideoPost props={this.props.props} handelNewsClick={this.props.handelNewsClick}/>
+          <VideoPost props={this.props.props} handelNewsClick={this.props.handelNewsClick} isLoggedIn={this.props.isLoggedIn}/>
         )
 
 

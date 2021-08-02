@@ -36,7 +36,7 @@ export default class Rooms extends Component {
           />
         ) : (
           <>
-            <PostMessageBox />
+            <PostMessageBox isLoggedIn={this.props.isLoggedIn}/>
             <div style={{ marginTop: "3%", textAlign: "left" }}>
               {/* <div className="container-fluid"> */}
               <div
@@ -81,6 +81,7 @@ export default class Rooms extends Component {
                     props={item}
                     handelNewsClick={this.handelNewsClick}
                     setNewsItem={this.setNewsItem}
+                    isLoggedIn={this.props.isLoggedIn}
                   />
                 );
               })}

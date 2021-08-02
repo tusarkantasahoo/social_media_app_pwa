@@ -9,12 +9,13 @@ import { authResponseStoredValue } from "./utils/Constant.js";
 import { userReloginCheckToken } from "./auth/AuthApi.js";
 import ForgotPassword from "./app/pages/forgotPassword/ForgotPassword.js";
 import ResetPassword from "./app/pages/forgotPassword/ResetPassword.js";
+import PageWoLogin from "./app/pages/pageWoLogin/PageWoLogin.js";
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       authResponseData: null,
-      routeToAuthPage: "login",
+      routeToAuthPage: "pageWoLogin",
       routeToSocialPage: "landing",
     };
 
@@ -35,6 +36,13 @@ export default class App extends Component {
 
   renderAuthPages() {
     switch (this.state.routeToAuthPage) {
+      case "pageWoLogin":
+        return (
+          <PageWoLogin
+            updateAuthState={this.updateAuthState}
+            updateRouteToPage={this.updateRouteToPage}
+          />
+        );
       case "login":
         return (
           <LoginPage

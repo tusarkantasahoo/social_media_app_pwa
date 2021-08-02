@@ -4,7 +4,7 @@ import HomeSocial from "../../components/homeSocial/HomeSocial.js"
 import AppHeader from "../../components/header/AppHeader.js";
 import {userReloginCheckToken} from "../../../auth/AuthApi.js";
 import UserDetails from "../../pages/userDetails/UserDetails.js";
-export default class Landing extends Component {
+export default class PageWoLogin extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -31,21 +31,21 @@ export default class Landing extends Component {
 
     return (
       <>
-      <AppHeader updateAuthState = {this.props.updateAuthState} _onClickUserDashboard={this._onClickUserDashboard} isLoggedIn={true}/>
+      <AppHeader updateAuthState = {this.props.updateAuthState} _onClickUserDashboard={this._onClickUserDashboard} isLoggedIn={false} updateRouteToPage={this.props.updateRouteToPage} />
       <div className="container-fluid">
         <div className="row">
           
             <div className="col-2" id="home-options" style={{boxShadow: "4px 10px 8px #dbd8d7",height:`${this.state.height.toString()-60}px`}}> 
-            <HomeOptions props={this.state} updateOptionOnClick={this.updateOptionOnClick} isLoggedIn={true}/>
+            <HomeOptions props={this.state} updateOptionOnClick={this.updateOptionOnClick}/>
             </div>
      
           {this.state.isUserDashboard?(<>
             <div className="col-10" id="home-social">
-          <UserDetails _onClickUserDashboard={this._onClickUserDashboard} isLoggedIn={true} />
+          <UserDetails _onClickUserDashboard={this._onClickUserDashboard} />
           </div>
           </>):(
             <div className="col-7" id="home-social">
-          <HomeSocial props={this.state} isLoggedIn={true}/>
+          <HomeSocial props={this.state} isLoggedIn={false}/>
           </div>
           )}
           

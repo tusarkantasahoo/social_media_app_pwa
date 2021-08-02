@@ -77,10 +77,16 @@ export default class PostMessageBox extends Component {
             <div className="container-fluid">
               <div className="row">
                 <div className="col-1" style={{ textAlign: "left" }}>
+                  {this.props.isLoggedIn?(
                   <img
+                  className="home-page-user-image-box"
+                  src={userDetails.userData.userImage}
+                />  
+                  ):(null)}
+                  {/* <img
                     className="home-page-user-image-box"
                     src={userDetails.userData.userImage}
-                  />
+                  /> */}
                 </div>
                 <div className="col-7" id="field-for-text-thoughts">
                   <div className="div-box-input-share-thoughts">

@@ -2,62 +2,64 @@ import React, { Component } from "react";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import cancel from "../../../assets/images/cancel.png";
 import { StyledDropZone } from "react-drop-zone";
-
+import oneQuestionImg from "../../../assets/images/clipboard.png";
+import classicSurvey from "../../../assets/images/classicSurvey.png";
+import conversationSurvey from "../../../assets/images/conversationSurvey.png";
+import check from "../../../assets/images/check.png";
+import Poll from "./Poll.js";
+import SelectSurvey from "./SelectSurvey.js";
+import Quiz from "./Quiz.js";
+import Research from "./Research.js";
 export default class CreateSurvey extends Component {
   constructor(props) {
     super(props);
     this.state = {
       postText: props.postText,
-      image: "",
       description: "",
+      isCreateSurveyClicked: false,
+      noOfOptions: 2,
+      pageContentForSurvey:"init"
     };
-    this.uploadImage = this.uploadImage.bind(this);
-    this.convertImageFileToBase64 = this.convertImageFileToBase64.bind(this);
+    this.renderSurveyPages = this.renderSurveyPages.bind(this);
+    this._isCreateSurveyClicked = this._isCreateSurveyClicked.bind(this);
+
   }
 
-  convertImageFileToBase64(file) {
-    console.log("convertImageFileToBase64=======");
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
+  _isCreateSurveyClicked(name){
+    this.setState({pageContentForSurvey:name});
   }
-  async uploadImage(file) {
-    console.log("base64 image");
-    const base64Img = await this.convertImageFileToBase64(file);
-    console.log("base64 image", base64Img);
-    if (base64Img) {
-      this.setState({ image: base64Img });
+
+  renderSurveyPages(){
+    
+    switch(this.state.pageContentForSurvey){
+      case "init": 
+      return <SelectSurvey  _isCreateSurveyClicked={this._isCreateSurveyClicked} state={this.state} postText={this.state.postText} />
+
+      case "poll":
+        return <Poll state={this.state} postText={this.state.postText} />
+
+      case "quiz":
+        return <Quiz state={this.state} postText={this.state.postText} />
+
+      case "research":
+        return <Research state={this.state} postText={this.state.postText} />
+  
+      default: return null
     }
   }
+  
+
 
   render() {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
     return (
       <>
-        <div className="row">
-          <div className="col-2" style={{ textAlign: "center" ,marginTop:"10" }}>
-         <p style={{fontSize:"22px"}}>Survey Title</p>
-          </div>
-          <div className="col-9" id="field-for-text-thoughts" >
-            <div className="div-box-input-share-thoughts" >
-              <input
-                value={this.state.postText}
-                onChange={(e) => {
-                  this.setState({ postText: e.target.value });
-                }}
-              style={{width:"100%",outline:"0" ,border: "0.5px solid blue",borderRadius:"10px",height:"3em"}}
-                placeholder="Share / Ask what's on your mind?"
-              ></input>
-            </div>
+       <div className="row">
+          <div
+            className="col-11"
+            style={{ textAlign: "center", marginTop: "10" }}
+          >
+            <p style={{ fontSize: "25px" }}>Create Your Survey</p>
           </div>
           <div
             className="col-1"
@@ -77,14 +79,12 @@ export default class CreateSurvey extends Component {
           </div>
         </div>
 
-        <div style={{cursor: "pointer"}}>
-            Add Element
-        </div>
+     
 
-        <button style={{height:"50px",width:"80%",marginBottom:"50px",marginTop:"20px",backgroundColor:"#1da1f2",fontWeight:"bold",borderRadius:"10px",color:"white"}}>
-              POST
-        </button>
+            {this.renderSurveyPages()}
+    
       </>
     );
   }
 }
+

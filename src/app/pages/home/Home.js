@@ -12,7 +12,7 @@ export default class Home extends Component {
   render() {
     return (
       <>
-        <PostMessageBox />
+        <PostMessageBox isLoggedIn={this.props.isLoggedIn}/>
         <div className="home-all-details" style={{ marginTop: "3%" }}>
           <p style={{ color: "#0089ff", fontSize: "42px" }}>Who we are ?</p>
           <p style={{ fontSize: "30px" }}>

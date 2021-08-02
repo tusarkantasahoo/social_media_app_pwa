@@ -83,7 +83,8 @@ export default class VideoPost extends Component {
             </div>
             <div className="row">
               <div className="col-1" style={{ textAlign: "right" }}>
-                <img
+                {this.props.isLoggedIn?(
+                  <img
                   src={userDetails.userData.userImage}
                   style={{
                     width: "60px",
@@ -93,6 +94,8 @@ export default class VideoPost extends Component {
                     marginLeft: "2em",
                   }}
                 ></img>
+                ):(null)}
+                
               </div>
               <div className="col-10" style={{ textAlign: "left" }}>
                 <div

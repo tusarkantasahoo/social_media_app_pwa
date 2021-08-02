@@ -4,14 +4,14 @@ import "./Post.css";
 import like from "../../../assets/images/like.png";
 import share from "../../../assets/images/network.png";
 import comment from "../../../assets/images/comment.png";
-import {authResponseStoredValue} from "../../../utils/Constant.js";
+import { authResponseStoredValue } from "../../../utils/Constant.js";
 export default class ImagePost extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
-      var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
     return (
       <>
         <div
@@ -41,7 +41,9 @@ export default class ImagePost extends Component {
               <p style={{ fontSize: "18px", cursor: "pointer" }}>Edit</p>
             </div>
           </div>
-          <p style={{ fontSize: "16px" }}>{this.props.props.description.substring(0,100)+"..."}</p>
+          <p style={{ fontSize: "16px" }}>
+            {this.props.props.description.substring(0, 100) + "..."}
+          </p>
           <div
             onClick={() => {
               this.props.handelNewsClick();
@@ -54,45 +56,70 @@ export default class ImagePost extends Component {
               src={this.props.props.image}
             ></img>
           </div>
-          <div className="row" style={{ textAlign: "center",marginTop: "15px"}}>
+          <div
+            className="row"
+            style={{ textAlign: "center", marginTop: "15px" }}
+          >
             <div className="col-4">
-                <div style={{ }}>
-                <img src={like} style={{height:"2em",width:"2em"}} />
-                </div>
-              
+              <div style={{}}>
+                <img src={like} style={{ height: "2em", width: "2em" }} />
+              </div>
             </div>
             <div className="col-4">
-                <div>
-                <img src={comment} style={{height:"2em",width:"2em"}}></img>
-                </div>
-              
+              <div>
+                <img
+                  src={comment}
+                  style={{ height: "2em", width: "2em" }}
+                ></img>
+              </div>
             </div>
             <div className="col-4">
-                <div>
-                <img src={share} style={{height:"2em",width:"2em"}}></img>
-                </div>
-              
+              <div>
+                <img src={share} style={{ height: "2em", width: "2em" }}></img>
+              </div>
             </div>
           </div>
 
-          <div className="row" >
-              <div className="col-1" style={{ textAlign: "right" }}>
-<img src={userDetails.userData.userImage} style={{width:"60px",height:"60px",borderRadius:"60px",marginTop:"0.7em",marginLeft:"2em"}}></img>
+          <div className="row">
+            <div className="col-1" style={{ textAlign: "right" }}>
+              {this.props.isLoggedIn ? (
+                <img
+                  src={userDetails.userData.userImage}
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    borderRadius: "60px",
+                    marginTop: "0.7em",
+                    marginLeft: "2em",
+                  }}
+                ></img>
+              ) : null}
+            </div>
+            <div className="col-10" style={{ textAlign: "left" }}>
+              <div
+                style={{
+                  padding: "10px",
+                  marginLeft: "0",
+                  marginTop: "10px",
+                  textAlign: "left",
+                }}
+              >
+                <input
+                  value={this.state.postText}
+                  onChange={(e) => {}}
+                  placeholder="Comment"
+                  style={{
+                    width: "90%",
+                    height: "50px",
+                    marginLeft: "5%",
+                    outline: "0",
+                    border: "0.5px solid #d4d1c5",
+                    borderRadius: "10px",
+                  }}
+                ></input>
               </div>
-              <div className="col-10" style={{ textAlign: "left" }}>
-              <div style={{ padding: "10px",marginLeft: "0",marginTop: "10px",textAlign: "left"}}>
-            <input
-              value={this.state.postText}
-              onChange={(e) => {
-
-              }}
-              placeholder="Comment"
-              style={{ width: "90%", height: "50px", marginLeft: "5%",outline:"0", border:"0.5px solid #d4d1c5",borderRadius:"10px" }}
-            ></input>
+            </div>
           </div>
-              </div>
-
-        </div>
         </div>
       </>
     );
