@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import cancel from "../../../assets/images/cancel.png";
 import { StyledDropZone } from "react-drop-zone";
-
+import {imageFileUpload } from "../../api/Api.js";
 export default class ImageUpload extends Component {
   constructor(props) {
     super(props);
@@ -10,9 +10,11 @@ export default class ImageUpload extends Component {
       postText: props.postText,
       image: "",
       description: "",
+      file: {},
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.convertImageFileToBase64 = this.convertImageFileToBase64.bind(this);
+    this.requestForUpload = this.requestForUpload.bind(this);
   }
 
   convertImageFileToBase64(file) {
@@ -31,12 +33,21 @@ export default class ImageUpload extends Component {
     });
   }
   async uploadImage(file) {
+    this.setState({ file: file });
     console.log("base64 image");
     const base64Img = await this.convertImageFileToBase64(file);
     console.log("base64 image", base64Img);
     if (base64Img) {
       this.setState({ image: base64Img });
     }
+  }
+
+  async requestForUpload() {
+    const formData = new FormData();
+    formData.append('profileImg', this.state.file)
+
+    console.log("Payload",formData)
+ imageFileUpload(formData)
   }
 
   render() {
@@ -87,7 +98,7 @@ export default class ImageUpload extends Component {
             marginTop: "35px",
             borderRadius: "20px",
             margin: "10px",
-            borderStyle: "dotted"
+            borderStyle: "dotted",
           }}
           onDrop={(file, text) => {
             console.log(file);
@@ -126,8 +137,22 @@ export default class ImageUpload extends Component {
             ></input>
           </div>
         </div>
-        <button style={{height:"50px",width:"80%",marginBottom:"50px",marginTop:"20px",backgroundColor:"#1da1f2",fontWeight:"bold",borderRadius:"10px",color:"white"}}>
-              POST
+        <button
+          onClick={() => {
+            this.requestForUpload();
+          }}
+          style={{
+            height: "50px",
+            width: "80%",
+            marginBottom: "50px",
+            marginTop: "20px",
+            backgroundColor: "#1da1f2",
+            fontWeight: "bold",
+            borderRadius: "10px",
+            color: "white",
+          }}
+        >
+          POST
         </button>
       </>
     );
