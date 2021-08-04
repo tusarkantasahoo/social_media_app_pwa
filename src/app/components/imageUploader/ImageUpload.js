@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import cancel from "../../../assets/images/cancel.png";
 import { StyledDropZone } from "react-drop-zone";
-import {imageFileUpload } from "../../api/Api.js";
+import {imageFileUpload,createPostData } from "../../api/Api.js";
 export default class ImageUpload extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +10,8 @@ export default class ImageUpload extends Component {
       postText: props.postText,
       image: "",
       description: "",
-      file: {},
+      file: null,
+      userData:JSON.parse(localStorage.getItem(authResponseStoredValue))
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.convertImageFileToBase64 = this.convertImageFileToBase64.bind(this);
@@ -43,11 +44,27 @@ export default class ImageUpload extends Component {
   }
 
   async requestForUpload() {
+
     const formData = new FormData();
     formData.append('profileImg', this.state.file)
-
     console.log("Payload",formData)
- imageFileUpload(formData)
+
+      var responseFileUpload = await imageFileUpload(formData);
+      if(responseFileUpload.status===200){
+        console.log("response fater file stor",responseFileUpload)
+        console.log("file id",responseFileUpload.data._id)
+        var payload ={
+          title:this.state.postText,
+          description:this.state.description,
+          postType:"image",
+          user:this.state.userData.userData,
+          fileStorageId:responseFileUpload.data._id
+        }
+        var responseForPostDetails = await createPostData(payload);
+        if(responseForPostDetails.status===200){
+          console.log("post details reposne",responseForPostDetails)
+        }
+      }
   }
 
   render() {

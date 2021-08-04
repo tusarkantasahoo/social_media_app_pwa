@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import PostMessageBox from "../../components/homeSocial/postMessgaeBox/PostMessageBox.js";
-import dataForPostRooms from "../../testData/TestData.js";
+// import dataForPostRooms from "../../testData/TestData.js";
 import Post from "../../components/posts/Post.js";
 import SinglePostView from "../../components/openPosts/SinglePostView.js";
+import { getPostsList } from "../../api/Api.js";
 export default class Rooms extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isAnyNewsClicked: false,
       fullScreenNewsContent: {},
+      dataForPostRooms: [],
     };
     this.handelNewsClick = this.handelNewsClick.bind(this);
     this.handelNewsClose = this.handelNewsClose.bind(this);
@@ -36,7 +38,7 @@ export default class Rooms extends Component {
           />
         ) : (
           <>
-            <PostMessageBox isLoggedIn={this.props.isLoggedIn}/>
+            <PostMessageBox isLoggedIn={this.props.isLoggedIn} />
             <div style={{ marginTop: "3%", textAlign: "left" }}>
               {/* <div className="container-fluid"> */}
               <div
@@ -75,7 +77,7 @@ export default class Rooms extends Component {
               </div>
             </div>
             <div className="row">
-              {dataForPostRooms.map((item, index) => {
+              {this.state.dataForPostRooms.map((item, index) => {
                 return (
                   <Post
                     props={item}
@@ -90,5 +92,13 @@ export default class Rooms extends Component {
         )}
       </>
     );
+  }
+
+  async componentDidMount() {
+    var responsePostList = await getPostsList();
+    if (responsePostList.status === 200) {
+      console.log("responsePostList", responsePostList);
+      this.setState({dataForPostRooms:responsePostList.data.response})
+    }
   }
 }

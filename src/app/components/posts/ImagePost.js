@@ -5,13 +5,19 @@ import like from "../../../assets/images/like.png";
 import share from "../../../assets/images/network.png";
 import comment from "../../../assets/images/comment.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
+import {getFileContentById} from "../../api/Api.js";
+import bufferToDataUrl from "buffer-to-data-url"
 export default class ImagePost extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      fileId:this.props.props.fileStorageId,
+      postImage:""
+    };
   }
   render() {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    // console.log("Incoming props",this.props.props)
     return (
       <>
         <div
@@ -53,7 +59,7 @@ export default class ImagePost extends Component {
           >
             <img
               className="image-field-for-posts"
-              src={this.props.props.image}
+              src={this.state.postImage}
             ></img>
           </div>
           <div
@@ -123,5 +129,21 @@ export default class ImagePost extends Component {
         </div>
       </>
     );
+  }
+  async componentDidMount() {
+ var responseFileContent = await getFileContentById(this.state.fileId)
+ if(responseFileContent.status===200){
+  //  console.log("File content",responseFileContent.data.response.file.data)
+
+    var h1 = responseFileContent.data.response.file.data;
+    const img = new Buffer.from(h1).toString("ascii")
+    console.log(img);
+    const dataUrl = bufferToDataUrl("image/png",img)
+
+    // console.log("buffeerUrl",dataUrl)
+   this.setState({
+     postImage:dataUrl
+   })
+ }
   }
 }
