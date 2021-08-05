@@ -6,13 +6,19 @@ import like from "../../../assets/images/like.png";
 import share from "../../../assets/images/network.png";
 import comment from "../../../assets/images/comment.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
+import {getFileContentById} from "../../api/Api.js";
+import bufferToDataUrl from "buffer-to-data-url"
 export default class VideoPost extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      fileId:this.props.props.fileStorageId,
+      videoUrl:""
+    };
   }
   render() {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    console.log("Inside video post",this.props.props);
     return (
       <>
         <div
@@ -51,7 +57,7 @@ export default class VideoPost extends Component {
               width="60%"
               height="22em"
               playIcon="false"
-              url={this.props.props.url}
+              url={this.state.videoUrl}
               style={{ marginLeft: "20%" }}
             ></ReactPlayer>
 
@@ -126,5 +132,33 @@ export default class VideoPost extends Component {
         </div>
       </>
     );
+  }
+
+  async componentDidMount() {
+
+    if(this.props.props.videoLink!==null&&this.props.props.videoLink!==undefined) {
+      this.setState({
+        videoUrl:this.props.props.videoLink
+      })
+    }
+    else{
+      var response = await getFileContentById(this.state.fileId)
+      if(response.status === 200) {
+        console.log(response);
+        var h1 = response.data.response.file.data
+        const video = new Buffer.from(h1).toString("ascii")
+      console.log(video);
+      // const dataUrl = bufferToDataUrl("image/png",img)
+        const dataUrl = bufferToDataUrl("video/mp4",video)
+  
+  
+        console.log("buffeerUrl",dataUrl)
+        this.setState({
+          videoUrl:dataUrl
+        })
+  
+      }
+    }
+
   }
 }

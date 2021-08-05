@@ -9,7 +9,7 @@ export default class ImageUpload extends Component {
     this.state = {
       postText: props.postText,
       image: "",
-      description: "",
+      description: props.postText,
       file: null,
       userData:JSON.parse(localStorage.getItem(authResponseStoredValue))
     };
@@ -145,7 +145,7 @@ export default class ImageUpload extends Component {
         <div className="row" style={{ textAlign: "left" }}>
           <div style={{ padding: "10px" }}>
             <input
-              value={this.state.postText}
+              value={this.state.description}
               onChange={(e) => {
                 this.setState({ description: e.target.value });
               }}
