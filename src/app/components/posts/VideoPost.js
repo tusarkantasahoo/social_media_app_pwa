@@ -33,7 +33,7 @@ export default class VideoPost extends Component {
           <div className="row">
             <div className="col-1">
               <img
-                src={userImage}
+                src={this.props.props.user.userImage}
                 height="35px"
                 width="35px"
                 style={{ borderRadius: "25px" }}
@@ -41,13 +41,17 @@ export default class VideoPost extends Component {
             </div>
             <div className="col-10">
               <p style={{ fontSize: "22px", marginLeft: "-3%" }}>
-                {this.props.props.title}
+              {this.props.props.user.name}
+              </p>
+              <p style={{ fontSize: "15px", marginLeft: "-3%",marginTop: "-1.5em" }}>
+              {this.props.props.user.email}
               </p>
             </div>
             <div className="col-1">
               <p style={{ fontSize: "18px", cursor: "pointer" }}>Edit</p>
             </div>
           </div>
+          <p>{this.props.props.title}</p>
           <p style={{ fontSize: "16px" }}>{this.props.props.description.substring(0,100)+"..."}</p>
           <div>
             {/* <img className="image-field-for-posts" src={this.props.props.image}></img> */}
