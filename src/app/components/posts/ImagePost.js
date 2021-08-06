@@ -5,7 +5,7 @@ import like from "../../../assets/images/like.png";
 import share from "../../../assets/images/network.png";
 import comment from "../../../assets/images/comment.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
-import {getFileContentById} from "../../api/Api.js";
+import {getFileContentById,deletePostById} from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url"
 export default class ImagePost extends Component {
   constructor(props) {
@@ -14,10 +14,19 @@ export default class ImagePost extends Component {
       fileId:this.props.props.fileStorageId,
       postImage:""
     };
+
+    this._onClickDeletePost = this._onClickDeletePost.bind(this);
+  }
+
+  async _onClickDeletePost(id){
+    var response = await deletePostById(id)
+    if(response.status === 200){
+      console.log("Post delete",response)
+    }
   }
   render() {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
-    // console.log("Incoming props",this.props.props)
+     console.log("Incoming props",this.props.props)
     return (
       <>
         <div
@@ -48,6 +57,7 @@ export default class ImagePost extends Component {
             </div>
             <div className="col-1">
               <p style={{ fontSize: "18px", cursor: "pointer" }}>Edit</p>
+              <p onClick={() => this._onClickDeletePost(this.props.props._id)} style={{ fontSize: "18px", cursor: "pointer" }}>Delete</p>
             </div>
           </div>
           <p>{this.props.props.title}</p>

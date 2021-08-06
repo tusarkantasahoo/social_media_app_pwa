@@ -5,7 +5,6 @@ import cancel from "../../../assets/images/cancel.png";
 import { StyledDropZone } from "react-drop-zone";
 import {
   imageFileUpload,
-  getVideo,
   createPostData,
   getFileContentById,
 } from "../../api/Api.js";
