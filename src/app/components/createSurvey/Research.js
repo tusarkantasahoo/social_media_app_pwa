@@ -1,13 +1,31 @@
 import React, { Component } from "react";
-
+import { authResponseStoredValue } from "../../../utils/Constant.js";
+import {createSurvey} from "../../api/Api.js";
 export default class Research extends Component {
   constructor(props) {
     super(props);
     this.state = { 
         noOfOptions:2, 
         postText:props.postText,
+        user:JSON.parse(localStorage.getItem(authResponseStoredValue))
 
     };
+    this._onClickSurveySubmit = this._onClickSurveySubmit.bind(this);
+  }
+
+  async _onClickSurveySubmit(){
+
+
+    var surveyPayload={
+      title:this.state.postText,
+      surveyType:"research",
+      user:this.state.user.userData,
+    }
+
+    var responsePollSurvey = await createSurvey(surveyPayload)
+    if(responsePollSurvey.status === 200){
+      console.log("response create survey",responsePollSurvey)
+    }
   }
   render() {
       console.log("Research created");
@@ -30,96 +48,11 @@ export default class Research extends Component {
                 placeholder="Survey Name"
               ></input>
             </div>
-        <div
-              style={{
-                width: "90%",
-                marginLeft: "5%",
-                marginTop: "10px",
-                textAlign: "left",
-                padding: "10px",
-                borderWidth: "thin",
-                border: "0.5px solid #bab3a0",
-                borderRadius: "10px",
-              }}
-            >
-              <p>Options for Polls</p>
-              <input
-                style={{
-                  width: "80%",
-                  height: "3em",
-                  border: "0.5px solid ",
-                  outline: "0",
-                }}
-                placeholder="Choice 1"
-              ></input>
-              <input
-                style={{
-                  width: "80%",
-                  height: "3em",
-                  border: "0.5px solid ",
-                  outline: "0",
-                  marginTop: "1em",
-                }}
-                placeholder="Choice 2"
-              ></input>
-              {this.state.noOfOptions > 2 ? (
-                <>
-                  {this.state.noOfOptions === 3 ? (
-                    <input
-                      style={{
-                        width: "80%",
-                        height: "3em",
-                        border: "0.5px solid ",
-                        outline: "0",
-                        marginTop: "1em",
-                      }}
-                      placeholder="Choice 3"
-                    ></input>
-                  ) : (
-                    <>
-                      <input
-                        style={{
-                          width: "80%",
-                          height: "3em",
-                          border: "0.5px solid ",
-                          outline: "0",
-                          marginTop: "1em",
-                        }}
-                        placeholder="Choice 3"
-                      ></input>
-                      <input
-                        style={{
-                          width: "80%",
-                          height: "3em",
-                          border: "0.5px solid ",
-                          outline: "0",
-                          marginTop: "1em",
-                        }}
-                        placeholder="Choice 4"
-                      ></input>
-                    </>
-                  )}
-                </>
-              ) : null}
-              {this.state.noOfOptions < 4 ? (
-                <p
-                  style={{
-                    fontSize: "22px",
-                    marginTop: "1em",
-                    cursor: "pointer",
-                    color: "#1da1f2",
-                  }}
-                  onClick={() =>
-                    this.setState({ noOfOptions: this.state.noOfOptions + 1 })
-                  }
-                >
-                  Add more +
-                </p>
-              ) : null}
-            </div>
+      
             <div style={{ marginTop: "1em" }}>
               <button
-                styl  e={{
+              onClick={() => this._onClickSurveySubmit()}
+                style={{
                   border: "1px solid",
                   backgroundColor: "#1da1f2",
                   fontSize: "18px",

@@ -47,6 +47,7 @@ export default class Poll extends Component {
       console.log("poll created");
     return (
       <>
+      Poll Survey
         <div style={{ width: "90%", marginLeft: "5%" }}>
               <input
                 value={this.state.postText}
@@ -172,6 +173,7 @@ export default class Poll extends Component {
                 </p>
               ) : null}
             </div>
+           
             <div style={{ marginTop: "1em" }}>
               <button
                 style={{
