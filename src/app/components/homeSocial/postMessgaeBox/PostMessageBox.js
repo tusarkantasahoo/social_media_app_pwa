@@ -66,7 +66,7 @@ export default class PostMessageBox extends Component {
     return (
       <>
         <div
-          className="message-container"
+          className="message-container p-2"
           style={{
             boxShadow: "4px 10px 8px  #dbd8d7",
             marginTop: "2%",

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import ReactPlayer from "react-player";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import cancel from "../../../assets/images/cancel.png";
 import { StyledDropZone } from "react-drop-zone";
-import {imageFileUpload,getVideo } from "../../api/Api.js";
-import bufferToDataUrl from "buffer-to-data-url"
+import ReactPlayer from 'react-player'
 export default class VideoUpload extends Component {
   constructor(props) {
     super(props);
@@ -12,12 +10,10 @@ export default class VideoUpload extends Component {
       postText: props.postText,
       image: "",
       description: "",
-      videoUrl:"",
-      file:{}
+      videoUrl:""
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.convertImageFileToBase64 = this.convertImageFileToBase64.bind(this);
-    this.requestForUpload = this.requestForUpload.bind(this);
   }
 
   convertImageFileToBase64(file) {
@@ -36,20 +32,12 @@ export default class VideoUpload extends Component {
     });
   }
   async uploadImage(file) {
-    console.log("file",file);
-    this.setState({file: file});
-    // const base64Img = await this.convertImageFileToBase64(file);
-    // console.log("base64 image", base64Img);
-    // if (base64Img) {
-    //   this.setState({ image: base64Img });
-    // }
-  }
-  async requestForUpload() {
-    const formData = new FormData();
-    formData.append('profileImg', this.state.file)
-
-    console.log("Payload",formData)
- imageFileUpload(formData)
+    console.log("base64 image");
+    const base64Img = await this.convertImageFileToBase64(file);
+    console.log("base64 image", base64Img);
+    if (base64Img) {
+      this.setState({ image: base64Img });
+    }
   }
 
   render() {
@@ -93,7 +81,7 @@ export default class VideoUpload extends Component {
           </div>
         </div>
         <StyledDropZone
-          accept="video/*"
+          accept="image/*"
           style={{
             height: "22em",
             border: "1px solid blue",
@@ -158,39 +146,10 @@ export default class VideoUpload extends Component {
             ></input>
           </div>
         </div>
-        <button 
-                onClick={() => {
-                  this.requestForUpload();
-                }}
-        style={{height:"50px",width:"80%",marginBottom:"50px",marginTop:"20px",backgroundColor:"#1da1f2",fontWeight:"bold",borderRadius:"10px",color:"white"}}>
+        <button style={{height:"50px",width:"80%",marginBottom:"50px",marginTop:"20px",backgroundColor:"#1da1f2",fontWeight:"bold",borderRadius:"10px",color:"white"}}>
               POST
         </button>
-        <ReactPlayer
-              controls={true}
-              pip
-              width="60%"
-              height="22em"
-              playIcon="false"
-               url={this.state.videoUrl}
-              style={{ marginLeft: "20%" }}
-            ></ReactPlayer>
       </>
     );
-  }
-
-  async componentDidMount() {
-    var response = await getVideo()
-    if(response.status === 200) {
-      var h1 = response.data
-      console.log(h1)
-      const dataUrl = bufferToDataUrl("video/mp4",h1)
-
-
-      console.log("buffeerUrl",dataUrl)
-      this.setState({
-        videoUrl:dataUrl
-      })
-
-    }
   }
 }
