@@ -44,6 +44,9 @@
   width: 30px;
   margin-left: 25px;
 }
+.upload-image-before-post:first-child {
+  margin-left: 5px;
+}
 #filed-for-post-button {
   text-align: right;
 }
