@@ -52,7 +52,14 @@ export default class HeaderUser extends Component {
                 <p>Phone:{userDetails.userData.phone}</p>
                 {/* <p>Other details:</p> */}
                 <button
-                  onClick={() => this.props._onClickUserDashboard()}
+                  onClick={() => {
+                    this.props._onClickUserDashboard();
+
+                    this.props._changeScreenRender({
+                      name: "User Details",
+                      code: "userDetails",
+                    });
+                  }}
                   style={{
                     color: "black",
                     backgroundColor: "white",
