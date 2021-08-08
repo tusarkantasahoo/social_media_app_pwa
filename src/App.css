@@ -1,10 +1,10 @@
 .App {
   text-align: center;
 }
-.noBar{
+.noBar {
   overflow-x: hidden !important;
 }
-#home-options{
+#home-options {
   max-width: 270px;
 }
 /* width */
@@ -26,21 +26,52 @@
 .noBar::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.sideBar{
+.sideBar {
   width: 200px;
 }
-.menuCard{
+.menuCard {
   /* width: fit-content; */
   border: none !important;
   cursor: pointer;
 }
-.menuCard:hover{
+.menuCard:hover {
   box-shadow: 0 0 36px 0 rgb(217 217 217 / 50%);
 }
-.menuCard img{
+.menuCard img {
   width: 80px;
 }
-.menuCard h6{
+.menuCard h6 {
   margin-top: 0.5rem;
 }
 
+.swiper-container {
+  width: 100%;
+  height: 20em;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

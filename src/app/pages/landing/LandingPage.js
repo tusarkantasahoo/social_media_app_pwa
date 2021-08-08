@@ -74,7 +74,6 @@ export default class Landing extends Component {
       case "academic":
         return (
           <div className="col-10" id="home-social">
-            Full screen
             <Academic />
           </div>
         );
