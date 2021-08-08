@@ -1,3 +1,46 @@
 .App {
   text-align: center;
 }
+.noBar{
+  overflow-x: hidden !important;
+}
+#home-options{
+  max-width: 270px;
+}
+/* width */
+.noBar::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+.noBar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.noBar::-webkit-scrollbar-thumb {
+  background: rgb(230, 230, 230);
+}
+
+/* Handle on hover */
+.noBar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.sideBar{
+  width: 200px;
+}
+.menuCard{
+  /* width: fit-content; */
+  border: none !important;
+  cursor: pointer;
+}
+.menuCard:hover{
+  box-shadow: 0 0 36px 0 rgb(217 217 217 / 50%);
+}
+.menuCard img{
+  width: 80px;
+}
+.menuCard h6{
+  margin-top: 0.5rem;
+}
+
