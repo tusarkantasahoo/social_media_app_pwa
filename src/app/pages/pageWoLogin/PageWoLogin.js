@@ -35,7 +35,7 @@ export default class PageWoLogin extends Component {
       <div className="container-fluid">
         <div className="row">
           
-            <div className="col-2" id="home-options" style={{boxShadow: "4px 10px 8px #dbd8d7",height:`${this.state.height.toString()-60}px`}}> 
+            <div className="sideBar" id="home-options" style={{boxShadow: "0px 2px 3px #dbd8d7",height:`${this.state.height.toString()-60}px`}}> 
             <HomeOptions props={this.state} updateOptionOnClick={this.updateOptionOnClick}/>
             </div>
      

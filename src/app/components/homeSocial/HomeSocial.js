@@ -15,7 +15,7 @@ export default class HomeSocial extends Component {
       console.log("height in social",this.state.height);
       return (
        <>
-       <div className="container" style={{overflow:"scroll",height:`${this.state.height-55}px`}}>
+       <div className="container noBar" style={{overflow:"scroll",height:`${this.state.height-55}px`}}>
  
       {this.renderSocialPage(this.props.props.currentOption)}
         </div>
@@ -26,6 +26,7 @@ export default class HomeSocial extends Component {
       switch(currentOption.code){
         case "home": return <Home isLoggedIn={this.props.isLoggedIn} />;
         case "rooms":return <Rooms isLoggedIn={this.props.isLoggedIn}/>;
+        
         default:
       }
     }
