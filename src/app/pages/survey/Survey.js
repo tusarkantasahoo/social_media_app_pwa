@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import Carousel from "react-elastic-carousel";
 import {getSurveyList} from "../../api/Api.js";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css";
+import "swiper/components/navigation/navigation.min.css";
+import SurveyMovingCard from "../../components/surveyCard/SurveyMovingCard.js";
+import "../../../App.css";
+// import Swiper core and required modules
+import SwiperCore, { Pagination, Navigation } from "swiper/core";
 export default class Survey extends Component {
   constructor(props) {
     super(props);
@@ -25,20 +35,31 @@ export default class Survey extends Component {
     return (
       <>
         <div class="container">
-          <Carousel breakPoints = {breakpoints}>
-            {this.state.survey.map((item) => (
-                <>
-              
-              <div>
-              <p>{item.title}</p>
-              <br></br>
-              <p >{item.surveyType}</p>
-              <br></br>
-              </div>
-              
-              </>
-            ))}
-          </Carousel>
+        <p style={{fontSize:"22px"}}>User Survey</p>
+        <div style={{height:"10em"}}></div>
+          <p style={{fontSize:"22px"}}>Trending Survey</p>
+        <Swiper
+          height="20em"
+          slidesPerView={3}
+          spaceBetween={20}
+          slidesPerGroup={3}
+          loop={true}
+          loopFillGroupWithBlank={true}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          className="mySwiper"
+        >
+          {this.state.survey.map((item, id) => {
+            return (
+              <SwiperSlide>
+                <div></div>
+                <SurveyMovingCard item={item} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
         </div>
       </>
     );

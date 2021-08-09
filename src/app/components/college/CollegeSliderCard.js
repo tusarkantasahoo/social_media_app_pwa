@@ -11,14 +11,14 @@ export default class CollegeSliderCard extends Component {
       <>
         <div
           
-          style={{ border: "1px solid #1da1f2", height: "15em" }}
+          style={{ border: "1px solid #1da1f2", height: "15em",width:"20em" }}
         >
           <div style={{display:"flex"}}>
           <img src={this.props.item.img} style={{ height: "5em",width:"5em",marginLeft:"0.5em",marginTop:"0.5em" }} ></img>
           <div>
           <p style={{fontSize:"15px",color:"blue",fontWeight:"500"}}>{this.props.item.name}</p>
-          <p style={{fontSize:"12px",marginTop:"-1em",marginLeft:"-14em"}}>Hyderabad</p>
-          <p style={{fontSize:"15px",marginTop:"-1em",marginLeft:"-7em"}}>Lane no 408, Patia</p>
+          <p style={{fontSize:"12px",marginTop:"-1em",marginLeft:"-8em"}}>Hyderabad</p>
+          <p style={{fontSize:"15px",marginTop:"-1em",marginLeft:"-2em"}}>Lane no 408, Patia</p>
           </div>
           
           </div>
@@ -39,22 +39,6 @@ export default class CollegeSliderCard extends Component {
             </div>
             
             </div>
-
-            {/* <div style={{display:"flex",marginTop:"1em",marginLeft:"0.5em"}}>
-            <div>
-            <p style={{fontSize:"15px",marginTop:"-1em",marginLeft:""}}>College Rating</p>
-          <p style={{fontSize:"15px",marginTop:"-1em",marginLeft:""}}>4 stars</p>
-            </div>
-            <div style={{marginLeft:"3em"}}>
-            <p style={{fontSize:"15px",marginTop:"-1em",marginLeft:""}}>Rating</p>
-          <p style={{fontSize:"15px",marginTop:"-1em",marginLeft:""}}>#15-100 NRF</p>
-            </div>
-          </div> */}
-
-            
-          
-          
-
             
           <div style={{backgroundColor: "#1da1f2",borderRadius:"10px",color:"white",width:"80%",marginLeft:"10%"}}>
             <p>Get College Details</p>
