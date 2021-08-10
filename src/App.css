@@ -38,9 +38,29 @@
   box-shadow: 0 0 36px 0 rgb(217 217 217 / 50%);
 }
 .menuCard img{
-  width: 80px;
+  width: 50px;
 }
 .menuCard h6{
   margin-top: 0.5rem;
 }
-
+#home-social .MuiCardContent-root{
+  text-align: center;
+}
+.user_post_img{
+  width: 60px;
+  height: 60px;
+}
+.text-right{
+  text-align: right;
+}
+.logo_wrapper{
+  width: 200px;
+  height: 50px;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+}
+.img_res{
+  max-width: 100%;
+  max-height: 100%;
+}

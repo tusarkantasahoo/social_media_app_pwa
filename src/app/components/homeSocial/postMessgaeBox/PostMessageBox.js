@@ -74,9 +74,9 @@ export default class PostMessageBox extends Component {
           }}
         >
           {this.state.renderWhatToPost === "none" ? (
-            <div className="container-fluid">
+            <div className="container-fluid px-0">
               <div className="row">
-                <div className="col-1" style={{ textAlign: "left" }}>
+                <div className="user_post_img" style={{ textAlign: "left" }}>
                   {this.props.isLoggedIn?(
                   <img
                   className="home-page-user-image-box"
@@ -88,7 +88,7 @@ export default class PostMessageBox extends Component {
                     src={userDetails.userData.userImage}
                   /> */}
                 </div>
-                <div className="col-7" id="field-for-text-thoughts">
+                <div className="col" id="field-for-text-thoughts">
                   <div className="div-box-input-share-thoughts">
                     <input
                       onChange={(e) => {
@@ -103,8 +103,8 @@ export default class PostMessageBox extends Component {
 
               {this.state.postText.length === 0 ? (
                 <div className="row" id="filed-for-image-postbutton">
-                  <div className="col-1"></div>
-                  <div className="col-6" id="upload-image-image-field">
+                  {/* <div className="col-1"></div> */}
+                  <div className="col px-0" id="upload-image-image-field">
                     {dropDownPostOptions.map((item, id) => {
                       if (item.isPrimary === true) {
                         return (
@@ -134,7 +134,7 @@ export default class PostMessageBox extends Component {
                     className="row"
                     style={{ textAlign: "left", marginTop: "40px" }}
                   >
-                    <div className="col-10">
+                    <div className="d-flex flex-wrap">
                       {dropDownPostOptions.map((item, index) => {
                         return (
                           <div
@@ -157,12 +157,12 @@ export default class PostMessageBox extends Component {
                         );
                       })}
                     </div>
-                    <div className="col-2">
+                    <div className="text-right">
                       <button
                         className="post-button"
                         type="submit"
                         value="Submit"
-                        style={{ position: "relative", bottom: "-22em" }}
+                        style={{ position: "relative" }}
                       >
                         <p className="post-text-home">Post</p>
                       </button>
