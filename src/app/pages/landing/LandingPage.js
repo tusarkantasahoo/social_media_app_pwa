@@ -100,7 +100,7 @@ export default class Landing extends Component {
           isLoggedIn={true}
           _changeScreenRender={this._changeScreenRender}
         />
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div
               className="sideBar"

@@ -33,67 +33,65 @@ export default class Home extends Component {
           </h5>
           {/* <img src={allIconsHome} style={{height:"21em",width:"60em"}}></img> */}
           <div className="">
-            <div className="d-flex flex-wrap col">
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
+            <div className="d-flex flex-wrap justify-content-between col">
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
                   <img src={roomicon}></img>
                   <h6>Room</h6>
                 </CardContent>
               </Card>
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
                   <img src={academicicon}></img>
                   <h6>Academic</h6>
                 </CardContent>
               </Card>
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
                   <img src={careericon}></img>
                   <h6>Career</h6>
                 </CardContent>
               </Card>
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
                   <img src={jobicon}></img>
                   <h6>Jobs</h6>
                 </CardContent>
               </Card>
-            </div>
-
-            <div className="d-flex flex-wrap col">
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
-                <CardContent>
-                  <img src={forumicon}></img>
-                  <h6>Forum</h6>
-                </CardContent>
-              </Card>
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
-                <CardContent>
-                  <img src={surveyicon}></img>
-                  <h6>Survey</h6>
-                </CardContent>
-              </Card>
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
-                <CardContent>
-                  <img src={plannericon}></img>
-                  <h6>Planner</h6>
-                </CardContent>
-              </Card>
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
-                <CardContent>
-                  <img src={skillicon}></img>
-                  <h6>Skill</h6>
-                </CardContent>
-              </Card>
-            </div>
-            <div className="d-flex flex-wrap col">
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
                   <img src={repoicon}></img>
                   <h6>repository</h6>
                 </CardContent>
               </Card>
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-3" variant="outlined">
+            </div>
+
+            <div className="d-flex flex-wrap justify-content-between col mt-4">
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
+                <CardContent>
+                  <img src={forumicon}></img>
+                  <h6>Forum</h6>
+                </CardContent>
+              </Card>
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
+                <CardContent>
+                  <img src={surveyicon}></img>
+                  <h6>Survey</h6>
+                </CardContent>
+              </Card>
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
+                <CardContent>
+                  <img src={plannericon}></img>
+                  <h6>Planner</h6>
+                </CardContent>
+              </Card>
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
+                <CardContent>
+                  <img src={skillicon}></img>
+                  <h6>Skill</h6>
+                </CardContent>
+              </Card>
+              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
                   <img src={othericon}></img>
                   <h6>Other</h6>

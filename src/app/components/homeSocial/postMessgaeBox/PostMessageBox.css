@@ -1,12 +1,15 @@
 .input-post {
   height: 100%;
-  font-size: 25px;
+  font-size: 1rem;
   border: none;
-  background-color: none;
+  background-color: #E5F2F8;
   outline: 0;
   box-sizing: none;
-  width: 110%;
+  width: 100%;
+  border-radius: 10px;
+  padding-left: 0.5rem;
 }
+
 .post-button {
   background-color: #1da1f2;
   border: none;
@@ -15,6 +18,7 @@
   height: 35px;
   color: white;
 }
+
 .home-page-user-image-box {
   border-radius: 60px;
 
@@ -22,23 +26,28 @@
   height: 60px;
   width: 60px;
 }
+
 #field-for-text-thoughts {
   text-align: left;
   margin-top: 10px;
   margin-left: -5px;
 }
+
 .div-box-input-share-thoughts {
   height: 50px;
   text-align: left;
   margin-left: 10px;
 }
+
 #filed-for-image-postbutton {
-  margin-top: 75px;
+  margin-top: 50px;
   padding-bottom: 5px;
 }
+
 #upload-image-image-field {
   text-align: left;
 }
+
 .upload-image-before-post {
   height: 30px;
   width: 30px;
@@ -47,18 +56,23 @@
 .upload-image-before-post:first-child {
   margin-left: 5px;
 }
+
 #filed-for-post-button {
   text-align: right;
 }
+
 .post-text-home {
   font-size: 15px;
   font-weight: bold;
   color: white;
   margin-top: 2px;
 }
+
 .post-box-dropdown-list-upload {
-  margin-top: 10px;
+  margin-top: 1rem;
+  margin-right: 1rem;
 }
+
 .upload-image-before-post-dropdown {
   height: 30px;
   width: 30px;
