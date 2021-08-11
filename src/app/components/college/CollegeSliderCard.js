@@ -40,7 +40,7 @@ export default class CollegeSliderCard extends Component {
             
             </div>
             
-          <div style={{backgroundColor: "#1da1f2",borderRadius:"10px",color:"white",width:"80%",marginLeft:"10%"}}>
+          <div onClick={()=>this.props.setCollegeDetails(this.props.item)} style={{cursor:"pointer",backgroundColor: "#1da1f2",borderRadius:"10px",color:"white",width:"80%",marginLeft:"10%"}}>
             <p>Get College Details</p>
           </div>
       

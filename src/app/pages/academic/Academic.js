@@ -16,174 +16,85 @@ import collegePredictor from "./asset/school.png";
 import career from "./asset/career.png";
 import grades from "./asset/grades.png";
 // install Swiper modules
+import college from "../../../assets/images/academics/college.png";
+import school from "../../../assets/images/academics/school.png";
+import coaching from "../../../assets/images/academics/education.png";
+import exams from "../../../assets/images/academics/exam.png";
+import courses from "../../../assets/images/academics/courses.png";
+import studyAbroad from "../../../assets/images/academics/studying.png";
+import books from "../../../assets/images/academics/books.png";
+import results from "../../../assets/images/academics/analysis.png";
+import eduLoans from "../../../assets/images/academics/strategy.png";
+import CollegePage from "./CollegePage.js";
 SwiperCore.use([Pagination, Navigation]);
 
 export default class Academic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [
-        { id: 1, title: "item #1" },
-        { id: 2, title: "item #2" },
-        { id: 3, title: "item #3" },
-        { id: 4, title: "item #4" },
-        { id: 5, title: "item #5" },
-      ],
       isTools: true,
+      aspects: [
+        { name: "College", code: "college", img: college },
+        { name: "Schools", code: "schools", img: school },
+        { name: "Coaching", code: "coaching", img: coaching },
+        { name: "Exams", code: "exams", img: exams },
+        { name: "Courses", code: "courses", img: courses },
+        { name: "StudyAbroad", code: "studyAbroad", img: studyAbroad },
+        { name: "Books", code: "books", img: books },
+        { name: "Results", code: "results", img: results },
+        { name: "Educational Loans", code: "educationalLoans", img: eduLoans },
+      ],
+      currentAspect: { name: null, code: null },
     };
+
+    this.renderAcademicAspects = this.renderAcademicAspects.bind(this);
+    this.setCurrentAspectTonull = this.setCurrentAspectTonull.bind(this);
+  }
+
+  renderAcademicAspects(){
+    switch (this.state.currentAspect.code){
+      case "college":return (<CollegePage setCurrentAspectTonull={this.setCurrentAspectTonull} />)
+
+      default :return null
+    }
+  }
+
+  setCurrentAspectTonull(){
+    this.setState({currentAspect: { name: null, code: null }})
   }
 
   render() {
     console.log("all college", allCollegeData);
     return (
       <>
-        <div className="container">
-          Career Tools
-          <div style={{ display: "flex" }}>
-            <div style={{ marginLeft: "3em" }}>
-              <img
-                src={collegePredictor}
-                style={{ height: "3em", width: "3em" }}
-              ></img>
-              <br></br>
-              College Predictor
-            </div>
-            <div style={{ marginLeft: "3em" }}>
-              <img src={career} style={{ height: "3em", width: "3em" }}></img>
-              <br></br>
-              Career Maker
-            </div>
-            <div style={{ marginLeft: "3em" }}>
-              <img src={grades} style={{ height: "3em", width: "3em" }}></img>
-              <br></br>
-              Grade Calculator
-            </div>
-            <div style={{ marginLeft: "3em" }}>
-              <img src={grades} style={{ height: "3em", width: "3em" }}></img>
-              <br></br>
-              Area of Study
-            </div>
-          </div>
-          <div style={{ display: "flex" ,marginTop: "3em"}}>
-            <select
-              style={{
-                height: "3em",
-                width: "10em",
-                borderRadius: "10px",
-                border: "0.5px solid #1da1f2",
-                marginLeft: "3em"
-              }}
-              value="specialization"
-            >
-              <option value="" style={{ fontSize: "18px" }}>
-                specialization
-              </option>
-              <option value="btech" style={{ fontSize: "18px" }}>
-                B. TECH
-              </option>
-              <option value="mtech" style={{ fontSize: "18px" }}>
-                M. TECH
-              </option>
-              <option value="mba" style={{ fontSize: "18px" }}>
-                MBA
-              </option>
-            </select>
+      {this.state.currentAspect.code===null?(
+         <div className="container">
+         <p style={{fontSize: "22px",marginBottom:"2em",fontWeight:"bold"}}>Academics</p>
+         <div style={{ display: "flex" }}>
+           {this.state.aspects.map((item, index) => {
+             return (
+               <div onClick={()=>this.setState({currentAspect: { name: item.name, code: item.code }})} style={{ marginLeft: "3em",height:"5em",width:"5em",cursor: "pointer"}}>
+                 <img
+                   src={item.img}
+                   style={{ height: "5em", width: "5em" }}
+                 ></img>
+                 <br></br>
+                 {item.name}
+               </div>
+             );
+           })}
+         </div>
+       </div>
+      ):(
 
-            <select
-              style={{
-                height: "3em",
-                width: "10em",
-                borderRadius: "10px",
-                border: "0.5px solid #1da1f2",
-                marginLeft: "3em"
-              }}
-              value="specialization"
-            >
-              <option value="" style={{ fontSize: "18px" }}>
-                State
-              </option>
-              <option value="westbengal" style={{ fontSize: "18px" }}>
-                West Bengal
-              </option>
-              <option value="uttarpradesh" style={{ fontSize: "18px" }}>
-                Uttar Pradesh
-              </option>
-            </select>
+        <>
+        {this.renderAcademicAspects()}
+        </>
 
-            <select
-              style={{
-                height: "3em",
-                width: "10em",
-                borderRadius: "10px",
-                border: "0.5px solid #1da1f2",
-                marginLeft: "3em"
-              }}
-              value="specialization"
-            >
-              <option value="" style={{ fontSize: "18px" }}>
-                Avg. Fee
-              </option>
-              <option value="5-10" style={{ fontSize: "18px" }}>
-                5-10L
-              </option>
-              <option value="mtech" style={{ fontSize: "18px" }}>
-                10-15L
-              </option>
-              <option value="mba" style={{ fontSize: "18px" }}>
-                15-20L
-              </option>
-            </select>
-          </div>
-        </div>
-        <div style={{width:"80%",border: "1px solid black",borderRadius:"10px",marginLeft:"10%",marginTop:"3em"}}>
-        <p style={{fontWeight: "bold",fontSize: "22px"}}>Top Colleges</p>
-        </div>
-        
-        <Swiper
-          height="20em"
-          slidesPerView={3}
-          spaceBetween={20}
-          slidesPerGroup={3}
-          loop={true}
-          loopFillGroupWithBlank={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          className="mySwiper"
-        >
-          {allCollegeData.map((item, id) => {
-            return (
-              <SwiperSlide>
-                <div></div>
-                <CollegeSliderCard item={item} />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+      )
 
-        <Swiper
-          height="20em"
-          slidesPerView={3}
-          spaceBetween={20}
-          slidesPerGroup={3}
-          loop={true}
-          loopFillGroupWithBlank={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          className="mySwiper"
-        >
-          {allCollegeData.map((item, id) => {
-            return (
-              <SwiperSlide>
-                <div></div>
-                <CollegeSliderCard item={item} />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+      }
+       
       </>
     );
   }
