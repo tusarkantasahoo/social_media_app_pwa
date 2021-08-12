@@ -38,6 +38,7 @@ export default class CollegePage extends Component {
       isTools: true,
       currentCollege: null,
       cityList: [],
+      selections:{specialization:null,state:null,city:null,avgFee:null}
     };
     this.closeCurrentCollege = this.closeCurrentCollege.bind(this);
     this.setCollegeDetails = this.setCollegeDetails.bind(this);
