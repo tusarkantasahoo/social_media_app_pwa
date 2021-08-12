@@ -18,8 +18,8 @@ export default class ImagePost extends Component {
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
   }
 
-  async _onClickDeletePost(id){
-    var response = await deletePostById(id)
+  async _onClickDeletePost(item){
+    var response = await deletePostById(item)
     if(response.status === 200){
       console.log("Post delete",response)
     }
@@ -57,7 +57,7 @@ export default class ImagePost extends Component {
             </div>
             <div className="col-1">
               <p style={{ fontSize: "18px", cursor: "pointer" }}>Edit</p>
-              <p onClick={() => this._onClickDeletePost(this.props.props._id)} style={{ fontSize: "18px", cursor: "pointer" }}>Delete</p>
+              <p onClick={() => this._onClickDeletePost(this.props.props)} style={{ fontSize: "18px", cursor: "pointer" }}>Delete</p>
             </div>
           </div>
           <p>{this.props.props.title}</p>

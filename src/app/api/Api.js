@@ -91,7 +91,7 @@ export function getFileContentById(id) {
   });
 }
 
-export function deletePostById(id) {
+export function deletePostById(item) {
   console.log("===");
   var config = {
     method: "post",
@@ -100,7 +100,7 @@ export function deletePostById(id) {
       // 'Content-Type': 'multipart/form-data'
     },
 
-    data: { postId: id },
+    data: item,
   };
 
   return new Promise((resolve, reject) => {
