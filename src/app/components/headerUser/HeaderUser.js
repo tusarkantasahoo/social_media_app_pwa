@@ -33,7 +33,7 @@ export default class HeaderUser extends Component {
               width="45px"
             />
           </div>
-          <div className="col-7" style={{ textAlign: "left" }}>
+          <div className="col" style={{ textAlign: "left", marginLeft: "15px" }}>
             <p style={{ fontSize: "18px", marginTop: "10px", color: "white" }}>
               {userDetails.userData.name}
             </p>
@@ -42,14 +42,16 @@ export default class HeaderUser extends Component {
                 style={{
                   textAlign: "left",
                   backgroundColor: "white",
-                  border: "0.5px solid #1da1f2",
+                  // border: "0.5px solid #1da1f2",
                   borderRadius: "10px",
                   color: "black",
                   padding: "10px",
+                  position: "absolute",
+                  boxShadow: "0 2px 5px 1px rgb(64 60 67 / 16%)"
                 }}
               >
-                <b>Email : {userDetails.userData.email}</b>
-                <p>Phone:{userDetails.userData.phone}</p>
+                <b>{userDetails.userData.email}</b>
+                <p>{userDetails.userData.phone}</p>
                 {/* <p>Other details:</p> */}
                 <button
                   onClick={() => {
@@ -63,10 +65,13 @@ export default class HeaderUser extends Component {
                   style={{
                     color: "black",
                     backgroundColor: "white",
-                    width: "10em",
+                    // width: "10em",
                     outline: "0",
-                    border: "0.5px solid #1da1f2",
+                    border: "none",
+                    outline: "none",
                     borderRadius: "5px",
+                    fontSize: "16px",
+                    fontWeight: "600"
                   }}
                 >
                   User Dashboard
@@ -81,12 +86,13 @@ export default class HeaderUser extends Component {
                     this.props.updateAuthState(null);
                   }}
                   style={{
-                    color: "white",
-                    backgroundColor: "#1da1f2",
-                    width: "10em",
+                    color: "#000",
+                    backgroundColor: "#fff",
                     outline: "0",
-                    border: "0.5px solid blue",
+                    border: "none",
                     borderRadius: "5px",
+                    fontSize: "16px",
+                    fontWeight: "600"
                   }}
                 >
                   Signout
