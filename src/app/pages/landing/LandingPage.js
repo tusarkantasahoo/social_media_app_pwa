@@ -6,6 +6,7 @@ import { userReloginCheckToken } from "../../../auth/AuthApi.js";
 import UserDetails from "../../pages/userDetails/UserDetails.js";
 import Academic from "../academic/Academic.js";
 import Survey from "../survey/Survey.js";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 export default class Landing extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,6 @@ export default class Landing extends Component {
         { name: "Rooms", code: "rooms" },
         { name: "Academic", code: "academic" },
         { name: "Career", code: "career" },
-        ,
         { name: "Forum", code: "Forum" },
         { name: "Survey", code: "survey" },
         { name: "Self Help", code: "selfHelp" },
@@ -25,12 +25,12 @@ export default class Landing extends Component {
         { name: "Skills", code: "skills" },
         { name: "Repository", code: "repository" },
       ],
-      currentOption: { name: "Home", code: "home" },
+      currentOption: props.page,
       isUserDashboard: false,
       screenManage: "social",
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    this.updateOptionOnClick = this.updateOptionOnClick.bind(this);
+    // this.updateOptionOnClick = this.updateOptionOnClick.bind(this);
     this._onClickUserDashboard = this._onClickUserDashboard.bind(this);
     this.renderScreenDependingOnSelection =
       this.renderScreenDependingOnSelection.bind(this);
@@ -46,6 +46,7 @@ export default class Landing extends Component {
   }
 
   renderScreenDependingOnSelection() {
+    console.log("Home render", this.state.currentOption.code);
     switch (this.state.currentOption.code) {
       case "home":
         return (
@@ -54,7 +55,7 @@ export default class Landing extends Component {
           </div>
         );
 
-        case "rooms":
+      case "rooms":
         return (
           <div className="col-7" id="home-social">
             <HomeSocial props={this.state} isLoggedIn={true} />
@@ -81,7 +82,6 @@ export default class Landing extends Component {
       case "survey":
         return (
           <div className="col-10" id="home-social">
-            
             <Survey />
           </div>
         );
@@ -92,6 +92,8 @@ export default class Landing extends Component {
   }
 
   render() {
+    console.log("Room constructor called", this.props);
+    console.log("Room constructor called2", this.state);
     return (
       <>
         <AppHeader
@@ -112,8 +114,10 @@ export default class Landing extends Component {
             >
               <HomeOptions
                 props={this.state}
-                updateOptionOnClick={this.updateOptionOnClick}
+                //  updateOptionOnClick={this.updateOptionOnClick}
                 isLoggedIn={true}
+                setPage={this.props.setPage}
+                history={this.props.history}
               />
             </div>
             {this.renderScreenDependingOnSelection()}
@@ -122,12 +126,12 @@ export default class Landing extends Component {
       </>
     );
   }
-  updateOptionOnClick(item) {
-    console.log("option", item);
-    this.setState({
-      currentOption: item,
-    });
-  }
+  // updateOptionOnClick(item) {
+  //   console.log("option", item);
+  //   this.setState({
+  //     currentOption: item,
+  //   });
+  // }
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);

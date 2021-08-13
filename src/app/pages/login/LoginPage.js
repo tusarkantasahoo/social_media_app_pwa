@@ -7,6 +7,8 @@ import {authResponseStoredValue} from "../../../utils/Constant.js";
 import {facebookProvider,googleProvider} from "../../../config/authMethod.js";
 import socialMediaAuth from "../../../service/auth.js";
 import googlelogin from "../../../assets/images/googlelogin.png";
+import history from '../../pages/history/History.js';
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +33,8 @@ async _onClickLoginSubmit(){
       if(loginResponse.data.message==="Login successful"){
         localStorage.setItem(authResponseStoredValue,JSON.stringify(loginResponse.data));
         this.props.updateAuthState(loginResponse.data);
+        history.push("/");
+        window.location.reload();
       }
       else{
         console.log("Unsuccessful",loginResponse.data);
@@ -59,6 +63,9 @@ if(res!==null&&res!==undefined){
     if(responseForUser.data.message==="Login successful"){
       localStorage.setItem(authResponseStoredValue,JSON.stringify(responseForUser.data));
       this.props.updateAuthState(responseForUser.data);
+       history.push("/home");
+       window.location.reload();
+      
     }
     else{
       console.log("Unsuccessful",responseForUser.data);
