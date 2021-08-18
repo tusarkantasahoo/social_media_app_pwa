@@ -1,7 +1,7 @@
 import React, { useRef, useState, Component } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 // Import Swiper styles
 import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css";
@@ -26,6 +26,7 @@ import books from "../../../assets/images/academics/books.png";
 import results from "../../../assets/images/academics/analysis.png";
 import eduLoans from "../../../assets/images/academics/strategy.png";
 import CollegePage from "./CollegePage.js";
+import history from '../../pages/history/History.js';
 SwiperCore.use([Pagination, Navigation]);
 
 export default class Academic extends Component {
@@ -73,7 +74,16 @@ export default class Academic extends Component {
          <div style={{ display: "flex" }}>
            {this.state.aspects.map((item, index) => {
              return (
-               <div onClick={()=>this.setState({currentAspect: { name: item.name, code: item.code }})} style={{ marginLeft: "3em",height:"5em",width:"5em",cursor: "pointer"}}>
+              <Link
+              to={"/academic/" + item.code}
+            >
+               <div onClick={()=>{
+               this.setState({currentAspect: { name: item.name, code: item.code }});
+               
+              
+              }
+               
+               } style={{ marginLeft: "3em",height:"5em",width:"5em",cursor: "pointer"}}>
                  <img
                    src={item.img}
                    style={{ height: "5em", width: "5em" }}
@@ -81,14 +91,18 @@ export default class Academic extends Component {
                  <br></br>
                  {item.name}
                </div>
+               </Link>
              );
            })}
          </div>
        </div>
       ):(
 
+
+
         <>
-        {this.renderAcademicAspects()}
+        {/* {this.renderAcademicAspects()} */}
+ 
         </>
 
       )

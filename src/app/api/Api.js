@@ -161,3 +161,26 @@ export function getSurveyList() {
   });
 }
 
+export function getSurveyById(id) {
+  console.log("===");
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/survey/getSurveyById/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: {id:id},
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}

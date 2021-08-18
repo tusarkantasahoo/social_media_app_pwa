@@ -11,6 +11,7 @@ import ForgotPassword from "./app/pages/forgotPassword/ForgotPassword.js";
 import ResetPassword from "./app/pages/forgotPassword/ResetPassword.js";
 import PageWoLogin from "./app/pages/pageWoLogin/PageWoLogin.js";
 import { createBrowserHistory } from "history";
+import CollegePage from "./app//pages/academic/CollegePage.js";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -172,18 +173,48 @@ export default class App extends Component {
               setPage={this.setPage}
               history={createBrowserHistory}
               isAuthed={true}
+              
             />
           )}
         />
 
         <Route
-          path="/academic"
+          path="/academic/college"
           exact
           strict
           render={() => (
             <Landing
               updateAuthState={this.updateAuthState}
-              page={{ name: "Academic", code: "academic" }}
+              page={{ name: "Academic", code: "college" }}
+              setPage={this.setPage}
+              history={createBrowserHistory}
+              isAuthed={true}
+            />
+          )}
+        />
+
+        <Route
+          path="/survey"
+          exact
+          strict
+          render={() => (
+            <Landing
+              updateAuthState={this.updateAuthState}
+              page={{ name: "Survey", code: "survey" }}
+              setPage={this.setPage}
+              history={createBrowserHistory}
+              isAuthed={true}
+            />
+          )}
+        />
+                <Route
+          path="/survey/:id"
+          exact
+          strict
+          render={() => (
+            <Landing
+              updateAuthState={this.updateAuthState}
+              page={{ name: "Survey", code: "surveyResponse" }}
               setPage={this.setPage}
               history={createBrowserHistory}
               isAuthed={true}
@@ -201,8 +232,6 @@ export default class App extends Component {
               updateRouteToPage={this.updateRouteToPage}
             />
           )}
-
-    
         />
 
         <Route

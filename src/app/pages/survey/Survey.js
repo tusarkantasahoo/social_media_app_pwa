@@ -35,9 +35,9 @@ export default class Survey extends Component {
     return (
       <>
         <div class="container">
-        <p style={{fontSize:"22px"}}>User Survey</p>
-        <div style={{height:"10em"}}></div>
-          <p style={{fontSize:"22px"}}>Trending Survey</p>
+        {/* <p style={{fontSize:"22px"}}>User Survey</p> */}
+        {/* <div style={{height:"10em"}}></div> */}
+          <p style={{fontSize:"22px",fontWeight:"600"}}>Trending Survey</p>
         <Swiper
           height="20em"
           slidesPerView={3}

@@ -74,16 +74,7 @@ export default class CollegePage extends Component {
       <>
         {this.state.currentCollege === null ? (
           <>
-            <div style={{ diaplay: "flex" }}>
-              <div style={{ textAlign: "left" }}>
-                <button onClick={() => this.props.setCurrentAspectTonull()}>
-                  Back
-                </button>
-              </div>
-              <div>
-                <p style={{ fontSize: "18px", fontWeight: "bold" }}>Colleges</p>
-              </div>
-            </div>
+     
 
             <div className="container">
               <p style={{ fontSize: "18px", fontWeight: "bold" }}>
