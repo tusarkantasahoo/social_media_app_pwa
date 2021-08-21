@@ -103,10 +103,13 @@ export default class App extends Component {
           render={() => {
             if (authResponse === null || authResponse === undefined) {
               return (
-                <PageWoLogin
-                  updateAuthState={this.updateAuthState}
-                  updateRouteToPage={this.updateRouteToPage}
-                />
+                <Landing
+                updateAuthState={this.updateAuthState}
+                page={{ name: "Home", code: "home" }}
+                setPage={this.setPage}
+                history={createBrowserHistory}
+                isAuthed={false}
+              />
               );
             } else {
               return (
@@ -151,75 +154,144 @@ export default class App extends Component {
           path="/rooms"
           exact
           strict
-          render={() => (
-            <Landing
-              updateAuthState={this.updateAuthState}
-              page={{ name: "Rooms", code: "rooms" }}
-              setPage={this.setPage}
-              history={createBrowserHistory}
-              isAuthed={true}
-            />
-          )}
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Rooms", code: "rooms" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Rooms", code: "rooms" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
         />
 
         <Route
           path="/academic"
           exact
           strict
-          render={() => (
-            <Landing
-              updateAuthState={this.updateAuthState}
-              page={{ name: "Academic", code: "academic" }}
-              setPage={this.setPage}
-              history={createBrowserHistory}
-              isAuthed={true}
-              
-            />
-          )}
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "academic" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "academic" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
         />
 
         <Route
           path="/academic/college"
           exact
           strict
-          render={() => (
-            <Landing
-              updateAuthState={this.updateAuthState}
-              page={{ name: "Academic", code: "college" }}
-              setPage={this.setPage}
-              history={createBrowserHistory}
-              isAuthed={true}
-            />
-          )}
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "college" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "college" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
         />
 
         <Route
           path="/survey"
           exact
           strict
-          render={() => (
-            <Landing
-              updateAuthState={this.updateAuthState}
-              page={{ name: "Survey", code: "survey" }}
-              setPage={this.setPage}
-              history={createBrowserHistory}
-              isAuthed={true}
-            />
-          )}
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "survey" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "survey" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
         />
-                <Route
+        <Route
           path="/survey/:id"
           exact
           strict
-          render={() => (
-            <Landing
-              updateAuthState={this.updateAuthState}
-              page={{ name: "Survey", code: "surveyResponse" }}
-              setPage={this.setPage}
-              history={createBrowserHistory}
-              isAuthed={true}
-            />
-          )}
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "surveyResponse" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "surveyResponse" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
         />
 
         <Route

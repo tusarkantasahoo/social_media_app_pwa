@@ -30,7 +30,7 @@ export default class HomeOptions extends Component {
                   </div>
                 ) : (
                   <div className="sidebar_menu">
-                    <Link
+                    <Link style={{textDecoration: "none",color:"black"}}
                       to={"/" + item.code}
                       
                     

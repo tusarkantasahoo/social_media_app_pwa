@@ -62,9 +62,7 @@ export default class ImagePost extends Component {
             </div>
           </div>
           <p>{this.props.props.title}</p>
-          {/* <p style={{ fontSize: "16px" }}>
-            {this.props.props.description.substring(0, 100) + "..."}
-          </p> */}
+         
           <div
             onClick={() => {
               this.props.handelNewsClick();
@@ -72,34 +70,9 @@ export default class ImagePost extends Component {
             }}
             style={{ textAlign: "center" }}
           >
-            <img
-              className="image-field-for-posts"
-              src={this.state.postImage}
-            ></img>
+            {/*  */}
           </div>
-          <div
-            className="row"
-            style={{ textAlign: "center", marginTop: "15px" }}
-          >
-            <div className="col-4">
-              <div style={{}}>
-                <img src={like} style={{ height: "2em", width: "2em" }} />
-              </div>
-            </div>
-            <div className="col-4">
-              <div>
-                <img
-                  src={comment}
-                  style={{ height: "2em", width: "2em" }}
-                ></img>
-              </div>
-            </div>
-            <div className="col-4">
-              <div>
-                <img src={share} style={{ height: "2em", width: "2em" }}></img>
-              </div>
-            </div>
-          </div>
+        
 
           <div className="row">
             <div className="col-1" style={{ textAlign: "right" }}>
@@ -107,15 +80,14 @@ export default class ImagePost extends Component {
                 <img
                   src={userDetails.userData.userImage}
                   style={{
-                    width: "60px",
-                    height: "60px",
-                    borderRadius: "60px",
+                    width: "4em",
+                    height: "4em",
+                    borderRadius: "4em",
                     marginTop: "0.7em",
                     marginLeft: "2em",
                   }}
                 ></img>
-              ) : 
-              (
+              ) : (
                 <img
                 src={userImage}
                 style={{
@@ -161,20 +133,5 @@ export default class ImagePost extends Component {
       </>
     );
   }
-  async componentDidMount() {
- var responseFileContent = await getFileContentById(this.state.fileId)
- if(responseFileContent.status===200){
-  //  console.log("File content",responseFileContent.data.response.file.data)
 
-    var h1 = responseFileContent.data.response.file.data;
-    const img = new Buffer.from(h1).toString("ascii")
-    console.log(img);
-    const dataUrl = bufferToDataUrl("image/png",img)
-
-    // console.log("buffeerUrl",dataUrl)
-   this.setState({
-     postImage:dataUrl
-   })
- }
-  }
 }

@@ -53,14 +53,14 @@ export default class Landing extends Component {
       case "home":
         return (
           <div className="col-7" id="home-social">
-            <HomeSocial props={this.state} isLoggedIn={true} />
+            <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
           </div>
         );
 
       case "rooms":
         return (
           <div className="col-7" id="home-social">
-            <HomeSocial props={this.state} isLoggedIn={true} />
+            <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
           </div>
         );
 
@@ -69,14 +69,14 @@ export default class Landing extends Component {
           <div className="col-10" id="home-social">
             <UserDetails
               _onClickUserDashboard={this._onClickUserDashboard}
-              isLoggedIn={true}
+              isLoggedIn={this.props.isAuthed}
             />
           </div>
         );
 
       case "academic":
         return (
-          <div className="col-10" id="home-social">
+          <div className="col-10" id="">
             <Academic />
           </div>
         );
@@ -115,13 +115,13 @@ export default class Landing extends Component {
         <AppHeader
           updateAuthState={this.props.updateAuthState}
           _onClickUserDashboard={this._onClickUserDashboard}
-          isLoggedIn={true}
+          isLoggedIn={this.props.isAuthed}
           _changeScreenRender={this._changeScreenRender}
         />
         <div className="container">
           <div className="row" style={{display: 'flex'}}>
             <div
-              className="sideBar"
+              className="col-2"
               id="home-options"
               style={{
                 boxShadow: "0px 2px 3px #dbd8d7",
@@ -130,7 +130,6 @@ export default class Landing extends Component {
             >
               <HomeOptions
                 props={this.state}
-                //  updateOptionOnClick={this.updateOptionOnClick}
                 isLoggedIn={true}
                 setPage={this.props.setPage}
                 history={this.props.history}
@@ -142,12 +141,7 @@ export default class Landing extends Component {
       </>
     );
   }
-  // updateOptionOnClick(item) {
-  //   console.log("option", item);
-  //   this.setState({
-  //     currentOption: item,
-  //   });
-  // }
+
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);

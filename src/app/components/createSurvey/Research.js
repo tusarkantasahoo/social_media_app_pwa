@@ -34,7 +34,7 @@ export default class Research extends Component {
       resr
         <div style={{ width: "90%", marginLeft: "5%" }}>
               <input
-                value={this.props.state.postText}
+                value={this.state.postText}
                 onChange={(e) => {
                   this.setState({ postText: e.target.value });
                 }}

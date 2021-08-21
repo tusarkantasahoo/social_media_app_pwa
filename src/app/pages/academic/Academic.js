@@ -69,12 +69,12 @@ export default class Academic extends Component {
     return (
       <>
       {this.state.currentAspect.code===null?(
-         <div className="container">
+         <div >
          <p style={{fontSize: "22px",marginBottom:"2em",fontWeight:"bold"}}>Academics</p>
-         <div style={{ display: "flex" }}>
+         <div style={{ display: "flex", flexWrap: "wrap" }}>
            {this.state.aspects.map((item, index) => {
              return (
-              <Link
+              <Link style={{textDecoration: "none",color:"black"}}
               to={"/academic/" + item.code}
             >
                <div onClick={()=>{
@@ -83,7 +83,7 @@ export default class Academic extends Component {
               
               }
                
-               } style={{ marginLeft: "3em",height:"5em",width:"5em",cursor: "pointer"}}>
+               } style={{ marginLeft: "3em",height:"7em",width:"7em",cursor: "pointer",margin:"2em"}}>
                  <img
                    src={item.img}
                    style={{ height: "5em", width: "5em" }}

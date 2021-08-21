@@ -7,7 +7,8 @@ import share from "../../../assets/images/network.png";
 import comment from "../../../assets/images/comment.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import {getFileContentById,deletePostById} from "../../api/Api.js";
-import bufferToDataUrl from "buffer-to-data-url"
+import bufferToDataUrl from "buffer-to-data-url";
+import send from "../../../assets/images/send.png";
 export default class VideoPost extends Component {
   constructor(props) {
     super(props);
@@ -60,17 +61,17 @@ export default class VideoPost extends Component {
             </div>
           </div>
           <p>{this.props.props.title}</p>
-          <p style={{ fontSize: "16px" }}>{this.props.props.description.substring(0,100)+"..."}</p>
+          
           <div>
             {/* <img className="image-field-for-posts" src={this.props.props.image}></img> */}
             <ReactPlayer
               controls={true}
               pip
-              width="60%"
+              width="100%"
               height="22em"
               playIcon="false"
               url={this.state.videoUrl}
-              style={{ marginLeft: "20%" }}
+              style={{ }}
             ></ReactPlayer>
 
             <div
@@ -112,7 +113,18 @@ export default class VideoPost extends Component {
                     marginLeft: "2em",
                   }}
                 ></img>
-                ):(null)}
+                ):(
+                  <img
+                  src={userImage}
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    borderRadius: "60px",
+                    marginTop: "0.7em",
+                    marginLeft: "2em",
+                  }}
+                ></img>
+                )}
                 
               </div>
               <div className="col-10" style={{ textAlign: "left" }}>
@@ -139,6 +151,10 @@ export default class VideoPost extends Component {
                   ></input>
                 </div>
               </div>
+              <div className="col-1" style={{ textAlign: "left",cursor: "pointer"}}>
+                  <img src={send} style={{height:"2.5em",width:"2.5em",marginTop: "1.5em",marginLeft:"-3em"}}>
+                  </img>
+                </div>
             </div>
           </div>
         </div>

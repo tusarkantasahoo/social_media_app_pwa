@@ -11,6 +11,7 @@ export default class AppHeader extends Component {
     this.state = {};
   }
   render() {
+    console.log("Props in headre",this.props);
     return (
       <>
         {this.props.isLoggedIn ? (
@@ -41,37 +42,26 @@ export default class AppHeader extends Component {
             </div>
           </div>
         ) : (
+
           <div
-            className="container-fluid"
+            className="container-fluid px-0"
             style={{ backgroundColor: "#0089ff", height: "50px" }}
           >
-            <div className="row">
-              <div className="col-3">
-                <div className="navThreeLines">
-                  <div className="one"></div>
-                  <div className="two"></div>
-                  <div className="three"></div>
+            <div className="row container mx-auto px-0">
+              <div className="col px-0">
+                <div className="logo_wrapper">
+                  <img src={treepng} className="img_res"></img>
+                  <img src={logo} className="img_res"></img>
                 </div>
               </div>
               <div className="col-5" style={{ textAlign: "center" }}>
-                {/* <HeaderSearchBox /> */}
-                <p
-                  style={{
-                    color: "white",
-                    fontSize: "25px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  MONASTREE
-                </p>
+                <HeaderSearchBox />
               </div>
-
               <div
                 className="col-4"
                 style={{ textAlign: "right", cursor: "pointer" }}
               >
-               
-                <Link to="/login">
+              <Link to="/login" style={{textDecoration: "none"}}>
                 <p style={{ color: "white", fontSize: "22px" }}>
                   User Login
                 </p>
@@ -79,7 +69,50 @@ export default class AppHeader extends Component {
               </div>
             </div>
           </div>
-        )}
+
+
+          // <div
+          //   className="container-fluid"
+          //   style={{ backgroundColor: "#0089ff", height: "50px" }}
+          // >
+          //   <div className="row">
+          //     <div className="col-3">
+          //       <div className="navThreeLines">
+          //         <div className="one"></div>
+          //         <div className="two"></div>
+          //         <div className="three"></div>
+          //       </div>
+          //     </div>
+          //     <div className="col-5" style={{ textAlign: "center" }}>
+          //       {/* <HeaderSearchBox /> */}
+          //       <p
+          //         style={{
+          //           color: "white",
+          //           fontSize: "25px",
+          //           fontWeight: "bold",
+          //         }}
+          //       >
+          //         MONASTREE
+          //       </p>
+          //     </div>
+
+          //     <div
+          //       className="col-4"
+          //       style={{ textAlign: "right", cursor: "pointer" }}
+          //     >
+               
+          //       <Link to="/login">
+          //       <p style={{ color: "white", fontSize: "22px" }}>
+          //         User Login
+          //       </p>
+          //       </Link>
+          //     </div>
+          //   </div>
+          // </div>
+       
+       
+       
+       )}
       </>
     );
   }
