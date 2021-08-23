@@ -32,7 +32,7 @@ export default class PageWoLogin extends Component {
     return (
       <>
       <AppHeader updateAuthState = {this.props.updateAuthState} _onClickUserDashboard={this._onClickUserDashboard} isLoggedIn={false} updateRouteToPage={this.props.updateRouteToPage} />
-      <div className="container-fluid">
+      <div className="container mx-auto">
         <div className="row">
           
             <div className="sideBar" id="home-options" style={{boxShadow: "0px 2px 3px #dbd8d7",height:`${this.state.height.toString()-60}px`}}> 

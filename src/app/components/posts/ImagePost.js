@@ -2,31 +2,32 @@ import React, { Component } from "react";
 import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
 import like from "../../../assets/images/like.png";
+import more from "../../../assets/images/svg/more.png";
 import share from "../../../assets/images/network.png";
 import comment from "../../../assets/images/comment.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
-import {getFileContentById,deletePostById} from "../../api/Api.js";
+import { getFileContentById, deletePostById } from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url"
 export default class ImagePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fileId:this.props.props.fileStorageId,
-      postImage:""
+      fileId: this.props.props.fileStorageId,
+      postImage: ""
     };
 
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
   }
 
-  async _onClickDeletePost(item){
+  async _onClickDeletePost(item) {
     var response = await deletePostById(item)
-    if(response.status === 200){
-      console.log("Post delete",response)
+    if (response.status === 200) {
+      console.log("Post delete", response)
     }
   }
   render() {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
-     console.log("Incoming props",this.props.props)
+    console.log("Incoming props", this.props.props)
     return (
       <>
         <div
@@ -39,7 +40,7 @@ export default class ImagePost extends Component {
           }}
         >
           <div className="row">
-            <div className="col-1">
+            <div className="comment_icon">
               <img
                 src={this.props.props.user.userImage}
                 height="35px"
@@ -48,14 +49,18 @@ export default class ImagePost extends Component {
               ></img>
             </div>
             <div className="col-10">
-              <p style={{ fontSize: "22px", marginLeft: "-3%" }}>
+              <p style={{ fontSize: "22px", marginLeft: "-1rem" }}>
                 {this.props.props.user.name}
               </p>
-              <p style={{ fontSize: "15px", marginLeft: "-3%",marginTop: "-1.5em" }}>
-              {this.props.props.user.email}
+              <p style={{ fontSize: "15px", marginLeft: "-1rem", marginTop: "-1.5em" }}>
+                {/* {this.props.props.user.email} */}
+                13/08/2021
               </p>
             </div>
-            <div className="col-1">
+            <div className="post_action">
+              <div className="dots_icon">
+                <img src={more} style={{ height: "2em", width: "2em" }} />
+              </div>
               <p style={{ fontSize: "18px", cursor: "pointer" }}>Edit</p>
               <p onClick={() => this._onClickDeletePost(this.props.props)} style={{ fontSize: "18px", cursor: "pointer" }}>Delete</p>
             </div>
@@ -126,7 +131,7 @@ export default class ImagePost extends Component {
               >
                 <input
                   value={this.state.postText}
-                  onChange={(e) => {}}
+                  onChange={(e) => { }}
                   placeholder="Comment"
                   style={{
                     width: "90%",
@@ -145,19 +150,19 @@ export default class ImagePost extends Component {
     );
   }
   async componentDidMount() {
- var responseFileContent = await getFileContentById(this.state.fileId)
- if(responseFileContent.status===200){
-  //  console.log("File content",responseFileContent.data.response.file.data)
+    var responseFileContent = await getFileContentById(this.state.fileId)
+    if (responseFileContent.status === 200) {
+      //  console.log("File content",responseFileContent.data.response.file.data)
 
-    var h1 = responseFileContent.data.response.file.data;
-    const img = new Buffer.from(h1).toString("ascii")
-    console.log(img);
-    const dataUrl = bufferToDataUrl("image/png",img)
+      var h1 = responseFileContent.data.response.file.data;
+      const img = new Buffer.from(h1).toString("ascii")
+      console.log(img);
+      const dataUrl = bufferToDataUrl("image/png", img)
 
-    // console.log("buffeerUrl",dataUrl)
-   this.setState({
-     postImage:dataUrl
-   })
- }
+      // console.log("buffeerUrl",dataUrl)
+      this.setState({
+        postImage: dataUrl
+      })
+    }
   }
 }
