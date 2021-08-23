@@ -3,6 +3,7 @@ import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
 import ImagePost from "./ImagePost.js";
 import VideoPost from "./VideoPost.js";
+import TextPost from "./TextPost.js";
 export default class Post extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,10 @@ export default class Post extends Component {
 
         case "video":return(
           <VideoPost props={this.props.props} handelNewsClick={this.props.handelNewsClick} isLoggedIn={this.props.isLoggedIn}/>
+        )
+
+        case "text":return(
+          <TextPost props={this.props.props} handelNewsClick={this.props.handelNewsClick} isLoggedIn={this.props.isLoggedIn}/>
         )
 
 

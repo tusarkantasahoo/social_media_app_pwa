@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoginPage from "./app/pages/login/LoginPage.js";
 import Landing from "./app/pages/landing/LandingPage.js";
@@ -10,6 +10,8 @@ import { userReloginCheckToken } from "./auth/AuthApi.js";
 import ForgotPassword from "./app/pages/forgotPassword/ForgotPassword.js";
 import ResetPassword from "./app/pages/forgotPassword/ResetPassword.js";
 import PageWoLogin from "./app/pages/pageWoLogin/PageWoLogin.js";
+import { createBrowserHistory } from "history";
+import CollegePage from "./app//pages/academic/CollegePage.js";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -17,12 +19,14 @@ export default class App extends Component {
       authResponseData: null,
       routeToAuthPage: "pageWoLogin",
       routeToSocialPage: "landing",
+      page: {},
     };
 
     this.updateAuthState = this.updateAuthState.bind(this);
     this.renderAuthPages = this.renderAuthPages.bind(this);
     this.updateRouteToPage = this.updateRouteToPage.bind(this);
     this.renderSocialPages = this.renderSocialPages.bind(this);
+    this.setPage = this.setPage.bind(this);
   }
 
   updateAuthState(authData) {
@@ -32,6 +36,9 @@ export default class App extends Component {
   updateRouteToPage(pageData) {
     console.log(pageData);
     this.setState({ routeToAuthPage: pageData });
+  }
+  setPage(item) {
+    this.setState({ page: item });
   }
 
   renderAuthPages() {
@@ -82,28 +89,227 @@ export default class App extends Component {
   }
 
   render() {
+    console.log("page in app", this.state.page);
+    console.log(window.location.pathname);
     var authResponse = JSON.parse(
       localStorage.getItem(authResponseStoredValue)
     );
     return (
       <div>
-        <Router>
-          <Switch>
-            <Route path="/" exact>
-              {authResponse === null || authResponse === undefined ? (
-                <>{this.renderAuthPages()}</>
-              ) : (
-                <>
-                <div className="App">
-                {this.renderSocialPages()}
-                </div>
-                </>
-              )}
-            </Route>
-            <Route path="/forgotPasswordUpdate/:username/:token" exact component={ResetPassword} >
-            </Route>
-          </Switch>
-        </Router>
+        <Route
+          path="/"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                updateAuthState={this.updateAuthState}
+                page={{ name: "Home", code: "home" }}
+                setPage={this.setPage}
+                history={createBrowserHistory}
+                isAuthed={false}
+              />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Home", code: "home" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+        <Route
+          path="/home"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <PageWoLogin
+                  updateAuthState={this.updateAuthState}
+                  updateRouteToPage={this.updateRouteToPage}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Home", code: "home" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
+          path="/rooms"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Rooms", code: "rooms" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Rooms", code: "rooms" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
+          path="/academic"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "academic" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "academic" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
+          path="/academic/college"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "college" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "college" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
+          path="/survey"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "survey" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "survey" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+        <Route
+          path="/survey/:id"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "surveyResponse" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "surveyResponse" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
+          path="/login"
+          exact
+          strict
+          render={() => (
+            <LoginPage
+              updateAuthState={this.updateAuthState}
+              updateRouteToPage={this.updateRouteToPage}
+            />
+          )}
+        />
+
+        <Route
+          path="/forgotPasswordUpdate/:username/:token"
+          component={ResetPassword}
+        ></Route>
       </div>
     );
   }
@@ -122,9 +328,11 @@ export default class App extends Component {
           ) {
             localStorage.setItem(authResponseStoredValue, null);
             this.setState({ authResponseData: "restricted" });
-          }
-          else{
-            localStorage.setItem(authResponseStoredValue, JSON.stringify(response.data));
+          } else {
+            localStorage.setItem(
+              authResponseStoredValue,
+              JSON.stringify(response.data)
+            );
           }
         })
         .catch((e) => {

@@ -7,7 +7,8 @@ import share from "../../../assets/images/network.png";
 import comment from "../../../assets/images/comment.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import { getFileContentById, deletePostById } from "../../api/Api.js";
-import bufferToDataUrl from "buffer-to-data-url"
+import bufferToDataUrl from "buffer-to-data-url";
+import send from "../../../assets/images/send.png";
 export default class ImagePost extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +40,7 @@ export default class ImagePost extends Component {
             padding: "10px",
           }}
         >
-          <div className="row">
+          <div className="d-flex flex-row aic">
             <div className="comment_icon">
               <img
                 src={this.props.props.user.userImage}
@@ -58,17 +59,28 @@ export default class ImagePost extends Component {
               </p>
             </div>
             <div className="post_action">
-              <div className="dots_icon">
-                <img src={more} style={{ height: "2em", width: "2em" }} />
+              <div className="dropdown">
+                <div className="dots_icon">
+                  <img src={more} style={{ height: "2em", width: "2em" }} id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" />
+                </div>
+
+                {/* <p style={{ fontSize: "18px", cursor: "pointer" }}>Edit</p> */}
+
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">
+                    <p onClick={() => this._onClickDeletePost(this.props.props)} style={{ fontSize: "18px", cursor: "pointer" }}>Delete</p>
+                  </a></li>
+                </ul>
               </div>
-              <p style={{ fontSize: "18px", cursor: "pointer" }}>Edit</p>
-              <p onClick={() => this._onClickDeletePost(this.props.props)} style={{ fontSize: "18px", cursor: "pointer" }}>Delete</p>
+
+
             </div>
           </div>
           <p>{this.props.props.title}</p>
-          <p style={{ fontSize: "16px" }}>
+          {/* <p style={{ fontSize: "16px" }}>
             {this.props.props.description.substring(0, 100) + "..."}
-          </p>
+          </p> */}
           <div
             onClick={() => {
               this.props.handelNewsClick();
@@ -118,7 +130,19 @@ export default class ImagePost extends Component {
                     marginLeft: "2em",
                   }}
                 ></img>
-              ) : null}
+              ) :
+                (
+                  <img
+                    src={userImage}
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      borderRadius: "60px",
+                      marginTop: "0.7em",
+                      marginLeft: "2em",
+                    }}
+                  ></img>
+                )}
             </div>
             <div className="col-10" style={{ textAlign: "left" }}>
               <div
@@ -143,6 +167,10 @@ export default class ImagePost extends Component {
                   }}
                 ></input>
               </div>
+            </div>
+            <div className="col-1" style={{ textAlign: "left", cursor: "pointer" }}>
+              <img src={send} style={{ height: "2.5em", width: "2.5em", marginTop: "1.5em", marginLeft: "-3em" }}>
+              </img>
             </div>
           </div>
         </div>

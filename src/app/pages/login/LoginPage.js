@@ -8,6 +8,8 @@ import { authResponseStoredValue } from "../../../utils/Constant.js";
 import { facebookProvider, googleProvider } from "../../../config/authMethod.js";
 import socialMediaAuth from "../../../service/auth.js";
 import googlelogin from "../../../assets/images/googlelogin.png";
+import history from '../../pages/history/History.js';
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -32,6 +34,8 @@ export default class LoginPage extends Component {
       if (loginResponse.data.message === "Login successful") {
         localStorage.setItem(authResponseStoredValue, JSON.stringify(loginResponse.data));
         this.props.updateAuthState(loginResponse.data);
+        history.push("/");
+        window.location.reload();
       }
       else {
         console.log("Unsuccessful", loginResponse.data);
@@ -54,21 +58,23 @@ export default class LoginPage extends Component {
 
       console.log("user data", userData);
 
-      var responseForUser = await signinUserFromSocialSites(userData);
-      if (responseForUser.status === 200) {
-        console.log("loginResponse:", responseForUser);
-        if (responseForUser.data.message === "Login successful") {
-          localStorage.setItem(authResponseStoredValue, JSON.stringify(responseForUser.data));
-          this.props.updateAuthState(responseForUser.data);
-        }
-        else {
-          console.log("Unsuccessful", responseForUser.data);
-          alert(responseForUser.data.message)
-        }
-
-      }
+  var responseForUser = await signinUserFromSocialSites(userData);
+  if(responseForUser.status===200){
+    console.log("loginResponse:",responseForUser);
+    if(responseForUser.data.message==="Login successful"){
+      localStorage.setItem(authResponseStoredValue,JSON.stringify(responseForUser.data));
+      this.props.updateAuthState(responseForUser.data);
+       history.push("/home");
+       window.location.reload();
+      
+    }
+    else{
+      console.log("Unsuccessful",responseForUser.data);
+      alert(responseForUser.data.message)
     }
 
+  }
+}
   }
   render() {
     console.log(this.props);

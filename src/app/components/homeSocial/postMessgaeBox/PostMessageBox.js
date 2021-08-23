@@ -14,15 +14,18 @@ import { authResponseStoredValue } from "../../../../utils/Constant.js";
 import ImageUpload from "../../imageUploader/ImageUpload.js";
 import VideoUpload from "../../videoUploader/VideoUpload.js";
 import CreateSurvey from "../../createSurvey/CreateSurvey.js";
+import {createPostData} from "../../../api/Api.js";
 export default class PostMessageBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
       renderWhatToPost: "none",
-      postText:""
+      postText:"",
+      userData:JSON.parse(localStorage.getItem(authResponseStoredValue))
     };
     this.renderCreatePostViews = this.renderCreatePostViews.bind(this);
     this.resetPostToDefault = this.resetPostToDefault.bind(this);
+    this.createSimpleTextPost = this.createSimpleTextPost.bind(this);
   }
 
   renderCreatePostViews() {
@@ -43,6 +46,18 @@ export default class PostMessageBox extends Component {
   }
   resetPostToDefault() {
     this.setState({ renderWhatToPost: "none" });
+  }
+  async createSimpleTextPost(){
+    var payload ={
+      title:this.state.postText,
+      postType:"text",
+      user:this.state.userData.userData,
+    }
+    var createPost = await createPostData(payload);
+    if(createPost.status === 200){
+      console.log("Post created successfully",createPost)
+    }
+
   }
 
   render() {
@@ -82,11 +97,11 @@ export default class PostMessageBox extends Component {
                   className="home-page-user-image-box"
                   src={userDetails.userData.userImage}
                 />  
-                  ):(null)}
-                  {/* <img
+                  ):(
+                    <img
                     className="home-page-user-image-box"
-                    src={userDetails.userData.userImage}
-                  /> */}
+                    src={userImage}
+                  />)}
                 </div>
                 <div className="col" id="field-for-text-thoughts">
                   <div className="div-box-input-share-thoughts">
@@ -163,6 +178,7 @@ export default class PostMessageBox extends Component {
                         type="submit"
                         value="Submit"
                         style={{ position: "relative" }}
+                        onClick={()=>{this.createSimpleTextPost()}}
                       >
                         <p className="post-text-home">Post</p>
                       </button>
