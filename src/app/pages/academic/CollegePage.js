@@ -13,6 +13,7 @@ import {
   specializationsList,
   stateArray,
   cityWithState,
+  topCollege,
 } from "./TestData.js";
 // import Swiper core and required modules
 import SwiperCore, { Pagination, Navigation } from "swiper/core";
@@ -38,7 +39,12 @@ export default class CollegePage extends Component {
       isTools: true,
       currentCollege: null,
       cityList: [],
-      selections:{specialization:null,state:null,city:null,avgFee:null}
+      selections: {
+        specialization: null,
+        state: null,
+        city: null,
+        avgFee: null,
+      },
     };
     this.closeCurrentCollege = this.closeCurrentCollege.bind(this);
     this.setCollegeDetails = this.setCollegeDetails.bind(this);
@@ -74,8 +80,6 @@ export default class CollegePage extends Component {
       <>
         {this.state.currentCollege === null ? (
           <>
-     
-
             <div className="container">
               <p style={{ fontSize: "18px", fontWeight: "bold" }}>
                 Career Tools
@@ -208,74 +212,49 @@ export default class CollegePage extends Component {
                 </select>
               </div>
             </div>
-            <div
-              style={{
-                width: "80%",
-                border: "1px solid black",
-                borderRadius: "10px",
-                marginLeft: "10%",
-                marginTop: "3em",
-              }}
-            >
-              <p style={{ fontWeight: "bold", fontSize: "22px" }}>
-                Top Colleges
+     <div style={{ marginBottom: "-1em" }}>
+              <p style={{ fontWeight: "bold", fontSize: "22px",marginTop:"1em" }}>
+               Top Colleges
               </p>
+              </div>
+
+            <Swiper
+              height="20em"
+              slidesPerView={3}
+              spaceBetween={5}
+              slidesPerGroup={3}
+              loop={true}
+              loopFillGroupWithBlank={true}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              className="mySwiper"
+            >
+              {topCollege.map((item, id) => {
+                return (
+                  <SwiperSlide>
+                    <CollegeSliderCard
+                      item={item}
+                      setCollegeDetails={this.setCollegeDetails}
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {allCollegeData.map((item, id) => {
+                return (
+                  <div style={{ margin: "1em" }}>
+                    <CollegeSliderCard
+                      item={item}
+                      setCollegeDetails={this.setCollegeDetails}
+                    />
+                  </div>
+                );
+              })}
             </div>
-
-            <Swiper
-              height="20em"
-              slidesPerView={3}
-              spaceBetween={20}
-              slidesPerGroup={3}
-              loop={true}
-              loopFillGroupWithBlank={true}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={true}
-              className="mySwiper"
-            >
-              {allCollegeData.map((item, id) => {
-                if (id < allCollegeData.length / 2) {
-                  return (
-                    <SwiperSlide>
-                      <CollegeSliderCard
-                        item={item}
-                        setCollegeDetails={this.setCollegeDetails}
-                      />
-                    </SwiperSlide>
-                  );
-                }
-              })}
-            </Swiper>
-
-            <Swiper
-              height="20em"
-              slidesPerView={3}
-              spaceBetween={20}
-              slidesPerGroup={3}
-              loop={true}
-              loopFillGroupWithBlank={true}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={true}
-              className="mySwiper"
-            >
-              {allCollegeData.map((item, id) => {
-                if (id > allCollegeData.length / 2) {
-                  return (
-                    <SwiperSlide>
-                      <div></div>
-                      <CollegeSliderCard
-                        item={item}
-                        setCollegeDetails={this.setCollegeDetails}
-                      />
-                    </SwiperSlide>
-                  );
-                }
-              })}
-            </Swiper>
           </>
         ) : (
           <CollegeDetails

@@ -23,9 +23,7 @@ export default class App extends Component {
     };
 
     this.updateAuthState = this.updateAuthState.bind(this);
-    this.renderAuthPages = this.renderAuthPages.bind(this);
     this.updateRouteToPage = this.updateRouteToPage.bind(this);
-    this.renderSocialPages = this.renderSocialPages.bind(this);
     this.setPage = this.setPage.bind(this);
   }
 
@@ -39,53 +37,6 @@ export default class App extends Component {
   }
   setPage(item) {
     this.setState({ page: item });
-  }
-
-  renderAuthPages() {
-    switch (this.state.routeToAuthPage) {
-      case "pageWoLogin":
-        return (
-          <PageWoLogin
-            updateAuthState={this.updateAuthState}
-            updateRouteToPage={this.updateRouteToPage}
-          />
-        );
-      case "login":
-        return (
-          <LoginPage
-            updateAuthState={this.updateAuthState}
-            updateRouteToPage={this.updateRouteToPage}
-          />
-        );
-      case "signup":
-        return (
-          <SignUp
-            updateAuthState={this.updateAuthState}
-            updateRouteToPage={this.updateRouteToPage}
-          />
-        );
-
-      case "forgotPassword":
-        return (
-          <ForgotPassword
-            updateAuthState={this.updateAuthState}
-            updateRouteToPage={this.updateRouteToPage}
-          />
-        );
-
-      default:
-        return null;
-    }
-  }
-
-  renderSocialPages() {
-    switch (this.state.routeToSocialPage) {
-      case "landing":
-        return <Landing updateAuthState={this.updateAuthState} />;
-
-      default:
-        return null;
-    }
   }
 
   render() {
@@ -131,10 +82,13 @@ export default class App extends Component {
           render={() => {
             if (authResponse === null || authResponse === undefined) {
               return (
-                <PageWoLogin
-                  updateAuthState={this.updateAuthState}
-                  updateRouteToPage={this.updateRouteToPage}
-                />
+                <Landing
+                updateAuthState={this.updateAuthState}
+                page={{ name: "Home", code: "home" }}
+                setPage={this.setPage}
+                history={createBrowserHistory}
+                isAuthed={false}
+              />
               );
             } else {
               return (
