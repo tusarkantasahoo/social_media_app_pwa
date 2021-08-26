@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Carousel from "react-elastic-carousel";
-import {getSurveyList,getSurveyCratedByUser} from "../../api/Api.js";
+import { getSurveyList, getSurveyCratedByUser } from "../../api/Api.js";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 // Import Swiper styles
@@ -22,90 +22,95 @@ export default class Survey extends Component {
         { id: 4, title: "item #4" },
         { id: 5, title: "item #5" },
       ],
-      survey:[],
-      userSurvey:[]
+      survey: [],
+      userSurvey: [],
     };
   }
 
-
   render() {
-          const breakpoints = [{
-        width:1200,itemsToShow:4
-    }]
+    const breakpoints = [
+      {
+        width: 1200,
+        itemsToShow: 4,
+      },
+    ];
     const { items } = this.state;
+    var user = JSON.parse(localStorage.getItem(authResponseStoredValue));
     return (
       <>
         <div class="container">
-        <p style={{fontSize:"22px"}}>User Survey</p> 
-         <div style={{height:"20em"}}>
-         <Swiper
-          height="20em"
-          slidesPerView={3}
-          spaceBetween={20}
-          slidesPerGroup={3}
-          loop={true}
-          loopFillGroupWithBlank={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          className="mySwiper"
-        >
-          {this.state.userSurvey.map((item, id) => {
-            return (
-              <SwiperSlide>
-                <div></div>
-                <SurveyMovingCard item={item} />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+          {user !== null && user !== undefined ? (
+            <>
+              <p style={{ fontSize: "22px" }}>User Survey</p>
+              <div style={{ height: "20em" }}>
+                <Swiper
+                  height="20em"
+                  slidesPerView={3}
+                  spaceBetween={20}
+                  slidesPerGroup={3}
+                  loop={true}
+                  loopFillGroupWithBlank={true}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  navigation={true}
+                  className="mySwiper"
+                >
+                  {this.state.userSurvey.map((item, id) => {
+                    return (
+                      <SwiperSlide>
+                        <div></div>
+                        <SurveyMovingCard item={item} />
+                      </SwiperSlide>
+                    );
+                  })}
+                </Swiper>
+              </div>
+            </>
+          ) : null}
 
-         </div>
-
-
-          <p style={{fontSize:"22px",fontWeight:"600"}}>Trending Survey</p>
-        <Swiper
-          height="20em"
-          slidesPerView={3}
-          spaceBetween={20}
-          slidesPerGroup={3}
-          loop={true}
-          loopFillGroupWithBlank={true}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          className="mySwiper"
-        >
-          {this.state.survey.map((item, id) => {
-            return (
-              <SwiperSlide>
-                <div></div>
-                <SurveyMovingCard item={item} />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+          <p style={{ fontSize: "22px", fontWeight: "600" }}>Trending Survey</p>
+          <Swiper
+            height="20em"
+            slidesPerView={3}
+            spaceBetween={20}
+            slidesPerGroup={3}
+            loop={true}
+            loopFillGroupWithBlank={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            className="mySwiper"
+          >
+            {this.state.survey.map((item, id) => {
+              return (
+                <SwiperSlide>
+                  <div></div>
+                  <SurveyMovingCard item={item} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       </>
     );
   }
 
   async componentDidMount() {
-        var responseSurveyList = await getSurveyList();
-        if(responseSurveyList.status === 200){
-            console.log("Response from survey",responseSurveyList)
-            this.setState({survey:responseSurveyList.data.response})
-        }
+    var responseSurveyList = await getSurveyList();
+    if (responseSurveyList.status === 200) {
+      console.log("Response from survey", responseSurveyList);
+      this.setState({ survey: responseSurveyList.data.response });
+    }
 
-        var user = JSON.parse(localStorage.getItem(authResponseStoredValue));
-        var responseSurveyListUser = await getSurveyCratedByUser(user.userData);
-        if(responseSurveyList.status === 200){
-            console.log("Response from survey",responseSurveyListUser)
-            this.setState({userSurvey:responseSurveyListUser.data.response})
-        }
-
-
+    var user = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    if (user !== null && user !== undefined) {
+      var responseSurveyListUser = await getSurveyCratedByUser(user.userData);
+      if (responseSurveyList.status === 200) {
+        console.log("Response from survey", responseSurveyListUser);
+        this.setState({ userSurvey: responseSurveyListUser.data.response });
+      }
+    }
   }
 }

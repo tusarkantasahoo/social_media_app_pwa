@@ -1,5 +1,15 @@
 import college from "./asset/college.jpg";
-export const allCollegeData = [
+import goenkaLogo from "./asset/goenkaLogo.jpg";
+import goenkaBanner from "./asset/goenkaBanner.jpg";
+import jadavpurBanner from "./asset/jadavpurBanner.jpg";
+import jadavpurLogo from "./asset/jadabpurLogo.png";
+import IIMCLogo from "./asset/IIMCLogo.svg";
+import IIMCBanner from "./asset/IIMCBanner.jpeg";
+import JDBBanner from "./asset/jdBrilaBanner.jpg";
+import JDBLogo from "./asset/jdbirlsLogo.jpg";
+import niftLogo from "./asset/niftLogo.jpeg";
+import niftBanner from "./asset/niftBanner.jpg";
+export const topCollege = [
   {
     name: "Goenka College of Commerce and Business Administration",
     address: "Goenka College of Commerce and Business Administration",
@@ -16,7 +26,7 @@ export const allCollegeData = [
     cutoff: "",
     admission:
       "GCCBA PG Admission 2020-21: M.Com 2nd Counselling Notice released. * The college conducts a strictly online application process.*For admission in B.Com (Hons.) and M.Com, the candidates must have passed a 10+2 with 75% marks and Bachelor’s degree in Commerce respectively. * The selection criterion for both UG and PG Programmes is based on Merit and availability of seats only.MBA admission requires a Bachelor’s degree in any stream with minimum 55% marks.The candidates must qualify CMAT for admission in MBA program.",
-    examAccepted: "",
+    examAccepted: "JEE",
     facilities: [
       "Library",
       "ComputerLab",
@@ -26,9 +36,12 @@ export const allCollegeData = [
     ],
     placements: "3.6/5",
     review: "7.8/10",
-    ranking: "",
+    ranking: "RANKED 10 FOR OVERALL BY INDIATODAY 2020",
     comparison: "",
     img: college,
+    logo:goenkaLogo,
+    banner :goenkaBanner,
+    averageCourseFee:"60000"
   },
   {
     name: "Jadavpur University",
@@ -48,15 +61,20 @@ export const allCollegeData = [
     cutoff: "",
     admission:
       "Admission to B.Pharm., B.Tech. and B.Arch. is done on the basis of WBJEE scores. Admission to ME/M.Tech. program is done on the basis of marks obtained in GATE. Candidates are shortlisted for admission to the rest of the programs on the basis of the entrance exam conducted by the University. B.Sc Admission will be granted on the basis of Merit in the qualifying examination. For B.Sc, Seats will be allotted on the basis of previous academic merit. For Ph.D Admissions, Jadavpur University also conducts entrance tests. Candidates having a valid score in CSIR NET or any other nation level Entrance exam will be exempted from Entrance test. Final Admission to Ph.D will be granted on the basis of Interview Conducted by Jadavpur UNiversity.",
-    examAccepted: "",
+    examAccepted: "JEE",
     facilities:
       "• Hostel • Guest House • Library • Day Care Centre • Placement & Training • Health Centre • JU Employees' Coop Credit Society Ltd",
     placements: "3.6/5",
     review: "7.8/10",
-    ranking: "",
+    ranking: "RANKED 10 FOR OVERALL BY INDIATODAY 2020",
     comparison: "",
     img: college,
-  },
+    logo:jadavpurLogo,
+    banner :jadavpurBanner,
+    averageCourseFee:"60000"
+  }]
+
+  export const allCollegeData = [
   {
     name: "IIM Calcutta - Indian Institute of Management",
     address: "Diamond Harbour Road, Joka Kolkata - 700104 West Bengal, India",
@@ -71,13 +89,17 @@ export const allCollegeData = [
     coursesAndFees: "MBA - Rs.23 Lakhs (Total Fees)Executive - Rs.27 Lakhs (Total Fees)PG Program - Rs.11.25 Lakhs (Total Fees)Executive - Rs.2.68 Lakhs (Total Fees)PG Diploma - Rs.24 Lakhs (Total Fees)",
     cutoff: "CAT (General Category)Section 2018 2019 2020VRC 80%ile 80%ile 80%ileDILR 80%ile 80%ile 80%ileQA 80%ile 80%ile 80%ileTOTAL 95.6%ile 99%ile 99%ile",
     admission: "IIM Calcutta (IIMC) offers MBA, MBA Executive, PGPEx. - VLM, PGDBA, and Doctoral courses under various disciplines of Management Studies. For the MBA-Exe program, a bachelor's degree along with a valid GMAT score and 5 years of professional experience is required. The PGPEx.-VLM Program is offered only to engineering graduates who successfully qualify the aptitude test. A Master’s degree with a minimum of 60% marks is required for PGDBA Admission. PGDBA program is jointly offered by IIM Calcutta, IIT Kharagpur, and ISI. Ph.D Admission are granted on the basis of CAT/GMAT/UGC-NET score.",
-    examAccepted: "MBA - Graduation + CATExecutive - Graduation + CATPG Program - Graduation + CATExecutive - Graduation PG Diploma - Graduation",
+    examAccepted: "CATExecutive - Graduation",
     facilities: "COMP LABS SPORTS GYM MEDICAL CAFETERIA LIBRARY AUDITORIUM HOSTEL SECURITY TRANSPORT COMMUNICATION CENTRE WI-FI CAMPUS E-CLASSROOM",
     placements: "IIM Calcutta final placements 2020 for its MBA programme wrapped up recently with 148 recruiters that participated in the drive. Consulting turned out to be the highest recruiting sector with 31% of the total offers. IIM Calcutta placements 2020 saw an approximate rise of 10% in the highest salary package offered. Companies such as Mahindra & Mahindra, Tata Administrative Service (TAS), Vedanta, Aditya Birla Group, Reliance Industries, TrueNorth, Hindustan Unilever, Colgate-Palmolive, ITC, Mondelez, and test prep firm FIITJEE made major offers for Sales, Marketing, and General Management roles. IIM Calcutta Placements 2021 IIM Calcutta has successfully completed its final placement drive for the Post Graduate Programme (PGP) and has recorded 100% placements. Owing to the ongoing COVID-19 pandemic, the whole placement process was conducted virtually.",
-    review: "",
-    ranking: "",
+    review: "7.6 out of 10",
+    ranking: "RANKED 10 FOR OVERALL BY INDIATODAY 2020",
     comparison: "",
     img: college,
+
+    logo:IIMCLogo,
+    banner :IIMCBanner,
+    averageCourseFee:"60000"
   },
   {
     name: "J.D Birla Institute (JDBI)",
@@ -100,6 +122,9 @@ export const allCollegeData = [
     ranking: "RANKED 10 FOR OVERALL BY INDIATODAY 2020",
     comparison: "",
     img: college,
+    logo:JDBLogo,
+    banner :JDBBanner,
+    averageCourseFee:"60000"
   },
   {
     name: "National Institute of Fashion Technology, Kolkata",
@@ -118,11 +143,16 @@ export const allCollegeData = [
     examAccepted: "",
     facilities: "",
     placements: "",
-    review: "",
-    ranking: "",
+    review: "7.8/10",
+    ranking: "RANKED 10 FOR OVERALL BY INDIATODAY 2020",
     comparison: "",
     img: college,
-  },
+    logo:niftLogo,
+    banner :niftBanner,
+    averageCourseFee:"60000"
+  }]
+
+  var extra = [
   {
     name: "NSHM Knowledge Campus, Kolkata",
     address: "",
