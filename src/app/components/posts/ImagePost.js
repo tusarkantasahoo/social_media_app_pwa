@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
-import like from "../../../assets/images/like.png";
+import like from "../../../assets/images/svg/like.png";
+import dislike from "../../../assets/images/svg/dislike.png";
+import share from "../../../assets/images/svg/share.png";
 import more from "../../../assets/images/svg/more.png";
-import share from "../../../assets/images/network.png";
+// import share from "../../../assets/images/network.png";
+import Tooltip from '@material-ui/core/Tooltip';
+import { Dropdown } from 'react-bootstrap';
 import comment from "../../../assets/images/comment.png";
+import MaterialIcon, { colorPalette } from 'material-icons-react';
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import { getFileContentById, deletePostById } from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url";
 import send from "../../../assets/images/send.png";
+
 export default class ImagePost extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +32,7 @@ export default class ImagePost extends Component {
       console.log("Post delete", response)
     }
   }
+
   render() {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
     console.log("Incoming props", this.props.props)
@@ -40,136 +47,86 @@ export default class ImagePost extends Component {
             padding: "10px",
           }}
         >
-          <div className="d-flex flex-row aic">
-            <div className="comment_icon">
+          <div className="d-flex flex-row">
+            <div className="comment_icon_top">
               <img
                 src={this.props.props.user.userImage}
-                height="35px"
-                width="35px"
+                height="50px"
+                width="50px"
                 style={{ borderRadius: "25px" }}
               ></img>
             </div>
-            <div className="col-10">
-              <p style={{ fontSize: "22px", marginLeft: "-1rem" }}>
+            <div className="ms-3">
+              <h6 className="fw-bold mb-0">
                 {this.props.props.user.name}
-              </p>
-              <p style={{ fontSize: "15px", marginLeft: "-1rem", marginTop: "-1.5em" }}>
+              </h6>
+              <p style={{ fontSize: "15px" }}>
                 {/* {this.props.props.user.email} */}
                 13/08/2021
               </p>
             </div>
-            <div className="post_action">
+            <div className="post_action ms-auto">
+              <Dropdown>
+                <Dropdown.Toggle id="" className="action_dd">
+                  <img src={more} style={{ height: "2em", width: "2em" }} id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" />
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
               <div className="dropdown">
                 <div className="dots_icon">
-                  <img src={more} style={{ height: "2em", width: "2em" }} id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" />
+
                 </div>
-
-                {/* <p style={{ fontSize: "18px", cursor: "pointer" }}>Edit</p> */}
-
-
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <li><a class="dropdown-item" href="#">
                     <p onClick={() => this._onClickDeletePost(this.props.props)} style={{ fontSize: "18px", cursor: "pointer" }}>Delete</p>
                   </a></li>
                 </ul>
               </div>
-
-
             </div>
           </div>
           <p>{this.props.props.title}</p>
-          {/* <p style={{ fontSize: "16px" }}>
-            {this.props.props.description.substring(0, 100) + "..."}
-          </p> */}
-          <div
-            onClick={() => {
-              this.props.handelNewsClick();
-              this.props.setNewsItem(this.props.props);
-            }}
-            style={{ textAlign: "center" }}
-          >
-            <img
-              className="image-field-for-posts"
-              src={this.state.postImage}
-            ></img>
+          <div className="image-field-for-posts" onClick={() => { this.props.handelNewsClick(); this.props.setNewsItem(this.props.props); }}>
+            <img className="mx_height_100 w-100" src={this.state.postImage}></img>
           </div>
-          <div
-            className="row"
-            style={{ textAlign: "center", marginTop: "15px" }}
-          >
-            <div className="col-4">
-              <div style={{}}>
-                <img src={like} style={{ height: "2em", width: "2em" }} />
-              </div>
+          <div className="d-flex flex-row aic jcsb mx-3 my-4 px-4">
+            <div className="d-flex aic">
+              <Tooltip title="500" placement="top">
+                <img src={like} className="action_icons me-3" />
+              </Tooltip>
+
+              <img src={dislike} className="action_icons ms-3" />
             </div>
-            <div className="col-4">
-              <div>
-                <img
-                  src={comment}
-                  style={{ height: "2em", width: "2em" }}
-                ></img>
-              </div>
+            <div>
+              <img src={comment} className="action_icons" ></img>
             </div>
-            <div className="col-4">
-              <div>
-                <img src={share} style={{ height: "2em", width: "2em" }}></img>
-              </div>
+            <div>
+              <img src={share} className="action_icons"></img>
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-1" style={{ textAlign: "right" }}>
+          <div className="d-flex nowrap aic">
+            <div className="w_fc">
               {this.props.isLoggedIn ? (
-                <img
-                  src={userDetails.userData.userImage}
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    borderRadius: "60px",
-                    marginTop: "0.7em",
-                    marginLeft: "2em",
-                  }}
-                ></img>
+                <img src={userDetails.userData.userImage} className="comment_image" />
               ) :
                 (
-                  <img
-                    src={userImage}
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      borderRadius: "60px",
-                      marginTop: "0.7em",
-                      marginLeft: "2em",
-                    }}
-                  ></img>
+                  <img src={userImage} className="comment_image" />
                 )}
             </div>
-            <div className="col-10" style={{ textAlign: "left" }}>
-              <div
-                style={{
-                  padding: "10px",
-                  marginLeft: "0",
-                  marginTop: "10px",
-                  textAlign: "left",
-                }}
-              >
-                <input
-                  value={this.state.postText}
-                  onChange={(e) => { }}
-                  placeholder="Comment"
-                  style={{
-                    width: "90%",
-                    height: "50px",
-                    marginLeft: "5%",
-                    outline: "0",
-                    border: "0.5px solid #d4d1c5",
-                    borderRadius: "10px",
-                  }}
-                ></input>
-              </div>
+            <div className="col px-2">
+              <input
+                value={this.state.postText}
+                onChange={(e) => { }}
+                placeholder="Comment"
+                className="commentBox w-100"
+              ></input>
             </div>
-            <div className="col-1" style={{ textAlign: "left", cursor: "pointer" }}>
-              <img src={send} style={{ height: "2.5em", width: "2.5em", marginTop: "1.5em", marginLeft: "-3em" }}>
+            <div className="w_fc" style={{ textAlign: "left", cursor: "pointer" }}>
+              <img src={send} style={{ height: "35px", width: "2.5em" }}>
               </img>
             </div>
           </div>

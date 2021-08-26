@@ -3,6 +3,8 @@ import PostMessageBox from "../../components/homeSocial/postMessgaeBox/PostMessa
 // import dataForPostRooms from "../../testData/TestData.js";
 import Post from "../../components/posts/Post.js";
 import SinglePostView from "../../components/openPosts/SinglePostView.js";
+import filterpng from "../../../assets/images/filterpng.png";
+import MaterialIcon, {colorPalette} from 'material-icons-react';
 import { getPostsList } from "../../api/Api.js";
 export default class Rooms extends Component {
   constructor(props) {
@@ -41,18 +43,11 @@ export default class Rooms extends Component {
             <PostMessageBox isLoggedIn={this.props.isLoggedIn} />
             <div style={{ marginTop: "3%", textAlign: "left" }}>
               {/* <div className="container-fluid"> */}
-              <div
-                className="row"
-                style={{
-                  border: "0.5px light black",
-                  boxShadow: "4px 10px 8px #dbd8d7",
-                  borderRadius: "15px",
-                }}
-              >
+              <div className="d-flex aic jcsb">
                 <div className="col-6" style={{ textAlign: "left" }}>
                   <p
                     style={{
-                      fontSize: "32px",
+                      fontSize: "1.5rem",
                       fontWeight: "bold",
                       marginTop: "10px",
                     }}
@@ -60,19 +55,10 @@ export default class Rooms extends Component {
                     Posts
                   </p>
                 </div>
-                <div className="col-6" style={{ textAlign: "right" }}>
-                  <button
-                    style={{
-                      marginTop: "3%",
-                      backgroundColor: "#f2f1ed",
-                      height: "45px",
-                      width: "100px",
-                      border: "0.5px solid black",
-                      borderRadius: "5px",
-                    }}
-                  >
-                    <p style={{ fontSize: "22px", marginTop: "3%" }}>Filters</p>
-                  </button>
+                <div className="ms-auto">
+                  <a className="d-flex mt-3 aic" >
+                    <img src={filterpng} style={{ width: "50px" }} />
+                  </a>
                 </div>
               </div>
             </div>
@@ -98,7 +84,7 @@ export default class Rooms extends Component {
     var responsePostList = await getPostsList();
     if (responsePostList.status === 200) {
       console.log("responsePostList", responsePostList);
-      this.setState({dataForPostRooms:responsePostList.data.response})
+      this.setState({ dataForPostRooms: responsePostList.data.response })
     }
   }
 }

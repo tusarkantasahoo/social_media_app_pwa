@@ -12,6 +12,7 @@
     "bootstrap": "^5.1.0",
     "buffer-to-data-url": "^1.0.0",
     "firebase": "^8.7.1",
+    "material-icons-react": "^1.0.4",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-date-picker": "^8.2.0",

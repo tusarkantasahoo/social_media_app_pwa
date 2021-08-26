@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import cancel from "../../../assets/images/cancel.png";
+import img_thumb from "../../../assets/images/img_thumb.png";
+import Tooltip from '@material-ui/core/Tooltip';
 import { StyledDropZone } from "react-drop-zone";
-import {imageFileUpload,createPostData } from "../../api/Api.js";
+import { imageFileUpload, createPostData } from "../../api/Api.js";
+import TextField from '@material-ui/core/TextField';
+import { Dropdown } from 'react-bootstrap';
 export default class ImageUpload extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +15,7 @@ export default class ImageUpload extends Component {
       image: "",
       description: props.postText,
       file: null,
-      userData:JSON.parse(localStorage.getItem(authResponseStoredValue))
+      userData: JSON.parse(localStorage.getItem(authResponseStoredValue))
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.convertImageFileToBase64 = this.convertImageFileToBase64.bind(this);
@@ -47,24 +51,24 @@ export default class ImageUpload extends Component {
 
     const formData = new FormData();
     formData.append('profileImg', this.state.file)
-    console.log("Payload",formData)
+    console.log("Payload", formData)
 
-      var responseFileUpload = await imageFileUpload(formData);
-      if(responseFileUpload.status===200){
-        console.log("response fater file stor",responseFileUpload)
-        console.log("file id",responseFileUpload.data._id)
-        var payload ={
-          title:this.state.postText,
-          description:this.state.description,
-          postType:"image",
-          user:this.state.userData.userData,
-          fileStorageId:responseFileUpload.data._id
-        }
-        var responseForPostDetails = await createPostData(payload);
-        if(responseForPostDetails.status===200){
-          console.log("post details reposne",responseForPostDetails)
-        }
+    var responseFileUpload = await imageFileUpload(formData);
+    if (responseFileUpload.status === 200) {
+      console.log("response fater file stor", responseFileUpload)
+      console.log("file id", responseFileUpload.data._id)
+      var payload = {
+        title: this.state.postText,
+        description: this.state.description,
+        postType: "image",
+        user: this.state.userData.userData,
+        fileStorageId: responseFileUpload.data._id
       }
+      var responseForPostDetails = await createPostData(payload);
+      if (responseForPostDetails.status === 200) {
+        console.log("post details reposne", responseForPostDetails)
+      }
+    }
   }
 
   render() {
@@ -110,12 +114,12 @@ export default class ImageUpload extends Component {
         <StyledDropZone
           accept="image/*"
           style={{
-            height: "22em",
-            border: "1px solid blue",
+            height: "auto",
+            border: "3px dotted #9e9d9d",
             marginTop: "35px",
             borderRadius: "20px",
             margin: "10px",
-            borderStyle: "dotted",
+            padding: "2rem 1rem",
           }}
           onDrop={(file, text) => {
             console.log(file);
@@ -124,51 +128,41 @@ export default class ImageUpload extends Component {
         >
           {this.state.image.length === 0 ? (
             <>
-              <p style={{ fontSize: "20px", marginTop: "100px" }}>
-                Click to Upload or drop your image
-              </p>
+              <div className="d-flex flex-column jcc aic">
+                <img src={img_thumb} style={{ width: "100px" }}></img>
+                <p style={{ fontSize: "20px", marginTop: "1rem" }}>
+                  Click to Upload or drop your image
+                </p>
+              </div>
             </>
           ) : (
             <img
               src={this.state.image}
-              style={{ height: "20em", width: "30em" }}
+              style={{ height: "20em", width: "100%" }}
             />
           )}
         </StyledDropZone>
-        <div className="row" style={{ textAlign: "left" }}>
-          <p
-            style={{ fontSize: "25px", marginTop: "10px", marginLeft: "10px" }}
-          >
-            Describe your thoughts
-          </p>
+        <div className="" style={{ textAlign: "left" }}>
+          <h5 className="ms-2 mb-2 mt-3">Describe your thoughts</h5>
         </div>
-        <div className="row" style={{ textAlign: "left" }}>
+        <div className="" style={{ textAlign: "left" }}>
           <div style={{ padding: "10px" }}>
-            <input
+            <TextField
+              id="outlined-multiline-static"
+              className="w-100"
+              multiline
+              rows={6}
+              defaultValue="Default Value"
+              variant="outlined"
+              placeholder="Share / Ask what's on your mind?"
               value={this.state.description}
               onChange={(e) => {
                 this.setState({ description: e.target.value });
               }}
-              placeholder="Share / Ask what's on your mind?"
-              style={{ width: "90%", height: "50px", marginLeft: "5%" }}
-            ></input>
+            />
           </div>
         </div>
-        <button
-          onClick={() => {
-            this.requestForUpload();
-          }}
-          style={{
-            height: "50px",
-            width: "80%",
-            marginBottom: "50px",
-            marginTop: "20px",
-            backgroundColor: "#1da1f2",
-            fontWeight: "bold",
-            borderRadius: "10px",
-            color: "white",
-          }}
-        >
+        <button className="default_btn ms-2" onClick={() => { this.requestForUpload(); }}>
           POST
         </button>
       </>
