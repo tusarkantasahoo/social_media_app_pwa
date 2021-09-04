@@ -67,6 +67,7 @@ export default class ImageUpload extends Component {
       var responseForPostDetails = await createPostData(payload);
       if (responseForPostDetails.status === 200) {
         console.log("post details reposne", responseForPostDetails)
+        window.location.reload();
       }
     }
   }

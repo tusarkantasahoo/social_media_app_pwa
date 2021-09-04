@@ -15,6 +15,7 @@ import roomicon from "../../../assets/images/home/room.png";
 import skillicon from "../../../assets/images/home/skills.png";
 import academicicon from "../../../assets/images/home/book.png";
 import surveyicon from "../../../assets/images/home/survey.png";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import "./Home.css";
 export default class Home extends Component {
   constructor(props) {
@@ -34,34 +35,53 @@ export default class Home extends Component {
           {/* <img src={allIconsHome} style={{height:"21em",width:"60em"}}></img> */}
           <div className="">
             <div className="d-flex flex-wrap justify-content-between col">
-              <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
+            
+                        <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/rooms"}>
                   <img src={roomicon}></img>
+                 
                   <h6>Room</h6>
+                  </Link>
                 </CardContent>
               </Card>
+                    
+            
               <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/academic"}>
                   <img src={academicicon}></img>
                   <h6>Academic</h6>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/career"}>
                   <img src={careericon}></img>
                   <h6>Career</h6>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/jobs"}>
                   <img src={jobicon}></img>
                   <h6>Jobs</h6>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/repo"}>
                   <img src={repoicon}></img>
                   <h6>repository</h6>
+                  </Link>
                 </CardContent>
               </Card>
             </div>
@@ -69,32 +89,47 @@ export default class Home extends Component {
             <div className="d-flex flex-wrap justify-content-between col mt-4">
               <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/forum"}>
                   <img src={forumicon}></img>
                   <h6>Forum</h6>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/survey"}>
                   <img src={surveyicon}></img>
                   <h6>Survey</h6>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/planner"}>
                   <img src={plannericon}></img>
                   <h6>Planner</h6>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/skills"}>
                   <img src={skillicon}></img>
                   <h6>Skill</h6>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="root menuCard col-sm-11 col-md-3 col-lg-2" variant="outlined">
                 <CardContent>
+                <Link style={{opacity:"1",textDecoration: "none",color:"black"}}
+                      to={"/others"}>
                   <img src={othericon}></img>
                   <h6>Other</h6>
+                  </Link>
                 </CardContent>
               </Card>
             </div>

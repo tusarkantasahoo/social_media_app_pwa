@@ -25,6 +25,7 @@ export default class Research extends Component {
     var responsePollSurvey = await createSurvey(surveyPayload)
     if(responsePollSurvey.status === 200){
       console.log("response create survey",responsePollSurvey)
+      window.location.reload();
     }
   }
   render() {

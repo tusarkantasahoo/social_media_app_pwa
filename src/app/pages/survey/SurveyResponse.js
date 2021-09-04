@@ -60,7 +60,7 @@ Submit
     case "quiz": return (
         <>
       <FormControl component="fieldset">
-      <p style={{fontSize:"22px",fontWeight:"bold"}}>{this.state.surveyDetails.question}</p>
+      <p style={{fontSize:"22px",fontWeight:"bold"}}>{this.state.surveyDetails.title}</p>
       <RadioGroup  >
       {this.state.surveyDetails.options.map((item,id)=>{
            return (
@@ -87,7 +87,7 @@ Submit
     case "research": return (
         <>
            <FormControl component="fieldset">
-          <p style={{fontSize:"22px",fontWeight:"bold"}}>{this.state.surveyDetails.question}</p>
+          <p style={{fontSize:"22px",fontWeight:"bold"}}>{this.state.surveyDetails.title}</p>
     </FormControl>
     <br></br>
     <br></br>
