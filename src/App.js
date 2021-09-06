@@ -46,7 +46,7 @@ export default class App extends Component {
       localStorage.getItem(authResponseStoredValue)
     );
     return (
-      <div>
+      <div className="w-100 h-100">
         <Route
           path="/"
           exact

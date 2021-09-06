@@ -94,11 +94,14 @@ export default class ImagePost extends Component {
           </div>
           <div className="d-flex flex-row aic jcsb mx-3 my-4 px-4">
             <div className="d-flex aic">
-              <Tooltip title="500" placement="top">
+              <div class="text-center pr">
+                <p class="liked ">19M</p>
                 <img src={like} className="action_icons me-3" />
-              </Tooltip>
-
-              <img src={dislike} className="action_icons ms-3" />
+              </div>
+              <div class="text-center pr">
+                <img src={dislike} className="action_icons ms-3" />
+                <p class="disliked">10k</p>
+              </div>
             </div>
             <div>
               <img src={comment} className="action_icons" ></img>

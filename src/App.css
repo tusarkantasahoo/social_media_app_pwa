@@ -256,3 +256,32 @@ html {
   height: 22em;
   width: 100%;
 }
+.userIcon{
+  width: 25px;
+}
+.login_bg{
+  position: absolute;
+}
+.glassy{
+  position: relative;
+  background: #ffffff7a;
+  backdrop-filter: blur(10px);
+  max-width: 500px;
+}
+.liked{
+  position: absolute;
+  margin: 0;
+  top: -25px;
+  color: #0089FF;
+  font-weight: 600;
+}
+.disliked{
+  position: absolute;
+  margin: 0;
+  color: #0089FF;
+  left: 1rem;
+  font-weight: 600;
+}
+.pr{
+  position: relative !important;
+}

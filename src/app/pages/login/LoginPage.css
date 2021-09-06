@@ -29,14 +29,7 @@
   margin-top: 7%;
 }
 .login-box {
-  border-radius: 25px;
-  background-color: rgb(255, 255, 255);
   padding: 20px;
-  height: 80%;
-  width: 70%;
-  margin-left: 10%;
-  margin-top: 0;
-  margin-bottom: 10%;
 }
 .top-msg-login-box {
   color: #1da1f2;

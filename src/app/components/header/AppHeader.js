@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import HeaderSearchBox from "../input/headerSearchBox/HeaderSearchBox.js";
 import HeaderUser from "../headerUser/HeaderUser.js";
 import "./AppHeader.css";
+
 import logo from "../../../assets/images/logo.png";
+import user_w from "../../../assets/images/user_w.png";
 import treepng from "../../../assets/images/treepng.png";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 export default class AppHeader extends Component {
@@ -58,13 +60,9 @@ export default class AppHeader extends Component {
                 <HeaderSearchBox />
               </div>
               <div
-                className="col-4"
-                style={{ textAlign: "right", cursor: "pointer" }}
-              >
+                className="col-4 d-flex jcfe aic">
               <Link to="/login" style={{textDecoration: "none"}}>
-                <p style={{ color: "white", fontSize: "22px" }}>
-                  User Login
-                </p>
+                <img src={user_w} className="userIcon"/>
                 </Link>
               </div>
             </div>
