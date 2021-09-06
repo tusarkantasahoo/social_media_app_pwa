@@ -12,6 +12,7 @@ import ResetPassword from "./app/pages/forgotPassword/ResetPassword.js";
 import PageWoLogin from "./app/pages/pageWoLogin/PageWoLogin.js";
 import { createBrowserHistory } from "history";
 import CollegePage from "./app//pages/academic/CollegePage.js";
+import CommingSoon from "./app/pages/commingSoon/CommingSoon.js";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -55,12 +56,12 @@ export default class App extends Component {
             if (authResponse === null || authResponse === undefined) {
               return (
                 <Landing
-                updateAuthState={this.updateAuthState}
-                page={{ name: "Home", code: "home" }}
-                setPage={this.setPage}
-                history={createBrowserHistory}
-                isAuthed={false}
-              />
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Home", code: "home" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
               );
             } else {
               return (
@@ -83,12 +84,12 @@ export default class App extends Component {
             if (authResponse === null || authResponse === undefined) {
               return (
                 <Landing
-                updateAuthState={this.updateAuthState}
-                page={{ name: "Home", code: "home" }}
-                setPage={this.setPage}
-                history={createBrowserHistory}
-                isAuthed={false}
-              />
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Home", code: "home" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
               );
             } else {
               return (
@@ -248,6 +249,235 @@ export default class App extends Component {
           }}
         />
 
+        <Route
+          path="/career"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "career" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "career" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+        <Route
+          path="/jobs"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "jobs" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "jobs" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
+          path="/forum"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "forum" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "forum" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
+          path="/selfHelp"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "selfHelp" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "selfHelp" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
+          path="/skills"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "skills" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "skills" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
+          path="/repository"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "repository" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "repository" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+        <Route
+          path="/planner"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "planner" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "planner" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+<Route
+          path="/others"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "others" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Survey", code: "others" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
         <Route
           path="/login"
           exact

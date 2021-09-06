@@ -30,6 +30,7 @@ export default class ImagePost extends Component {
     var response = await deletePostById(item)
     if (response.status === 200) {
       console.log("Post delete", response)
+      window.location.reload();
     }
   }
 
@@ -62,7 +63,7 @@ export default class ImagePost extends Component {
               </h6>
               <p style={{ fontSize: "15px" }}>
                 {/* {this.props.props.user.email} */}
-                13/08/2021
+                29/08/2021
               </p>
             </div>
             <div className="post_action ms-auto">
@@ -73,7 +74,7 @@ export default class ImagePost extends Component {
 
                 <Dropdown.Menu>
                   <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2"><p onClick={()=>this._onClickDeletePost(this.props.props)}>Delete</p></Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <div className="dropdown">

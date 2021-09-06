@@ -84,7 +84,7 @@ export default class Rooms extends Component {
     var responsePostList = await getPostsList();
     if (responsePostList.status === 200) {
       console.log("responsePostList", responsePostList);
-      this.setState({ dataForPostRooms: responsePostList.data.response })
+      this.setState({ dataForPostRooms: responsePostList.data.response.reverse() });
     }
   }
 }

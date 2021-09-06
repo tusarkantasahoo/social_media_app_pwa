@@ -8,6 +8,7 @@ import Academic from "../academic/Academic.js";
 import Survey from "../survey/Survey.js";
 import SurveyResponse from "../survey/SurveyResponse.js";
 import CollegePage from "../academic/CollegePage.js";
+import CommingSoon from "../commingSoon/CommingSoon.js";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 export default class Landing extends Component {
   constructor(props) {
@@ -84,23 +85,76 @@ export default class Landing extends Component {
       case "survey":
         return (
           <div className="col-10" id="home-social">
-       <Survey />
-        </div>
+            <Survey />
+          </div>
         );
 
-        case "surveyResponse":
-          return (
-            <div className="col-10" id="home-social">
-         <SurveyResponse />
+      case "surveyResponse":
+        return (
+          <div className="col-10" id="home-social">
+            <SurveyResponse />
           </div>
-          );
+        );
 
-        case "college":
-          return (
-            <div className="col-10" id="home-social">
-              <CollegePage />
-            </div>
-          );
+      case "college":
+        return (
+          <div className="col-10" id="home-social">
+            <CommingSoon />
+          </div>
+        );
+
+      case "career":
+        return (
+          <div className="col-10" id="home-social">
+            <CommingSoon />
+          </div>
+        );
+      case "jobs":
+        return (
+          <div className="col-10" id="home-social">
+            <CommingSoon />
+          </div>
+        );
+      case "forum":
+        return (
+          <div className="col-10" id="home-social">
+            <CommingSoon />
+          </div>
+        );
+
+      case "selfHelp":
+        return (
+          <div className="col-10" id="home-social">
+            <CommingSoon />
+          </div>
+        );
+
+      case "skills":
+        return (
+          <div className="col-10" id="home-social">
+            <CommingSoon />
+          </div>
+        );
+
+      case "repository":
+        return (
+          <div className="col-10" id="home-social">
+            <CommingSoon />
+          </div>
+        );
+
+      case "planner":
+        return (
+          <div className="col-10" id="home-social">
+            <CommingSoon />
+          </div>
+        );
+      case "others":
+        return (
+          <div className="col-10" id="home-social">
+            <CommingSoon />
+          </div>
+        );
 
       default:
         return null;
@@ -119,7 +173,7 @@ export default class Landing extends Component {
           _changeScreenRender={this._changeScreenRender}
         />
         <div className="container">
-          <div className="row" style={{display: 'flex'}}>
+          <div className="row" style={{ display: "flex" }}>
             <div
               className="col-2"
               id="home-options"

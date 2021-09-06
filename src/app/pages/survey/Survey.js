@@ -24,6 +24,7 @@ export default class Survey extends Component {
       ],
       survey: [],
       userSurvey: [],
+      isTrending:true
     };
   }
 
@@ -39,60 +40,48 @@ export default class Survey extends Component {
     return (
       <>
         <div class="container">
-          {user !== null && user !== undefined ? (
-            <>
-              <p style={{ fontSize: "22px" }}>User Survey</p>
-              <div style={{ height: "20em" }}>
-                <Swiper
-                  height="20em"
-                  slidesPerView={3}
-                  spaceBetween={20}
-                  slidesPerGroup={3}
-                  loop={true}
-                  loopFillGroupWithBlank={true}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  navigation={true}
-                  className="mySwiper"
-                >
-                  {this.state.userSurvey.map((item, id) => {
+          <div style={{display:"flex"}}>
+          <p onClick={()=>this.setState({isTrending:true})} style={{fontSize: "22px",cursor: "pointer",color:this.state.isTrending?"blue":"black"}}>
+            Trending Survey
+          </p>
+          
+          <p onClick={()=>this.setState({isTrending:false})} style={{marginLeft:"1em",fontSize: "22px",cursor: "pointer",color:this.state.isTrending?"black":"blue"}}>
+            My Survey
+          </p>
+          </div>
+          {this.state.isTrending?(
+                      <div>
+                      {this.state.survey.map((item, id) => {
+                          return (
+                          <div style={{marginTop:'1em'}}> 
+                            <SurveyMovingCard item={item} />
+                          </div>
+                              
+                          
+                          );
+                        })}
+            
+                      </div>
+          ):(
+            <div>
+               {this.state.userSurvey.map((item, id) => {
                     return (
-                      <SwiperSlide>
-                        <div></div>
-                        <SurveyMovingCard item={item} />
-                      </SwiperSlide>
+                
+                        <div style={{marginTop:'1em'}}>
+                          <SurveyMovingCard item={item} />
+                        </div>
+                        
+                  
                     );
                   })}
-                </Swiper>
-              </div>
-            </>
-          ) : null}
+  
+            </div>
+          )}
+          </div>
 
-          <p style={{ fontSize: "22px", fontWeight: "600" }}>Trending Survey</p>
-          <Swiper
-            height="20em"
-            slidesPerView={3}
-            spaceBetween={20}
-            slidesPerGroup={3}
-            loop={true}
-            loopFillGroupWithBlank={true}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            className="mySwiper"
-          >
-            {this.state.survey.map((item, id) => {
-              return (
-                <SwiperSlide>
-                  <div></div>
-                  <SurveyMovingCard item={item} />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </div>
+          
+
+       
       </>
     );
   }

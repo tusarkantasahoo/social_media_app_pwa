@@ -27,12 +27,13 @@ export default class SurveyMovingCard extends Component {
     return (
       <>
         <div
-          style={{ border: "1px solid #1da1f2", height: "15em", width: "15em" }}
+          style={{ border: "1px solid #1da1f2", height: "15em", width: "30em" }}
         >
-          {this.props.item.question}
-          <br></br>
-          <br></br>
-          <p style={{fontSize: "18px",fontWeight: "600"}}>{this.getSurveyType(this.props.item.surveyType)} </p>
+         <p style={{fontSize: "18px",fontWeight: "600"}}>{this.getSurveyType(this.props.item.surveyType)}</p> 
+          
+
+       
+          <p style={{fontSize: "18px",fontWeight: "600"}}>{this.props.item.title} </p>
           <Link to={"/survey/" + this.props.item._id}>
             <div
               style={{

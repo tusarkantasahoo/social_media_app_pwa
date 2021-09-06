@@ -82,6 +82,7 @@ export default class VideoUpload extends Component {
         var responseForPostDetails = await createPostData(payload);
         if (responseForPostDetails.status === 200) {
           console.log("post details reposne", responseForPostDetails);
+          window.location.reload();
         }
       }
     }
@@ -226,7 +227,7 @@ export default class VideoUpload extends Component {
         >
           POST
         </button>
-        <ReactPlayer
+        {/* <ReactPlayer
           controls={true}
           pip
           width="60%"
@@ -234,25 +235,25 @@ export default class VideoUpload extends Component {
           playIcon="false"
           url={this.state.videoUrl}
           style={{ marginLeft: "20%" }}
-        ></ReactPlayer>
+        ></ReactPlayer> */}
       </>
     );
   }
 
   async componentDidMount() {
-    var response = await getFileContentById("610c05cf5d4d5781dc5ba491");
-    if (response.status === 200) {
-      console.log(response);
-      var h1 = response.data.response.file.data;
-      const video = new Buffer.from(h1).toString("ascii");
-      console.log(video);
-      // const dataUrl = bufferToDataUrl("image/png",img)
-      const dataUrl = bufferToDataUrl("video/mp4", video);
+    // var response = await getFileContentById("610c05cf5d4d5781dc5ba491");
+    // if (response.status === 200) {
+    //   console.log(response);
+    //   var h1 = response.data.response.file.data;
+    //   const video = new Buffer.from(h1).toString("ascii");
+    //   console.log(video);
+    //   // const dataUrl = bufferToDataUrl("image/png",img)
+    //   const dataUrl = bufferToDataUrl("video/mp4", video);
 
-      console.log("buffeerUrl", dataUrl);
-      this.setState({
-        videoUrl: dataUrl,
-      });
-    }
+    //   console.log("buffeerUrl", dataUrl);
+    //   this.setState({
+    //     videoUrl: dataUrl,
+    //   });
+    // }
   }
 }
