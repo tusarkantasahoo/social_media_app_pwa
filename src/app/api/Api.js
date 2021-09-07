@@ -209,3 +209,27 @@ export function getSurveyCratedByUser(data) {
       });
   });
 }
+
+export function createCommentForPost(data) {
+  console.log("===");
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/social/addComment/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}

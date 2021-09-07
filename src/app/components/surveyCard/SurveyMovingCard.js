@@ -1,23 +1,26 @@
 import React, { Component } from "react";
 import history from "../../pages/history/History.js";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import PollCard from "./PollCard.js";
+import QuizCard from "./QuizCard.js";
+import ResearchCard from "./ResearchCard.js";
 export default class SurveyMovingCard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.getSurveyType = this.getSurveyType.bind(this);
+    this.getSurveyByType = this.getSurveyByType.bind(this);
   }
 
-  getSurveyType(item){
+  getSurveyByType(item){
     if(item==="poll"){
-      return "Poll"
+      return <PollCard item={this.props.item} />
     }
     if(item==="quiz"){
-      return "Quiz"
+      return <QuizCard item={this.props.item} />
     }
 
     if(item==="research"){
-      return "Research"
+      return <ResearchCard item={this.props.item} />
     }
     
     
@@ -26,30 +29,7 @@ export default class SurveyMovingCard extends Component {
   render() {
     return (
       <>
-        <div
-          style={{ border: "1px solid #1da1f2", height: "15em", width: "30em" }}
-        >
-         <p style={{fontSize: "18px",fontWeight: "600"}}>{this.getSurveyType(this.props.item.surveyType)}</p> 
-          
-
-       
-          <p style={{fontSize: "18px",fontWeight: "600"}}>{this.props.item.title} </p>
-          <Link to={"/survey/" + this.props.item._id}>
-            <div
-              style={{
-                backgroundColor: "#1da1f2",
-                color: "White",
-                marginTop: "5em",
-                cursor: "pointer",
-              }}
-            >
-              Give Response
-            </div>
-          </Link>
-          <p style={{ fontSize: "15px", marginTop: "1em" }}>
-            Total Response:100
-          </p>
-        </div>
+      {this.getSurveyByType(this.props.item.surveyType)}
       </>
     );
   }

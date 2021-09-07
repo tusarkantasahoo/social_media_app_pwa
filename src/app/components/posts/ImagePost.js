@@ -11,7 +11,7 @@ import { Dropdown } from 'react-bootstrap';
 import comment from "../../../assets/images/comment.png";
 import MaterialIcon, { colorPalette } from 'material-icons-react';
 import { authResponseStoredValue } from "../../../utils/Constant.js";
-import { getFileContentById, deletePostById } from "../../api/Api.js";
+import { getFileContentById, deletePostById,createCommentForPost } from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url";
 import send from "../../../assets/images/send.png";
 
@@ -20,10 +20,13 @@ export default class ImagePost extends Component {
     super(props);
     this.state = {
       fileId: this.props.props.fileStorageId,
-      postImage: ""
+      postImage: "",
+      comment:"",
+      isCommentVisible:false
     };
 
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
+    this._onClickSendComment = this._onClickSendComment.bind(this);
   }
 
   async _onClickDeletePost(item) {
@@ -32,6 +35,25 @@ export default class ImagePost extends Component {
       console.log("Post delete", response)
       window.location.reload();
     }
+  }
+
+  async _onClickSendComment(){
+    console.log("send comment clickewd")
+    var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    var postJson = {
+      id:this.props.props._id,
+      commentData:{
+          userId:userData.id,
+          comment:this.state.comment
+      }
+  }
+
+  var response = await createCommentForPost(postJson);
+
+  if(response.status === 200 ){
+    console.log("comment added successfully");
+  }
+
   }
 
   render() {
@@ -104,7 +126,7 @@ export default class ImagePost extends Component {
                 <p class="disliked">10k</p>
               </div>
             </div>
-            <div>
+            <div onClick={() => this.setState({isCommentVisible:!this.state.isCommentVisible})}>
               <img src={comment} className="action_icons" ></img>
             </div>
             <div>
@@ -123,16 +145,24 @@ export default class ImagePost extends Component {
             </div>
             <div className="col px-2">
               <input
-                value={this.state.postText}
-                onChange={(e) => { }}
+                value={this.state.comment}
+                onChange={(e) => { this.setState({comment:e.target.value})}}
                 placeholder="Comment"
                 className="commentBox w-100"
               ></input>
             </div>
-            <div className="w_fc" style={{ textAlign: "left", cursor: "pointer" }}>
+            <div onClick={()=>{this._onClickSendComment()}} className="w_fc" style={{ textAlign: "left", cursor: "pointer" }}>
               <img src={send} style={{ height: "35px", width: "2.5em" }}>
               </img>
             </div>
+          </div>
+          <div>
+            {this.props.props.comments.map((item,id)=>{ 
+              return (
+                <p>{item.comment}</p>
+              )
+            })}
+
           </div>
         </div>
       </>

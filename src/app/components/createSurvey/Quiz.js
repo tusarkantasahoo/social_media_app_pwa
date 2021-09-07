@@ -29,11 +29,19 @@ export default class Quiz extends Component {
     if(this.state.noOfOptions===4){
       optionsArray = [this.state.option1,this.state.option2,this.state.option3,this.state.option4]
     }
+    var optionJsonArray =[];
+    
+    for(var i=0;i<optionsArray.length;i++){
+      optionJsonArray.push({
+        name:optionsArray[i],
+        vote:0
+      })
+    }
 
     var surveyPayload={
       title:this.state.postText,
       surveyType:"quiz",
-      options:optionsArray,
+      options:optionJsonArray,
       user:this.state.user.userData,
       answer:this.state.correctOption
     }

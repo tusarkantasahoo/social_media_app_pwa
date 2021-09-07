@@ -30,10 +30,19 @@ export default class Poll extends Component {
       optionsArray = [this.state.option1,this.state.option2,this.state.option3,this.state.option4]
     }
 
+    var optionJsonArray =[];
+    
+    for(var i=0;i<optionsArray.length;i++){
+      optionJsonArray.push({
+        name:optionsArray[i],
+        vote:0
+      })
+    }
+
     var surveyPayload={
       title:this.state.postText,
       surveyType:"poll",
-      options:optionsArray,
+      options:optionJsonArray,
       user:this.state.user.userData
     }
 
