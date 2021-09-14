@@ -1,5 +1,6 @@
 import React, { useRef, useState, Component } from "react";
 import CollegeDetailsComponent from "../../components/college/CollegeDetailsComponent.js";
+import logo from './verified.png';
 export default class CollegeDetails extends Component {
   constructor(props) {
     super(props);
@@ -87,14 +88,18 @@ export default class CollegeDetails extends Component {
           </div>
         </div>
 
-        <div style={{ height: "10em",display:"flex" }}>
-
+        <div style={{ height: "6em",display:"flex",textAlign:"center" }}>
+        <div>
+        <p style={{flexBasis:"26%",marginTop:"1em",marginLeft:"1em",fontWeight:"800",marginBottom:"1px"}}>IIM AHAMADABAAD <img src={logo} alt="logo" style={{height:"15px",width:"14px"}} ></img> </p>
+        <p style={{flexBasis:"26%",marginLeft:"1em",fontSize:"smaller"}} >College / University</p>
+        </div>
         {this.state.tabs.map((item,id)=>{
           if(this.state.currentTab===item){
-            return(<p onClick={()=> this.setState({currentTab:item})} style={{fontSize: "18px",fontWeight:"bold",margin:"1em",cursor:"pointer",color:"blue"}}>{item.name}</p>)
+            
+            return(<p onClick={()=> this.setState({currentTab:item})} style={{fontSize: "14px",fontWeight:"bold",marginTop:"1em",cursor:"pointer",color:"blue",marginLeft:"1em"}}>{item.name}</p>)
           }
           else{
-            return(<p onClick={()=> this.setState({currentTab:item})} style={{fontSize: "18px",fontWeight:"bold",margin:"1em",cursor:"pointer" }}>{item.name}</p>)
+            return(<p onClick={()=> this.setState({currentTab:item})} style={{fontSize: "14px",fontWeight:"bold",marginTop:"1em",cursor:"pointer",marginLeft:"1em" }}>{item.name}</p>)
           }
           
         })}
@@ -105,4 +110,5 @@ export default class CollegeDetails extends Component {
       </>
     );
   }
+  
 }
