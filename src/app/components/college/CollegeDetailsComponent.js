@@ -184,8 +184,9 @@ export default class CollegeDetailsComponent extends Component {
     </div>
 
     <div style={{
-      textAlign:"center"
+     
     }}>
+    
      <ul><a href="#">affiliation</a></ul>
      <ul><a href="#">Foundation</a></ul>
      <ul><a href="#">Nature</a></ul>

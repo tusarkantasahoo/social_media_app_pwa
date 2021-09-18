@@ -89,8 +89,8 @@ export default class CollegeDetails extends Component {
         </div>
 
         <div style={{ height: "6em",display:"flex",textAlign:"center" }}>
-        <div>
-        <p style={{flexBasis:"26%",marginTop:"1em",marginLeft:"1em",fontWeight:"800",marginBottom:"1px"}}>IIM AHAMADABAAD <img src={logo} alt="logo" style={{height:"15px",width:"14px"}} ></img> </p>
+        <div style={{width:"27%"}}>
+        <p style={{flexBasis:"26%",marginTop:"1em",marginLeft:"1em",fontWeight:"800",marginBottom:"1px"}}>{details.name} <img src={logo} alt="logo" style={{height:"15px",width:"14px"}} ></img> </p>
         <p style={{flexBasis:"26%",marginLeft:"1em",fontSize:"smaller"}} >College / University</p>
         </div>
         {this.state.tabs.map((item,id)=>{
