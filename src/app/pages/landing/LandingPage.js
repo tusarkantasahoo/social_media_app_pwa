@@ -9,6 +9,7 @@ import Survey from "../survey/Survey.js";
 import SurveyResponse from "../survey/SurveyResponse.js";
 import CollegePage from "../academic/CollegePage.js";
 import CommingSoon from "../commingSoon/CommingSoon.js";
+import CollegeDetails from "../academic/CollegeDetails.js";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 export default class Landing extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ export default class Landing extends Component {
       case "academic":
         return (
           <div className="col-10" id="">
-            <CollegePage />
+            <Academic />
           </div>
         );
 
@@ -99,9 +100,16 @@ export default class Landing extends Component {
       case "college":
         return (
           <div className="col-10" id="home-social">
-            <CommingSoon />
+            <CollegePage />
           </div>
         );
+
+        case "collegeDetails":
+          return (
+            <div className="col-10" id="home-social">
+              <CollegeDetails />
+            </div>
+          );
 
       case "career":
         return (

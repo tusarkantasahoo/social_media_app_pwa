@@ -1,6 +1,7 @@
 import React, { useRef, useState, Component } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
 // Import Swiper styles
 import "swiper/swiper.min.css";
@@ -22,6 +23,7 @@ import collegePredictor from "./asset/school.png";
 import career from "./asset/career.png";
 import grades from "./asset/grades.png";
 import CollegeDetails from "./CollegeDetails.js";
+import { getCollegeListByselection } from "../../api/Api.js";
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation]);
 
@@ -45,10 +47,12 @@ export default class CollegePage extends Component {
         city: null,
         avgFee: null,
       },
+      collegeList: [],
     };
     this.closeCurrentCollege = this.closeCurrentCollege.bind(this);
     this.setCollegeDetails = this.setCollegeDetails.bind(this);
     this.setCityListFromState = this.setCityListFromState.bind(this);
+    this.searchCollege = this.searchCollege.bind(this);
   }
 
   closeCurrentCollege() {
@@ -71,6 +75,19 @@ export default class CollegePage extends Component {
     }
 
     this.setState({ cityList: cityForstate });
+  }
+  async searchCollege() {
+    var postData = {
+      state: this.state.selections.state.toUpperCase(),
+      city: this.state.selections.city.toUpperCase(),
+      academictype: "college",
+    };
+    console.log("post sdas", postData);
+    var response = await getCollegeListByselection(postData);
+    if (response.status === 200) {
+      // console.log("College Respose",response);
+      this.setState({ collegeList: response.data.response });
+    }
   }
 
   render() {
@@ -151,6 +168,14 @@ export default class CollegePage extends Component {
                   }}
                   onChange={(e) => {
                     this.setCityListFromState(e.target.value);
+                    this.setState({
+                      selections: {
+                        specialization: null,
+                        state: e.target.value,
+                        city: null,
+                        avgFee: null,
+                      },
+                    });
                   }}
                 >
                   <option value="" style={{ fontSize: "18px" }}>
@@ -173,50 +198,44 @@ export default class CollegePage extends Component {
                     border: "0.5px solid #1da1f2",
                     marginLeft: "3em",
                   }}
-                  value="specialization"
+                  onChange={(e) => {
+                    this.setState({
+                      selections: {
+                        specialization: null,
+                        state: this.state.selections.state,
+                        city: e.target.value,
+                        avgFee: null,
+                      },
+                    });
+                  }}
+                  value="sd"
                 >
                   <option value="" style={{ fontSize: "18px" }}>
                     City
                   </option>
                   {this.state.cityList.map((item, id) => {
                     return (
-                      <option value="btech" style={{ fontSize: "18px" }}>
+                      <option value={item.name} style={{ fontSize: "18px" }}>
                         {item.name}
                       </option>
                     );
                   })}
                 </select>
 
-                <select
-                  style={{
-                    height: "3em",
-                    width: "10em",
-                    borderRadius: "10px",
-                    border: "0.5px solid #1da1f2",
-                    marginLeft: "3em",
-                  }}
-                  value="specialization"
-                >
-                  <option value="" style={{ fontSize: "18px" }}>
-                    Avg. Fee
-                  </option>
-                  <option value="5-10" style={{ fontSize: "18px" }}>
-                    5-10L
-                  </option>
-                  <option value="mtech" style={{ fontSize: "18px" }}>
-                    10-15L
-                  </option>
-                  <option value="mba" style={{ fontSize: "18px" }}>
-                    15-20L
-                  </option>
-                </select>
+                <button onClick={() => this.searchCollege()}>Search</button>
               </div>
             </div>
-     <div style={{ marginBottom: "-1em" }}>
-              <p style={{ fontWeight: "bold", fontSize: "22px",marginTop:"1em" }}>
-               Top Colleges
+            <div style={{ marginBottom: "-1em" }}>
+              <p
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "22px",
+                  marginTop: "1em",
+                }}
+              >
+                Top Colleges
               </p>
-              </div>
+            </div>
 
             <Swiper
               height="20em"
@@ -244,13 +263,18 @@ export default class CollegePage extends Component {
             </Swiper>
 
             <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {allCollegeData.map((item, id) => {
+              {this.state.collegeList.map((item, id) => {
                 return (
                   <div style={{ margin: "1em" }}>
-                    <CollegeSliderCard
-                      item={item}
-                      setCollegeDetails={this.setCollegeDetails}
-                    />
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={"/academic/college/" + item._id}
+                    >
+                      <CollegeSliderCard
+                        item={item}
+                        setCollegeDetails={this.setCollegeDetails}
+                      />
+                    </Link>
                   </div>
                 );
               })}
@@ -265,4 +289,6 @@ export default class CollegePage extends Component {
       </>
     );
   }
+
+  componentDidMount() {}
 }
