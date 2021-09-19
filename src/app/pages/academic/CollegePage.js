@@ -24,6 +24,11 @@ import career from "./asset/career.png";
 import grades from "./asset/grades.png";
 import CollegeDetails from "./CollegeDetails.js";
 import { getCollegeListByselection } from "../../api/Api.js";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation]);
 
@@ -48,11 +53,13 @@ export default class CollegePage extends Component {
         avgFee: null,
       },
       collegeList: [],
+      age: "",
     };
     this.closeCurrentCollege = this.closeCurrentCollege.bind(this);
     this.setCollegeDetails = this.setCollegeDetails.bind(this);
     this.setCityListFromState = this.setCityListFromState.bind(this);
     this.searchCollege = this.searchCollege.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   closeCurrentCollege() {
@@ -78,8 +85,17 @@ export default class CollegePage extends Component {
   }
   async searchCollege() {
     var postData = {
-      state: this.state.selections.state.toUpperCase(),
-      city: this.state.selections.city.toUpperCase(),
+      specialization: this.state.selections.specialization,
+      state:
+        this.state.selections.state !== null &&
+        this.state.selections.state !== undefined
+          ? this.state.selections.state.toUpperCase()
+          : null,
+      city:
+        this.state.selections.city !== null &&
+        this.state.selections.city !== undefined
+          ? this.state.selections.city.toUpperCase()
+          : null,
       academictype: "college",
     };
     console.log("post sdas", postData);
@@ -90,6 +106,10 @@ export default class CollegePage extends Component {
     }
   }
 
+  handleChange(event) {
+    this.setState({ age: event.target.value });
+  }
+
   render() {
     console.log("all college", allCollegeData);
 
@@ -97,134 +117,104 @@ export default class CollegePage extends Component {
       <>
         {this.state.currentCollege === null ? (
           <>
-            <div className="container">
-              <p style={{ fontSize: "18px", fontWeight: "bold" }}>
-                Career Tools
-              </p>
-              <div style={{ display: "flex" }}>
-                <div style={{ marginLeft: "3em" }}>
-                  <img
-                    src={collegePredictor}
-                    style={{ height: "3em", width: "3em" }}
-                  ></img>
-                  <br></br>
-                  College Predictor
-                </div>
-                <div style={{ marginLeft: "3em" }}>
-                  <img
-                    src={career}
-                    style={{ height: "3em", width: "3em" }}
-                  ></img>
-                  <br></br>
-                  Career Maker
-                </div>
-                <div style={{ marginLeft: "3em" }}>
-                  <img
-                    src={grades}
-                    style={{ height: "3em", width: "3em" }}
-                  ></img>
-                  <br></br>
-                  Grade Calculator
-                </div>
-                <div style={{ marginLeft: "3em" }}>
-                  <img
-                    src={grades}
-                    style={{ height: "3em", width: "3em" }}
-                  ></img>
-                  <br></br>
-                  Area of Study
-                </div>
-              </div>
-              <div style={{ display: "flex", marginTop: "3em" }}>
-                <select
-                  style={{
-                    height: "3em",
-                    width: "10em",
-                    borderRadius: "10px",
-                    border: "0.5px solid #1da1f2",
-                    marginLeft: "3em",
-                  }}
-                  value="specialization"
-                >
-                  <option value="" style={{ fontSize: "18px" }}>
-                    specialization
-                  </option>
-                  {specializationsList.map((item, id) => {
-                    return (
-                      <option value="btech" style={{ fontSize: "18px" }}>
-                        {item}
-                      </option>
-                    );
-                  })}
-                </select>
+            <FormControl sx={{ m: 1, minWidth: 160 }}>
+              <InputLabel id="demo-simple-select-helper-label">
+                Specialization
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                value={this.state.selections.specialization}
+                label="specialization"
+                style={{ width: "200px" }}
+                onChange={(e) => {
+                  this.setState({
+                    selections: {
+                      specialization: e.target.value,
+                      state: this.state.selections.state || null,
+                      city: this.state.selections.city || null,
+                      avgFee: null,
+                    },
+                  });
+                }}
+              >
+                <MenuItem value="">Specialization</MenuItem>
+                {specializationsList.map((item, id) => {
+                  return <MenuItem value={item}>{item}</MenuItem>;
+                })}
+              </Select>
+            </FormControl>
 
-                <select
-                  style={{
-                    height: "3em",
-                    width: "10em",
-                    borderRadius: "10px",
-                    border: "0.5px solid #1da1f2",
-                    marginLeft: "3em",
-                  }}
-                  onChange={(e) => {
-                    this.setCityListFromState(e.target.value);
-                    this.setState({
-                      selections: {
-                        specialization: null,
-                        state: e.target.value,
-                        city: null,
-                        avgFee: null,
-                      },
-                    });
-                  }}
-                >
-                  <option value="" style={{ fontSize: "18px" }}>
-                    State
-                  </option>
-                  {stateArray.map((item, id) => {
-                    return (
-                      <option value={item.name} style={{ fontSize: "18px" }}>
-                        {item.name}
-                      </option>
-                    );
-                  })}
-                </select>
+            <FormControl
+              sx={{ m: 1, minWidth: 160 }}
+              style={{ marginLeft: "1em" }}
+            >
+              <InputLabel id="demo-simple-select-helper-label">
+                State
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                value={this.state.selections.state}
+                label="specialization"
+                style={{ width: "200px" }}
+                onChange={(e) => {
+                  this.setCityListFromState(e.target.value);
+                  this.setState({
+                    selections: {
+                      specialization:
+                        this.state.selections.specialization || null,
+                      state: e.target.value,
+                      city: null,
+                      avgFee: null,
+                    },
+                  });
+                }}
+              >
+                <MenuItem value="">State</MenuItem>
+                {stateArray.map((item, id) => {
+                  return <MenuItem value={item.name}>{item.name}</MenuItem>;
+                })}
+              </Select>
+            </FormControl>
 
-                <select
-                  style={{
-                    height: "3em",
-                    width: "10em",
-                    borderRadius: "10px",
-                    border: "0.5px solid #1da1f2",
-                    marginLeft: "3em",
-                  }}
-                  onChange={(e) => {
-                    this.setState({
-                      selections: {
-                        specialization: null,
-                        state: this.state.selections.state,
-                        city: e.target.value,
-                        avgFee: null,
-                      },
-                    });
-                  }}
-                  value="sd"
-                >
-                  <option value="" style={{ fontSize: "18px" }}>
-                    City
-                  </option>
-                  {this.state.cityList.map((item, id) => {
-                    return (
-                      <option value={item.name} style={{ fontSize: "18px" }}>
-                        {item.name}
-                      </option>
-                    );
-                  })}
-                </select>
+            <FormControl
+              sx={{ m: 1, minWidth: 160 }}
+              style={{ marginLeft: "1em" }}
+            >
+              <InputLabel id="demo-simple-select-helper-label">City</InputLabel>
+              <Select
+                labelId="demo-simple-select-helper-label"
+                id="demo-simple-select-helper"
+                value={this.state.selections.city}
+                label="specialization"
+                style={{ width: "200px" }}
+                onChange={(e) => {
+                  this.setState({
+                    selections: {
+                      specialization:
+                        this.state.selections.specialization || null,
+                      state: this.state.selections.state,
+                      city: e.target.value,
+                      avgFee: null,
+                    },
+                  });
+                }}
+              >
+                <MenuItem value="">City</MenuItem>
+                {this.state.cityList.map((item, id) => {
+                  return <MenuItem value={item.name}>{item.name}</MenuItem>;
+                })}
+              </Select>
+            </FormControl>
+            <Button
+              style={{ marginTop: "1em", marginLeft: "1em" }}
+              variant="outlined"
+              onClick={() => this.searchCollege()}
+            >
+              Search
+            </Button>
 
-                <button onClick={() => this.searchCollege()}>Search</button>
-              </div>
-            </div>
             <div style={{ marginBottom: "-1em" }}>
               <p
                 style={{
