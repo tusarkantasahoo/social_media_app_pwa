@@ -1,5 +1,6 @@
 import React, { useRef, useState, Component } from "react";
-
+import banner from "./banner.jpg";
+import logo from "./logo.jpg";
 
 
 
@@ -8,141 +9,120 @@ export default class CollegeDetailsComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-
     };
-
-
-    
   }
-  
-
-
-
-
-  
-
 
   render() {
-      console.log(this.props);
+    var collegePosts = [{title:"WelcomewBack to college",img:banner},{title:"Upcoming batch next month",img:logo}]
+      console.log("Inside College Details component",this.props);
 
     var currentSelection = this.props.currentSelection;
     var details = this.props.collegeDetails;
     if(currentSelection==="info"){
         return (
             <>
-              <div className="container">
-                {/* <p>{details.info}</p> */}
+              <div className="container" style={{display: "flex"}}>
+
                 
-    <div class="col-md-12">
-    <div class="row">
-    <div class="col-md-3" style={{boxShadow: 'rgb(219, 216, 215) 0px 2px 3px', height: '621px'}}>
+<div>
     <div style={{
-      textAlign:"center"
+      textAlign:"center",width:"20em"
     }}>
-      <h4>Ranked 1 Business School</h4>
-    </div>
-
-    <div style={{
-      
-    }}>
-     <ul><a href="#">affiliation</a></ul>
-     <ul><a href="#">Foundation</a></ul>
-     <ul><a href="#">Nature</a></ul>
-     <ul><a href="#">Address</a></ul>
-     <ul><a href="#">079-987-878</a></ul>
-     
-
-     <section id="block-views-whats-new-block-2">
+   
         <h3 className="block-title" style={{
     background: "-webkit-linear-gradient(top, #3a96ce, #266184)",
-  
-    color: "#ffffff"
-    
+    color: "#ffffff"  
 }}>Notice Board</h3>
-        <div style={{backgroundColor:"aliceblue"}}>
-        <marquee direction = "up" scrollamount="2" height="300px">
 
 
+
+<marquee direction = "up" scrollamount="2" height="300px">
+<h5>{details.ranking}</h5>
+</marquee>
       
-        <ul>
-  <li>Wellcone to the site</li>
-  <li>welcome to the website and have a nice day</li>
-  
-</ul>  
-        </marquee>
-        </div>
-      </section>
     </div>
-   
 
-   </div>
-   <div class="col-md-9">
+    <div style={{
+      
+    }}>
+     <p style={{fontSize:"15px",marginLeft:"1em",fontWeight:"bold"}}>Type : {details.collegeType}</p>
+     <div style={{display:"flex"}}>
+     <p style={{fontSize:"15px",marginLeft:"1em",fontWeight:"bold"}}>
+     Contact
+     </p>
+     <p style={{fontSize:"15px",color:"#1da1f2",marginLeft:"1em"}}>{details.contact}</p>
+     </div>
+
+     <div style={{display:"flex"}}>
+     <p style={{fontSize:"15px",marginLeft:"1em",fontWeight:"bold"}}>
+     Email
+     </p>
+     <p style={{fontSize:"15px",color:"#1da1f2",marginLeft:"1em"}}>{details.email}</p>
+     </div>
+
+     <div style={{display:"flex"}}>
+     <p style={{fontSize:"15px",marginLeft:"1em",fontWeight:"bold"}}>
+     Website
+     </p>
+     <p style={{fontSize:"15px",color:"#1da1f2",marginLeft:"1em"}}>{details.website}</p>
+     </div>
+    </div>
+    </div>
+   <div>
    
 
    <div style={{boxShadow: 'rgb(219, 216, 215) 0px 2px 3px', height: '142px'}}>
-        <div className="col-md-5" style={{marginLeft:'13px',color: 'rgb(75, 79, 86)', fontFamily: 'Helvetica, Arial, sans-serif'}}>
-        <img src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg" alt="avatar" style={{borderStyle: 'none', maxWidth: '100%', height: '48px', width: '48px',borderRadius:'50%'}} />
-        <span style={{fontSize: '14px', textAlign: 'justify',paddingLeft:'1px'}}>Sadepta Gartia</span>
-        <span className="tools_comment" style={{fontSize: '12px', lineHeight: '1.358'}}>
-        <span aria-hidden="true" style={{color: 'rgb(144, 148, 156)'}}>·&nbsp;</span><span className="fa fa-thumbs-o-up" style={{WebkitFontSmoothing: 'antialiased', display: 'inline-block', fontVariantNumeric: 'normal', fontVariantEastAsian: 'normal', textRendering: 'auto', lineHeight: 1, fontFamily: 'FontAwesome', fontStretch: 'normal', fontSize: 'inherit'}} />&nbsp;<span className="count" style={{color: 'rgb(144, 148, 156)'}}>1</span>&nbsp;
-        <span aria-hidden="true" style={{color: 'rgb(144, 148, 156)'}}>·&nbsp;</span>
-        <span style={{color: 'rgb(144, 148, 156)'}}>26m</span>&nbsp;<i data-visualcompletion aria-label="Shared with Public" role="img" style={{backgroundImage: 'url("https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/kK7qpUOzQMZ.png")', backgroundPosition: '0px -764px', backgroundSize: '26px 904px', width: '12px', height: '12px', backgroundRepeat: 'no-repeat', display: 'inline-block'}} />
-        </span>
-
-
-
-        </div>
-        <div className="col-md-11" style={{marginLeft:'13px',width: '936.825px', padding: '0px', WebkitBoxFlex: 0, flex: '0 0 91.6667%', maxWidth: '91.6667%', overflow: 'hidden', color: 'rgb(75, 79, 86)', fontFamily: 'Helvetica, Arial, sans-serif'}}>
-        
-        <p style={{marginTop: '4px', marginBottom: '4px', color: 'rgb(75, 79, 86)', fontSize: '14px', textAlign: 'justify'}}>Dr. Laetitia Dablanc will present a soon-to-be published book chapter on the impact of COVID-19 on urban logistics..</p>
-       
-        </div>
-      </div>
-      <div>
-        <img src="https://www.iima.ac.in/web/ctl/assets/img/event/The%20Impact%20of%20COVID-19%20on%20Urban%20Logistics.jpg" style={{height:'226px',width:'690px'}}></img>
-      </div>
-   
-   <div style={{boxShadow: 'rgb(219, 216, 215) 0px 2px 3px', height: '300px'}}>
-       <div class="row">
-       <div className="card" style={{width: '14rem'}}>
-        <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera_assets/premium_hub/bscs-uol.jpg?auto=compress&dpr=1&w=270&fit=crop" className="card-img-top" alt="..." />
-        <div className="card-body">
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div className="card" style={{width: '14rem'}}>
-        <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera_assets/ddp/branding/bsc-marketing-london/bsc-marketing-london-banner.jpg?auto=compress&dpr=1&w=270&fit=crop" className="card-img-top" alt="..." />
-        <div className="card-body">
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div className="card" style={{width: '14rem'}}>
-        <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera_assets/ddp/branding/bsc-marketing-london/bsc-marketing-london-banner.jpg?auto=compress&dpr=1&w=270&fit=crop" className="card-img-top" alt="..." />
-        <div className="card-body">
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-       </div>
+     {collegePosts.map((item,id)=>{
+       return (   <div
+        style={{
+          textAlign: "left",
+          border: "0.5px solid #d4d1c5",
+          marginTop: "10px",
+          borderRadius: "15px",
+          padding: "10px",
+          width:"40em"
+        }}
+      >
+        <div className="d-flex flex-row">
+          <div className="comment_icon_top">
+            <img
+              src={item.img}
+              height="50px"
+              width="50px"
+              style={{ borderRadius: "25px" }}
+            ></img>
+          </div>
+          <div className="ms-3">
+            <h6 className="fw-bold mb-0">
+            Tusar
+            </h6>
+            <p style={{ fontSize: "15px" }}>
+              {/* {this.props.props.user.email} */}
+              29/08/2021
+            </p>
+          </div>
   
-       
-      </div>
-      <div style={{boxShadow: 'rgb(219, 216, 215) 0px 2px 3px', height: '300px'}}>
-      <div className="company_profile_info">
-        <div className="company-up-info"><div className="companies-list" style={{ float: 'left'}}><div className="row" style={{margin: '0px', padding: '0px', border: '0px', font: 'inherit', verticalAlign: 'baseline', display: 'flex', flexWrap: 'wrap'}}>
-        <div className="col-lg-5 col-md-5 col-sm-5 col-12" style={{width:'45.666667%'}} ><div className="company_profile_info" style={{ width: '247.5px', backgroundColor: 'rgb(232 220 220)', textAlign: 'center'}}><div className="company-up-info" ><img src="https://gambolthemes.net/workwise-new/images/resources/pf-icon1.png" alt=""  /><h3 style={{marginTop: '0px', marginRight: '0px', marginLeft: '0px', padding: '0px', fontWeight: 600, lineHeight: 'inherit', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontStretch: 'inherit', verticalAlign: 'baseline', color: 'rgb(0, 0, 0)'}}>John Doe</h3><h4 style={{margin: '0px 0px 21px', padding: '0px', lineHeight: 'inherit', fontSize: '14px', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontStretch: 'inherit', verticalAlign: 'baseline', color: 'rgb(104, 104, 104)'}}>Graphic Designer</h4><ul style={{marginRight: '0px', marginBottom: '0px', marginLeft: '0px', padding: '0px', border: '0px', font: 'inherit', verticalAlign: 'baseline', listStyle: 'none', float: 'left', width: '245.5px'}}><li style={{margin: '0px 6px 0px 0px', padding: '0px', border: '0px', font: 'inherit', verticalAlign: 'baseline', display: 'inline-block'}}><a href="#" title className="follow" style={{margin: '0px', padding: '0px 12px', color: 'rgb(255, 255, 255)', backgroundColor: 'rgb(83, 214, 144)', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontWeight: 'inherit', fontStretch: 'inherit', fontSize: 'inherit', lineHeight: '35px', fontFamily: 'inherit', verticalAlign: 'baseline', borderRadius: '3px', display: 'inline-block', height: '35px'}}>Message</a></li>&nbsp;<li style={{margin: '0px 6px 0px 0px', padding: '0px', border: '0px', font: 'inherit', verticalAlign: 'baseline', display: 'inline-block'}}></li>&nbsp;<li style={{margin: '0px 6px 0px 0px', padding: '0px', border: '0px', font: 'inherit', verticalAlign: 'baseline', display: 'inline-block'}}><a href="#" title className="hire-us" style={{margin: '0px', padding: '0px 12px', color: 'rgb(255, 255, 255)', backgroundColor: 'rgb(81, 165, 251)', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontWeight: 'inherit', fontStretch: 'inherit', fontSize: 'inherit', lineHeight: '35px', fontFamily: 'inherit', verticalAlign: 'baseline', borderRadius: '3px', display: 'inline-block', height: '35px'}}>Chart</a></li></ul></div><a href="#" title className="view-more-pro" style={{margin: '0px', padding: '18px 0px', color: 'rgb(0, 0, 0)', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontStretch: 'inherit', fontSize: '16px', lineHeight: 'inherit', fontFamily: 'inherit', verticalAlign: 'baseline', display: 'inline-block'}}></a></div></div>
-        <div className="col-lg-5 col-md-5 col-sm-5 col-12" style={{width:'45.666667%'}}   ><div className="company_profile_info" style={{width: '247.5px', backgroundColor: 'rgb(232 220 220)', textAlign: 'center'}}><div className="company-up-info" ><img src="https://gambolthemes.net/workwise-new/images/resources/pf-icon2.png" alt=""  /><h3 style={{marginTop: '0px', marginRight: '0px', marginLeft: '0px', padding: '0px', fontWeight: 600, lineHeight: 'inherit', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontStretch: 'inherit', verticalAlign: 'baseline', color: 'rgb(0, 0, 0)'}}>John Doe</h3><h4 style={{margin: '0px 0px 21px', padding: '0px', lineHeight: 'inherit', fontSize: '14px', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontStretch: 'inherit', verticalAlign: 'baseline', color: 'rgb(104, 104, 104)'}}>Graphic Designer</h4><ul style={{marginRight: '0px', marginBottom: '0px', marginLeft: '0px', padding: '0px', border: '0px', font: 'inherit', verticalAlign: 'baseline', listStyle: 'none', float: 'left', width: '245.5px'}}><li style={{margin: '0px 6px 0px 0px', padding: '0px', border: '0px', font: 'inherit', verticalAlign: 'baseline', display: 'inline-block'}}><a href="#" title className="follow" style={{margin: '0px', padding: '0px 12px', color: 'rgb(255, 255, 255)', backgroundColor: 'rgb(83, 214, 144)', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontWeight: 'inherit', fontStretch: 'inherit', fontSize: 'inherit', lineHeight: '35px', fontFamily: 'inherit', verticalAlign: 'baseline', borderRadius: '3px', display: 'inline-block', height: '35px'}}>Message</a></li>&nbsp;<li style={{margin: '0px 6px 0px 0px', padding: '0px', border: '0px', font: 'inherit', verticalAlign: 'baseline', display: 'inline-block'}}></li>&nbsp;<li style={{margin: '0px 6px 0px 0px', padding: '0px', border: '0px', font: 'inherit', verticalAlign: 'baseline', display: 'inline-block'}}><a href="#" title className="hire-us" style={{margin: '0px', padding: '0px 12px', color: 'rgb(255, 255, 255)', backgroundColor: 'rgb(81, 165, 251)', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontWeight: 'inherit', fontStretch: 'inherit', fontSize: 'inherit', lineHeight: '35px', fontFamily: 'inherit', verticalAlign: 'baseline', borderRadius: '3px', display: 'inline-block', height: '35px'}}>Chart</a></li></ul></div><a href="#" title className="view-more-pro" style={{margin: '0px', padding: '18px 0px', color: 'rgb(0, 0, 0)', border: '0px', fontStyle: 'inherit', fontVariant: 'inherit', fontStretch: 'inherit', fontSize: '16px', lineHeight: 'inherit', fontFamily: 'inherit', verticalAlign: 'baseline', display: 'inline-block'}}></a></div></div>
-        </div></div></div></div>
-      </div>
+        </div>
+        <p>{item.title}</p>
+        <div className="image-field-for-posts" onClick={() => { this.props.handelNewsClick(); this.props.setNewsItem(this.props.props); }}>
+          <img className="mx_height_100 w-100" src={item.img}></img>
+        </div>
+      </div>)
+     })}
+
+    
+      </div>     
+    
+
      
      
 </div>
-   <div></div>
+
    </div>
-    </div>
+
 
  
-              </div>
+      
             </>
           );
     }
@@ -151,7 +131,7 @@ export default class CollegeDetailsComponent extends Component {
         return (
             <>
               <div className="container">
-                <p>{details.coursesAndFees}</p>
+                <p>{details.courseAndFees}</p>
               </div>
             </>
           );

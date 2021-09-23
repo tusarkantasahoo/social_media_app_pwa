@@ -2,6 +2,8 @@ import React, { useRef, useState, Component } from "react";
 import CollegeDetailsComponent from "../../components/college/CollegeDetailsComponent.js";
 import logo from './verified.png';
 import {getCollegeById} from "../../api/Api.js";
+import banner from "../../../assets/images/bgImg.jpg";
+import logoClg from "../../../assets/images/logo.jpg";
 export default class CollegeDetails extends Component {
   constructor(props) {
     super(props);
@@ -26,15 +28,15 @@ export default class CollegeDetails extends Component {
   renderDetailsBySelection(item){
     console.log("===",item)
     switch(item.code){
-      case "info":return ( <CollegeDetailsComponent currentSelection="info" collegeDetails={this.props.currentCollege} />)
-      case "courses&fees":return ( <CollegeDetailsComponent currentSelection="courses&fees" collegeDetails={this.props.currentCollege} />)
-      case "admission":return ( <CollegeDetailsComponent currentSelection="admission" collegeDetails={this.props.currentCollege} />)
-      case "review":return ( <CollegeDetailsComponent currentSelection="review" collegeDetails={this.props.currentCollege} />)
-      case "cutoff":return ( <CollegeDetailsComponent currentSelection="cutoff" collegeDetails={this.props.currentCollege} />)
-      case "placement":return ( <CollegeDetailsComponent currentSelection="placement" collegeDetails={this.props.currentCollege} />)
-      case "gallary":return ( <CollegeDetailsComponent currentSelection="gallary" collegeDetails={this.props.currentCollege} />)
-      case "facility":return ( <CollegeDetailsComponent currentSelection="facility" collegeDetails={this.props.currentCollege} />)
-      case "hostel":return ( <CollegeDetailsComponent currentSelection="hostel" collegeDetails={this.props.currentCollege} />)
+      case "info":return ( <CollegeDetailsComponent currentSelection="info" collegeDetails={this.state.collegeDetails} />)
+      case "courses&fees":return ( <CollegeDetailsComponent currentSelection="courses&fees" collegeDetails={this.state.collegeDetails} />)
+      case "admission":return ( <CollegeDetailsComponent currentSelection="admission" collegeDetails={this.state.collegeDetails} />)
+      case "review":return ( <CollegeDetailsComponent currentSelection="review" collegeDetails={this.state.collegeDetails} />)
+      case "cutoff":return ( <CollegeDetailsComponent currentSelection="cutoff" collegeDetails={this.state.collegeDetails} />)
+      case "placement":return ( <CollegeDetailsComponent currentSelection="placement" collegeDetails={this.state.collegeDetails} />)
+      case "gallary":return ( <CollegeDetailsComponent currentSelection="gallary" collegeDetails={this.state.collegeDetails} />)
+      case "facility":return ( <CollegeDetailsComponent currentSelection="facility" collegeDetails={this.state.collegeDetails} />)
+      case "hostel":return ( <CollegeDetailsComponent currentSelection="hostel" collegeDetails={this.state.collegeDetails} />)
 
        default :return null
     }
@@ -54,12 +56,14 @@ export default class CollegeDetails extends Component {
         </div>
         <div
           // style={{ backgroundImage: `url(${details.banner})`, height: "15em" }}
+           style={{ backgroundImage: `url(${banner})`, height: "15em" }}
+          
         >
           <div style={{ height: "7em" }}></div>
           <div style={{ display: "flex" }}>
             <div style={{ textAlign: "left" }}>
               <img
-                // src={details.logo}
+                 src={logoClg}
                 style={{ height: "8em", width: "8em" }}
               ></img>
             </div>

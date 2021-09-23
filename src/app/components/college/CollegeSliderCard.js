@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import collegeBanner from "./banner.jpg";
+import logo from "./logo.jpg"
 export default class CollegeSliderCard extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,7 @@ export default class CollegeSliderCard extends Component {
         >
           <div>
             <img
-              src={this.props.item.banner}
+              src={this.props.item.banner || collegeBanner}
               style={{
                 height: "4em",
                 width: "90%",
@@ -26,7 +27,7 @@ export default class CollegeSliderCard extends Component {
           </div>
           <div style={{ display: "flex" }}>
             <img
-              src={this.props.item.logo}
+              src={this.props.item.logo || logo }
               style={{
                 height: "3em",
                 width: "3em",
@@ -45,7 +46,7 @@ export default class CollegeSliderCard extends Component {
           </div>
           <div style={{display:"flex",textAlign: "center",flexWrap:"wrap"}}>
               <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>{this.props.item.affiliation}</p>
-            <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>{this.props.item.ranking}</p>
+            <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>{this.props.item.ranking!==null&&this.props.item.ranking!==undefined? this.props.item.ranking.substring(0,20):""}</p>
             <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>{this.props.item.examAccepted} Accepted</p>
             <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>Avg. Course Fee {this.props.item.averageCourseFee} </p>
           </div>

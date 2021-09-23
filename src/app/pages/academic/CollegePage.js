@@ -101,7 +101,7 @@ export default class CollegePage extends Component {
     console.log("post sdas", postData);
     var response = await getCollegeListByselection(postData);
     if (response.status === 200) {
-      // console.log("College Respose",response);
+       console.log("College Respose",response);
       this.setState({ collegeList: response.data.response });
     }
   }
@@ -111,7 +111,6 @@ export default class CollegePage extends Component {
   }
 
   render() {
-    console.log("all college", allCollegeData);
 
     return (
       <>
