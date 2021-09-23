@@ -15,15 +15,17 @@ export default class HeaderSearchBox extends Component {
   }
 
   async searchFromHeader(data) {
-    this.setState({ searchText: data });
+    console.log(data)
     var postJson = {
-      type: data,
+      term: data,
     };
     var response = await getSearchBoxData(postJson);
+    console.log("Response",response);
     if (response.status === 200) {
       console.log("College List", response.data);
       this.setState({ collegeList: response.data });
     }
+    this.setState({ searchText: data });
   }
   render() {
     return (
@@ -47,6 +49,8 @@ export default class HeaderSearchBox extends Component {
                 value={this.state.searchText}
                 onChange={(e) => {
                   this.searchFromHeader(e.target.value);
+                  console.log("change in header",e.target.value)
+                  // this.searchFromHeader(e.target.value);
                 }}
                 type="text"
                 value={this.state.postText}
