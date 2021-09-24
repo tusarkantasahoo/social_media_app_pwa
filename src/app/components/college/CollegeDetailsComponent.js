@@ -2,7 +2,7 @@ import React, { useRef, useState, Component } from "react";
 import banner from "./banner.jpg";
 import logo from "./logo.jpg";
 
-
+import PostMessageBox from "../../components/homeSocial/postMessgaeBox/PostMessageBox.js";
 
 
 export default class CollegeDetailsComponent extends Component {
@@ -21,9 +21,12 @@ export default class CollegeDetailsComponent extends Component {
     if(currentSelection==="info"){
         return (
             <>
+ 
               <div className="container" style={{display: "flex"}}>
 
-                
+           
+          
+            
 <div>
     <div style={{
       textAlign:"center",width:"20em"
@@ -72,6 +75,11 @@ export default class CollegeDetailsComponent extends Component {
    
 
    <div style={{boxShadow: 'rgb(219, 216, 215) 0px 2px 3px', height: '142px'}}>
+   <button type="button" class="btn btn-primary" style={{marginLeft:"80%"}}>Add Post +</button>
+             
+             
+       
+          
      {collegePosts.map((item,id)=>{
        return (   <div
         style={{

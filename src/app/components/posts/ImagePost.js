@@ -66,7 +66,7 @@ export default class ImagePost extends Component {
     var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
     var postJson = {
       id: postId,
-      userId: userData.id
+      userId: userData.userData.id
     };
     var response = await addLikeForPost(postJson);
     if (response.status === 200) {

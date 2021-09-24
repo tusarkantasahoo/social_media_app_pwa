@@ -9,6 +9,12 @@ export default class QuizCard extends Component {
 
 
   render() {
+    var analytics = this.props.item.options;
+    var total=0;
+    for(var i =0 ;i<analytics.length;i++){
+        total = total + analytics[i].vote;
+    }
+    console.log("Total votes",total);
     return (
         <>
         <div
@@ -24,7 +30,7 @@ export default class QuizCard extends Component {
                 <>
                 <p>{item.name}</p>
                 <div class="progress" style={{height:"1em"}}>
-                <div class="progress-bar" style={{width:"50%"}} role="progressbar" aria-valuenow="50" aria-valuemin="10" aria-valuemax="100"></div>
+                <div class="progress-bar" role="progressbar" style={{width: (item.vote/total*100).toString()+"%"}}  aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
                 </>
                 

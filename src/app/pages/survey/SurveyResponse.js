@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import Carousel from "react-elastic-carousel";
-import { getSurveyList,getSurveyById } from "../../api/Api.js";
+import {
+  getSurveyList,
+  getSurveyById,
+  addResearchComment,
+  giveQuizAnswer,
+  givePollAnswer
+} from "../../api/Api.js";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { authResponseStoredValue } from "../../../utils/Constant.js";
 // Import Swiper styles
 import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css";
@@ -11,120 +17,271 @@ import SurveyMovingCard from "../../components/surveyCard/SurveyMovingCard.js";
 import "../../../App.css";
 // import Swiper core and required modules
 import SwiperCore, { Pagination, Navigation } from "swiper/core";
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 export default class Survey extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        surveyDetails:{}
+      surveyDetails: {},
+      comment: "",
+      surveyId: "",
+      selectedOption:""
     };
     this.returnSurveyByType = this.returnSurveyByType.bind(this);
+    this._onClickSubmitResearch = this._onClickSubmitResearch.bind(this);
+    this._onClickSubmitQuiz = this._onClickSubmitQuiz.bind(this);
+    this._onClickSubmitPoll = this._onClickSubmitPoll.bind(this);
   }
 
+  async _onClickSubmitResearch() {
+    var user = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    var postJson = {
+      surveyId: this.state.surveyId,
+      user: {
+        name: user.userData.name,
+        email: user.userData.email,
+        id: user.userData._id,
+        image: user.userData.userImage,
+      },
 
-  returnSurveyByType(type){
-switch(type){
-    case "poll": return (
-        <>
-          <FormControl component="fieldset">
-          <p style={{fontSize:"22px",fontWeight:"bold"}}>{this.state.surveyDetails.title}</p>
-      <RadioGroup  >
-      {this.state.surveyDetails.options.map((item,id)=>{
-           return (
-            <FormControlLabel value={item} control={<Radio color="primary" />} label={item} />
-           ) 
-        })}
-       
-      </RadioGroup>
-    </FormControl>
-    <br></br>
-    <br></br>
-    <TextField id="standard-basic" label="Comments" />
-    <br></br>
-    <br></br>
-    <Button variant="outlined" color="primary">
-Submit
-</Button>
-       
-        </>
+      comment: this.state.comment,
+    };
+    var response = await addResearchComment(postJson);
 
-         
-    )
+    if (response.status === 200) {
+      console.log("Comment added successfully");
+      var location = window.location.href;
+      var surveyId = location.split("/")[4];
+      this.setState({ surveyId: surveyId });
+      console.log("Survey ID", surveyId);
+      var responseSurvey = await getSurveyById(surveyId);
+      if (responseSurvey.status === 200) {
+        console.log("Response from survey", responseSurvey.data.response);
+        this.setState({ surveyDetails: responseSurvey.data.response });
+      }
+    }
+  }
 
-    case "quiz": return (
-        <>
-      <FormControl component="fieldset">
-      <p style={{fontSize:"22px",fontWeight:"bold"}}>{this.state.surveyDetails.title}</p>
-      <RadioGroup  >
-      {this.state.surveyDetails.options.map((item,id)=>{
-           return (
-            <FormControlLabel value={item} control={<Radio color="primary" />} label={item} />
-           ) 
-        })}
-       
-      </RadioGroup>
-    </FormControl>
-    <br></br>
-    <br></br>
-    <TextField id="standard-basic" label="Comments" />
-    <br></br>
-    <br></br>
-    <Button variant="outlined" color="primary">
-Submit
-</Button>
-       
-        </>
+ async  _onClickSubmitQuiz(){
+  var user = JSON.parse(localStorage.getItem(authResponseStoredValue));
+  if(this.state.selectedOption.length===0||this.state.selectedOption===null||this.state.selectedOption.length===undefined){
+    window.alert("Please select A option")
+  }
+  var postJson = {
+    surveyId: this.state.surveyId,
+    user: {
+      name: user.userData.name,
+      email: user.userData.email,
+      id: user.userData._id,
+      image: user.userData.userImage,
+    },
 
-         
-    )
+    optionName: this.state.selectedOption,
+  };
+  var response = await giveQuizAnswer(postJson);
 
-    case "research": return (
-        <>
-           <FormControl component="fieldset">
-          <p style={{fontSize:"22px",fontWeight:"bold"}}>{this.state.surveyDetails.title}</p>
-    </FormControl>
-    <br></br>
-    <br></br>
-    <TextField id="standard-basic" label="Answer" />
-    <br></br>
-    <br></br>
-    <Button variant="outlined" color="primary">
-Submit
-</Button>
-        </>
+  if (response.status === 200) {
+    console.log("Comment added successfully");
+    var location = window.location.href;
+    var surveyId = location.split("/")[4];
+    this.setState({ surveyId: surveyId });
+    console.log("Survey ID", surveyId);
+    var responseSurvey = await getSurveyById(surveyId);
+    if (responseSurvey.status === 200) {
+      console.log("Response from survey", responseSurvey.data.response);
+      this.setState({ surveyDetails: responseSurvey.data.response });
+    }
+  }
+  }
 
-         
-    )
-    default:
-        return null;
-}
+  async  _onClickSubmitPoll(){
+    var user = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    if(this.state.selectedOption.length===0||this.state.selectedOption===null||this.state.selectedOption.length===undefined){
+      window.alert("Please select A option")
+    }
+    var postJson = {
+      surveyId: this.state.surveyId,
+      user: {
+        name: user.userData.name,
+        email: user.userData.email,
+        id: user.userData._id,
+        image: user.userData.userImage,
+      },
+  
+      optionName: this.state.selectedOption,
+    };
+    var response = await giveQuizAnswer(postJson);
+  
+    if (response.status === 200) {
+      console.log("Comment added successfully");
+      var location = window.location.href;
+      var surveyId = location.split("/")[4];
+      this.setState({ surveyId: surveyId });
+      console.log("Survey ID", surveyId);
+      var responseSurvey = await getSurveyById(surveyId);
+      if (responseSurvey.status === 200) {
+        console.log("Response from survey", responseSurvey.data.response);
+        this.setState({ surveyDetails: responseSurvey.data.response });
+      }
+    }
+    }
+
+  returnSurveyByType(type) {
+    switch (type) {
+      case "poll":
+        return (
+          <>
+            <FormControl component="fieldset">
+              <p style={{ fontSize: "22px", fontWeight: "bold" }}>
+                {this.state.surveyDetails.title}
+              </p>
+              <RadioGroup>
+                {this.state.surveyDetails.options.map((item, id) => {
+                  return (
+                    <div style={{display:"flex"}}>
+
+                    <FormControlLabel
+                     onChange={(e) => {this.setState({selectedOption:e.target.value})}}
+                      value={item.name}
+                      control={<Radio color="primary" />}
+                      label={item.name}  
+                    />
+                    <p style={{marginTop:"1em"}}>{item.vote}  </p>
+                    </div>
+                  );
+                })}
+              </RadioGroup>
+            </FormControl>
+            <br></br>
+            <br></br>
+            {/* <TextField id="standard-basic" label="Comments" /> */}
+            <Button onClick={() => {this._onClickSubmitPoll()}}  variant="outlined" color="primary">
+              Submit
+            </Button>
+          </>
+        );
+
+      case "quiz":
+        return (
+          <>
+            <FormControl component="fieldset">
+              <p style={{ fontSize: "22px", fontWeight: "bold" }}>
+                {this.state.surveyDetails.title}
+              </p>
+              <RadioGroup>
+                {this.state.surveyDetails.options.map((item, id) => {
+                 
+                  return (
+                    <div style={{display:"flex"}}>
+
+                    <FormControlLabel
+                     onChange={(e) => {this.setState({selectedOption:e.target.value})}}
+                      value={item.name}
+                      control={<Radio color="primary" />}
+                      label={item.name}  
+                    />
+                    <p style={{marginTop:"1em"}}>{item.vote}  </p>
+                    </div>
+                  );
+                })}
+              </RadioGroup>
+            </FormControl>
+        
+            {/* <TextField id="standard-basic" label="Comments" /> */}
+            <br></br>
+            <br></br>
+            <Button onClick ={()=>{this._onClickSubmitQuiz()}} variant="outlined" color="primary">
+              Submit
+            </Button>
+          </>
+        );
+
+      case "research":
+        return (
+          <>
+            <FormControl component="fieldset">
+              <p style={{ fontSize: "22px", fontWeight: "bold" }}>
+                {this.state.surveyDetails.title}
+              </p>
+            </FormControl>
+            <br></br>
+            <br></br>
+            <TextField
+              onChange={(e) => {
+                this.setState({ comment: e.target.value });
+              }}
+              id="standard-basic"
+              label="Answer"
+            />
+            <br></br>
+            <br></br>
+            <Button
+              onClick={() => this._onClickSubmitResearch()}
+              variant="outlined"
+              color="primary"
+            >
+              Submit
+            </Button>
+            <p>Comments</p>
+            {this.state.surveyDetails.comments !== null &&
+            this.state.surveyDetails.comments !== undefined ? (
+              <>
+                {this.state.surveyDetails.comments.map((item, id) => {
+                  return (
+                    <>
+                      <div style={{ border: "1px solid black" }}>
+                        <p style={{ fontSize: "15px", fontWeight: "bold" }}>
+                          {item.user.name}
+                        </p>
+                        <p style={{ fontSize: "15px", marginTop: "-1em" }}>
+                          {item.comment}
+                        </p>
+                      </div>
+                    </>
+                  );
+                })}
+              </>
+            ) : (
+              <></>
+            )}
+          </>
+        );
+      default:
+        return <></>;
+    }
   }
 
   render() {
-    console.log("Window location",window.location.href);
+    console.log(this.state.comment);
+    console.log(this.state.selectedOption)
+    console.log("Window location", window.location.href);
     return (
       <>
         <div class="container">
-            <br></br>
-        {this.returnSurveyByType(this.state.surveyDetails.surveyType)}
+          <br></br>
+          {this.state.surveyDetails.surveyType!==null&&this.state.surveyDetails.surveyType!==undefined?(
+            <>
+             {this.returnSurveyByType(this.state.surveyDetails.surveyType)}
+            </>
+          ):(null)}
+         
         </div>
-
-     
       </>
     );
   }
 
   async componentDidMount() {
-    console.log("Window location",window.location.href);
+    console.log("Window location", window.location.href);
     var location = window.location.href;
-    var  surveyId = location.split('/')[4];
-    console.log("Survey ID",surveyId);
+    var surveyId = location.split("/")[4];
+    this.setState({ surveyId: surveyId });
+    console.log("Survey ID", surveyId);
     var responseSurvey = await getSurveyById(surveyId);
     if (responseSurvey.status === 200) {
       console.log("Response from survey", responseSurvey.data.response);

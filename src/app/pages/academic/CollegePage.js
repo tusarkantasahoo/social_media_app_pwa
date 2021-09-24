@@ -57,7 +57,7 @@ export default class CollegePage extends Component {
       },
       collegeList: [],
       age: "",
-      isCareerMaker: true,
+      isCareerMaker: false,
       careerMatcherCounter: 0,
     };
     this.closeCurrentCollege = this.closeCurrentCollege.bind(this);
@@ -228,7 +228,7 @@ export default class CollegePage extends Component {
         ) : (
           <>
             <p style={{ fontSize: "18px", fontWeight: "bold" }}>Career Tools</p>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex",marginBottom: "3em"}}>
               <div style={{ marginLeft: "3em" }}>
                 <img
                   src={collegePredictor}
@@ -366,25 +366,24 @@ export default class CollegePage extends Component {
                     value={this.state.selections.affiliation}
                     label="Affiliation"
                     style={{ width: "200px" }}
-                    // onChange={(e) => {
-                    //   this.setState({
-                    //     selections: {
-                    //       specialization:
-                    //         this.state.selections.specialization || null,
-                    //       state: this.state.selections.state,
-                    //       city: e.target.value,
-                    //       avgFee: null,
-                    //     },
-                    //   });
-                    // }}
+                    onChange={(e) => {
+                      this.setState({
+                        selections: {
+                          specialization: this.state.selections.specialization||null,
+        state: this.state.selections.state||null,
+        city: this.state.selections.city||null,
+        avgFee: null,
+        affiliation: e.target.value,
+        courseDuration: this.state.selections.courseDuration||null,
+        mode: this.state.selections.mode||null,
+                        },
+                      });
+                    }}
                   >
                     <MenuItem value="">Affiliation</MenuItem>
                     <MenuItem value="AICTE">AICTE</MenuItem>
                     <MenuItem value="UGC">UGC</MenuItem>
                     <MenuItem value="state">STATE</MenuItem>
-                    {this.state.cityList.map((item, id) => {
-                      return <MenuItem value={item.name}>{item.name}</MenuItem>;
-                    })}
                   </Select>
                 </FormControl>
 
@@ -401,17 +400,19 @@ export default class CollegePage extends Component {
                     value={this.state.selections.duration}
                     label="Course Duration"
                     style={{ width: "200px" }}
-                    // onChange={(e) => {
-                    //   this.setState({
-                    //     selections: {
-                    //       specialization:
-                    //         this.state.selections.specialization || null,
-                    //       state: this.state.selections.state,
-                    //       city: e.target.value,
-                    //       avgFee: null,
-                    //     },
-                    //   });
-                    // }}
+                    onChange={(e) => {
+                      this.setState({
+                        selections: {
+                          specialization: this.state.selections.specialization||null,
+                          state: this.state.selections.state||null,
+                          city: this.state.selections.city||null,
+                          avgFee: null,
+                          affiliation: this.state.selections.affiliation||null,
+                          courseDuration: e.target.value,
+                          mode: this.state.selections.mode||null,
+                        },
+                      });
+                    }}
                   >
                     <MenuItem value="">Duration</MenuItem>
                     <MenuItem value="1yr">1 Year</MenuItem>
@@ -436,17 +437,19 @@ export default class CollegePage extends Component {
                     value={this.state.selections.mode}
                     label="Mode"
                     style={{ width: "200px" }}
-                    // onChange={(e) => {
-                    //   this.setState({
-                    //     selections: {
-                    //       specialization:
-                    //         this.state.selections.specialization || null,
-                    //       state: this.state.selections.state,
-                    //       city: e.target.value,
-                    //       avgFee: null,
-                    //     },
-                    //   });
-                    // }}
+                    onChange={(e) => {
+                      this.setState({
+                        selections: {
+                          specialization: this.state.selections.specialization||null,
+                          state: this.state.selections.state||null,
+                          city: this.state.selections.city||null,
+                          avgFee: null,
+                          affiliation: this.state.selections.affiliation||null,
+                          courseDuration:this.state.selections.courseDuration||null,
+                          mode: e.target.value,
+                        },
+                      });
+                    }}
                   >
                     <MenuItem value="">Mode</MenuItem>
                     <MenuItem value="online">Online</MenuItem>

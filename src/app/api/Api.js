@@ -329,6 +329,78 @@ export function addLikeForPost(data) {
   });
 }
 
+export function addResearchComment(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/survey/researchAnswer/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function giveQuizAnswer(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/survey/quizAnswer/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function givePollAnswer(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/survey/pollAnswer/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
 
 
 
