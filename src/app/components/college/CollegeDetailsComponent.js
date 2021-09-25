@@ -9,6 +9,7 @@ export default class CollegeDetailsComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      postView:false
     };
   }
 
@@ -41,6 +42,8 @@ export default class CollegeDetailsComponent extends Component {
 
 <marquee direction = "up" scrollamount="2" height="300px">
 <h5>{details.ranking}</h5>
+<h5>{details.admission}</h5>
+<h5>College has {details.facilities}</h5>
 </marquee>
       
     </div>
@@ -75,12 +78,23 @@ export default class CollegeDetailsComponent extends Component {
    
 
    <div style={{boxShadow: 'rgb(219, 216, 215) 0px 2px 3px', height: '142px'}}>
-   <button type="button" class="btn btn-primary" style={{marginLeft:"80%"}}>Add Post +</button>
+   <button onClick={()=>this.setState({postView:!this.state.postView})} type="button" class="btn btn-primary" style={{marginLeft:"80%"}}>Add Post +</button>
              
-             
-       
-          
-     {collegePosts.map((item,id)=>{
+         {this.state.postView===false?(
+ <div       style={{
+  textAlign: "left",
+  // border: "0.5px solid #d4d1c5",
+  marginTop: "10px",
+  borderRadius: "15px",
+  padding: "10px",
+  width:"40em"
+}}>
+ <p style={{fontSize: "2em"}}>No Posts To Display</p>
+</div>
+
+         ):(
+           <>
+                {collegePosts.map((item,id)=>{
        return (   <div
         style={{
           textAlign: "left",
@@ -105,8 +119,7 @@ export default class CollegeDetailsComponent extends Component {
             Tusar
             </h6>
             <p style={{ fontSize: "15px" }}>
-              {/* {this.props.props.user.email} */}
-              29/08/2021
+             29/08/2021
             </p>
           </div>
   
@@ -117,6 +130,12 @@ export default class CollegeDetailsComponent extends Component {
         </div>
       </div>)
      })}
+           </>
+
+
+         )}    
+      
+
 
     
       </div>     
@@ -210,55 +229,7 @@ export default class CollegeDetailsComponent extends Component {
         {/* Controls */}
        
         {/* Inner */}
-        <div className="carousel-inner py-4">
-          {/* Single item */}
-          <div className="carousel-item active">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-4">
-                  <div className="card">
-                    <img src="https://mdbootstrap.com/img/new/standard/nature/181.jpg" className="card-img-top" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Card title</h5>
-                      <p className="card-text">
-                        Some quick example text to build on the card title and make up the bulk
-                        of the card's content.
-                      </p>
-                     
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 d-none d-lg-block">
-                  <div className="card">
-                    <img src="https://mdbootstrap.com/img/new/standard/nature/182.jpg" className="card-img-top" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Card title</h5>
-                      <p className="card-text">
-                        Some quick example text to build on the card title and make up the bulk
-                        of the card's content.
-                      </p>
-                      
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-4 d-none d-lg-block">
-                  <div className="card">
-                    <img src="https://mdbootstrap.com/img/new/standard/nature/183.jpg" className="card-img-top" alt="..." />
-                    <div className="card-body">
-                      <h5 className="card-title">Card title</h5>
-                      <p className="card-text">
-                        Some quick example text to build on the card title and make up the bulk
-                        of the card's content.
-                      </p>
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-         
-        </div>
+
         {/* Inner */}
       </div>
 
