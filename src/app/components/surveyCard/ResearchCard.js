@@ -12,11 +12,11 @@ export default class ResearchCard extends Component {
     return (
         <>
         <div
-          style={{ border: "1px solid #1da1f2", width: "30em" }}
+          style={{ border: "1px solid #EAE3E1", width: "30em",padding:"15px", boxShadow: "4px 10px 8px  #dbd8d7",borderRadius:"5px"  }}
         >
             <div style={{display: "flex", flexDirection: "row" }}>
                 <img src={this.props.item.user.userImage} style={{width:"2.5em",height:"2.5em",borderRadius: "2em"}}></img>
-            <p style={{fontSize: "18px",fontWeight: "400"}}>Research by {this.props.item.user.name} </p> 
+            <p style={{fontSize: "22px",fontWeight: "400",marginLeft:"0.5em",fontWeight:"400"}}>Research by {this.props.item.user.name} </p> 
             </div>
           <p style={{fontSize: "18px",fontWeight: "600"}}>{this.props.item.title} </p>
         <div style={{display: 'flex',marginTop: '1em'}}>
