@@ -1,9 +1,7 @@
 import React, { useRef, useState, Component } from "react";
 import banner from "./banner.jpg";
 import logo from "./logo.jpg";
-
-
-
+import CollegePosts from "./CollegePosts.js";
 
 export default class CollegeDetailsComponent extends Component {
   constructor(props) {
@@ -13,7 +11,7 @@ export default class CollegeDetailsComponent extends Component {
   }
 
   render() {
-    var collegePosts = [{title:"WelcomewBack to college",img:banner},{title:"Upcoming batch next month",img:logo}]
+    var collegePosts = [{title:"pace is full of surprises and wonders. The beauty is unparalleled and sometimes we come across such a beauty that we can't help but be mesmerised and ascribe some meaning to the resplendent celestial structure.Trust NASA to send such pictures our way! The space agency regularly posts photos it clicks via its social media channels. And on of its photos has us go gaga again.",img:banner},{title:"Upcoming batch next month",img:logo}]
       console.log("Inside College Details component",this.props);
 
     var currentSelection = this.props.currentSelection;
@@ -22,7 +20,18 @@ export default class CollegeDetailsComponent extends Component {
         return (
             <>
               <div className="container" style={{display: "flex"}}>
+              <div>
+   
 
+   <div style={{boxShadow: 'rgb(219, 216, 215) 0px 2px 3px', height: '142px'}}>
+     {collegePosts.map((item,id)=>{
+       return (<CollegePosts handelNewsClick={this.props.handelNewsClick} item={item} />)
+     })}
+
+    
+      </div>     
+ 
+</div>
                 
 <div>
     <div style={{
@@ -32,16 +41,14 @@ export default class CollegeDetailsComponent extends Component {
         <h3 className="block-title" style={{
     background: "-webkit-linear-gradient(top, #3a96ce, #266184)",
     color: "#ffffff"  
-}}>Notice Board</h3>
+}}>About</h3>
 
 
 
-<marquee direction = "up" scrollamount="2" height="300px">
+{/* <marquee direction = "up" scrollamount="2" height="300px">
 <h5>{details.ranking}</h5>
-</marquee>
-      
+</marquee> */}
     </div>
-
     <div style={{
       
     }}>
@@ -68,55 +75,7 @@ export default class CollegeDetailsComponent extends Component {
      </div>
     </div>
     </div>
-   <div>
-   
 
-   <div style={{boxShadow: 'rgb(219, 216, 215) 0px 2px 3px', height: '142px'}}>
-     {collegePosts.map((item,id)=>{
-       return (   <div
-        style={{
-          textAlign: "left",
-          border: "0.5px solid #d4d1c5",
-          marginTop: "10px",
-          borderRadius: "15px",
-          padding: "10px",
-          width:"40em"
-        }}
-      >
-        <div className="d-flex flex-row">
-          <div className="comment_icon_top">
-            <img
-              src={item.img}
-              height="50px"
-              width="50px"
-              style={{ borderRadius: "25px" }}
-            ></img>
-          </div>
-          <div className="ms-3">
-            <h6 className="fw-bold mb-0">
-            Tusar
-            </h6>
-            <p style={{ fontSize: "15px" }}>
-              {/* {this.props.props.user.email} */}
-              29/08/2021
-            </p>
-          </div>
-  
-        </div>
-        <p>{item.title}</p>
-        <div className="image-field-for-posts" onClick={() => { this.props.handelNewsClick(); this.props.setNewsItem(this.props.props); }}>
-          <img className="mx_height_100 w-100" src={item.img}></img>
-        </div>
-      </div>)
-     })}
-
-    
-      </div>     
-    
-
-     
-     
-</div>
 
    </div>
 

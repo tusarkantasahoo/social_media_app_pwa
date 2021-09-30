@@ -50,12 +50,6 @@ export default class CollegeSliderCard extends Component {
             <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>{this.props.item.examAccepted} Accepted</p>
             <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>Avg. Course Fee {this.props.item.averageCourseFee} </p>
           </div>
-
-    
-           
-
-     
-
         </div>
       </>
     );
