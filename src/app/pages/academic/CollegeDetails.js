@@ -17,6 +17,7 @@ export default class CollegeDetails extends Component {
       {name: "GALLARY", code: "gallary"},
       {name: "FACILITY", code: "facility"},
       {name: "HOSTEL", code: "hostel"},
+      {name: "ADD POST", code: "collegepost"},
      ],
      currentTab:{name: "INFO", code: "info"},
      collegeDetails:{}
@@ -37,6 +38,7 @@ export default class CollegeDetails extends Component {
       case "gallary":return ( <CollegeDetailsComponent currentSelection="gallary" collegeDetails={this.state.collegeDetails} />)
       case "facility":return ( <CollegeDetailsComponent currentSelection="facility" collegeDetails={this.state.collegeDetails} />)
       case "hostel":return ( <CollegeDetailsComponent currentSelection="hostel" collegeDetails={this.state.collegeDetails} />)
+      case "collegepost":return ( <CollegeDetailsComponent currentSelection="collegepost" collegeDetails={this.state.collegeDetails} />)
 
        default :return null
     }

@@ -23,7 +23,7 @@ import collegePredictor from "./asset/school.png";
 import career from "./asset/career.png";
 import grades from "./asset/grades.png";
 import CollegeDetails from "./CollegeDetails.js";
-import { getCollegeListByselection } from "../../api/Api.js";
+import { getCollegeListByselection,getTopColleges } from "../../api/Api.js";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -59,6 +59,7 @@ export default class CollegePage extends Component {
       age: "",
       isCareerMaker: false,
       careerMatcherCounter: 0,
+      topCollege:[]
     };
     this.closeCurrentCollege = this.closeCurrentCollege.bind(this);
     this.setCollegeDetails = this.setCollegeDetails.bind(this);
@@ -490,13 +491,18 @@ export default class CollegePage extends Component {
                   navigation={true}
                   className="mySwiper"
                 >
-                  {topCollege.map((item, id) => {
+                  {this.state.topCollege.map((item, id) => {
                     return (
                       <SwiperSlide>
+                        <Link
+                          style={{ textDecoration: "none" }}
+                          to={"/academic/college/" + item._id}
+                        >
                         <CollegeSliderCard
                           item={item}
                           setCollegeDetails={this.setCollegeDetails}
                         />
+                        </Link>
                       </SwiperSlide>
                     );
                   })}
@@ -532,5 +538,14 @@ export default class CollegePage extends Component {
     );
   }
 
-  componentDidMount() {}
+  async componentDidMount() {
+
+
+    var topCollegeResponse = await getTopColleges();
+    if(topCollegeResponse.status===200){
+      console.log("Data",topCollegeResponse);
+      this.setState({topCollege:topCollegeResponse.data.response})
+    }
+
+  }
 }

@@ -180,7 +180,7 @@ export default class Landing extends Component {
           isLoggedIn={this.props.isAuthed}
           _changeScreenRender={this._changeScreenRender}
         />
-        <div className="container">
+        <div className="container-fluid">
           <div className="row" style={{ display: "flex" }}>
             <div
               className="col-2"

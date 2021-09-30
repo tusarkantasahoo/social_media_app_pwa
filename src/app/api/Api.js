@@ -401,6 +401,56 @@ export function givePollAnswer(data) {
   });
 }
 
+export function getTopColleges(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/academics/gettopcolleges/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function getCollegePosts(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/Academicspost/getcollegebyid/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+
+
 
 
 
