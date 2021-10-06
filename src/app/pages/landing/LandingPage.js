@@ -92,8 +92,12 @@ export default class Landing extends Component {
             <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
             </div>
           </div>
-          <div className="col-3">
-          <div style={{ backgroundColor:"white",textAlign: "left", marginLeft: "1em", marginTop: "5%",borderRadius:"1em", boxShadow: "4px 10px 8px  #dbd8d7",padding:"1em" }}>
+          <div className="col-4">
+
+        <div>
+        <iframe style={{width:"100%",height:"37em",marginTop:"1em"}} src={"http://feeds.bbci.co.uk/news/world/rss.xml"}></iframe>
+        </div>
+        <div style={{ backgroundColor:"white",textAlign: "left", marginLeft: "", marginTop: "5%",borderRadius:"1em", boxShadow: "4px 10px 8px  #dbd8d7",padding:"1em" }}>
 <p style={{fontSize:"22",fontWeight:"500"}}>People</p>
           {this.state.people.map((item, index) => {
             return (
@@ -115,7 +119,7 @@ export default class Landing extends Component {
                       {item.name}
                       
                     </p>
-                    <a style={{marginLeft:"4em",borderRadius: "3.25rem"}} class="btn btn-outline-info" href="#">connect</a>
+                    <a style={{marginLeft:"4em",borderRadius: "3.25rem",width:"7em"}} class="btn btn-outline-info" href="#">connect</a>
                   </div>
     
                   </>
@@ -130,11 +134,50 @@ export default class Landing extends Component {
 
       case "rooms":
         return (
-          <div className="col-6" id="home-social">
-           <div style={{width:"80%",marginLeft:"0%",backgroundColor:"white",marginTop:"1em",borderRadius:"1em"}}>
+          <>
+          <div className="col-5" id="home-social">
+           <div style={{marginLeft:"0%",backgroundColor:"white",marginTop:"1em",borderRadius:"1em"}}>
             <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
             </div>
           </div>
+          <div className="col-4">
+
+        
+        <div style={{ backgroundColor:"white",textAlign: "left", marginLeft: "", marginTop: "5%",borderRadius:"1em", boxShadow: "4px 10px 8px  #dbd8d7",padding:"1em" }}>
+<p style={{fontSize:"22",fontWeight:"500"}}>People</p>
+          {this.state.people.map((item, index) => {
+            return (
+              <>
+               
+                  <div className="sidebar_menu" style={{display:"flex",marginTop: "1em",marginLeft: "1em"}}>
+             
+                  <img src={item.image} style={{height:"3em",width:"3em",borderRadius:"3em"}}></img>
+                    <p
+                      style={{
+                        fontSize: "1rem",
+                        color: "#1da1f2",
+                        cursor: "pointer",
+                        fontWeight: "bold",
+                        marginLeft:"1em",
+                        width:"16em"
+                      }}
+                    >
+                      {item.name}
+                      
+                    </p>
+                    <a style={{marginLeft:"4em",borderRadius: "3.25rem",width:"7em"}} class="btn btn-outline-info" href="#">connect</a>
+                  </div>
+    
+                  </>
+                )}
+        )}
+        </div>
+        <div>
+        <iframe style={{width:"100%",height:"37em",marginTop:"1em"}} src={"http://feeds.bbci.co.uk/news/world/rss.xml"}></iframe>
+        </div>
+
+          </div>
+                    </>
         );
 
       case "userDetails":
