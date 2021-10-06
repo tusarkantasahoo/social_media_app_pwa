@@ -3,13 +3,43 @@ import banner from "./banner.jpg";
 import logo from "./logo.jpg";
 import CollegePosts from "./CollegePosts.js";
 import {getCollegePosts} from "../../api/Api.js";
+import { StyledDropZone } from "react-drop-zone";
+import img_thumb from "../../../assets/images/img_thumb.png";
 export default class CollegeDetailsComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collegePosts:[]
+      collegePosts:[],
+      image:''
     };
+    this.uploadImage = this.uploadImage.bind(this);
+    this.convertImageFileToBase64 = this.convertImageFileToBase64.bind(this);
   }
+  convertImageFileToBase64(file) {
+    console.log("convertImageFileToBase64=======");
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
+  async uploadImage(file) {
+    this.setState({ file: file });
+    console.log("base64 image");
+    const base64Img = await this.convertImageFileToBase64(file);
+    console.log("base64 image", base64Img);
+    if (base64Img) {
+      this.setState({ image: base64Img });
+    }
+  }
+
 
   render() {
     var collegePosts = [{ title: "pace is full of surprises and wonders. The beauty is unparalleled and sometimes we come across such a beauty that we can't help but be mesmerised and ascribe some meaning to the resplendent celestial structure.Trust NASA to send such pictures our way! The space agency regularly posts photos it clicks via its social media channels. And on of its photos has us go gaga again.", img: banner }, { title: "Upcoming batch next month", img: logo }]
@@ -278,12 +308,81 @@ export default class CollegeDetailsComponent extends Component {
       return (
         <>
           <div className="container">
-            <p>Add post</p>
+            {/* <p>Add post</p>
             Title<input></input>
             Image
 
             Description<input></input><br></br>
-            <button>Submit  </button>
+            <button>Submit  </button> */}
+
+            <div class="container">
+	<div class="row">
+	    
+	    <div class="col-md-8 col-md-offset-2">
+	        
+    		<h1>Create post</h1>
+    		
+    		<form action="" method="POST">
+    	
+    		    <div class="form-group">
+    		        <label for="title">Title <span class="require">*</span></label>
+    		        <input type="text" class="form-control" name="title" />
+    		    </div>
+    		    
+    		    <div class="form-group">
+    		        <label for="description">Description</label>
+    		        <textarea rows="5" class="form-control" name="description" ></textarea>
+    		    </div>
+    		    
+    		    <div class="form-group">
+            <StyledDropZone
+          accept="image/*"
+          style={{
+            height: "auto",
+            border: "3px dotted #9e9d9d",
+            marginTop: "35px",
+            borderRadius: "20px",
+            margin: "10px",
+            padding: "2rem 1rem",
+          }}
+          onDrop={(file, text) => {
+            console.log(file);
+            this.uploadImage(file);
+          }}
+        >
+          {this.state.image.length === 0 ? (
+            <>
+              <div className="d-flex flex-column jcc aic">
+                <img src={img_thumb} style={{ width: "100px" }}></img>
+                <p style={{ fontSize: "20px", marginTop: "1rem" }}>
+                  Click to Upload or drop your image
+                </p>
+              </div>
+            </>
+          ) : (
+            <img
+              src={this.state.image}
+              style={{ height: "20em", width: "100%" }}
+            />
+          )}
+        </StyledDropZone>
+       
+    		    </div>
+    		    
+    		    <div class="form-group">
+    		        <button type="submit" class="btn btn-primary">
+    		            Create
+    		        </button>
+    		        <button class="btn btn-default">
+    		            Cancel
+    		        </button>
+    		    </div>
+    		    
+    		</form>
+		</div>
+		
+	</div>
+</div>
           </div>
         </>
       );

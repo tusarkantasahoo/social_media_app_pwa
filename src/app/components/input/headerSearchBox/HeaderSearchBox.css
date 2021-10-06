@@ -1,7 +1,10 @@
 .header-search-box {
-  height: 40px;
+  height:3em;
   background-color: #f2f3f0;
-  border-radius: 20px;
+  border-radius: 2em;
+  width:30em;
+margin-left:7em;
+margin-top: 0.5em;
 }
 .container-input-box-header {
   border-radius: 10px;

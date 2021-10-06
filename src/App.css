@@ -92,7 +92,7 @@ html {
 }
 
 #home-options {
-  max-width: 270px;
+  /* max-width: 270px; */
 }
 
 /* width */
@@ -173,6 +173,7 @@ html {
   text-align: center;
 }
 
+
 .user_post_img {
   width: 60px;
   height: 60px;
@@ -183,11 +184,11 @@ html {
 }
 
 .logo_wrapper {
-  width: 200px;
   height: 50px;
-  display: flex;
+  /* display: flex; */
   white-space: nowrap;
   align-items: center;
+  /* margin-left:-10em */
 }
 
 .img_res {
