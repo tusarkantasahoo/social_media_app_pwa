@@ -188,7 +188,7 @@ html {
   /* display: flex; */
   white-space: nowrap;
   align-items: center;
-  /* margin-left:-10em */
+  margin-left:10%
 }
 
 .img_res {
@@ -253,9 +253,9 @@ html {
   box-shadow: none !important;
 }
 .image-field-for-posts {
-  border-radius: 5px;
-  height: 22em;
-  width: 100%;
+  /* border-radius: 5px; */
+  /* height: 22em; */
+  /* width: 100%; */
 }
 .userIcon{
   width: 25px;
@@ -285,4 +285,14 @@ html {
 }
 .pr{
   position: relative !important;
+}
+.sidebar_menu{
+  display:flex;
+  margin-top:1em;
+  width:100%;
+  border-radius:5em;
+  cursor: pointer
+}
+.imagePostContainer:hover{
+  background-color: #f7fdff
 }

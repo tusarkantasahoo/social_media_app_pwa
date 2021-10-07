@@ -10,6 +10,9 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { Dropdown } from "react-bootstrap";
 import comment from "../../../assets/images/comment.png";
 import MaterialIcon, { colorPalette } from "material-icons-react";
+import likeTwt from "../../../assets/images/twitterlike.png";
+import twitterComment from "../../../assets/images/twitterComment.png";
+import twitterShare from "../../../assets/images/twitterShare.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import {
   getFileContentById,
@@ -87,11 +90,11 @@ export default class ImagePost extends Component {
     return (
       <>
         <div
+        className="imagePostContainer"
           style={{
             textAlign: "left",
             border: "0.5px solid #d4d1c5",
-            marginTop: "10px",
-            borderRadius: "15px",
+            // backgroundColor:"#edefef",
             padding: "10px",
           }}
         >
@@ -153,7 +156,7 @@ export default class ImagePost extends Component {
               </div>
             </div>
           </div>
-          <p>{this.props.props.title}</p>
+          <p style={{marginLeft: "70px"}}>{this.props.props.title}</p>
           <div
             className="image-field-for-posts"
             onClick={() => {
@@ -162,38 +165,42 @@ export default class ImagePost extends Component {
             }}
           >
             <img
-              className="mx_height_100 w-100"
+            style={{marginLeft:"70px",width:"43em",height:"25em",border:"1px solid #6c757d",borderRadius:"2em"}}
+              className=""
               src={this.state.postImage}
             ></img>
           </div>
-          <div className="d-flex flex-row aic jcsb mx-3 my-4 px-4">
-            <div className="d-flex aic">
-              <div class="text-center pr">
-                <p class="liked ">{this.state.likes}</p>
-                <img
+          <div style={{display:"flex",marginTop: "2em"}} >
+           
+               <div style={{marginLeft:"15%"}}>
+               <img
                   onClick={() => {
                     this._onClickLike(this.props.props._id);
                   }}
                   src={like}
-                  className="action_icons me-3"
+                  style={{width:"2em",height:"2em"}}
                 />
-              </div>
+                <br></br>
+                 <p class="" style={{marginLeft:"1em"}}>{this.state.likes}</p>
+               </div>
+               
+              
               {/* <div class="text-center pr">
                 <img src={dislike} className="action_icons ms-3" />
                 <p class="disliked">10k</p>
               </div> */}
-            </div>
-            <div
+         
+            <div style={{marginLeft:"30%"}}
               onClick={() =>
                 this.setState({
                   isCommentVisible: !this.state.isCommentVisible,
                 })
               }
             >
-              <img src={comment} className="action_icons"></img>
+              <img    style={{width:"2em",height:"2em"}} src={comment} className=""></img>
             </div>
-            <div>
-              <img src={share} className="action_icons"></img>
+            <div style={{marginLeft:"30%"}}>
+              <img style={{width:"2em",height:"2em"}} src={share} className="action_icons"></img>
             </div>
           </div>
 

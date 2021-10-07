@@ -51,7 +51,7 @@ export default class AppHeader extends Component {
                 <img src={home} style={{height:"2em",width:"2em",marginTop:"1em",marginLeft:"3em"}} className="img_res"></img>
                 <img src={bell} style={{height:"2em",width:"2em",marginTop:"1em",marginLeft:"3em"}} className="img_res"></img>
                 <img src={help} style={{height:"2em",width:"2em",marginTop:"1em",marginLeft:"3em"}} className="img_res"></img>
-                <div style={{width:"30%"}}></div>
+             
             
               <div
               

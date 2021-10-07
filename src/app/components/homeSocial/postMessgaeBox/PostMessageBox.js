@@ -14,14 +14,15 @@ import { authResponseStoredValue } from "../../../../utils/Constant.js";
 import ImageUpload from "../../imageUploader/ImageUpload.js";
 import VideoUpload from "../../videoUploader/VideoUpload.js";
 import CreateSurvey from "../../createSurvey/CreateSurvey.js";
-import {createPostData} from "../../../api/Api.js";
+import { createPostData } from "../../../api/Api.js";
 export default class PostMessageBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
       renderWhatToPost: "none",
-      postText:"",
-      userData:JSON.parse(localStorage.getItem(authResponseStoredValue))
+      postText: "",
+      userData: JSON.parse(localStorage.getItem(authResponseStoredValue)),
+      isTextFieldClicked: false,
     };
     this.renderCreatePostViews = this.renderCreatePostViews.bind(this);
     this.resetPostToDefault = this.resetPostToDefault.bind(this);
@@ -32,13 +33,28 @@ export default class PostMessageBox extends Component {
     console.log(this.state.renderWhatToPost);
     switch (this.state.renderWhatToPost) {
       case "image":
-        return <ImageUpload resetPostToDefault={this.resetPostToDefault} postText={this.state.postText} />;
+        return (
+          <ImageUpload
+            resetPostToDefault={this.resetPostToDefault}
+            postText={this.state.postText}
+          />
+        );
 
-        case "video":
-        return <VideoUpload resetPostToDefault={this.resetPostToDefault} postText={this.state.postText} />;
+      case "video":
+        return (
+          <VideoUpload
+            resetPostToDefault={this.resetPostToDefault}
+            postText={this.state.postText}
+          />
+        );
 
-        case "survey":
-        return <CreateSurvey resetPostToDefault={this.resetPostToDefault} postText={this.state.postText} />;
+      case "survey":
+        return (
+          <CreateSurvey
+            resetPostToDefault={this.resetPostToDefault}
+            postText={this.state.postText}
+          />
+        );
 
       default:
         return null;
@@ -47,17 +63,16 @@ export default class PostMessageBox extends Component {
   resetPostToDefault() {
     this.setState({ renderWhatToPost: "none" });
   }
-  async createSimpleTextPost(){
-    var payload ={
-      title:this.state.postText,
-      postType:"text",
-      user:this.state.userData.userData,
-    }
+  async createSimpleTextPost() {
+    var payload = {
+      title: this.state.postText,
+      postType: "text",
+      user: this.state.userData.userData,
+    };
     var createPost = await createPostData(payload);
-    if(createPost.status === 200){
-      console.log("Post created successfully",createPost)
+    if (createPost.status === 200) {
+      console.log("Post created successfully", createPost);
     }
-
   }
 
   render() {
@@ -81,33 +96,35 @@ export default class PostMessageBox extends Component {
     return (
       <>
         <div
-          className="message-container p-2"
+          className="message-container"
           style={{
             boxShadow: "4px 10px 8px  #dbd8d7",
             marginTop: "2%",
-            borderRadius: "15px",
+            width:"100%"
           }}
         >
           {this.state.renderWhatToPost === "none" ? (
-            <div className="container-fluid px-0">
+            <div className="container-fluid">
               <div className="row">
                 <div className="user_post_img" style={{ textAlign: "left" }}>
-                  {this.props.isLoggedIn?(
-                  <img
-                  className="home-page-user-image-box"
-                  src={userDetails.userData.userImage}
-                />  
-                  ):(
+                  {this.props.isLoggedIn ? (
                     <img
-                    className="home-page-user-image-box"
-                    src={userImage}
-                  />)}
+                      className="home-page-user-image-box"
+                      src={userDetails.userData.userImage}
+                    />
+                  ) : (
+                    <img className="home-page-user-image-box" src={userImage} />
+                  )}
                 </div>
                 <div className="col" id="field-for-text-thoughts">
                   <div className="div-box-input-share-thoughts">
                     <input
+                      onClick={(e) => {
+                        this.setState({isTextFieldClicked:true});
+                        console.log("On clicked");
+                      }}
                       onChange={(e) => {
-                          this.setState({ postText: e.target.value });
+                        this.setState({ postText: e.target.value });
                       }}
                       className="input-post"
                       placeholder="Share / Ask what's on your mind?"
@@ -116,7 +133,7 @@ export default class PostMessageBox extends Component {
                 </div>
               </div>
 
-              {this.state.postText.length === 0 ? (
+              {this.state.postText.length === 0&&this.state.isTextFieldClicked===false ? (
                 <div className="row" id="filed-for-image-postbutton">
                   {/* <div className="col-1"></div> */}
                   <div className="col px-0" id="upload-image-image-field">
@@ -178,9 +195,11 @@ export default class PostMessageBox extends Component {
                         type="submit"
                         value="Submit"
                         style={{ position: "relative" }}
-                        onClick={()=>{this.createSimpleTextPost()}}
+                        onClick={() => {
+                          this.createSimpleTextPost();
+                        }}
                       >
-                        <p className="post-text-home">Post</p>
+                     Post
                       </button>
                     </div>
                   </div>

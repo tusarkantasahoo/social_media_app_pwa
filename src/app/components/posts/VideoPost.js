@@ -60,8 +60,6 @@ export default class VideoPost extends Component {
           style={{
             textAlign: "left",
             border: "0.5px solid #d4d1c5",
-            marginTop: "10px",
-            borderRadius: "15px",
             padding: "10px",
           }}
         >
@@ -123,7 +121,7 @@ export default class VideoPost extends Component {
               </div>
             </div>
           </div>
-          <p>{this.props.props.title}</p>
+          <p style={{marginLeft:"70px"}}>{this.props.props.title}</p>
           <div
             className="image-field-for-posts"
             onClick={() => {
@@ -134,43 +132,46 @@ export default class VideoPost extends Component {
             <ReactPlayer
               controls={true}
               pip
-              width="100%"
-              height="22em"
+              width="43em"
+              height="25em"
               playIcon="false"
               url={this.state.videoUrl}
-              style={{}}
+              style={{marginLeft:"70px",borderRadius:"2em"}}
             ></ReactPlayer>
           </div>
-          <div className="d-flex flex-row aic jcsb mx-3 my-4 px-4">
-            <div className="d-flex aic">
-              <div class="text-center pr">
-                <p class="liked ">{this.state.likes}</p>
-                <img
-                  onClick={() => {
-                    this._onClickLike(this.props.props._id);
-                  }}
-                  src={like}
-                  className="action_icons me-3"
-                />
-              </div>
-              {/* <div class="text-center pr">
-                <img src={dislike} className="action_icons ms-3" />
-                <p class="disliked">10k</p>
-              </div> */}
-            </div>
-            <div
-              onClick={() =>
-                this.setState({
-                  isCommentVisible: !this.state.isCommentVisible,
-                })
-              }
-            >
-              <img src={comment} className="action_icons"></img>
-            </div>
-            <div>
-              <img src={share} className="action_icons"></img>
-            </div>
-          </div>
+          <div style={{display:"flex",marginTop: "2em"}} >
+           
+           <div style={{marginLeft:"10%"}}>
+           <img
+              onClick={() => {
+                this._onClickLike(this.props.props._id);
+              }}
+              src={like}
+              style={{width:"2em",height:"2em"}}
+            />
+            <br></br>
+             <p class="" style={{marginLeft:"1em"}}>{this.state.likes}</p>
+           </div>
+           
+          
+          {/* <div class="text-center pr">
+            <img src={dislike} className="action_icons ms-3" />
+            <p class="disliked">10k</p>
+          </div> */}
+     
+        <div style={{marginLeft:"30%"}}
+          onClick={() =>
+            this.setState({
+              isCommentVisible: !this.state.isCommentVisible,
+            })
+          }
+        >
+          <img    style={{width:"2em",height:"2em"}} src={comment} className=""></img>
+        </div>
+        <div style={{marginLeft:"30%"}}>
+          <img style={{width:"2em",height:"2em"}} src={share} className="action_icons"></img>
+        </div>
+      </div>
 
           {/* <div className="d-flex nowrap aic">
             <div className="w_fc">

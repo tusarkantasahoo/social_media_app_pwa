@@ -15,7 +15,7 @@ export default class HeaderUser extends Component {
     return (
       <>
         <div
-        style={{display:"flex",marginTop:"0.5em"}}
+        style={{display:"flex",marginTop:"0.5em",marginLeft:"5em"}}
           onClick={() =>
             this.setState({ isUserClicked: !this.state.isUserClicked })
           }

@@ -87,96 +87,24 @@ export default class Landing extends Component {
       case "home":
         return (
           <>
-          <div className="col-5" id="home-social" >
+          <div className="" id="" style={{width:"50em",marginLeft:"1em",boxShadow: "1px 1px 1px  #dbd8d7"}}>
+            <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Home</p>
           <div style={{marginLeft:"0%",backgroundColor:"white",marginTop:"1em",borderRadius:"1em"}}>
             <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
             </div>
           </div>
-          <div className="col-4">
-
-        <div>
-        <iframe style={{width:"100%",height:"37em",marginTop:"1em"}} src={"http://feeds.bbci.co.uk/news/world/rss.xml"}></iframe>
-        </div>
-        <div style={{ backgroundColor:"white",textAlign: "left", marginLeft: "", marginTop: "5%",borderRadius:"1em", boxShadow: "4px 10px 8px  #dbd8d7",padding:"1em" }}>
-<p style={{fontSize:"22",fontWeight:"500"}}>People</p>
-          {this.state.people.map((item, index) => {
-            return (
-              <>
-               
-                  <div className="sidebar_menu" style={{display:"flex",marginTop: "1em",marginLeft: "1em"}}>
-             
-                  <img src={item.image} style={{height:"3em",width:"3em",borderRadius:"3em"}}></img>
-                    <p
-                      style={{
-                        fontSize: "1rem",
-                        color: "#1da1f2",
-                        cursor: "pointer",
-                        fontWeight: "bold",
-                        marginLeft:"1em",
-                        width:"16em"
-                      }}
-                    >
-                      {item.name}
-                      
-                    </p>
-                    <a style={{marginLeft:"4em",borderRadius: "3.25rem",width:"7em"}} class="btn btn-outline-info" href="#">connect</a>
-                  </div>
-    
-                  </>
-                )}
-        )}
-        </div>
-
-
-          </div>
+  
           </>
         );
 
       case "rooms":
         return (
           <>
-          <div className="col-5" id="home-social">
-           <div style={{marginLeft:"0%",backgroundColor:"white",marginTop:"1em",borderRadius:"1em"}}>
+         
+           <div style={{width:"50em",marginLeft:"",boxShadow: "1px 1px 1px  #dbd8d7"}}>
+           <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Rooms</p>
             <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
             </div>
-          </div>
-          <div className="col-4">
-
-        
-        <div style={{ backgroundColor:"white",textAlign: "left", marginLeft: "", marginTop: "5%",borderRadius:"1em", boxShadow: "4px 10px 8px  #dbd8d7",padding:"1em" }}>
-<p style={{fontSize:"22",fontWeight:"500"}}>People</p>
-          {this.state.people.map((item, index) => {
-            return (
-              <>
-               
-                  <div className="sidebar_menu" style={{display:"flex",marginTop: "1em",marginLeft: "1em"}}>
-             
-                  <img src={item.image} style={{height:"3em",width:"3em",borderRadius:"3em"}}></img>
-                    <p
-                      style={{
-                        fontSize: "1rem",
-                        color: "#1da1f2",
-                        cursor: "pointer",
-                        fontWeight: "bold",
-                        marginLeft:"1em",
-                        width:"16em"
-                      }}
-                    >
-                      {item.name}
-                      
-                    </p>
-                    <a style={{marginLeft:"4em",borderRadius: "3.25rem",width:"7em"}} class="btn btn-outline-info" href="#">connect</a>
-                  </div>
-    
-                  </>
-                )}
-        )}
-        </div>
-        <div>
-        <iframe style={{width:"100%",height:"37em",marginTop:"1em"}} src={"http://feeds.bbci.co.uk/news/world/rss.xml"}></iframe>
-        </div>
-
-          </div>
                     </>
         );
 
@@ -296,16 +224,9 @@ export default class Landing extends Component {
           isLoggedIn={this.props.isAuthed}
           _changeScreenRender={this._changeScreenRender}
         />
-        <div className="container-fluid" style={{backgroundColor:"aliceblue"}}>
-          <div className="row" style={{ display: "flex" }}>
-            <div
-              className="col-3"
-              id="home-options"
-              style={{
-                boxShadow: "0px 2px 3px #dbd8d7",
-                // height: `${this.state.height.toString() - 60}px`,
-              }}
-            >
+        <div className="container-fluid" style={{display: "flex"}}>
+      
+
               <HomeOptions
                 props={this.state}
                 isLoggedIn={true}
@@ -313,10 +234,10 @@ export default class Landing extends Component {
                 history={this.props.history}
               />
 
-            </div>
+      
             {this.renderScreenDependingOnSelection()}
           </div>
-        </div>
+  
       </>
     );
   }
