@@ -120,16 +120,20 @@ export default class Landing extends Component {
 
       case "academic":
         return (
-          <div className="col-10" id="">
-            <Academic />
-          </div>
+          <div style={{marginLeft:"",width:"70em"}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Academics</p>
+          <Academic />
+           </div>
+         
         );
 
       case "survey":
         return (
-          <div className="col-10" id="home-social">
-            <Survey />
-          </div>
+          <div style={{marginLeft:""}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Survey</p>
+          <Survey />
+           </div>
+     
         );
 
       case "surveyResponse":
@@ -141,9 +145,11 @@ export default class Landing extends Component {
 
       case "college":
         return (
-          <div className="col-10" id="home-social">
-            <CollegePage />
-          </div>
+          <div style={{marginLeft:"",width:"70%"}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>College</p>
+          <CollegePage />
+           </div>
+       
         );
 
         case "collegeDetails":

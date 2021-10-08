@@ -165,7 +165,7 @@ export default class ImagePost extends Component {
             }}
           >
             <img
-            style={{marginLeft:"70px",width:"43em",height:"25em",border:"1px solid #6c757d",borderRadius:"2em"}}
+            style={{marginLeft:"70px",width:"43em",height:"25em",border:"0.5em solid #dbd8d7",borderRadius:"2em"}}
               className=""
               src={this.state.postImage}
             ></img>

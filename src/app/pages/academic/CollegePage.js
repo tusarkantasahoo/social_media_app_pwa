@@ -7,7 +7,7 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import "swiper/components/navigation/navigation.min.css";
-
+import arrowRight from "../../../assets/images/arrowRight.png";
 import "../../../App.css";
 import {
   allCollegeData,
@@ -23,7 +23,7 @@ import collegePredictor from "./asset/school.png";
 import career from "./asset/career.png";
 import grades from "./asset/grades.png";
 import CollegeDetails from "./CollegeDetails.js";
-import { getCollegeListByselection,getTopColleges } from "../../api/Api.js";
+import { getCollegeListByselection, getTopColleges } from "../../api/Api.js";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -59,7 +59,7 @@ export default class CollegePage extends Component {
       age: "",
       isCareerMaker: false,
       careerMatcherCounter: 0,
-      topCollege:[]
+      topCollege: [],
     };
     this.closeCurrentCollege = this.closeCurrentCollege.bind(this);
     this.setCollegeDetails = this.setCollegeDetails.bind(this);
@@ -161,377 +161,484 @@ export default class CollegePage extends Component {
                 Would You Like to..
               </p>
             </div>
-{this.state.careerMatcherCounter!==careerMatcherTest.length?(
-  <div
-  style={{
-    border: "1px solid black",
-    marginTop: "2em",
-    width: "60%",
-    marginLeft: "20%",
-  }}
->
-  <p style={{ fontSize: "30px" }}>
-    {careerMatcherTest[this.state.careerMatcherCounter].question}
-  </p>
-  {careerMatcherTest[this.state.careerMatcherCounter].options.map(
-    (item, id) => {
-      return (
-        <div
-          onClick={() => {
-            this.setState({
-              careerMatcherCounter:
-                this.state.careerMatcherCounter + 1,
-            });
-          }}
-          style={{
-            border: "1px solid black",
-            padding: "10px",
-            margin: "5px",
-          }}
-        >
-          <p>{item}</p>
-        </div>
-      );
-    }
-  )}
-  <div
-    style={{
-      border: "1px solid black",
-      padding: "10px",
-      margin: "5px",
-      textAlign: "center",
-      cursor: "pointer",
-    }}
-  >
-    <p
-      onClick={() => {
-        this.setState({
-          careerMatcherCounter: this.state.careerMatcherCounter + 1,
-        });
-      }}
-    >
-      Skip
-    </p>
-  </div>
-</div>
-
-
-):(<>
-<div style={{textAlign: "center",marginTop:"1em"}}>
-<p style={{fontSize: "25px"}}>Your Response Says you will     be a good Engineer</p>
-</div>
-
-</>)}
-
-          
-          
+            {this.state.careerMatcherCounter !== careerMatcherTest.length ? (
+              <div
+                style={{
+                  border: "1px solid black",
+                  marginTop: "2em",
+                  width: "60%",
+                  marginLeft: "20%",
+                }}
+              >
+                <p style={{ fontSize: "30px" }}>
+                  {careerMatcherTest[this.state.careerMatcherCounter].question}
+                </p>
+                {careerMatcherTest[this.state.careerMatcherCounter].options.map(
+                  (item, id) => {
+                    return (
+                      <div
+                        onClick={() => {
+                          this.setState({
+                            careerMatcherCounter:
+                              this.state.careerMatcherCounter + 1,
+                          });
+                        }}
+                        style={{
+                          border: "1px solid black",
+                          padding: "10px",
+                          margin: "5px",
+                        }}
+                      >
+                        <p>{item}</p>
+                      </div>
+                    );
+                  }
+                )}
+                <div
+                  style={{
+                    border: "1px solid black",
+                    padding: "10px",
+                    margin: "5px",
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                >
+                  <p
+                    onClick={() => {
+                      this.setState({
+                        careerMatcherCounter:
+                          this.state.careerMatcherCounter + 1,
+                      });
+                    }}
+                  >
+                    Skip
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div style={{ textAlign: "center", marginTop: "1em" }}>
+                  <p style={{ fontSize: "25px" }}>
+                    Your Response Says you will be a good Engineer
+                  </p>
+                </div>
+              </>
+            )}
           </>
         ) : (
           <>
-            <p style={{ fontSize: "18px", fontWeight: "bold" }}>Career Tools</p>
-            <div style={{ display: "flex",marginBottom: "3em"}}>
-              <div style={{ marginLeft: "3em" }}>
-                <img
-                  src={collegePredictor}
-                  style={{ height: "3em", width: "3em" }}
-                ></img>
-                <br></br>
-                College Predictor
-              </div>
-              <div
-                onClick={() => {
-                  this.setState({ isCareerMaker: true });
-                }}
-                style={{ marginLeft: "3em", cursor: "pointer" }}
-              >
-                <img src={career} style={{ height: "3em", width: "3em" }}></img>
-                <br></br>
-                Career Maker
-              </div>
-              <div style={{ marginLeft: "3em" }}>
-                <img src={grades} style={{ height: "3em", width: "3em" }}></img>
-                <br></br>
-                Grade Calculator
-              </div>
-              <div style={{ marginLeft: "3em" }}>
-                <img src={grades} style={{ height: "3em", width: "3em" }}></img>
-                <br></br>
-                Area of Study
-              </div>
-            </div>
-            {this.state.currentCollege === null ? (
-              <>
-                <FormControl sx={{ m: 1, minWidth: 160 }}>
-                  <InputLabel id="demo-simple-select-helper-label">
-                    Specialization
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    value={this.state.selections.specialization}
-                    label="specialization"
-                    style={{ width: "200px" }}
-                    onChange={(e) => {
-                      this.setState({
-                        selections: {
-                          specialization: e.target.value,
-                          state: this.state.selections.state || null,
-                          city: this.state.selections.city || null,
-                          avgFee: null,
-                        },
-                      });
-                    }}
-                  >
-                    <MenuItem value="">Specialization</MenuItem>
-                    {specializationsList.map((item, id) => {
-                      return <MenuItem value={item}>{item}</MenuItem>;
-                    })}
-                  </Select>
-                </FormControl>
-
-                <FormControl
-                  sx={{ m: 1, minWidth: 160 }}
-                  style={{ marginLeft: "1em" }}
+            <div>
+              <div style={{ display: "flex", marginBottom: "3em" }}>
+                <div
+                  onClick={() => {
+                    this.setState({ isCareerMaker: true });
+                  }}
+                  style={{
+                    marginLeft: "1em",
+                    height: "7em",
+                    width: "15em",
+                    cursor: "pointer",
+                    marginTop: "1em",
+                    backgroundColor: "#f7f7f9",
+                    boxShadow: "10px 10px 10px  #dbd8d7",
+                    borderRadius: "1em",
+                    padding: "0.5em",
+                  }}
                 >
-                  <InputLabel id="demo-simple-select-helper-label">
-                    State
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    value={this.state.selections.state}
-                    label="specialization"
-                    style={{ width: "200px" }}
-                    onChange={(e) => {
-                      this.setCityListFromState(e.target.value);
-                      this.setState({
-                        selections: {
-                          specialization:
-                            this.state.selections.specialization || null,
-                          state: e.target.value,
-                          city: null,
-                          avgFee: null,
-                        },
-                      });
-                    }}
-                  >
-                    <MenuItem value="">State</MenuItem>
-                    {stateArray.map((item, id) => {
-                      return <MenuItem value={item.name}>{item.name}</MenuItem>;
-                    })}
-                  </Select>
-                </FormControl>
+                  <img
+                    src={collegePredictor}
+                    style={{ height: "2em", width: "2em" }}
+                  ></img>
 
-                <FormControl
-                  sx={{ m: 1, minWidth: 160 }}
-                  style={{ marginLeft: "1em" }}
-                >
-                  <InputLabel id="demo-simple-select-helper-label">
-                    City
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    value={this.state.selections.city}
-                    label="specialization"
-                    style={{ width: "200px" }}
-                    onChange={(e) => {
-                      this.setState({
-                        selections: {
-                          specialization:
-                            this.state.selections.specialization || null,
-                          state: this.state.selections.state,
-                          city: e.target.value,
-                          avgFee: null,
-                        },
-                      });
-                    }}
-                  >
-                    <MenuItem value="">City</MenuItem>
-                    {this.state.cityList.map((item, id) => {
-                      return <MenuItem value={item.name}>{item.name}</MenuItem>;
-                    })}
-                  </Select>
-                </FormControl>
-
-                <FormControl
-                  sx={{ m: 1, minWidth: 160 }}
-                  style={{ marginLeft: "1em" }}
-                >
-                  <InputLabel id="demo-simple-select-helper-label">
-                    Affiliation
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    value={this.state.selections.affiliation}
-                    label="Affiliation"
-                    style={{ width: "200px" }}
-                    onChange={(e) => {
-                      this.setState({
-                        selections: {
-                          specialization: this.state.selections.specialization||null,
-        state: this.state.selections.state||null,
-        city: this.state.selections.city||null,
-        avgFee: null,
-        affiliation: e.target.value,
-        courseDuration: this.state.selections.courseDuration||null,
-        mode: this.state.selections.mode||null,
-                        },
-                      });
-                    }}
-                  >
-                    <MenuItem value="">Affiliation</MenuItem>
-                    <MenuItem value="AICTE">AICTE</MenuItem>
-                    <MenuItem value="UGC">UGC</MenuItem>
-                    <MenuItem value="state">STATE</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <FormControl
-                  sx={{ m: 1, minWidth: 160 }}
-                  style={{ marginLeft: "1em" }}
-                >
-                  <InputLabel id="demo-simple-select-helper-label">
-                    Duration
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    value={this.state.selections.duration}
-                    label="Course Duration"
-                    style={{ width: "200px" }}
-                    onChange={(e) => {
-                      this.setState({
-                        selections: {
-                          specialization: this.state.selections.specialization||null,
-                          state: this.state.selections.state||null,
-                          city: this.state.selections.city||null,
-                          avgFee: null,
-                          affiliation: this.state.selections.affiliation||null,
-                          courseDuration: e.target.value,
-                          mode: this.state.selections.mode||null,
-                        },
-                      });
-                    }}
-                  >
-                    <MenuItem value="">Duration</MenuItem>
-                    <MenuItem value="1yr">1 Year</MenuItem>
-                    <MenuItem value="2yr">2 Years</MenuItem>
-                    <MenuItem value="3yr">3 Years</MenuItem>
-                    <MenuItem value="4yr">4 Years</MenuItem>
-                    <MenuItem value="5yr">5 Years</MenuItem>
-                    <MenuItem value="6yr">6 Years</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <FormControl
-                  sx={{ m: 1, minWidth: 160 }}
-                  style={{ marginLeft: "1em" }}
-                >
-                  <InputLabel id="demo-simple-select-helper-label">
-                    Mode
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    value={this.state.selections.mode}
-                    label="Mode"
-                    style={{ width: "200px" }}
-                    onChange={(e) => {
-                      this.setState({
-                        selections: {
-                          specialization: this.state.selections.specialization||null,
-                          state: this.state.selections.state||null,
-                          city: this.state.selections.city||null,
-                          avgFee: null,
-                          affiliation: this.state.selections.affiliation||null,
-                          courseDuration:this.state.selections.courseDuration||null,
-                          mode: e.target.value,
-                        },
-                      });
-                    }}
-                  >
-                    <MenuItem value="">Mode</MenuItem>
-                    <MenuItem value="online">Online</MenuItem>
-                    <MenuItem value="offline">Offline</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <Button
-                  style={{ marginTop: "1em", marginLeft: "1em" }}
-                  variant="outlined"
-                  onClick={() => this.searchCollege()}
-                >
-                  Search
-                </Button>
-
-                <div style={{ marginBottom: "-1em" }}>
-                  <p
-                    style={{
-                      fontWeight: "bold",
-                      fontSize: "22px",
-                      marginTop: "1em",
-                    }}
-                  >
-                    Top Colleges
+                  <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                    College Predictor
+                    <img
+                      src={arrowRight}
+                      style={{
+                        width: "1em",
+                        height: "1em",
+                        marginLeft: "0.5em",
+                      }}
+                    ></img>
                   </p>
                 </div>
 
-                <Swiper
-                  height="20em"
-                  slidesPerView={3}
-                  spaceBetween={5}
-                  slidesPerGroup={3}
-                  loop={true}
-                  loopFillGroupWithBlank={true}
-                  pagination={{
-                    clickable: true,
+                <div
+                  style={{
+                    marginLeft: "1em",
+                    height: "7em",
+                    width: "15em",
+                    cursor: "pointer",
+                    marginTop: "1em",
+                    backgroundColor: "#f7f7f9",
+                    boxShadow: "10px 10px 10px  #dbd8d7",
+                    borderRadius: "1em",
+                    padding: "0.5em",
                   }}
-                  navigation={true}
-                  className="mySwiper"
                 >
-                  {this.state.topCollege.map((item, id) => {
-                    return (
-                      <SwiperSlide>
-                        <Link
-                          style={{ textDecoration: "none" }}
-                          to={"/academic/college/" + item._id}
-                        >
-                        <CollegeSliderCard
-                          item={item}
-                          setCollegeDetails={this.setCollegeDetails}
-                        />
-                        </Link>
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
+                  <img
+                    src={career}
+                    style={{ height: "2em", width: "2em" }}
+                  ></img>
 
-                <div style={{ display: "flex", flexWrap: "wrap" }}>
-                  {this.state.collegeList.map((item, id) => {
-                    return (
-                      <div style={{ margin: "1em" }}>
+                  <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                    Career Matcher
+                    <img
+                      src={arrowRight}
+                      style={{
+                        width: "1em",
+                        height: "1em",
+                        marginLeft: "0.5em",
+                      }}
+                    ></img>
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    marginLeft: "1em",
+                    height: "7em",
+                    width: "15em",
+                    cursor: "pointer",
+                    marginTop: "1em",
+                    backgroundColor: "#f7f7f9",
+                    boxShadow: "10px 10px 10px  #dbd8d7",
+                    borderRadius: "1em",
+                    padding: "0.5em",
+                  }}
+                >
+                  <img
+                    src={grades}
+                    style={{ height: "2em", width: "2em" }}
+                  ></img>
+
+                  <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                    Grade Calculator
+                    <img
+                      src={arrowRight}
+                      style={{
+                        width: "1em",
+                        height: "1em",
+                        marginLeft: "0.5em",
+                      }}
+                    ></img>
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    marginLeft: "1em",
+                    height: "7em",
+                    width: "15em",
+                    cursor: "pointer",
+                    marginTop: "1em",
+                    backgroundColor: "#f7f7f9",
+                    boxShadow: "10px 10px 10px  #dbd8d7",
+                    borderRadius: "1em",
+                    padding: "0.5em",
+                  }}
+                >
+                  <img
+                    src={collegePredictor}
+                    style={{ height: "2em", width: "2em" }}
+                  ></img>
+
+                  <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                    Area of study
+                    <img
+                      src={arrowRight}
+                      style={{
+                        width: "1em",
+                        height: "1em",
+                        marginLeft: "0.5em",
+                      }}
+                    ></img>
+                  </p>
+                </div>
+              </div>
+              {this.state.currentCollege === null ? (
+                <>
+                  <div style={{ marginLeft: "1.5em" }}>
+                    Choose Any<br></br>
+                    <FormControl sx={{ m: 1, minWidth: 160 }}>
+                      <InputLabel id="demo-simple-select-helper-label">
+                        Specialization
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={this.state.selections.specialization}
+                        label="specialization"
+                        style={{ width: "200px" }}
+                        onChange={(e) => {
+                          this.setState({
+                            selections: {
+                              specialization: e.target.value,
+                              state: this.state.selections.state || null,
+                              city: this.state.selections.city || null,
+                              avgFee: null,
+                            },
+                          });
+                        }}
+                      >
+                        <MenuItem value="">Specialization</MenuItem>
+                        {specializationsList.map((item, id) => {
+                          return <MenuItem value={item}>{item}</MenuItem>;
+                        })}
+                      </Select>
+                    </FormControl>
+                    <FormControl
+                      sx={{ m: 1, minWidth: 160 }}
+                      style={{ marginLeft: "1em" }}
+                    >
+                      <InputLabel id="demo-simple-select-helper-label">
+                        State
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={this.state.selections.state}
+                        label="specialization"
+                        style={{ width: "200px" }}
+                        onChange={(e) => {
+                          this.setCityListFromState(e.target.value);
+                          this.setState({
+                            selections: {
+                              specialization:
+                                this.state.selections.specialization || null,
+                              state: e.target.value,
+                              city: null,
+                              avgFee: null,
+                            },
+                          });
+                        }}
+                      >
+                        <MenuItem value="">State</MenuItem>
+                        {stateArray.map((item, id) => {
+                          return (
+                            <MenuItem value={item.name}>{item.name}</MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                    <FormControl
+                      sx={{ m: 1, minWidth: 160 }}
+                      style={{ marginLeft: "1em" }}
+                    >
+                      <InputLabel id="demo-simple-select-helper-label">
+                        City
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={this.state.selections.city}
+                        label="specialization"
+                        style={{ width: "200px" }}
+                        onChange={(e) => {
+                          this.setState({
+                            selections: {
+                              specialization:
+                                this.state.selections.specialization || null,
+                              state: this.state.selections.state,
+                              city: e.target.value,
+                              avgFee: null,
+                            },
+                          });
+                        }}
+                      >
+                        <MenuItem value="">City</MenuItem>
+                        {this.state.cityList.map((item, id) => {
+                          return (
+                            <MenuItem value={item.name}>{item.name}</MenuItem>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                    <FormControl
+                      sx={{ m: 1, minWidth: 160 }}
+                      style={{ marginLeft: "1em" }}
+                    >
+                      <InputLabel id="demo-simple-select-helper-label">
+                        Affiliation
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={this.state.selections.affiliation}
+                        label="Affiliation"
+                        style={{ width: "200px" }}
+                        onChange={(e) => {
+                          this.setState({
+                            selections: {
+                              specialization:
+                                this.state.selections.specialization || null,
+                              state: this.state.selections.state || null,
+                              city: this.state.selections.city || null,
+                              avgFee: null,
+                              affiliation: e.target.value,
+                              courseDuration:
+                                this.state.selections.courseDuration || null,
+                              mode: this.state.selections.mode || null,
+                            },
+                          });
+                        }}
+                      >
+                        <MenuItem value="">Affiliation</MenuItem>
+                        <MenuItem value="AICTE">AICTE</MenuItem>
+                        <MenuItem value="UGC">UGC</MenuItem>
+                        <MenuItem value="state">STATE</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <FormControl
+                      sx={{ m: 1, minWidth: 160 }}
+                      style={{ marginLeft: "1em" }}
+                    >
+                      <InputLabel id="demo-simple-select-helper-label">
+                        Duration
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={this.state.selections.duration}
+                        label="Course Duration"
+                        style={{ width: "200px" }}
+                        onChange={(e) => {
+                          this.setState({
+                            selections: {
+                              specialization:
+                                this.state.selections.specialization || null,
+                              state: this.state.selections.state || null,
+                              city: this.state.selections.city || null,
+                              avgFee: null,
+                              affiliation:
+                                this.state.selections.affiliation || null,
+                              courseDuration: e.target.value,
+                              mode: this.state.selections.mode || null,
+                            },
+                          });
+                        }}
+                      >
+                        <MenuItem value="">Duration</MenuItem>
+                        <MenuItem value="1yr">1 Year</MenuItem>
+                        <MenuItem value="2yr">2 Years</MenuItem>
+                        <MenuItem value="3yr">3 Years</MenuItem>
+                        <MenuItem value="4yr">4 Years</MenuItem>
+                        <MenuItem value="5yr">5 Years</MenuItem>
+                        <MenuItem value="6yr">6 Years</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <FormControl
+                      sx={{ m: 1, minWidth: 160 }}
+                      style={{ marginLeft: "1em" }}
+                    >
+                      <InputLabel id="demo-simple-select-helper-label">
+                        Mode
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={this.state.selections.mode}
+                        label="Mode"
+                        style={{ width: "200px" }}
+                        onChange={(e) => {
+                          this.setState({
+                            selections: {
+                              specialization:
+                                this.state.selections.specialization || null,
+                              state: this.state.selections.state || null,
+                              city: this.state.selections.city || null,
+                              avgFee: null,
+                              affiliation:
+                                this.state.selections.affiliation || null,
+                              courseDuration:
+                                this.state.selections.courseDuration || null,
+                              mode: e.target.value,
+                            },
+                          });
+                        }}
+                      >
+                        <MenuItem value="">Mode</MenuItem>
+                        <MenuItem value="online">Online</MenuItem>
+                        <MenuItem value="offline">Offline</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <Button
+                      style={{ marginTop: "1em", marginLeft: "1em" }}
+                      variant="outlined"
+                      onClick={() => this.searchCollege()}
+                    >
+                      Search
+                    </Button>
+                  </div>
+
+                  {/* <div style={{ marginBottom: "-1em" }}>
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "22px",
+                        marginTop: "1em",
+                      }}
+                    >
+                      Top Colleges
+                    </p>
+                  </div> */}
+                  <p style={{fontWeight: "400", fontSize: "15px",marginLeft: "1em",marginTop: "1em",boxShadow: "10px 10px 10px  #dbd8d7",width:"10em",borderRadius:"0.5em"}}>6 Results</p>
+                  <div className=""
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      backgroundColor: "#F5F4F5",
+                    }}
+                  >
+              
+                    {this.state.topCollege.map((item, id) => {
+                      return (
+                        <div style={{width:"33%"}}>
                         <Link
                           style={{ textDecoration: "none" }}
                           to={"/academic/college/" + item._id}
                         >
                           <CollegeSliderCard
                             item={item}
+                            id={id}
                             setCollegeDetails={this.setCollegeDetails}
                           />
                         </Link>
-                      </div>
-                    );
-                  })}
-                </div>
-              </>
-            ) : (
-              <CollegeDetails
-                currentCollege={this.state.currentCollege}
-                closeCurrentCollege={this.closeCurrentCollege}
-              />
-            )}
+                        </div>
+                      );
+                
+                })}
+                  
+                  </div>
+
+                
+
+                  <div style={{ display: "flex", flexWrap: "wrap"   ,backgroundColor: "#F5F4F5" }}>
+                    {this.state.collegeList.map((item, id) => {
+                      return (
+                        <div style={{width:"33%"}}>
+                          <Link
+                            style={{ textDecoration: "none" }}
+                            to={"/academic/college/" + item._id}
+                          >
+                            <CollegeSliderCard
+                              item={item}
+                              id={id}
+                              setCollegeDetails={this.setCollegeDetails}
+                            />
+                          </Link>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : (
+                <CollegeDetails
+                  currentCollege={this.state.currentCollege}
+                  closeCurrentCollege={this.closeCurrentCollege}
+                />
+              )}
+            </div>
           </>
         )}
       </>
@@ -539,13 +646,10 @@ export default class CollegePage extends Component {
   }
 
   async componentDidMount() {
-
-
     var topCollegeResponse = await getTopColleges();
-    if(topCollegeResponse.status===200){
-      console.log("Data",topCollegeResponse);
-      this.setState({topCollege:topCollegeResponse.data.response})
+    if (topCollegeResponse.status === 200) {
+      console.log("Data", topCollegeResponse);
+      this.setState({ topCollege: topCollegeResponse.data.response });
     }
-
   }
 }
