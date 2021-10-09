@@ -68,11 +68,12 @@ export default class HeaderSearchBox extends Component {
             style={{
               textAlign: "left",
               backgroundColor: "white",
-
+              marginLeft:"28em",
               width: "30em",
               color: "black",
               padding: "10px",
               position: "absolute",
+              marginTop:"3.5em",
               boxShadow: "0 2px 5px 1px rgb(64 60 67 / 16%)",
             }}
           >

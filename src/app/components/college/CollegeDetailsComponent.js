@@ -53,7 +53,7 @@ export default class CollegeDetailsComponent extends Component {
           <div className="container-fluid" style={{ display: "flex" }}>
             
             <div>
-       <p style={{fontSize:"2em",fontWeight:"400"}}>Posts</p>
+       <p style={{fontSize:"1em",fontWeight:"400"}}>Posts</p>
 
 
               {/* <div style={{ boxShadow: 'rgb(219, 216, 215) 0px 2px 3px', height: '142px' }}> */}

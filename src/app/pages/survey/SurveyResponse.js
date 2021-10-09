@@ -228,14 +228,14 @@ export default class Survey extends Component {
             >
               Submit
             </Button>
-            <p>Comments</p>
+            <p style={{marginTop: "1em",fontSize: "23px",fontWeight: "450"}}>{this.state.surveyDetails.comments.length} Answer</p>
             {this.state.surveyDetails.comments !== null &&
             this.state.surveyDetails.comments !== undefined ? (
               <>
                 {this.state.surveyDetails.comments.map((item, id) => {
                   return (
                     <>
-                      <div style={{ border: "1px solid black" }}>
+                      <div style={{ borderRadius: "1em",padding:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7",marginTop: "1em"}}>
                         <p style={{ fontSize: "15px", fontWeight: "bold" }}>
                           {item.user.name}
                         </p>

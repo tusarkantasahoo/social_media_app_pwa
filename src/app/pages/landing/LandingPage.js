@@ -87,7 +87,7 @@ export default class Landing extends Component {
       case "home":
         return (
           <>
-          <div className="" id="" style={{width:"50em",marginLeft:"1em",boxShadow: "1px 1px 1px  #dbd8d7"}}>
+          <div className="" id="" style={{width:"50em",marginLeft:"0.1em",boxShadow: "1px 1px 1px  #dbd8d7"}}>
             <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Home</p>
           <div style={{marginLeft:"0%",backgroundColor:"white",marginTop:"1em",borderRadius:"1em"}}>
             <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
@@ -138,14 +138,16 @@ export default class Landing extends Component {
 
       case "surveyResponse":
         return (
-          <div className="col-10" id="home-social">
-            <SurveyResponse />
-          </div>
+          <div style={{marginLeft:"",width:"65em"}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Survey Response</p>
+          <SurveyResponse />
+           </div>
+       
         );
 
       case "college":
         return (
-          <div style={{marginLeft:"",width:"70%"}}>
+          <div style={{marginLeft:"",width:"100%"}}>
           <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>College</p>
           <CollegePage />
            </div>
@@ -154,9 +156,11 @@ export default class Landing extends Component {
 
         case "collegeDetails":
           return (
-            <div className="col-10" id="home-social">
-              <CollegeDetails />
-            </div>
+            <div style={{marginLeft:"",width:"65em"}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>College Details</p>
+          <CollegeDetails />
+           </div>
+          
           );
 
       case "career":

@@ -358,8 +358,8 @@ export default class CollegePage extends Component {
               </div>
               {this.state.currentCollege === null ? (
                 <>
-                  <div style={{ marginLeft: "1.5em" }}>
-                    Choose Any<br></br>
+                  <div style={{ marginLeft: "1.5em",backgroundColor: "#f5f5f5c9",borderRadius: "10px",padding:"0.5em"}}>
+                    <p style={{fontSize:"20px",fontWeight: "550"}}>FILTER COLLEGE</p>
                     <FormControl sx={{ m: 1, minWidth: 160 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Specialization
@@ -582,7 +582,7 @@ export default class CollegePage extends Component {
                       Top Colleges
                     </p>
                   </div> */}
-                  <p style={{fontWeight: "400", fontSize: "15px",marginLeft: "1em",marginTop: "1em",boxShadow: "10px 10px 10px  #dbd8d7",width:"10em",borderRadius:"0.5em"}}>6 Results</p>
+                  <p style={{marginLeft:"2em",fontWeight: "550", backgroundColor: "#f5f5f5c9",fontSize: "15px",height:"2em",marginTop: "1em",boxShadow: "10px 10px 10px  #dbd8d7",width:"10em",borderRadius:"0.5em"}}>RESULTS</p>
                   <div className=""
                     style={{
                       display: "flex",

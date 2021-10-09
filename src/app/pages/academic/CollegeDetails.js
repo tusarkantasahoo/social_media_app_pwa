@@ -49,13 +49,7 @@ export default class CollegeDetails extends Component {
     var details = this.props.currentCollege;
     return (
       <>
-        <div style={{ display: "flex" }}>
-          <div style={{ width: "50%", textAlign: "left" }}>
-            <p style={{ fontSize: "22px", fontWeight: "bold" }}>
-              College Details
-            </p>
-          </div>
-        </div>
+      
         <div
           // style={{ backgroundImage: `url(${details.banner})`, height: "15em" }}
            style={{ backgroundImage: `url(${banner})`, height: "15em" }}

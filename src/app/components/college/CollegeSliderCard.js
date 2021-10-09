@@ -75,14 +75,14 @@ else{ return clgBuild}
                 fontWeight: "500",
                 color: "#116191",
                 width: "15em",
-                boxShadow: "1px 1px 1px  #dbd8d7",
+                boxShadow: "7px 7px 7px  #dbd8d7",
                 // backgroundColor: "#426983",
                 // borderRadius: "15px",
                 marginLeft: "10px",
                 textAlign: "center",
               }}
             >
-              {this.limitString(this.props.item.affiliation.toUpperCase())}
+              {this.limitString(this.props.item.affiliation)}
             </p>
             <p
               style={{
@@ -90,7 +90,7 @@ else{ return clgBuild}
                 fontWeight: "500",
                 color: "#116191",
                 width: "15em",
-                boxShadow: "1px 1px 1px  #dbd8d7",
+                boxShadow: "7px 7px 7px  #dbd8d7",
                 // backgroundColor: "#426983",
                 // borderRadius: "15px",
                 marginLeft: "10px",
@@ -106,7 +106,7 @@ else{ return clgBuild}
                 fontWeight: "500",
                 color: "#116191",
                 width: "15em",
-                boxShadow: "1px 1px 1px  #dbd8d7",
+                boxShadow: "7px 7px 7px  #dbd8d7",
                 // backgroundColor: "#426983",
                 // borderRadius: "15px",
                 marginLeft: "10px",
@@ -121,7 +121,7 @@ else{ return clgBuild}
                 fontWeight: "500",
                 color: "#116191",
                 width: "15em",
-                boxShadow: "1px 1px 1px  #dbd8d7",
+                boxShadow: "7px 7px 7px  #dbd8d7",
                 // backgroundColor: "#426983",
                 // borderRadius: "15px",
                 marginLeft: "10px",

@@ -134,7 +134,7 @@ export default class PostMessageBox extends Component {
               </div>
 
               {this.state.postText.length === 0&&this.state.isTextFieldClicked===false ? (
-                <div className="row" id="filed-for-image-postbutton">
+                <div className="row" id="filed-for-image-postbutton" style={{marginLeft:"1em"}}>
                   {/* <div className="col-1"></div> */}
                   <div className="col px-0" id="upload-image-image-field">
                     {dropDownPostOptions.map((item, id) => {
@@ -164,7 +164,7 @@ export default class PostMessageBox extends Component {
                 <>
                   <div
                     className="row"
-                    style={{ textAlign: "left", marginTop: "40px" }}
+                    style={{ textAlign: "left", marginTop: "40px",marginLeft:"1em" }}
                   >
                     <div className="d-flex flex-wrap">
                       {dropDownPostOptions.map((item, index) => {
@@ -183,7 +183,7 @@ export default class PostMessageBox extends Component {
                                 className="upload-image-before-post-dropdown"
                                 src={item.image}
                               ></img>
-                              <p style={{ marginLeft: "10px" }}>{item.name}</p>
+                              <p style={{ marginLeft: "10px",fontWeight: "550"}}>{item.name}</p>
                             </div>
                           </div>
                         );
