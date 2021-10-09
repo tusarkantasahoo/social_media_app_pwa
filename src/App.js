@@ -47,7 +47,7 @@ export default class App extends Component {
       localStorage.getItem(authResponseStoredValue)
     );
     return (
-      <div className="w-100 h-100">
+      <div>
         <Route
           path="/"
           exact
@@ -183,6 +183,35 @@ export default class App extends Component {
                 <Landing
                   updateAuthState={this.updateAuthState}
                   page={{ name: "Academic", code: "college" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+<Route
+          path="/academic/college/:id"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "collegeDetails" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Academic", code: "collegeDetails" }}
                   setPage={this.setPage}
                   history={createBrowserHistory}
                   isAuthed={true}

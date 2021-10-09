@@ -1,60 +1,161 @@
 import React, { Component } from "react";
-
+import collegeBanner from "./banner.jpg";
+import logo from "./logo.png";
+import clgBuild from "../../../assets/images/clgBuild.jpeg"
+import "./collegeSlider.scss";
 export default class CollegeSliderCard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.limitString = this.limitString.bind(this);
+    this.getRandomIng = this.getRandomIng.bind(this);
+  }
+
+  limitString(str){
+    if(str.length>20){
+      return str.substring(0,20)+".."
+    }
+    else{ return str}
+
+  }
+
+  getRandomIng(val){
+ if(val%2===0){
+   return collegeBanner
+ }
+else{ return clgBuild}
   }
 
   render() {
     return (
       <>
         <div
-        onClick={() => this.props.setCollegeDetails(this.props.item)}
-          style={{ border: "1px solid #1da1f2", height: "15em", width: "20em",cursor: "pointer" }}
+          style={{
+            height: "17em",
+            border: "1px solid #dbd8d7",
+            borderRadius: "",
+            margin: "5px",
+            backgroundColor: "white",
+          }}
         >
-          <div>
-            <img
-              src={this.props.item.banner}
+          <div
+            style={{
+              backgroundImage: `url(${this.getRandomIng(this.props.id)})`,
+              height: "6em",
+              width: "100%",
+            }}
+          >
+            <p
               style={{
-                height: "4em",
-                width: "90%",
-                marginLeft: "0.5em",
-                marginTop: "0.5em",
+                fontSize: "18px",
+                color: "white",
+                marginLeft: "1em",
+                position: "bottom",
+                fontWeight: "bold",
               }}
-            ></img>
+            >
+              {this.props.item.name.toUpperCase()}
+            </p>
           </div>
-          <div style={{ display: "flex" }}>
-            <img
-              src={this.props.item.logo}
+          {/* <img src={collegeBanner} style={{height:"6em",width:"100%"}}></img> */}
+          <img
+            src={logo}
+            style={{
+              height: "4em",
+              width: "4em",
+              borderRadius: "2em",
+              marginLeft: "1em",
+              marginTop: "-2em",
+            }}
+          ></img>
+          <div style={{ display: "flex", flexWrap: "wrap", height: "5em" }}>
+            <p
               style={{
-                height: "3em",
-                width: "3em",
-                marginLeft: "0.5em",
-                marginTop: "-1em",
+                fontSize: "12px",
+                fontWeight: "500",
+                color: "#116191",
+                width: "15em",
+                boxShadow: "7px 7px 7px  #dbd8d7",
+                // backgroundColor: "#426983",
+                // borderRadius: "15px",
+                marginLeft: "10px",
+                textAlign: "center",
               }}
-            ></img>
-            <div style={{textAlign: "left"}}>
-              <p style={{ fontSize: "15px", color: "blue", fontWeight: "500" }}>
-                {this.props.item.name}
-              </p>
-              <p style={{ fontSize: "10px", color: "black", fontWeight: "400",marginTop:"-1.5em" }}>
-                {this.props.item.city}
-              </p>
+            >
+              {this.limitString(this.props.item.affiliation)}
+            </p>
+            <p
+              style={{
+                fontSize: "12px",
+                fontWeight: "500",
+                color: "#116191",
+                width: "15em",
+                boxShadow: "7px 7px 7px  #dbd8d7",
+                // backgroundColor: "#426983",
+                // borderRadius: "15px",
+                marginLeft: "10px",
+                textAlign: "center",
+              }}
+            >
+              
+              DATA1
+            </p>
+            <p
+              style={{
+                fontSize: "12px",
+                fontWeight: "500",
+                color: "#116191",
+                width: "15em",
+                boxShadow: "7px 7px 7px  #dbd8d7",
+                // backgroundColor: "#426983",
+                // borderRadius: "15px",
+                marginLeft: "10px",
+                textAlign: "center",
+              }}
+            >
+              DATA2
+            </p>
+            <p
+              style={{
+                fontSize: "12px",
+                fontWeight: "500",
+                color: "#116191",
+                width: "15em",
+                boxShadow: "7px 7px 7px  #dbd8d7",
+                // backgroundColor: "#426983",
+                // borderRadius: "15px",
+                marginLeft: "10px",
+                textAlign: "center",
+              }}
+            >
+              DATA3
+            </p>
+          </div>
+          <div style={{height:"1.5em",textAlign:"center"}}>
+            <p style={{fontSize:"11px",color:"#bb9898"}}>ADMISSION 2021 REVIEWS COURSEFEES</p>
+            </div>
+          <div style={{ display: "flex", height: "2em", flexWrap: "wrap" }}>
+            <div
+              style={{
+                backgroundColor: "#075D70",
+                textAlign: "center",
+                width: "50%",
+                height: "2em",
+              }}
+            >
+              <p style={{ color: "white", fontWeight: "500" }}>APPLY NOW</p>
+            </div>
+            <div
+              style={{
+                backgroundColor: "white",
+                textAlign: "center",
+                width: "50%",
+                height: "2em",
+              }}
+            >
+              <p style={{ color: "black", fontWeight: "500" }}>GET DETAILS</p>
             </div>
           </div>
-          <div style={{display:"flex",textAlign: "center",flexWrap:"wrap"}}>
-              <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>{this.props.item.affiliation}</p>
-            <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>{this.props.item.ranking}</p>
-            <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>{this.props.item.examAccepted} Accepted</p>
-            <p style={{fontSize: "12px", color: "black",width:"50%",border:"1px solid black"}}>Avg. Course Fee {this.props.item.averageCourseFee} </p>
-          </div>
-
-    
-           
-
-     
-
         </div>
       </>
     );

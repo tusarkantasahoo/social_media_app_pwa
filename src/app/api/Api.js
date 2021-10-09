@@ -209,3 +209,248 @@ export function getSurveyCratedByUser(data) {
       });
   });
 }
+
+export function createCommentForPost(data) {
+  console.log("===");
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/social/addComment/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function getCollegeListByselection(data) {
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/academics/filterbyTypeStateCity/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function getCollegeById(data) {
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/academics/findCollegeById/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+
+export function getSearchBoxData(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/academics/searchByAutoFiltr/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function addLikeForPost(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/social/addLike",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function addResearchComment(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/survey/researchAnswer/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function giveQuizAnswer(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/survey/quizAnswer/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function givePollAnswer(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/survey/pollAnswer/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function getTopColleges(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/academics/gettopcolleges/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+export function getCollegePosts(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/Academicspost/getcollegebyid/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
+
+
+
+
+

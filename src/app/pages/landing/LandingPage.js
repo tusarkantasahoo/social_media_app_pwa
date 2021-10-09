@@ -9,6 +9,23 @@ import Survey from "../survey/Survey.js";
 import SurveyResponse from "../survey/SurveyResponse.js";
 import CollegePage from "../academic/CollegePage.js";
 import CommingSoon from "../commingSoon/CommingSoon.js";
+import CollegeDetails from "../academic/CollegeDetails.js";
+import careericon from "../../../assets/images/home/career.png";
+import forumicon from "../../../assets/images/home/forum.png";
+import jobicon from "../../../assets/images/home/job.png";
+import othericon from "../../../assets/images/home/others.png";
+import plannericon from "../../../assets/images/home/planner.png";
+import repoicon from "../../../assets/images/home/repo.png";
+import roomicon from "../../../assets/images/home/room.png";
+import skillicon from "../../../assets/images/home/skills.png";
+import academicicon from "../../../assets/images/home/book.png";
+import surveyicon from "../../../assets/images/home/survey.png";
+import home from "../../../assets/images/phase2Img/home.png";
+import girl from "../../../assets/images/girl.jpg";
+import girl1 from "../../../assets/images/girl1.jfif";
+import girl2 from "../../../assets/images/girl2.jpg";
+import girl3 from "../../../assets/images/girl3.jpg";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 export default class Landing extends Component {
   constructor(props) {
@@ -17,21 +34,36 @@ export default class Landing extends Component {
       width: 0,
       height: 0,
       optionArray: [
-        { name: "Home", code: "home" },
-        { name: "Rooms", code: "rooms" },
-        { name: "Academic", code: "academic" },
-        { name: "Career", code: "career" },
-        { name: "Forum", code: "Forum" },
-        { name: "Survey", code: "survey" },
-        { name: "Self Help", code: "selfHelp" },
-        { name: "Jobs", code: "jobs" },
-        { name: "Skills", code: "skills" },
-        { name: "Repository", code: "repository" },
+        { name: "Home", code: "home",icon:home },
+        { name: "Rooms", code: "rooms",icon:roomicon },
+        { name: "Academic", code: "academic",icon:academicicon },
+        { name: "Career", code: "career",icon:careericon },
+        { name: "Forum", code: "Forum",icon:forumicon },
+        { name: "Survey", code: "survey",icon: surveyicon},
+        { name: "Self Help", code: "selfHelp",icon:othericon },
+        { name: "Jobs", code: "jobs",icon: careericon},
+        { name: "Skills", code: "skills",icon:skillicon },
+        { name: "Repository", code: "repository",icon: repoicon},
       ],
       currentOption: props.page,
       isUserDashboard: false,
       screenManage: "social",
+      people : [
+        {name:"Jennifer Sen",
+      image:girl,},
+      {name:"Lawrence Sahoo",
+      image:girl1},
+      {name:"Emaa Watson",
+      image:girl2,},
+      {name:"Jane foster",
+      image:girl3,},
+      {name:"Becker joe",
+      image:girl,},
+      {name:"Jenny may",
+      image:girl1},
+      ]
     };
+
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     // this.updateOptionOnClick = this.updateOptionOnClick.bind(this);
     this._onClickUserDashboard = this._onClickUserDashboard.bind(this);
@@ -39,6 +71,7 @@ export default class Landing extends Component {
       this.renderScreenDependingOnSelection.bind(this);
     this._changeScreenRender = this._changeScreenRender.bind(this);
   }
+ 
 
   _onClickUserDashboard() {
     this.setState({ isUserDashboard: !this.state.isUserDashboard });
@@ -47,22 +80,32 @@ export default class Landing extends Component {
   _changeScreenRender(data) {
     this.setState({ currentOption: data });
   }
-
+ 
   renderScreenDependingOnSelection() {
     console.log("Home render", this.state.currentOption.code);
     switch (this.state.currentOption.code) {
       case "home":
         return (
-          <div className="col-7 px-3" id="home-social">
+          <>
+          <div className="" id="" style={{width:"50em",marginLeft:"0.1em",boxShadow: "1px 1px 1px  #dbd8d7"}}>
+            <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Home</p>
+          <div style={{marginLeft:"0%",backgroundColor:"white",marginTop:"1em",borderRadius:"1em"}}>
             <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
+            </div>
           </div>
+  
+          </>
         );
 
       case "rooms":
         return (
-          <div className="col-7 px-3" id="home-social">
+          <>
+         
+           <div style={{width:"50em",marginLeft:"",boxShadow: "1px 1px 1px  #dbd8d7"}}>
+           <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Rooms</p>
             <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
-          </div>
+            </div>
+                    </>
         );
 
       case "userDetails":
@@ -77,31 +120,48 @@ export default class Landing extends Component {
 
       case "academic":
         return (
-          <div className="col-10" id="">
-            <CollegePage />
-          </div>
+          <div style={{marginLeft:"",width:"70em"}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Academics</p>
+          <Academic />
+           </div>
+         
         );
 
       case "survey":
         return (
-          <div className="col-10" id="home-social">
-            <Survey />
-          </div>
+          <div style={{marginLeft:""}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Survey</p>
+          <Survey />
+           </div>
+     
         );
 
       case "surveyResponse":
         return (
-          <div className="col-10" id="home-social">
-            <SurveyResponse />
-          </div>
+          <div style={{marginLeft:"",width:"65em"}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Survey Response</p>
+          <SurveyResponse />
+           </div>
+       
         );
 
       case "college":
         return (
-          <div className="col-10" id="home-social">
-            <CommingSoon />
-          </div>
+          <div style={{marginLeft:"",width:"100%"}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>College</p>
+          <CollegePage />
+           </div>
+       
         );
+
+        case "collegeDetails":
+          return (
+            <div style={{marginLeft:"",width:"65em"}}>
+          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>College Details</p>
+          <CollegeDetails />
+           </div>
+          
+          );
 
       case "career":
         return (
@@ -162,6 +222,8 @@ export default class Landing extends Component {
   }
 
   render() {
+
+  
     console.log("Room constructor called", this.props);
     console.log("Room constructor called2", this.state);
     return (
@@ -172,26 +234,20 @@ export default class Landing extends Component {
           isLoggedIn={this.props.isAuthed}
           _changeScreenRender={this._changeScreenRender}
         />
-        <div className="container_custom">
-          <div className="d-flex aic">
-            <div
-              className="col-2 shadow"
-              id="home-options"
-              style={{
-                boxShadow: "0px 2px 3px #dbd8d7",
-                height: `${this.state.height.toString() - 60}px`,
-              }}
-            >
+        <div className="container-fluid" style={{display: "flex"}}>
+      
+
               <HomeOptions
                 props={this.state}
                 isLoggedIn={true}
                 setPage={this.props.setPage}
                 history={this.props.history}
               />
-            </div>
+
+      
             {this.renderScreenDependingOnSelection()}
           </div>
-        </div>
+  
       </>
     );
   }

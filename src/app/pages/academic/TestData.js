@@ -6662,3 +6662,43 @@ export const cityWithState = [
      "state":"Assam"
   }
 ]
+
+{/* <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+Career Tools
+</p>
+<div style={{ display: "flex" }}>
+<div style={{ marginLeft: "3em" }}>
+  <img
+    src={collegePredictor}
+    style={{ height: "3em", width: "3em" }}
+  ></img>
+  <br></br>
+  College Predictor
+</div>
+<div style={{ marginLeft: "3em" }}>
+  <img
+    src={career}
+    style={{ height: "3em", width: "3em" }}
+  ></img>
+  <br></br>
+  Career Maker
+</div>
+<div style={{ marginLeft: "3em" }}>
+  <img
+    src={grades}
+    style={{ height: "3em", width: "3em" }}
+  ></img>
+  <br></br>
+  Grade Calculator
+</div>
+<div style={{ marginLeft: "3em" }}>
+  <img
+    src={grades}
+    style={{ height: "3em", width: "3em" }}
+  ></img>
+  <br></br>
+  Area of Study
+</div>
+</div> */}
+
+

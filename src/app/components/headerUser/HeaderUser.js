@@ -15,13 +15,12 @@ export default class HeaderUser extends Component {
     return (
       <>
         <div
-          className="row"
+        style={{display:"flex",marginTop:"0.5em",marginLeft:"5em"}}
           onClick={() =>
             this.setState({ isUserClicked: !this.state.isUserClicked })
           }
         >
-          <div className="col-4" style={{ textAlign: "right" }}></div>
-          <div className="col-1" style={{ textAlign: "right" }}>
+       
             <img
               src={userDetails.userData.userImage}
               style={{
@@ -32,9 +31,9 @@ export default class HeaderUser extends Component {
               height="40px"
               width="45px"
             />
-          </div>
-          <div className="col" style={{ textAlign: "left", marginLeft: "15px" }}>
-            <p style={{ fontSize: "18px", marginTop: "10px", color: "white" }}>
+      
+      
+            <p style={{ fontSize: "18px", marginTop: "10px", color: "white",marginLeft:"1.5em" }}>
               {userDetails.userData.name}
             </p>
             {this.state.isUserClicked ? (
@@ -46,7 +45,7 @@ export default class HeaderUser extends Component {
                   borderRadius: "10px",
                   color: "black",
                   padding: "10px",
-                  position: "absolute",
+                  // position: "absolute",
                   boxShadow: "0 2px 5px 1px rgb(64 60 67 / 16%)"
                 }}
               >
@@ -105,7 +104,7 @@ export default class HeaderUser extends Component {
               </div>
             ) : null}
           </div>
-        </div>
+  
       </>
     );
   }

@@ -25,8 +25,9 @@ import studyAbroad from "../../../assets/images/academics/studying.png";
 import books from "../../../assets/images/academics/books.png";
 import results from "../../../assets/images/academics/analysis.png";
 import eduLoans from "../../../assets/images/academics/strategy.png";
+import arrowRight from "../../../assets/images/arrowRight.png";
 import CollegePage from "./CollegePage.js";
-import history from '../../pages/history/History.js';
+import history from "../../pages/history/History.js";
 SwiperCore.use([Pagination, Navigation]);
 
 export default class Academic extends Component {
@@ -52,63 +53,71 @@ export default class Academic extends Component {
     this.setCurrentAspectTonull = this.setCurrentAspectTonull.bind(this);
   }
 
-  renderAcademicAspects(){
-    switch (this.state.currentAspect.code){
-      case "college":return (<CollegePage setCurrentAspectTonull={this.setCurrentAspectTonull} />)
+  renderAcademicAspects() {
+    switch (this.state.currentAspect.code) {
+      case "college":
+        return (
+          <CollegePage setCurrentAspectTonull={this.setCurrentAspectTonull} />
+        );
 
-      default :return null
+      default:
+        return null;
     }
   }
 
-  setCurrentAspectTonull(){
-    this.setState({currentAspect: { name: null, code: null }})
+  setCurrentAspectTonull() {
+    this.setState({ currentAspect: { name: null, code: null } });
   }
 
   render() {
     console.log("all college", allCollegeData);
     return (
       <>
-      {this.state.currentAspect.code===null?(
-         <div >
-         <p style={{fontSize: "22px",marginBottom:"2em",fontWeight:"bold"}}>Academics</p>
-         <div style={{ display: "flex", flexWrap: "wrap" }}>
-           {this.state.aspects.map((item, index) => {
-             return (
-              <Link style={{textDecoration: "none",color:"black"}}
-              to={"/academic/" + item.code}
-            >
-               <div onClick={()=>{
-               this.setState({currentAspect: { name: item.name, code: item.code }});
-               
-              
-              }
-               
-               } style={{ marginLeft: "3em",height:"7em",width:"7em",cursor: "pointer",margin:"2em"}}>
-                 <img
-                   src={item.img}
-                   style={{ height: "5em", width: "5em" }}
-                 ></img>
-                 <br></br>
-                 {item.name}
-               </div>
-               </Link>
-             );
-           })}
-         </div>
-       </div>
-      ):(
+        {this.state.currentAspect.code === null ? (
+          <div>
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              {this.state.aspects.map((item, index) => {
+                return (
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={"/academic/" + item.code}
+                  >
+                    <div
+                  
+                      onClick={() => {
+                        this.setState({
+                          currentAspect: { name: item.name, code: item.code },
+                        });
+                      }}
+                      style={{
+                        marginLeft:"1em",
+                        height: "15em",
+                        width: "15em",
+                        cursor: "pointer",
+                        marginTop: "1em",
+                        backgroundColor: "#f7f7f9",
+                        boxShadow: "10px 10px 10px  #dbd8d7",
+                        borderRadius: "1em",
+                        padding:"0.5em"
+                      }}
+                    >
+                      
+                      <p style={{fontSize:"25px",fontWeight: "bold" }}>{item.name}<img src={arrowRight} style={{width:"1em",height:"1em",marginLeft:"0.5em"}}></img></p>
 
-
-
-        <>
-        {/* {this.renderAcademicAspects()} */}
- 
-        </>
-
-      )
-
-      }
-       
+                      <img
+                        src={item.img}
+                        style={{ height: "3em", width: "3em" }}
+                      ></img>
+                      <br></br>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <>{/* {this.renderAcademicAspects()} */}</>
+        )}
       </>
     );
   }
