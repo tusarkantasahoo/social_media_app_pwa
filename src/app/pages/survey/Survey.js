@@ -9,8 +9,14 @@ import "swiper/components/pagination/pagination.min.css";
 import "swiper/components/navigation/navigation.min.css";
 import SurveyMovingCard from "../../components/surveyCard/SurveyMovingCard.js";
 import "../../../App.css";
-// import Swiper core and required modules
+import Tabs from "@material-ui/core/Tabs/Tabs";
+import Tab from "@material-ui/core/Tab/Tab";
+import AppBar from "@material-ui/core/AppBar/AppBar";
+import { withStyles } from "@material-ui/core/styles/";
 import SwiperCore, { Pagination, Navigation } from "swiper/core";
+
+
+
 export default class Survey extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +30,7 @@ export default class Survey extends Component {
       ],
       survey: [],
       userSurvey: [],
-      isTrending:true
+      isTrending: true
     };
   }
 
@@ -37,51 +43,57 @@ export default class Survey extends Component {
     ];
     const { items } = this.state;
     var user = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    const { classes } = this.props;
     return (
       <>
         <div class="container">
-          <div style={{display:"flex"}}>
-          <p onClick={()=>this.setState({isTrending:true})} style={{fontSize: "22px",cursor: "pointer",color:this.state.isTrending?"blue":"black"}}>
-            Trending Survey
-          </p>
-          
-          <p onClick={()=>this.setState({isTrending:false})} style={{marginLeft:"1em",fontSize: "22px",cursor: "pointer",color:this.state.isTrending?"black":"blue"}}>
-            My Survey
-          </p>
-          </div>
-          {this.state.isTrending?(
-                      <div>
-                      {this.state.survey.map((item, id) => {
-                          return (
-                          <div style={{marginTop:'1em'}}> 
-                            <SurveyMovingCard item={item} />
-                          </div>
-                              
-                          
-                          );
-                        })}
-            
-                      </div>
-          ):(
+          <Tabs className="indicator" centered value={0}>
+            <Tab onClick={() => this.setState({ isTrending: true })} disableRipple label="Trending Survey" className="trnd_survey_tab" style={{ color: this.state.isTrending ? "#0089FF" : "black" }} />
+            <Tab onClick={() => this.setState({ isTrending: false })} disableRipple label="My Survey" className="trnd_survey_tab" style={{ color: this.state.isTrending ? "black" : "#0089FF" }} />
+          </Tabs>
+
+          {/* <div style={{ display: "flex" }}>
+            <p onClick={() => this.setState({ isTrending: true })} className="trnd_survey_tab" >
+              Trending Survey
+            </p>
+
+            <p onClick={() => this.setState({ isTrending: false })} className="trnd_survey_tab" >
+              My Survey
+            </p>
+          </div> */}
+          {this.state.isTrending ? (
             <div>
-               {this.state.userSurvey.map((item, id) => {
-                    return (
-                
-                        <div style={{marginTop:'1em'}}>
-                          <SurveyMovingCard item={item} />
-                        </div>
-                        
-                  
-                    );
-                  })}
-  
+              {this.state.survey.map((item, id) => {
+                return (
+                  <div style={{ marginTop: '1em' }}>
+                    <SurveyMovingCard item={item} />
+                  </div>
+
+
+                );
+              })}
+
+            </div>
+          ) : (
+            <div>
+              {this.state.userSurvey.map((item, id) => {
+                return (
+
+                  <div style={{ marginTop: '1em' }}>
+                    <SurveyMovingCard item={item} />
+                  </div>
+
+
+                );
+              })}
+
             </div>
           )}
-          </div>
+        </div>
 
-          
 
-       
+
+
       </>
     );
   }
@@ -103,3 +115,9 @@ export default class Survey extends Component {
     }
   }
 }
+
+// const styles = theme => ({
+//   indicator: {
+//     backgroundColor: "white"
+//   }
+// });

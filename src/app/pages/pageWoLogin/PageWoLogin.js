@@ -44,7 +44,7 @@ export default class PageWoLogin extends Component {
           <UserDetails _onClickUserDashboard={this._onClickUserDashboard} />
           </div>
           </>):(
-            <div className="col-7" id="home-social">
+            <div className="col-7 p-3" id="home-social">
           <HomeSocial props={this.state} isLoggedIn={false}/>
           </div>
           )}

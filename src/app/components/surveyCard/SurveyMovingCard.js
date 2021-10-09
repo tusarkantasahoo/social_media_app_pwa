@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import history from "../../pages/history/History.js";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 export default class SurveyMovingCard extends Component {
   constructor(props) {
     super(props);
@@ -8,47 +9,45 @@ export default class SurveyMovingCard extends Component {
     this.getSurveyType = this.getSurveyType.bind(this);
   }
 
-  getSurveyType(item){
-    if(item==="poll"){
+  getSurveyType(item) {
+    if (item === "poll") {
       return "Poll"
     }
-    if(item==="quiz"){
+    if (item === "quiz") {
       return "Quiz"
     }
 
-    if(item==="research"){
+    if (item === "research") {
       return "Research"
     }
-    
-    
+
+
   }
 
   render() {
     return (
       <>
-        <div
-          style={{ border: "1px solid #1da1f2", height: "15em", width: "30em" }}
-        >
-         <p style={{fontSize: "18px",fontWeight: "600"}}>{this.getSurveyType(this.props.item.surveyType)}</p> 
-          
+        <div className="surveyCard shadow-lg">
+          <div className="surveyHeader">
+            <p style={{ fontSize: "18px", fontWeight: "600" }}>{this.getSurveyType(this.props.item.surveyType)}</p>
+          </div>
 
-       
-          <p style={{fontSize: "18px",fontWeight: "600"}}>{this.props.item.title} </p>
-          <Link to={"/survey/" + this.props.item._id}>
-            <div
-              style={{
-                backgroundColor: "#1da1f2",
-                color: "White",
-                marginTop: "5em",
-                cursor: "pointer",
-              }}
-            >
-              Give Response
+          <div className="surveyCardBody">
+            <p style={{ fontSize: "18px", fontWeight: "600" }}>{this.props.item.title} </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <div className="d-flex jcsb aic">
+              <Link to={"/survey/" + this.props.item._id} className="linkC">
+                <div className="survey_btn">
+                  <Button variant="contained" className="">Answer</Button>
+                </div>
+              </Link>
+              <p className="survey_response">
+                Total Response:100
+              </p>
             </div>
-          </Link>
-          <p style={{ fontSize: "15px", marginTop: "1em" }}>
-            Total Response:100
-          </p>
+          </div>
         </div>
       </>
     );

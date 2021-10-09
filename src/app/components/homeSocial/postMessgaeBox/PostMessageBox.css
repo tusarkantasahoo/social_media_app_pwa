@@ -2,11 +2,11 @@
   height: 100%;
   font-size: 1rem;
   border: none;
-  background-color: #E5F2F8;
+  background-color: #dddddd;
   outline: 0;
   box-sizing: none;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   padding-left: 0.5rem;
 }
 

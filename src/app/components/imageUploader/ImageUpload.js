@@ -150,9 +150,10 @@ export default class ImageUpload extends Component {
           <div style={{ padding: "10px" }}>
             <TextField
               id="outlined-multiline-static"
-              className="w-100"
+              className="image_about"
               multiline
-              rows={6}
+              // classes={{notchedOutline:classes.input}}
+              // rows={6}
               defaultValue="Default Value"
               variant="outlined"
               placeholder="Share / Ask what's on your mind?"

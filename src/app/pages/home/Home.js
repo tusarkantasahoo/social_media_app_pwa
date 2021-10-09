@@ -27,11 +27,11 @@ export default class Home extends Component {
       <>
         <PostMessageBox isLoggedIn={this.props.isLoggedIn} />
         <div className="home-all-details" style={{ marginTop: "3%" }}>
-          <h3 style={{ color: "#0089ff" }}>Who we are ?</h3>
-          <h5>
+          <h5 style={{ color: "#0089ff" }}>Who we are ?</h5>
+          <p>
             Where individuals meets Education / Career / Jobs <br></br>
             Skills / Community at single Platform
-          </h5>
+          </p>
           {/* <img src={allIconsHome} style={{height:"21em",width:"60em"}}></img> */}
           <div className="">
             <div className="d-flex flex-wrap justify-content-between col">

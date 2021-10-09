@@ -18,22 +18,22 @@ export default class CreateSurvey extends Component {
       description: "",
       isCreateSurveyClicked: false,
       noOfOptions: 2,
-      pageContentForSurvey:"init"
+      pageContentForSurvey: "init"
     };
     this.renderSurveyPages = this.renderSurveyPages.bind(this);
     this._isCreateSurveyClicked = this._isCreateSurveyClicked.bind(this);
 
   }
 
-  _isCreateSurveyClicked(name){
-    this.setState({pageContentForSurvey:name});
+  _isCreateSurveyClicked(name) {
+    this.setState({ pageContentForSurvey: name });
   }
 
-  renderSurveyPages(){
-    
-    switch(this.state.pageContentForSurvey){
-      case "init": 
-      return <SelectSurvey  _isCreateSurveyClicked={this._isCreateSurveyClicked} state={this.state} postText={this.state.postText} />
+  renderSurveyPages() {
+
+    switch (this.state.pageContentForSurvey) {
+      case "init":
+        return <SelectSurvey _isCreateSurveyClicked={this._isCreateSurveyClicked} state={this.state} postText={this.state.postText} />
 
       case "poll":
         return <Poll state={this.state} postText={this.state.postText} />
@@ -43,46 +43,33 @@ export default class CreateSurvey extends Component {
 
       case "research":
         return <Research state={this.state} postText={this.state.postText} />
-  
+
       default: return null
     }
   }
-  
+
 
 
   render() {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
     return (
       <>
-       <div className="row">
-          <div
-            className="col-11"
-            style={{ textAlign: "center", marginTop: "10" }}
-          >
+        <div className="d-flex jcc aic">
+          <div></div>
+          <div>
             <p style={{ fontSize: "25px" }}>Create Your Survey</p>
           </div>
-          <div
-            className="col-1"
-            style={{ display: "flex", flexDirection: "row" }}
-          >
-            <img
-              src={cancel}
-              style={{
-                height: "25px",
-                width: "25px",
-                marginTop: "1em",
-                cursor: "pointer",
-              }}
-              onClick={() => this.props.resetPostToDefault()}
-            ></img>
-            <p style={{ fontSize: "25px" }}></p>
-          </div>
+          <img
+            src={cancel}
+            className="close_btn"
+            onClick={() => this.props.resetPostToDefault()}
+          ></img>
         </div>
 
-     
 
-            {this.renderSurveyPages()}
-    
+
+        {this.renderSurveyPages()}
+
       </>
     );
   }

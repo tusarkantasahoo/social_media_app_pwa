@@ -9,8 +9,10 @@ import { authResponseStoredValue } from "../../../utils/Constant.js";
 import { facebookProvider, googleProvider } from "../../../config/authMethod.js";
 import socialMediaAuth from "../../../service/auth.js";
 import googlelogin from "../../../assets/images/googlelogin.png";
+import facebook from "../../../assets/images/facebook.png";
 import history from '../../pages/history/History.js';
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -82,10 +84,10 @@ export default class LoginPage extends Component {
     return (
 
       <div className="login_container d-flex jcc aic w-100 h-100 pr">
-       
-          <img className="login_bg w-100 h-100" src={graduate}></img>
-        
-        <div className="container glassy">
+
+        <img className="login_bg w-100 h-100" src={graduate}></img>
+
+        <div className="container glassy m-3">
           <div className="d-flex" >
             {/* <div className="col-lg-6 col-sm-12" id="namePart-loginfield">
               <div className="d-flex">
@@ -99,65 +101,54 @@ export default class LoginPage extends Component {
               </div>
             </div> */}
             <div className="col-sm-12" id="loginOrSignupPart-loginfield">
-              <div className="login-top-message">
+              <div className="login-top-message col text-center">
                 <p>Let's Meet the future !</p>
               </div>
-              <div className="login-box">
+              <div className="login-box col text-center">
                 <p className="top-msg-login-box">Login in to Monastree</p>
 
-                <div className="login-container-username">
+                <div className="d-flex jcc">
                   <input
-                    className="signin-inputfield-username"
+                    className="signin-inputfield form-control"
                     type="text"
                     name="name"
                     placeholder="Email, username or Phone No"
                     onChange={(e) => { this.setState({ username: e.target.value }) }}
                   />
                 </div>
-                <div className="login-container-password">
+                <div className="d-flex jcc">
                   <input
-                    className="signin-inputfield-password"
+                    className="signin-inputfield mt-4 form-control"
                     type="password"
                     name="password"
                     placeholder="Password"
                     onChange={(e) => { this.setState({ password: e.target.value }) }}
-                  />
-                  <br></br>
+                  />                  
+                </div>
+                <div className="my-1 text-end mx-auto mw_350">
+                  <p className="forgotten-password-text" onClick={() => this.props.updateRouteToPage("forgotPassword")}>Forgotten password?</p>
                 </div>
                 <button
-                  className="signin-submit-button"
+                  className="btn btn-primary"
                   //  type="submit"
                   //  value="Submit"
                   onClick={this._onClickLoginSubmit}
                 >
-                  <p className="submit-button-text">Login</p>
+                  <p className="fw-bold mb-0">Login</p>
                 </button>
 
-                <div className="d-flex" style={{ marginTop: "20px", cursor: "pointer", width: "80%", marginLeft: "5%", border: "0.25px solid 1da1f2" }}
-                  onClick={() => this.handelOnClick(googleProvider)}
+                <div className="d-flex mt-4" onClick={() => this.handelOnClick(googleProvider)}
                 >
-                  <div className="col-4" style={{ textAlign: "center", border: "0.01px solid #1da1f2" }}>
-                    <img src={googlelogin} style={{ height: "45px", width: "45px" }}></img>
+                  <div className="col d-flex jcc">
+                    <img src={googlelogin} className="social_icon me-3"></img>
+                    <img src={facebook} className="social_icon"></img>
                   </div>
-
-
-                  <div className="col-8" style={{ textAlign: "left", backgroundColor: "#1da1f2" }}>
-                    <p style={{ color: "white", marginTop: "0.5em" }}>Sign in with Google</p>
-                  </div>
-
                 </div>
 
 
-                <div className="container-forgotten-password">
-                  <p className="forgotten-password-text" onClick={() => this.props.updateRouteToPage("forgotPassword")}>Forgotten password?</p>
-                </div>
+
                 {/* <p onClick={()=>{this.props.history.push('/signup');}}>Login</p> */}
-                <div
-                  className="container-line-after-forgetpassword"
-                  style={{ textAlign: "center" }}
-                >
-                  <hr style={{ height: "1" }} className="line-after-forgettpass"></hr>
-                </div>
+                <div className="hr_devider"></div>
                 <div className="container-new-account">
                   <p className="text-new-account" onClick={() => {
                     // this.props.history.push("/signup")

@@ -3,6 +3,7 @@
   background-color: #0089ff;
   margin-top: 0%;
 }
+
 .loginpage-welcometext {
   margin-top: 50%;
   font-family: sans-serif;
@@ -10,6 +11,7 @@
   color: white;
   margin-left: 2%;
 }
+
 .loginpage-monastree {
   font-family: sans-serif;
   font-size: 45px;
@@ -17,37 +19,40 @@
   margin-bottom: 40%;
   margin-left: 2%;
 }
+
 #loginOrSignupPart-loginfield {
   /* background-color: #f0f2f5; */
   margin-top: 0%;
   height: 100%;
 }
+
 .login-top-message {
   text-align: left;
   font-size: 25px;
   font-weight: bold;
   margin-top: 7%;
 }
+
 .login-box {
   padding: 20px;
 }
+
 .top-msg-login-box {
-  color: #1da1f2;
+  color: #0B5ED7;
   font-size: 20px;
 }
-.signin-inputfield-username {
-  border-radius: 10px;
-  width: 85%;
-  height: 50px;
-  border: 0.5px solid #bfc2bb;
+
+.signin-inputfield {
+  border-radius: 5px;
+  max-width: 350px;
+  height: 40px;
+  padding: 1rem;
 }
-.signin-inputfield-password {
-  margin-top: 2.5%;
-  border-radius: 10px;
-  width: 85%;
-  height: 50px;
-  border: 0.5px solid #bfc2bb;
+
+.mw_350 {
+  max-width: 350px;
 }
+
 .signin-submit-button {
   border-radius: 5px;
   border: 0.5px solid #2f302e;
@@ -56,6 +61,7 @@
   height: 35px;
   background-color: #1da1f2;
 }
+
 .submit-button-text {
   color: white;
   font-size: 16px;
@@ -66,16 +72,19 @@
   text-align: center;
   margin-top: 20px;
 }
+
 .forgotten-password-text {
   margin-top: 1%;
-  color: #1da1f2;
+  color: #000000;
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
 }
+
 .line-after-forgetpassword {
   text-align: center;
 }
+
 .line-after-forgettpass {
   border: none;
   width: 80%;
@@ -84,13 +93,24 @@
   height: 0.5;
   background-color: black;
 }
+
 .container-new-account {
-  margin-top: -3.5%;
   text-align: center;
 }
+
 .text-new-account {
-  color: #1da1f2;
-  font-size: 18px;
-  font-weight: bold;
+  color: #0b0c0c;
+  font-size: 17px;
   cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.social_icon {
+  width: 30px;
+  cursor: pointer;
+}
+
+.login_btn {
+  width: 200px;
+  border-radius: 1rem;
 }

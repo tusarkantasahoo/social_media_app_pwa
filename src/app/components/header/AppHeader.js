@@ -13,7 +13,7 @@ export default class AppHeader extends Component {
     this.state = {};
   }
   render() {
-    console.log("Props in headre",this.props);
+    console.log("Props in headre", this.props);
     return (
       <>
         {this.props.isLoggedIn ? (
@@ -21,14 +21,12 @@ export default class AppHeader extends Component {
             className="container-fluid px-0"
             style={{ backgroundColor: "#0089ff", height: "50px" }}
           >
-            <div className="row container mx-auto px-0">
-              <div className="col px-0">
-                <div className="logo_wrapper">
-                  <img src={treepng} className="img_res"></img>
-                  <img src={logo} className="img_res"></img>
-                </div>
+            <div className="d-flex container mx-auto px-0">
+              <div className="logo_wrapper">
+                <img src={treepng} className="img_res"></img>
+                <img src={logo} className="img_res"></img>
               </div>
-              <div className="col-5" style={{ textAlign: "center" }}>
+              <div className="col-md-1" style={{ textAlign: "center" }}>
                 <HeaderSearchBox />
               </div>
               <div
@@ -49,68 +47,27 @@ export default class AppHeader extends Component {
             className="container-fluid px-0"
             style={{ backgroundColor: "#0089ff", height: "50px" }}
           >
-            <div className="row container mx-auto px-0">
-              <div className="col px-0">
-                <div className="logo_wrapper">
+            <div className="d-flex container_custom jcsb mx-auto px-3">
+             
+                <div className="logo_wrapper col-md-4">
                   <img src={treepng} className="img_res"></img>
                   <img src={logo} className="img_res"></img>
                 </div>
-              </div>
-              <div className="col-5" style={{ textAlign: "center" }}>
+             
+              <div className="col-md-4 d-flex aic" style={{ textAlign: "center" }}>
                 <HeaderSearchBox />
               </div>
               <div
-                className="col-4 d-flex jcfe aic">
-              <Link to="/login" style={{textDecoration: "none"}}>
-                <img src={user_w} className="userIcon"/>
+                className="col-md-4 d-flex jcfe aic">
+                <Link to="/login" style={{ textDecoration: "none" }}>
+                  <img src={user_w} className="userIcon" />
                 </Link>
               </div>
             </div>
           </div>
 
 
-          // <div
-          //   className="container-fluid"
-          //   style={{ backgroundColor: "#0089ff", height: "50px" }}
-          // >
-          //   <div className="row">
-          //     <div className="col-3">
-          //       <div className="navThreeLines">
-          //         <div className="one"></div>
-          //         <div className="two"></div>
-          //         <div className="three"></div>
-          //       </div>
-          //     </div>
-          //     <div className="col-5" style={{ textAlign: "center" }}>
-          //       {/* <HeaderSearchBox /> */}
-          //       <p
-          //         style={{
-          //           color: "white",
-          //           fontSize: "25px",
-          //           fontWeight: "bold",
-          //         }}
-          //       >
-          //         MONASTREE
-          //       </p>
-          //     </div>
-
-          //     <div
-          //       className="col-4"
-          //       style={{ textAlign: "right", cursor: "pointer" }}
-          //     >
-               
-          //       <Link to="/login">
-          //       <p style={{ color: "white", fontSize: "22px" }}>
-          //         User Login
-          //       </p>
-          //       </Link>
-          //     </div>
-          //   </div>
-          // </div>
-       
-       
-       
-       )}
+        )}
       </>
     );
   }

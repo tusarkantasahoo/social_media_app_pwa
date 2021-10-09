@@ -80,17 +80,10 @@ export default class PostMessageBox extends Component {
 
     return (
       <>
-        <div
-          className="message-container p-2"
-          style={{
-            boxShadow: "4px 10px 8px  #dbd8d7",
-            marginTop: "2%",
-            borderRadius: "15px",
-          }}
-        >
+        <div className="message-container p-2">
           {this.state.renderWhatToPost === "none" ? (
             <div className="container-fluid px-0">
-              <div className="row">
+              <div className="d-flex aic">
                 <div className="user_post_img" style={{ textAlign: "left" }}>
                   {this.props.isLoggedIn?(
                   <img
@@ -117,7 +110,7 @@ export default class PostMessageBox extends Component {
               </div>
 
               {this.state.postText.length === 0 ? (
-                <div className="row" id="filed-for-image-postbutton">
+                <div className="d-flex aic" id="filed-for-image-postbutton">
                   {/* <div className="col-1"></div> */}
                   <div className="col px-0" id="upload-image-image-field">
                     {dropDownPostOptions.map((item, id) => {
@@ -146,7 +139,7 @@ export default class PostMessageBox extends Component {
               ) : (
                 <>
                   <div
-                    className="row"
+                    className="d-flex aic"
                     style={{ textAlign: "left", marginTop: "40px" }}
                   >
                     <div className="d-flex flex-wrap">

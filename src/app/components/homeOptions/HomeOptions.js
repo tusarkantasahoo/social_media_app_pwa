@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import history from '../../pages/history/History.js';
+
+
+
+
 export default class HomeOptions extends Component {
   constructor(props) {
     super(props);

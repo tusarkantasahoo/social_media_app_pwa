@@ -53,14 +53,14 @@ export default class Landing extends Component {
     switch (this.state.currentOption.code) {
       case "home":
         return (
-          <div className="col-7" id="home-social">
+          <div className="col-7 px-3" id="home-social">
             <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
           </div>
         );
 
       case "rooms":
         return (
-          <div className="col-7" id="home-social">
+          <div className="col-7 px-3" id="home-social">
             <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
           </div>
         );
@@ -172,10 +172,10 @@ export default class Landing extends Component {
           isLoggedIn={this.props.isAuthed}
           _changeScreenRender={this._changeScreenRender}
         />
-        <div className="container">
-          <div className="row" style={{ display: "flex" }}>
+        <div className="container_custom">
+          <div className="d-flex aic">
             <div
-              className="col-2"
+              className="col-2 shadow"
               id="home-options"
               style={{
                 boxShadow: "0px 2px 3px #dbd8d7",

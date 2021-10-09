@@ -1,5 +1,5 @@
 .header-search-box {
-  height: 40px;
+  height: 35px;
   background-color: #f2f3f0;
   border-radius: 20px;
 }
@@ -10,7 +10,6 @@
   padding: 5px;
   border-radius: 10px;
   height: 30px;
-  width: 13vw;
   border: none;
   background-color: #f2f3f0;
 }
@@ -20,8 +19,8 @@
   background-color: #f2f3f0;
   border: none;
   margin-left: 5px;
-  height: 40px;
-  width: 144%;
+  height: 100%;
   border-radius: 25px;
   outline: 0;
 }
+@media only screen and (max-width: 1366px) {}

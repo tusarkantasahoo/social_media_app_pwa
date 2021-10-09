@@ -15,7 +15,7 @@ export default class HomeSocial extends Component {
       console.log("height in social",this.state.height);
       return (
        <>
-       <div className="container noBar" style={{overflow:"scroll",height:`${this.state.height-55}px`}}>
+       <div className="container_custom noBar" style={{overflow:"scroll",height:`${this.state.height-55}px`}}>
  
       {this.renderSocialPage(this.props.props.currentOption)}
         </div>
