@@ -95,7 +95,7 @@ export default class AppHeader extends Component {
             style={{ textAlign: "right", cursor: "pointer" }}
           >
             <div
-                className="col-4 d-flex jcfe aic">
+                className="col-4 d-flex jcfe aic" style={{marginLeft:"5em",marginTop:"1em"}}>
               <Link to="/login" style={{textDecoration: "none"}}>
                 <img src={user_w} className="userIcon"/>
                 </Link>

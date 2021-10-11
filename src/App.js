@@ -519,6 +519,18 @@ export default class App extends Component {
           )}
         />
 
+<Route
+          path="/signup"
+          exact
+          strict
+          render={() => (
+            <SignUp
+              updateAuthState={this.updateAuthState}
+              updateRouteToPage={this.updateRouteToPage}
+            />
+          )}
+        />
+
         <Route
           path="/forgotPasswordUpdate/:username/:token"
           component={ResetPassword}
