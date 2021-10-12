@@ -57,7 +57,6 @@ else{ return clgBuild}
               {this.props.item.name.toUpperCase()}
             </p>
           </div>
-          {/* <img src={collegeBanner} style={{height:"6em",width:"100%"}}></img> */}
           <img
             src={logo}
             style={{

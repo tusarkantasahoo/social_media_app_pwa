@@ -15,29 +15,20 @@ export default class Cardbox extends Component {
 
   render() {
     return (
-        <div      
-        style={{
-          marginLeft:"0.5em",
-          height: "12em",
-          width: "23em",
-          cursor: "pointer",
-          marginTop: "1em",
-          backgroundColor: "#f7f7f9",
-          boxShadow: "2px 10px 10px  #dbd8d7",
-          borderRadius: "0.2em",
-          padding:"0.5em",
-          marginRight:"0.5em",
-        }}
-      >
-        
-        <p style={{fontSize:"25px",fontWeight: "bold" }}>{this.props.name}<img src={arrowRight} style={{width:"1em",height:"1em",marginLeft:"0.5em"}}></img></p>
-
-        <img
-          src={this.props.image}
-          style={{ height: "3em", width: "3em" }}
-        ></img>
-        <p style={{fontSize:"18px",fontWeight: "500"}}>{this.props.desc}</p>
-        <br></br>
-      </div>  
-    )}
+      <div className="p-3 col-sm-12 col-md-6 col-lg-6">
+        <div className="card p-3 home_card">
+          <div className="d-flex jcc aic">
+            <img src={this.props.image} style={{ height: "3em", width: "3em" }}></img>
+          </div>
+          <div className="d-flex jcc aic mt-3">
+            <h4>{this.props.name}</h4>
+          </div>
+          <p style={{ fontSize: "16px" }}>{this.props.desc}</p>
+          <div className="d-flex jce">
+            <a href="javascript:void(0)" className="btn_theme td_none">Know More</a>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }

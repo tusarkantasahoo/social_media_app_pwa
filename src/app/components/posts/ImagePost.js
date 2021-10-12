@@ -31,7 +31,7 @@ export default class ImagePost extends Component {
       postImage: "",
       comment: "",
       isCommentVisible: false,
-      likes:this.props.props.likes
+      likes: this.props.props.likes
     };
 
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
@@ -74,7 +74,7 @@ export default class ImagePost extends Component {
     var response = await addLikeForPost(postJson);
     if (response.status === 200) {
       console.log("Liked");
-      this.setState({likes:this.state.likes+1})
+      this.setState({ likes: this.state.likes + 1 })
     }
   }
 
@@ -89,15 +89,7 @@ export default class ImagePost extends Component {
     console.log("Incoming props", this.props.props);
     return (
       <>
-        <div
-        className="imagePostContainer"
-          style={{
-            textAlign: "left",
-            border: "0.5px solid #d4d1c5",
-            // backgroundColor:"#edefef",
-            padding: "10px",
-          }}
-        >
+        <div className="imagePostContainer text-left p-3 mb-4">
           <div className="d-flex flex-row">
             <div className="comment_icon_top">
               <img
@@ -156,84 +148,43 @@ export default class ImagePost extends Component {
               </div>
             </div>
           </div>
-          <p style={{marginLeft: "70px"}}>{this.props.props.title}</p>
+          <p style={{ marginLeft: "70px" }}>{this.props.props.title}</p>
           <div
             className="image-field-for-posts"
+            style={{ paddingLeft: "70px"}}
             onClick={() => {
               this.props.handelNewsClick();
               this.props.setNewsItem(this.props.props);
             }}
           >
             <img
-            style={{marginLeft:"70px",width:"43em",height:"25em",border:"0.5em solid #dbd8d7",borderRadius:"2em"}}
+              style={{width: "100%", height: "25em", overflow: "hidden", borderRadius: "30px" }}
               className=""
               src={this.state.postImage}
             ></img>
           </div>
-          <div style={{display:"flex",marginTop: "2em"}} >
-           
-               <div style={{marginLeft:"15%"}}>
-               <img
-                  onClick={() => {
-                    this._onClickLike(this.props.props._id);
-                  }}
-                  src={like}
-                  style={{width:"2em",height:"2em"}}
-                />
-                <br></br>
-                 <p class="" style={{marginLeft:"1em"}}>{this.state.likes}</p>
-               </div>
-               
-              
-              {/* <div class="text-center pr">
-                <img src={dislike} className="action_icons ms-3" />
-                <p class="disliked">10k</p>
-              </div> */}
-         
-            <div style={{marginLeft:"30%"}}
+
+          {/* Post Like Section */}
+          <div style={{ display: "flex", marginTop: "2em", paddingLeft: "70px" }} >
+
+            <div  className="act_sec  pr">
+              <img onClick={() => {this._onClickLike(this.props.props._id);}} src={like} className="action_icons"/>
+              <p className="act_count">{this.state.likes}</p>
+            </div>
+
+            <div className="act_sec  pr ms-5"
               onClick={() =>
                 this.setState({
                   isCommentVisible: !this.state.isCommentVisible,
                 })
               }
             >
-              <img    style={{width:"2em",height:"2em"}} src={comment} className=""></img>
+              <img className="action_icons" src={comment}></img>
             </div>
-            <div style={{marginLeft:"30%"}}>
-              <img style={{width:"2em",height:"2em"}} src={share} className="action_icons"></img>
-            </div>
-          </div>
-
-          {/* <div className="d-flex nowrap aic">
-            <div className="w_fc">
-              {this.props.isLoggedIn ? (
-                <img src={userDetails.userData.userImage} className="comment_image" />
-              ) :
-                (
-                  <img src={userImage} className="comment_image" />
-                )}
-            </div>
-            <div className="col px-2">
-              <input
-                value={this.state.comment}
-                onChange={(e) => { this.setState({comment:e.target.value})}}
-                placeholder="Comment"
-                className="commentBox w-100"
-              ></input>
-            </div>
-            <div onClick={()=>{this._onClickSendComment()}} className="w_fc" style={{ textAlign: "left", cursor: "pointer" }}>
-              <img src={send} style={{ height: "35px", width: "2.5em" }}>
-              </img>
+            <div className="act_sec  pr ms-5">
+              <img className="action_icons" src={share} className="action_icons"></img>
             </div>
           </div>
-          <div>
-            {this.props.props.comments.map((item,id)=>{ 
-              return (
-                <p>{item.comment}</p>
-              )
-            })}
-
-          </div> */}
         </div>
       </>
     );

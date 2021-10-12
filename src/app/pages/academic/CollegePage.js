@@ -94,12 +94,12 @@ export default class CollegePage extends Component {
       specialization: this.state.selections.specialization,
       state:
         this.state.selections.state !== null &&
-        this.state.selections.state !== undefined
+          this.state.selections.state !== undefined
           ? this.state.selections.state.toUpperCase()
           : null,
       city:
         this.state.selections.city !== null &&
-        this.state.selections.city !== undefined
+          this.state.selections.city !== undefined
           ? this.state.selections.city.toUpperCase()
           : null,
       academictype: "college",
@@ -358,8 +358,8 @@ export default class CollegePage extends Component {
               </div>
               {this.state.currentCollege === null ? (
                 <>
-                  <div style={{ marginLeft: "1.5em",backgroundColor: "#f5f5f5c9",borderRadius: "10px",padding:"0.5em"}}>
-                    <p style={{fontSize:"20px",fontWeight: "550"}}>FILTER COLLEGE</p>
+                  <div style={{ marginLeft: "1.5em", backgroundColor: "#f5f5f5c9", borderRadius: "10px", padding: "0.5em" }}>
+                    <p style={{ fontSize: "20px", fontWeight: "550" }}>FILTER COLLEGE</p>
                     <FormControl sx={{ m: 1, minWidth: 160 }}>
                       <InputLabel id="demo-simple-select-helper-label">
                         Specialization
@@ -570,19 +570,6 @@ export default class CollegePage extends Component {
                       Search
                     </Button>
                   </div>
-
-                  {/* <div style={{ marginBottom: "-1em" }}>
-                    <p
-                      style={{
-                        fontWeight: "bold",
-                        fontSize: "22px",
-                        marginTop: "1em",
-                      }}
-                    >
-                      Top Colleges
-                    </p>
-                  </div> */}
-                  <p style={{marginLeft:"2em",fontWeight: "550", backgroundColor: "#f5f5f5c9",fontSize: "15px",height:"2em",marginTop: "1em",boxShadow: "10px 10px 10px  #dbd8d7",width:"10em",borderRadius:"0.5em"}}>RESULTS</p>
                   <div className=""
                     style={{
                       display: "flex",
@@ -590,33 +577,33 @@ export default class CollegePage extends Component {
                       backgroundColor: "#F5F4F5",
                     }}
                   >
-              
+
                     {this.state.topCollege.map((item, id) => {
                       return (
-                        <div style={{width:"33%"}}>
-                        <Link
-                          style={{ textDecoration: "none" }}
-                          to={"/academic/college/" + item._id}
-                        >
-                          <CollegeSliderCard
-                            item={item}
-                            id={id}
-                            setCollegeDetails={this.setCollegeDetails}
-                          />
-                        </Link>
+                        <div className="col-sm-12 col-md-4 p-3">
+                          <Link
+                            style={{ textDecoration: "none" }}
+                            to={"/academic/college/" + item._id}
+                          >
+                            <CollegeSliderCard
+                              item={item}
+                              id={id}
+                              setCollegeDetails={this.setCollegeDetails}
+                            />
+                          </Link>
                         </div>
                       );
-                
-                })}
-                  
+
+                    })}
+
                   </div>
 
-                
 
-                  <div style={{ display: "flex", flexWrap: "wrap"   ,backgroundColor: "#F5F4F5" }}>
+
+                  <div style={{ display: "flex", flexWrap: "wrap", backgroundColor: "#F5F4F5" }}>
                     {this.state.collegeList.map((item, id) => {
                       return (
-                        <div style={{width:"33%"}}>
+                        <div style={{ width: "33%" }}>
                           <Link
                             style={{ textDecoration: "none" }}
                             to={"/academic/college/" + item._id}

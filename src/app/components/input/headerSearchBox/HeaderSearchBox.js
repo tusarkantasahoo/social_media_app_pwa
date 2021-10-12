@@ -20,7 +20,7 @@ export default class HeaderSearchBox extends Component {
       term: data,
     };
     var response = await getSearchBoxData(postJson);
-    console.log("Response",response);
+    console.log("Response", response);
     if (response.status === 200) {
       console.log("College List", response.data);
       this.setState({ collegeList: response.data });
@@ -31,49 +31,37 @@ export default class HeaderSearchBox extends Component {
     return (
       <>
         <div className="header-search-box">
-          <div class="row" style={{ marginTop: "5px" }}>
-            <div class="col-2">
-              <img
-                style={{
-                  marginTop: "4px",
-                  marginLeft: "5px",
-                  borderRadius: "3px",
-                }}
-                src={searchIcon}
-                height="35px"
-                width="35px"
-              />
-            </div>
-            <div class="col-7">
-              <input
-                value={this.state.searchText}
-                onChange={(e) => {
-                  this.searchFromHeader(e.target.value);
-                  console.log("change in header",e.target.value)
-                  // this.searchFromHeader(e.target.value);
-                }}
-                type="text"
-                value={this.state.postText}
-                className="header-search-input-component"
-                placeholder="Search Academics"
-              />
-            </div>
+          <div className="p-1">
+            <img className="search_icon" src={searchIcon} />
           </div>
+          <input
+            value={this.state.searchText}
+            onChange={(e) => {
+              this.searchFromHeader(e.target.value);
+              console.log("change in header", e.target.value)
+              // this.searchFromHeader(e.target.value);
+            }}
+            type="text"
+            value={this.state.postText}
+            className="header-search-input-component"
+            placeholder="Search Academics"
+          />
+
         </div>
         {this.state.searchText.length !== 0 &&
-        this.state.collegeList !== null &&
-        this.state.collegeList !== undefined &&
-        this.state.collegeList.length !== 0 ? (
+          this.state.collegeList !== null &&
+          this.state.collegeList !== undefined &&
+          this.state.collegeList.length !== 0 ? (
           <div
             style={{
               textAlign: "left",
               backgroundColor: "white",
-              marginLeft:"28em",
+              marginLeft: "28em",
               width: "30em",
               color: "black",
               padding: "10px",
               position: "absolute",
-              marginTop:"3.5em",
+              marginTop: "3.5em",
               boxShadow: "0 2px 5px 1px rgb(64 60 67 / 16%)",
             }}
           >

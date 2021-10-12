@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
 import ReactPlayer from "react-player";
-
 import { authResponseStoredValue } from "../../../utils/Constant.js";
-import { getFileContentById, deletePostById,addLikeForPost } from "../../api/Api.js";
+import { getFileContentById, deletePostById, addLikeForPost } from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url";
 import send from "../../../assets/images/send.png";
 import like from "../../../assets/images/svg/like.png";
@@ -22,7 +21,7 @@ export default class VideoPost extends Component {
     this.state = {
       fileId: this.props.props.fileStorageId,
       videoUrl: "",
-      likes:this.props.props.likes
+      likes: this.props.props.likes
     };
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
     this.dateFromObjectId = this.dateFromObjectId.bind(this);
@@ -48,7 +47,7 @@ export default class VideoPost extends Component {
     var response = await addLikeForPost(postJson);
     if (response.status === 200) {
       console.log("Liked");
-      this.setState({likes:this.state.likes+1})
+      this.setState({ likes: this.state.likes + 1 })
     }
   }
   render() {
@@ -59,7 +58,6 @@ export default class VideoPost extends Component {
         <div
           style={{
             textAlign: "left",
-            border: "0.5px solid #d4d1c5",
             padding: "10px",
           }}
         >
@@ -75,7 +73,6 @@ export default class VideoPost extends Component {
             <div className="ms-3">
               <h6 className="fw-bold mb-0">{this.props.props.user.name}</h6>
               <p style={{ fontSize: "15px" }}>
-                {/* {this.props.props.user.email} */}
                 {this.dateFromObjectId(this.props.props._id)}
               </p>
             </div>
@@ -94,11 +91,7 @@ export default class VideoPost extends Component {
                 <Dropdown.Menu>
                   <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
                   <Dropdown.Item href="#/action-2">
-                    <p
-                      onClick={() => this._onClickDeletePost(this.props.props)}
-                    >
-                      Delete
-                    </p>
+                    <p onClick={() => this._onClickDeletePost(this.props.props)}> Delete </p>
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -121,7 +114,7 @@ export default class VideoPost extends Component {
               </div>
             </div>
           </div>
-          <p style={{marginLeft:"70px"}}>{this.props.props.title}</p>
+          <p style={{ marginLeft: "70px", marginRight: "10px" }}>{this.props.props.title}</p>
           <div
             className="image-field-for-posts"
             onClick={() => {
@@ -132,77 +125,28 @@ export default class VideoPost extends Component {
             <ReactPlayer
               controls={true}
               pip
-              width="43em"
+              width="100%"
               height="25em"
               playIcon="false"
               url={this.state.videoUrl}
-              style={{marginLeft:"70px",borderRadius:"2em"}}
+              style={{ marginLeft: "70px",marginRight: "10px" , borderRadius: "2em" }}
             ></ReactPlayer>
           </div>
-          <div style={{display:"flex",marginTop: "2em"}} >
-           
-           <div style={{marginLeft:"10%"}}>
-           <img
-              onClick={() => {
-                this._onClickLike(this.props.props._id);
-              }}
-              src={like}
-              style={{width:"2em",height:"2em"}}
-            />
-            <br></br>
-             <p class="" style={{marginLeft:"1em"}}>{this.state.likes}</p>
-           </div>
-           
-          
-          {/* <div class="text-center pr">
-            <img src={dislike} className="action_icons ms-3" />
-            <p class="disliked">10k</p>
-          </div> */}
-     
-        <div style={{marginLeft:"30%"}}
-          onClick={() =>
-            this.setState({
-              isCommentVisible: !this.state.isCommentVisible,
-            })
-          }
-        >
-          <img    style={{width:"2em",height:"2em"}} src={comment} className=""></img>
-        </div>
-        <div style={{marginLeft:"30%"}}>
-          <img style={{width:"2em",height:"2em"}} src={share} className="action_icons"></img>
-        </div>
-      </div>
+          <div className="d-flex " style={{marginTop: "1.5rem", marginLeft: "70px" }} >
 
-          {/* <div className="d-flex nowrap aic">
-            <div className="w_fc">
-              {this.props.isLoggedIn ? (
-                <img src={userDetails.userData.userImage} className="comment_image" />
-              ) :
-                (
-                  <img src={userImage} className="comment_image" />
-                )}
+            <div className="act_sec pr">
+              <img onClick={() => { this._onClickLike(this.props.props._id); }} src={like} className="action_icons"/>
+              <p className="act_count">{this.state.likes}</p>
             </div>
-            <div className="col px-2">
-              <input
-                value={this.state.comment}
-                onChange={(e) => { this.setState({comment:e.target.value})}}
-                placeholder="Comment"
-                className="commentBox w-100"
-              ></input>
+
+            <div className="act_sec pr ms-5" onClick={() => this.setState({isCommentVisible: !this.state.isCommentVisible,})}>
+              <img src={comment} className="action_icons"/>
+              <p className="act_count">{this.state.likes}</p>
             </div>
-            <div onClick={()=>{this._onClickSendComment()}} className="w_fc" style={{ textAlign: "left", cursor: "pointer" }}>
-              <img src={send} style={{ height: "35px", width: "2.5em" }}>
-              </img>
+            <div className="act_sec pr ms-5">
+              <img src={share} className="action_icons"/>
             </div>
           </div>
-          <div>
-            {this.props.props.comments.map((item,id)=>{ 
-              return (
-                <p>{item.comment}</p>
-              )
-            })}
-
-          </div> */}
         </div>
       </>
     );
@@ -223,7 +167,6 @@ export default class VideoPost extends Component {
         var h1 = response.data.response.file.data;
         const video = new Buffer.from(h1).toString("ascii");
         console.log(video);
-        // const dataUrl = bufferToDataUrl("image/png",img)
         const dataUrl = bufferToDataUrl("video/mp4", video);
 
         console.log("buffeerUrl", dataUrl);

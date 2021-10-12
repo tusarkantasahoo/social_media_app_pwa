@@ -29,27 +29,24 @@ export default class Home extends Component {
       <>
         <PostMessageBox isLoggedIn={this.props.isLoggedIn} />
         <div className="home-all-details" style={{ marginTop: "3%" }}>
-          <h3 style={{ color: "#0089ff" }}>Who we are ?</h3>
-          <h4>
+          <h4 style={{ color: "#0089ff" }}>Who we are ?</h4>
+          <p>
             Where individuals meets Education / Career / Jobs <br></br>
             Skills / Community at single Platform
-          </h4>
-          {/* <img src={allIconsHome} style={{height:"21em",width:"60em"}}></img> */}
-          <div style={{display:"flex", flexWrap: "wrap",}}>
-         
-              <Cardbox image={roomicon} name={"Room"} desc="Here you can share your thoughts whats happening news Stories and Informative videos" />
-              <Cardbox image={academicicon} name={"Academic"} desc="Here you can find your college and deatils about college" />
-              <Cardbox image={careericon} name={"Career"} desc="Here you can Know your career options using different tools" />
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", }}>
+            <Cardbox image={roomicon} name={"Room"} desc="Here you can share your thoughts whats happening news Stories and Informative videos" />
+            <Cardbox image={academicicon} name={"Academic"} desc="Here you can find your college and deatils about college" />
+            <Cardbox image={careericon} name={"Career"} desc="Here you can Know your career options using different tools" />
+            <Cardbox image={forumicon} name={"Forum"} desc="Here you can Ask questions and gert help" />
+            <Cardbox image={surveyicon} name={"Survey"} desc="Using this tool apperr in survey. and post surveys too. It can be 3 types Polling Research and Quiz" />
+            <Cardbox image={jobicon} name={"Job"} desc="Here you can share your thoughts whats happening news Stories and Informative videos" />
+            <Cardbox image={othericon} name={"Other"} desc="Here you can share your thoughts whats happening news Stories and Informative videos" />
+            <Cardbox image={plannericon} name={"Planner"} desc="Here you can share your thoughts whats happening news Stories and Informative videos" />
+            <Cardbox image={repoicon} name={"Repo"} desc="Here you can share your thoughts whats happening news Stories and Informative videos" />
+            <Cardbox image={skillicon} name={"Skill"} desc="Here you can share your thoughts whats happening news Stories and Informative videos" />
 
-               <Cardbox image={forumicon} name={"Forum"} desc="Here you can Ask questions and gert help" />
-               <Cardbox image={surveyicon} name={"Survey"} desc="Using this tool apperr in survey. and post surveys too. It can be 3 types Polling Research and Quiz" />
-               <Cardbox image={jobicon} name={"Job"} desc="Here you can share your thoughts whats happening news Stories and Informative videos" />
-               <Cardbox image={othericon} name={"Other"} />
-               <Cardbox image={plannericon} name={"Planner"} />
-               <Cardbox image={repoicon} name={"Repo"} />
-               <Cardbox image={skillicon} name={"Skill"} />
-               
-         
+
           </div>
         </div>
         <div style={{ marginTop: "15%" }}>

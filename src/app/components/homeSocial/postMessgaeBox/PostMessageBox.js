@@ -97,7 +97,7 @@ export default class PostMessageBox extends Component {
       <>
         <div className="message-container p-2">
           {this.state.renderWhatToPost === "none" ? (
-            <div className="container-fluid px-0">
+            <div className="container-fluid post_box">
               <div className="d-flex aic">
                 <div className="user_post_img" style={{ textAlign: "left" }}>
                   {this.props.isLoggedIn ? (
@@ -142,7 +142,7 @@ export default class PostMessageBox extends Component {
                       }
                     })}
                   </div>
-                  <div className="col-4" id="filed-for-post-button">
+                  <div className="" id="filed-for-post-button">
                     <button
                       className="post-button"
                       type="submit"

@@ -34,33 +34,45 @@ export default class Landing extends Component {
       width: 0,
       height: 0,
       optionArray: [
-        { name: "Home", code: "home",icon:home },
-        { name: "Rooms", code: "rooms",icon:roomicon },
-        { name: "Academic", code: "academic",icon:academicicon },
-        { name: "Career", code: "career",icon:careericon },
-        { name: "Forum", code: "Forum",icon:forumicon },
-        { name: "Survey", code: "survey",icon: surveyicon},
-        { name: "Self Help", code: "selfHelp",icon:othericon },
-        { name: "Jobs", code: "jobs",icon: careericon},
-        { name: "Skills", code: "skills",icon:skillicon },
-        { name: "Repository", code: "repository",icon: repoicon},
+        { name: "Home", code: "home", icon: home },
+        { name: "Rooms", code: "rooms", icon: roomicon },
+        { name: "Academic", code: "academic", icon: academicicon },
+        { name: "Career", code: "career", icon: careericon },
+        { name: "Forum", code: "Forum", icon: forumicon },
+        { name: "Survey", code: "survey", icon: surveyicon },
+        { name: "Self Help", code: "selfHelp", icon: othericon },
+        { name: "Jobs", code: "jobs", icon: careericon },
+        { name: "Skills", code: "skills", icon: skillicon },
+        { name: "Repository", code: "repository", icon: repoicon },
       ],
       currentOption: props.page,
       isUserDashboard: false,
       screenManage: "social",
-      people : [
-        {name:"Jennifer Sen",
-      image:girl,},
-      {name:"Lawrence Sahoo",
-      image:girl1},
-      {name:"Emaa Watson",
-      image:girl2,},
-      {name:"Jane foster",
-      image:girl3,},
-      {name:"Becker joe",
-      image:girl,},
-      {name:"Jenny may",
-      image:girl1},
+      people: [
+        {
+          name: "Jennifer Sen",
+          image: girl,
+        },
+        {
+          name: "Lawrence Sahoo",
+          image: girl1
+        },
+        {
+          name: "Emaa Watson",
+          image: girl2,
+        },
+        {
+          name: "Jane foster",
+          image: girl3,
+        },
+        {
+          name: "Becker joe",
+          image: girl,
+        },
+        {
+          name: "Jenny may",
+          image: girl1
+        },
       ]
     };
 
@@ -71,7 +83,7 @@ export default class Landing extends Component {
       this.renderScreenDependingOnSelection.bind(this);
     this._changeScreenRender = this._changeScreenRender.bind(this);
   }
- 
+
 
   _onClickUserDashboard() {
     this.setState({ isUserDashboard: !this.state.isUserDashboard });
@@ -80,37 +92,36 @@ export default class Landing extends Component {
   _changeScreenRender(data) {
     this.setState({ currentOption: data });
   }
- 
+
   renderScreenDependingOnSelection() {
     console.log("Home render", this.state.currentOption.code);
     switch (this.state.currentOption.code) {
       case "home":
         return (
           <>
-          <div className="" id="" style={{width:"50em",marginLeft:"0.1em",boxShadow: "1px 1px 1px  #dbd8d7"}}>
-            <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Home</p>
-          <div style={{marginLeft:"0%",backgroundColor:"white",marginTop:"1em",borderRadius:"1em"}}>
-            <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
+            <div id="c_body" className="c_body">
+              {/* <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Home</p> */}
+              <div>
+                <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
+              </div>
             </div>
-          </div>
-  
+
           </>
         );
 
       case "rooms":
         return (
           <>
-         
-           <div style={{width:"50em",marginLeft:"",boxShadow: "1px 1px 1px  #dbd8d7"}}>
-           <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Rooms</p>
-            <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
+
+            <div className="c_body">
+              <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
             </div>
-                    </>
+          </>
         );
 
       case "userDetails":
         return (
-          <div className="col-10" id="home-social">
+          <div className="c_body" id="home-social">
             <UserDetails
               _onClickUserDashboard={this._onClickUserDashboard}
               isLoggedIn={this.props.isAuthed}
@@ -120,98 +131,93 @@ export default class Landing extends Component {
 
       case "academic":
         return (
-          <div style={{marginLeft:"",width:"70em"}}>
-          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Academics</p>
-          <Academic />
-           </div>
-         
+          <div className="c_body">
+            <Academic />
+          </div>
+
         );
 
       case "survey":
         return (
-          <div style={{marginLeft:""}}>
-          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Survey</p>
-          <Survey />
-           </div>
-     
+          <div className="c_body">
+            <Survey />
+          </div>
+
         );
 
       case "surveyResponse":
         return (
-          <div style={{marginLeft:"",width:"65em"}}>
-          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Survey Response</p>
-          <SurveyResponse />
-           </div>
-       
+          <div className="c_body">
+            <SurveyResponse />
+          </div>
+
         );
 
       case "college":
         return (
-          <div style={{marginLeft:"",width:"100%"}}>
-          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>College</p>
-          <CollegePage />
-           </div>
-       
+          <div className="c_body_fw">
+            <CollegePage />
+          </div>
+
         );
 
-        case "collegeDetails":
-          return (
-            <div style={{marginLeft:"",width:"65em"}}>
-          <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>College Details</p>
-          <CollegeDetails />
-           </div>
-          
-          );
+      case "collegeDetails":
+        return (
+          <div className="c_body">
+            <CollegeDetails />
+          </div>
+
+        );
 
       case "career":
         return (
-          <div className="col-10" id="home-social">
+          <div className="c_body" id="home-social">
             <CommingSoon />
           </div>
         );
       case "jobs":
         return (
-          <div className="col-10" id="home-social">
+          <div className="c_body" id="home-social">
             <CommingSoon />
           </div>
         );
       case "forum":
         return (
-          <div className="col-10" id="home-social">
+          <div className="c_body" id="home-social">
             <CommingSoon />
           </div>
         );
 
       case "selfHelp":
         return (
-          <div className="col-10" id="home-social">
+          <div className="c_body" id="home-social">
             <CommingSoon />
           </div>
         );
 
       case "skills":
         return (
-          <div className="col-10" id="home-social">
+          <div className="c_body" id="home-social">
             <CommingSoon />
           </div>
         );
 
       case "repository":
         return (
-          <div className="col-10" id="home-social">
+          <div className="c_body" id="home-social">
             <CommingSoon />
           </div>
         );
 
       case "planner":
         return (
-          <div className="col-10" id="home-social">
+          <div className="c_body" id="home-social">
             <CommingSoon />
           </div>
         );
       case "others":
         return (
-          <div className="col-10" id="home-social">
+          <div className="c_body" id="home-social">
             <CommingSoon />
           </div>
         );
@@ -223,7 +229,7 @@ export default class Landing extends Component {
 
   render() {
 
-  
+
     console.log("Room constructor called", this.props);
     console.log("Room constructor called2", this.state);
     return (
@@ -234,20 +240,20 @@ export default class Landing extends Component {
           isLoggedIn={this.props.isAuthed}
           _changeScreenRender={this._changeScreenRender}
         />
-        <div className="container-fluid" style={{display: "flex"}}>
-      
+        <div className="container_custom" style={{ display: "flex", marginTop: "70px" }}>
 
-              <HomeOptions
-                props={this.state}
-                isLoggedIn={true}
-                setPage={this.props.setPage}
-                history={this.props.history}
-              />
 
-      
-            {this.renderScreenDependingOnSelection()}
-          </div>
-  
+          <HomeOptions
+            props={this.state}
+            isLoggedIn={true}
+            setPage={this.props.setPage}
+            history={this.props.history}
+          />
+
+
+          {this.renderScreenDependingOnSelection()}
+        </div>
+
       </>
     );
   }

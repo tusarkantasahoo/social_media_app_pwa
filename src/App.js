@@ -47,7 +47,7 @@ export default class App extends Component {
       localStorage.getItem(authResponseStoredValue)
     );
     return (
-      <div>
+      <>
         <Route
           path="/"
           exact
@@ -523,7 +523,7 @@ export default class App extends Component {
           path="/forgotPasswordUpdate/:username/:token"
           component={ResetPassword}
         ></Route>
-      </div>
+      </>
     );
   }
 
