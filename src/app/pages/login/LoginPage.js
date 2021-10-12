@@ -13,6 +13,7 @@ import facebook from "../../../assets/images/facebook.png";
 import history from '../../pages/history/History.js';
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
+
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -150,11 +151,13 @@ export default class LoginPage extends Component {
                 {/* <p onClick={()=>{this.props.history.push('/signup');}}>Login</p> */}
                 <div className="hr_devider"></div>
                 <div className="container-new-account">
+                <Link to="/signup" style={{textDecoration: "none"}}>
                   <p className="text-new-account" onClick={() => {
                     // this.props.history.push("/signup")
                     console.log("props", this.props);
-                    this.props.updateRouteToPage("signup")
+                    // this.props.updateRouteToPage("signup")
                   }}>New Account?</p>
+                  </Link>
                 </div>
               </div>
             </div>

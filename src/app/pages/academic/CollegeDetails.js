@@ -13,10 +13,10 @@ export default class CollegeDetails extends Component {
       {name: "ADMISSION", code: "admission"},
       {name: "REVIEWS", code: "review"},
       {name: "CUTOFF", code: "cutoff"},
-      {name: "PLACEMENT", code: "placement"},
-      {name: "GALLARY", code: "gallary"},
-      {name: "FACILITY", code: "facility"},
-      {name: "HOSTEL", code: "hostel"},
+      // {name: "PLACEMENT", code: "placement"},
+      // {name: "GALLARY", code: "gallary"},
+      // {name: "FACILITY", code: "facility"},
+      // {name: "HOSTEL", code: "hostel"},
       {name: "ADD POST", code: "collegepost"},
      ],
      currentTab:{name: "INFO", code: "info"},
@@ -52,7 +52,7 @@ export default class CollegeDetails extends Component {
       
         <div
           // style={{ backgroundImage: `url(${details.banner})`, height: "15em" }}
-           style={{ backgroundImage: `url(${banner})`, height: "15em" }}
+           style={{ backgroundImage: `url(${banner})`, height: "18em" }}
           
         >
           <div style={{ height: "7em" }}></div>
@@ -60,55 +60,33 @@ export default class CollegeDetails extends Component {
             <div style={{ textAlign: "left" }}>
               <img
                  src={logoClg}
-                style={{ height: "8em", width: "8em" }}
+                style={{ height: "10em", width: "10em",marginLeft:"1em" }}
               ></img>
-            </div>
-            <div style={{ textAlign: "left" }}>
-              <p
-                style={{
-                  fontSize: "25px",
-                  fontWeight: "bold",
-                  marginLeft: "2em",
-                  marginTop: "1em",
-                  color: "white",
-                }}
-              >
-                {this.state.collegeDetails.name}
-              </p>
-
-              <p
-                style={{
-                  fontSize: "18px",
-                  marginLeft: "2em",
-                  marginTop: "1em",
-                  color: "white",
-                }}
-              >
-                Address : {this.state.collegeDetails.address}
-              </p>
             </div>
           </div>
         </div>
-
-        <div style={{ height: "6em",display:"flex",textAlign:"center" }}>
-        <div style={{width:"27%"}}>
-        <p style={{flexBasis:"26%",marginTop:"1em",marginLeft:"1em",fontWeight:"800",marginBottom:"1px"}}>{this.state.collegeDetails.name} <img src={logo} alt="logo" style={{height:"15px",width:"14px"}} ></img> </p>
-        <p style={{flexBasis:"26%",marginLeft:"1em",fontSize:"smaller"}} >College / University</p>
+      <div style={{backgroundColor: "#f3f3f3"}}>
+        <div style={{ height: "6em",display:"flex",backgroundColor: "white"}}>
+        <div style={{width:"40%"}}>
+        <p style={{flexBasis:"26%",marginTop:"1em",marginLeft:"1em",fontWeight:"800",marginBottom:"1px"}}>{this.state.collegeDetails.name!==null&this.state.collegeDetails.name!==undefined?this.state.collegeDetails.name.toUpperCase():""} <img src={logo} alt="logo" style={{height:"20px",width:"20px"}} ></img> </p>
+        <p style={{fontSize:"12px",marginLeft:"1em",fontWeight:"500",marginTop:"0.6em"}} >COLLEGE / UNIVERSITY</p>
         </div>
         {this.state.tabs.map((item,id)=>{
           if(this.state.currentTab===item){
             
-            return(<p onClick={()=> this.setState({currentTab:item})} style={{fontSize: "14px",fontWeight:"bold",marginTop:"1em",cursor:"pointer",color:"blue",marginLeft:"1em"}}>{item.name}</p>)
+            return(<p onClick={()=> this.setState({currentTab:item})} style={{fontSize: "16px",fontWeight:"500",marginTop:"1em",cursor:"pointer",color:"blue",marginLeft:"1em"}}>{item.name}</p>)
           }
           else{
-            return(<p onClick={()=> this.setState({currentTab:item})} style={{fontSize: "14px",fontWeight:"bold",marginTop:"1em",cursor:"pointer",marginLeft:"1em" }}>{item.name}</p>)
+            return(<p onClick={()=> this.setState({currentTab:item})} style={{fontSize: "16px",fontWeight:"500",marginTop:"1em",cursor:"pointer",marginLeft:"1em" }}>{item.name}</p>)
           }
           
         })}
 
         </div>
+     
 
  {this.renderDetailsBySelection(this.state.currentTab)}
+ </div>
       </>
     );
   }

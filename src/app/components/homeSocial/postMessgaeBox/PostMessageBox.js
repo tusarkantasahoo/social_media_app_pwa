@@ -126,7 +126,7 @@ export default class PostMessageBox extends Component {
                 </div>
               </div>
 
-              {this.state.postText.length === 0 ? (
+              {this.state.postText.length === 0&&this.state.isTextFieldClicked===false ? (
                 <div className="d-flex aic" id="filed-for-image-postbutton">
                   {/* <div className="col-1"></div> */}
                   <div className="col px-0" id="upload-image-image-field">
