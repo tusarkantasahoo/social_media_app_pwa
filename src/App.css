@@ -55,7 +55,9 @@ select:focus{
 .aic {
   align-items: center;
 }
-
+.aib{
+  align-items: baseline;
+}
 .ml_1 {
   margin-left: 1rem;
 }
@@ -578,4 +580,100 @@ font-weight: 600;
   position: absolute;
   top: -15px;
   right: -11px;
+}
+.academic_card{
+  border: 1px solid transparent;
+  transition: all 1s ease-in-out;
+}
+.academic_card:hover{
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+.academic_icon{
+  width: 3rem;
+}
+.academic_card:hover .academic_icon{
+  fill: #6EA3DB;
+}
+.clg_crd{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card_banner{
+  height: 100px;
+  padding: 0.5rem;
+  position: relative;
+}
+.crdBnrTxt{
+  color: #fff;
+  z-index: 999;
+  position: relative;
+}
+.crd_logo{
+  height: 4em;
+  width: 4em;
+  border-radius: 2em;
+  margin-left: 1em;
+  margin-top: -2em;
+}
+.clgCrdtxt{
+  color: #116191;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+.b_top{
+  border-top: 1px solid #c4c4c4c4;
+}
+.fs-7{
+  font-size: 14px;
+}
+.ovrlay{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #00000073;
+}
+.filterSec{
+  min-width: 150px;
+}
+.badges{
+  width: 2rem;
+}
+.abtIcon{
+  width: 18px;
+  height: 18px;
+}
+.academic_card:hover .hover_blue{
+  color: #1DA1F2;
+}
+.menuBar{
+  width: 35px;
+  position: absolute;
+  right: -55px;
+  top: -15px;
+}
+@media only screen and (min-width: 992px) {
+  .menuBar{
+    display: none;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .side_bar_wrap {
+    border-right: 1px solid #c4c4c4c4;
+    /* display: none; */
+    padding: 1rem;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    background: #fff;
+    z-index: 9;
+  }
+  .c_body_fw{
+    margin-left: 0px;
+  }
+ 
 }

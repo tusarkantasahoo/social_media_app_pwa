@@ -131,7 +131,7 @@ export default class Landing extends Component {
 
       case "academic":
         return (
-          <div className="c_body">
+          <div className="c_body_fw">
             <Academic />
           </div>
 

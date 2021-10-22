@@ -11,150 +11,67 @@ export default class CollegeSliderCard extends Component {
     this.getRandomIng = this.getRandomIng.bind(this);
   }
 
-  limitString(str){
-    if(str.length>20){
-      return str.substring(0,20)+".."
+  limitString(str) {
+    if (str.length > 20) {
+      return str.substring(0, 20) + ".."
     }
-    else{ return str}
+    else { return str }
 
   }
 
-  getRandomIng(val){
- if(val%2===0){
-   return collegeBanner
- }
-else{ return clgBuild}
+  getRandomIng(val) {
+    if (val % 2 === 0) {
+      return collegeBanner
+    }
+    else { return clgBuild }
   }
 
   render() {
     return (
       <>
-        <div
-          style={{
-            height: "17em",
-            border: "1px solid #dbd8d7",
-            borderRadius: "",
-            margin: "5px",
-            backgroundColor: "white",
-          }}
-        >
-          <div
-            style={{
-              backgroundImage: `url(${this.getRandomIng(this.props.id)})`,
-              height: "6em",
-              width: "100%",
-            }}
-          >
-            <p
-              style={{
-                fontSize: "18px",
-                color: "white",
-                marginLeft: "1em",
-                position: "bottom",
-                fontWeight: "bold",
-              }}
-            >
-              {this.props.item.name.toUpperCase()}
-            </p>
+        <div className="card pr shadow">
+          <div style={{ backgroundImage: `url(${this.getRandomIng(this.props.id)})` }} className="card_banner">
+            <div className="ovrlay"></div>
+            <p className="crdBnrTxt">{this.props.item.name.toUpperCase()}</p>
           </div>
-          <img
-            src={logo}
-            style={{
-              height: "4em",
-              width: "4em",
-              borderRadius: "2em",
-              marginLeft: "1em",
-              marginTop: "-2em",
-            }}
-          ></img>
-          <div style={{ display: "flex", flexWrap: "wrap", height: "5em" }}>
-            <p
-              style={{
-                fontSize: "12px",
-                fontWeight: "500",
-                color: "#116191",
-                width: "15em",
-                boxShadow: "7px 7px 7px  #dbd8d7",
-                // backgroundColor: "#426983",
-                // borderRadius: "15px",
-                marginLeft: "10px",
-                textAlign: "center",
-              }}
-            >
-              {this.limitString(this.props.item.affiliation)}
-            </p>
-            <p
-              style={{
-                fontSize: "12px",
-                fontWeight: "500",
-                color: "#116191",
-                width: "15em",
-                boxShadow: "7px 7px 7px  #dbd8d7",
-                // backgroundColor: "#426983",
-                // borderRadius: "15px",
-                marginLeft: "10px",
-                textAlign: "center",
-              }}
-            >
-              
-              DATA1
-            </p>
-            <p
-              style={{
-                fontSize: "12px",
-                fontWeight: "500",
-                color: "#116191",
-                width: "15em",
-                boxShadow: "7px 7px 7px  #dbd8d7",
-                // backgroundColor: "#426983",
-                // borderRadius: "15px",
-                marginLeft: "10px",
-                textAlign: "center",
-              }}
-            >
-              DATA2
-            </p>
-            <p
-              style={{
-                fontSize: "12px",
-                fontWeight: "500",
-                color: "#116191",
-                width: "15em",
-                boxShadow: "7px 7px 7px  #dbd8d7",
-                // backgroundColor: "#426983",
-                // borderRadius: "15px",
-                marginLeft: "10px",
-                textAlign: "center",
-              }}
-            >
-              DATA3
-            </p>
-          </div>
-          <div style={{height:"1.5em",textAlign:"center"}}>
-            <p style={{fontSize:"11px",color:"#bb9898"}}>ADMISSION 2021 REVIEWS COURSEFEES</p>
-            </div>
-          <div style={{ display: "flex", height: "2em", flexWrap: "wrap" }}>
-            <div
-              style={{
-                backgroundColor: "#075D70",
-                textAlign: "center",
-                width: "50%",
-                height: "2em",
-              }}
-            >
-              <p style={{ color: "white", fontWeight: "500" }}>APPLY NOW</p>
-            </div>
-            <div
-              style={{
-                backgroundColor: "white",
-                textAlign: "center",
-                width: "50%",
-                height: "2em",
-              }}
-            >
-              <p style={{ color: "black", fontWeight: "500" }}>GET DETAILS</p>
+          <img src={logo} className="crd_logo pr mb-2" />
+          <div className="p-3">
+            <marquee>
+              <p style={{ fontSize: "12px", fontWeight: "500", color: "#116191" }}>
+                {this.limitString(this.props.item.affiliation)}
+              </p>
+            </marquee>
+            <div className="d-flex flex-wrap jcsb">
+              <div className="text-center">
+                <p className="clgCrdtxt">20,000</p>
+                <p className="text-secondary fs-7">Admission Fee</p>
+              </div>
+
+              <div className="text-center">
+                <p className="clgCrdtxt">50,000</p>
+                <p className="text-secondary fs-7">Tution Fee</p>
+              </div>
+
+              <div className="text-center">
+                <p className="clgCrdtxt">4 years</p>
+                <p className="text-secondary fs-7">Duration</p>
+              </div>
+
             </div>
           </div>
+          <div style={{ height: "1.5em", textAlign: "center" }}>
+            <p style={{ fontSize: "11px", color: "#bb9898" }}>ADMISSION 2021 REVIEWS COURSEFEES</p>
+          </div>
+
+          <div className="d-flex flex-wrap jcsb b_top">
+            <div className="col-sm-6 col-md-6 bg-success text-center shadow-sm py-2">
+              <p className="text-light mb-0 fw-bold">APPLY NOW</p>
+            </div>
+            <div className="col-sm-6 col-md-6 text-center shadow-sm py-2">
+              <p className="fw-bold mb-0 text-dark">GET DETAILS</p>
+            </div>
+          </div>
+
         </div>
       </>
     );

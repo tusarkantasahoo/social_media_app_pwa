@@ -16,15 +16,24 @@ import collegePredictor from "./asset/school.png";
 import career from "./asset/career.png";
 import grades from "./asset/grades.png";
 // install Swiper modules
-import college from "../../../assets/images/academics/college.png";
-import school from "../../../assets/images/academics/school.png";
-import coaching from "../../../assets/images/academics/education.png";
-import exams from "../../../assets/images/academics/exam.png";
-import courses from "../../../assets/images/academics/courses.png";
-import studyAbroad from "../../../assets/images/academics/studying.png";
-import books from "../../../assets/images/academics/books.png";
-import results from "../../../assets/images/academics/analysis.png";
-import eduLoans from "../../../assets/images/academics/strategy.png";
+import college from "../../../assets/images/academics/icons/college.png";
+
+import school from "../../../assets/images/academics/icons/school.png";
+
+import coaching from "../../../assets/images/academics/icons/coaching.png";
+
+import exams from "../../../assets/images/academics/icons/exam.png";
+
+import courses from "../../../assets/images/academics/icons/course.png";
+
+import studyAbroad from "../../../assets/images/academics/icons/abroad.png";
+
+import books from "../../../assets/images/academics/icons/book.png";
+
+import results from "../../../assets/images/academics/icons/results.png";
+
+import eduLoans from "../../../assets/images/academics/icons/loan.png";
+
 import arrowRight from "../../../assets/images/arrowRight.png";
 import CollegePage from "./CollegePage.js";
 import history from "../../pages/history/History.js";
@@ -74,41 +83,24 @@ export default class Academic extends Component {
     return (
       <>
         {this.state.currentAspect.code === null ? (
-          <div>
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
+          <div className="academic_wrap">
+            <div className="d-flex flex-wrap mt-4">
               {this.state.aspects.map((item, index) => {
                 return (
                   <Link
                     style={{ textDecoration: "none", color: "black" }}
                     to={"/academic/" + item.code}
+                    className="col-sm-12 col-md-5 col-lg-4 px-3 mb-4"
                   >
-                    <div
-                  
+                    <div className="card academic_card p-3 d-flex flex-column aic text-center"
                       onClick={() => {
                         this.setState({
                           currentAspect: { name: item.name, code: item.code },
                         });
-                      }}
-                      style={{
-                        marginLeft:"1em",
-                        height: "15em",
-                        width: "15em",
-                        cursor: "pointer",
-                        marginTop: "1em",
-                        backgroundColor: "#f7f7f9",
-                        boxShadow: "10px 10px 10px  #dbd8d7",
-                        borderRadius: "1em",
-                        padding:"0.5em"
-                      }}
-                    >
-                      
-                      <p style={{fontSize:"25px",fontWeight: "bold" }}>{item.name}<img src={arrowRight} style={{width:"1em",height:"1em",marginLeft:"0.5em"}}></img></p>
-
-                      <img
-                        src={item.img}
-                        style={{ height: "3em", width: "3em" }}
-                      ></img>
-                      <br></br>
+                      }}>
+                      <img src={item.img} className="academic_icon"/>
+                      <p className="fw-bold mt-2 mb-0 hover_blue">{item.name}</p>
+                      <p className="">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     </div>
                   </Link>
                 );

@@ -228,139 +228,65 @@ export default class CollegePage extends Component {
         ) : (
           <>
             <div>
-              <div style={{ display: "flex", marginBottom: "3em" }}>
-                <div
+              <div className="d-flex mt-4 ps-4">
+                <div className="clg_crd col-sm-12 col-md-3"
                   onClick={() => {
                     this.setState({ isCareerMaker: true });
-                  }}
-                  style={{
-                    marginLeft: "1em",
-                    height: "7em",
-                    width: "15em",
-                    cursor: "pointer",
-                    marginTop: "1em",
-                    backgroundColor: "#f7f7f9",
-                    boxShadow: "10px 10px 10px  #dbd8d7",
-                    borderRadius: "1em",
-                    padding: "0.5em",
-                  }}
-                >
+                  }}>
                   <img
                     src={collegePredictor}
                     style={{ height: "2em", width: "2em" }}
                   ></img>
 
-                  <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                  <p className="fw-bold">
                     College Predictor
-                    <img
-                      src={arrowRight}
-                      style={{
-                        width: "1em",
-                        height: "1em",
-                        marginLeft: "0.5em",
-                      }}
-                    ></img>
                   </p>
                 </div>
 
                 <div
-                  style={{
-                    marginLeft: "1em",
-                    height: "7em",
-                    width: "15em",
-                    cursor: "pointer",
-                    marginTop: "1em",
-                    backgroundColor: "#f7f7f9",
-                    boxShadow: "10px 10px 10px  #dbd8d7",
-                    borderRadius: "1em",
-                    padding: "0.5em",
-                  }}
+                  className="clg_crd col-sm-12 col-md-3"
                 >
                   <img
                     src={career}
                     style={{ height: "2em", width: "2em" }}
                   ></img>
 
-                  <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                  <p className="fw-bold">
                     Career Matcher
-                    <img
-                      src={arrowRight}
-                      style={{
-                        width: "1em",
-                        height: "1em",
-                        marginLeft: "0.5em",
-                      }}
-                    ></img>
                   </p>
                 </div>
 
                 <div
-                  style={{
-                    marginLeft: "1em",
-                    height: "7em",
-                    width: "15em",
-                    cursor: "pointer",
-                    marginTop: "1em",
-                    backgroundColor: "#f7f7f9",
-                    boxShadow: "10px 10px 10px  #dbd8d7",
-                    borderRadius: "1em",
-                    padding: "0.5em",
-                  }}
+                  className="clg_crd col-sm-12 col-md-3"
                 >
                   <img
                     src={grades}
                     style={{ height: "2em", width: "2em" }}
                   ></img>
 
-                  <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                  <p className="fw-bold">
                     Grade Calculator
-                    <img
-                      src={arrowRight}
-                      style={{
-                        width: "1em",
-                        height: "1em",
-                        marginLeft: "0.5em",
-                      }}
-                    ></img>
                   </p>
                 </div>
 
                 <div
-                  style={{
-                    marginLeft: "1em",
-                    height: "7em",
-                    width: "15em",
-                    cursor: "pointer",
-                    marginTop: "1em",
-                    backgroundColor: "#f7f7f9",
-                    boxShadow: "10px 10px 10px  #dbd8d7",
-                    borderRadius: "1em",
-                    padding: "0.5em",
-                  }}
+                  className="clg_crd col-sm-12 col-md-3"
                 >
                   <img
                     src={collegePredictor}
                     style={{ height: "2em", width: "2em" }}
                   ></img>
 
-                  <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+                  <p className="fw-bold">
                     Area of study
-                    <img
-                      src={arrowRight}
-                      style={{
-                        width: "1em",
-                        height: "1em",
-                        marginLeft: "0.5em",
-                      }}
-                    ></img>
                   </p>
                 </div>
               </div>
               {this.state.currentCollege === null ? (
                 <>
                   <div style={{ marginLeft: "1.5em", backgroundColor: "#f5f5f5c9", borderRadius: "10px", padding: "0.5em" }}>
-                    <p style={{ fontSize: "20px", fontWeight: "550" }}>FILTER COLLEGE</p>
-                    <FormControl sx={{ m: 1, minWidth: 160 }}>
+                    <p >FILTER COLLEGE</p>
+                    <FormControl sx={{ m: 1, minWidth: 160 }} className="pr">
                       <InputLabel id="demo-simple-select-helper-label">
                         Specialization
                       </InputLabel>
@@ -369,7 +295,8 @@ export default class CollegePage extends Component {
                         id="demo-simple-select-helper"
                         value={this.state.selections.specialization}
                         label="specialization"
-                        style={{ width: "200px" }}
+                        // style={{ maxWidth: "200px" }}
+                        className="filterSec"
                         onChange={(e) => {
                           this.setState({
                             selections: {
@@ -387,6 +314,8 @@ export default class CollegePage extends Component {
                         })}
                       </Select>
                     </FormControl>
+
+
                     <FormControl
                       sx={{ m: 1, minWidth: 160 }}
                       style={{ marginLeft: "1em" }}
@@ -399,7 +328,8 @@ export default class CollegePage extends Component {
                         id="demo-simple-select-helper"
                         value={this.state.selections.state}
                         label="specialization"
-                        style={{ width: "200px" }}
+                        // style={{ maxWidth: "200px" }}
+                        className="filterSec"
                         onChange={(e) => {
                           this.setCityListFromState(e.target.value);
                           this.setState({
@@ -433,7 +363,8 @@ export default class CollegePage extends Component {
                         id="demo-simple-select-helper"
                         value={this.state.selections.city}
                         label="specialization"
-                        style={{ width: "200px" }}
+                        // style={{ maxWidth: "200px" }}
+                        className="filterSec"
                         onChange={(e) => {
                           this.setState({
                             selections: {
@@ -466,7 +397,8 @@ export default class CollegePage extends Component {
                         id="demo-simple-select-helper"
                         value={this.state.selections.affiliation}
                         label="Affiliation"
-                        style={{ width: "200px" }}
+                        // style={{ maxWidth: "200px" }}
+                        className="filterSec"
                         onChange={(e) => {
                           this.setState({
                             selections: {
@@ -501,7 +433,8 @@ export default class CollegePage extends Component {
                         id="demo-simple-select-helper"
                         value={this.state.selections.duration}
                         label="Course Duration"
-                        style={{ width: "200px" }}
+                        // style={{ maxWidth: "200px" }}
+                        className="filterSec"
                         onChange={(e) => {
                           this.setState({
                             selections: {
@@ -539,7 +472,8 @@ export default class CollegePage extends Component {
                         id="demo-simple-select-helper"
                         value={this.state.selections.mode}
                         label="Mode"
-                        style={{ width: "200px" }}
+                        // style={{ maxWidth: "200px" }}
+                        className="filterSec"
                         onChange={(e) => {
                           this.setState({
                             selections: {
@@ -562,6 +496,8 @@ export default class CollegePage extends Component {
                         <MenuItem value="offline">Offline</MenuItem>
                       </Select>
                     </FormControl>
+                  </div>
+                  <div className="">
                     <Button
                       style={{ marginTop: "1em", marginLeft: "1em" }}
                       variant="outlined"

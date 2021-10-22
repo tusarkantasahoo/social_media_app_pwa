@@ -26,16 +26,13 @@ export default class AppHeader extends Component {
         {this.props.isLoggedIn ? (
           <div className="container-fluid nav_wrap">
             <div className="container_custom d-flex jcsb aic">
-              <div className="logo_wrapper">
+              <div className="logo_wrapper d-flex mb-0">
                 <img src={monastreeLogo} className="img_res"></img>
                 <p style={{ color: "white", marginTop: "-0.5em" }}>MONASTREE</p>
               </div>
 
               <HeaderSearchBox />
               <div className="d-flex">
-                {/* <p style={{ fontSize: "18px", fontWeight: "bold", color: "white", marginLeft: "1em", marginTop: "1em" }}>NEWS FEED</p> */}
-
-                {/* <img src={home} style={{ height: "2em", width: "2em", marginTop: "1em", marginLeft: "3em" }} className="img_res"></img> */}
                 <img src={comment} style={{ height: "2em", width: "2em", marginTop: "1em", marginLeft: "3em" }} className="img_res"></img>
                 <img src={bell} style={{ height: "2em", width: "2em", marginTop: "1em", marginLeft: "3em" }} className="img_res"></img>
                 <div style={{ textAlign: "right", cursor: "pointer" }}>
@@ -53,28 +50,24 @@ export default class AppHeader extends Component {
 
         ) : (
 
-          <div
-            className="container-fluid"
-            style={{ display: "flex", height: "4em", backgroundImage: "linear-gradient(to right,#111820, #9e9ebb)" }}
-          >
+          <div className="container-fluid nav_wrap px-3">
+            <div className="container_custom d-flex jcsb aic">
 
+              <div className="logo_wrapper d-flex mb-0">
+                <img src={monastreeLogo} className="img_res"></img>
+                <p className="text-white mb-0 ms-2">MONASTREE</p>
+              </div>
 
-            <div className="logo_wrapper">
-              <img src={monastreeLogo} className="img_res"></img>
-              <p style={{ color: "white", marginTop: "-0.5em" }}>MONASTREE</p>
-            </div>
-
-            <HeaderSearchBox />
-            <img src={comment} style={{ height: "2em", width: "2em", marginTop: "1em", marginLeft: "3em" }} className="img_res"></img>
-            <div style={{ textAlign: "right", cursor: "pointer" }}>
-              <div
-                className="col-4 d-flex jcfe aic">
-                <Link to="/login" style={{ textDecoration: "none" }}>
-                  <img src={user_w} className="userIcon" />
-                </Link>
+              <HeaderSearchBox />
+              <div className="d-flex">
+                <img src={comment} style={{ height: "2em", width: "2em"}} className="img_res me-3"></img>
+                <div style={{ textAlign: "right", cursor: "pointer" }}>
+                  <Link to="/login" className="td_none ms-3 mb-0">
+                    <img src={user_w} className="userIcon" />
+                  </Link>
+                </div>
               </div>
             </div>
-
           </div>
 
 

@@ -16,7 +16,7 @@ export default class CollegePosts extends Component {
       var item = this.props.item;
       return(<>
       <div class="container content">
-      <div class="card" style={{width: "41rem",margin:"1em",boxShadow: "4px 10px 8px  #dbd8d7",padding:"1em",padding:"1em"}}>
+      <div class="card ps-3">
       {/* <h5 class="card-title"><img style={{width: "70px" , height: '70px'}} src={logo}/></h5> */}
       <p style={{fontSize:"25px"}}>{item.title}</p>
       <p class="card-text">{item.description}</p>

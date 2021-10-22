@@ -2,7 +2,7 @@ import React, { useRef, useState, Component } from "react";
 import banner from "./banner.jpg";
 import logo from "./logo.jpg";
 import CollegePosts from "./CollegePosts.js";
-import { getCollegePosts,createCollegePosts } from "../../api/Api.js";
+import { getCollegePosts, createCollegePosts } from "../../api/Api.js";
 import { StyledDropZone } from "react-drop-zone";
 import img_thumb from "../../../assets/images/img_thumb.png";
 import trophy from "../../../assets/images/collegeDetails/trophy.png";
@@ -24,8 +24,8 @@ export default class CollegeDetailsComponent extends Component {
     this.state = {
       collegePosts: [],
       image: "",
-      postTitle:"",
-      postDescription:""
+      postTitle: "",
+      postDescription: ""
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.convertImageFileToBase64 = this.convertImageFileToBase64.bind(this);
@@ -55,24 +55,24 @@ export default class CollegeDetailsComponent extends Component {
       this.setState({ image: base64Img });
     }
   }
-  async createPostForCollege(){
+  async createPostForCollege() {
     var payload = {
-      image:this.state.image,
-      title:this.state.postTitle,
-      collegeid:"614f15898769c3a13c32a344",
-      description:this.state.postDescription,
-      addedBy:"",
-      collegename:"AVC",
+      image: this.state.image,
+      title: this.state.postTitle,
+      collegeid: "614f15898769c3a13c32a344",
+      description: this.state.postDescription,
+      addedBy: "",
+      collegename: "AVC",
 
     }
 
 
 
-    console.log("Payload for Post",payload);
+    console.log("Payload for Post", payload);
 
     var response = await createCollegePosts(payload);
-    if(response.status === 200){
-      console.log("Crested",response);
+    if (response.status === 200) {
+      console.log("Crested", response);
     }
   }
 
@@ -93,325 +93,191 @@ export default class CollegeDetailsComponent extends Component {
       return (
         <>
           <div
-            className="container-fluid"
-            style={{ display: "flex", marginTop: "1em" }}
-          >
-            <div
-              style={{
-                boxShadow: "10px 10px 10px  #dbd8d7",
-                padding: "10px",
-                backgroundColor: "white",
-              }}
-            >
+            className="container-fluid px-0 d-flex flex-wrap">
+            <div className="shadow-sm col-sm-12 col-md-3">
               <p style={{ fontSize: "22px" }}>About</p>
 
               <div style={{ display: "flex", flexWrap: "wrap" }}>
-                <img
-                  src={trophy}
-                  style={{ hwight: "15px", width: "30px" }}
-                ></img>
-                <p
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "500",
-                    marginLeft: "1em",
-                  }}
-                >
+                <img src={trophy} style={{ hwight: "15px", width: "30px" }}></img>
+                <p className="fw-bold mb-0 ms-3">
                   Ranked 1 Business School
                 </p>
               </div>
 
-              <div style={{ marginTop: "1em" }}>
-                <p
-                  style={{
-                    fontSize: "16px",
-                    marginTop: "1em",
-                    marginLeft: "1em",
-                    fontWeight: "500",
-                  }}
-                >
-                  BADGES
-                </p>
+              <div className="d-flex aic jcc">
+                {/* <p className="fw-bold mb-0 ">BADGES</p> */}
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
-                  {/* <img src={trophy} style={{hwight:"2emx",width:"2em",marginLeft: "1em"}}></img> */}
-                  <img
-                    src={badge1}
-                    style={{ hwight: "2em", width: "2em", marginLeft: "1em" }}
-                  ></img>
-                  <img
-                    src={badge2}
-                    style={{ hwight: "2em", width: "2em", marginLeft: "1em" }}
-                  ></img>
-                  <img
-                    src={badge3}
-                    style={{ hwight: "2em", width: "2em", marginLeft: "1em" }}
-                  ></img>
+                  <img src={badge1} className="badges"></img>
+                  <img src={badge2} className="badges ms-3"></img>
+                  <img src={badge3} className="badges ms-3"></img>
                 </div>
               </div>
-              <div style={{}}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginTop: "1em",
-                  }}
-                >
-                  <div style={{ width: "20%" }}>
-                    {" "}
+              <div style={{}} className="mt-4">
+                <div className="d-flex">
+                  <div>
                     <img
                       src={info}
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                        marginLeft: "1em",
-                      }}
+                      className="abtIcon me-3"
                     ></img>
                   </div>
-                  <div style={{ width: "80%", textAlign: "left" }}>
+                  <div>
                     {" "}
-                    <p style={{ fontSize: "15px" }}>
+                    <p className="mb-0">
                       One of the Reputed college in Eastern India
                     </p>
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginTop: "1em",
-                  }}
-                >
-                  <div style={{ width: "20%" }}>
+                <div className="d-flex mt-3">
+                  <div>
                     {" "}
                     <img
                       src={info}
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                        marginLeft: "1em",
-                      }}
+                      className="abtIcon me-3"
                     ></img>
                   </div>
-                  <div style={{ width: "80%", textAlign: "left" }}>
+                  <div>
                     {" "}
-                    <p style={{ fontSize: "15px" }}>Affiliation</p>
-                    <p style={{ fontSize: "15px" }}>{details.affiliation}</p>
+                    <p className="mb-0">Affiliation</p>
+                    <p className="mb-0">{details.affiliation}</p>
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginTop: "1em",
-                  }}
-                >
-                  <div style={{ width: "20%" }}>
+                <div className="d-flex mt-3">
+                  <div>
                     {" "}
                     <img
                       src={foundation}
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                        marginLeft: "1em",
-                      }}
+                      className="abtIcon me-3"
                     ></img>
                   </div>
-                  <div style={{ width: "80%", textAlign: "left" }}>
+                  <div>
                     {" "}
-                    <p style={{ fontSize: "15px" }}>Foundation</p>
-                    <p style={{ fontSize: "15px" }}>{details.affiliation}</p>
+                    <p className="mb-0">Foundation</p>
+                    <p className="mb-0">{details.affiliation}</p>
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginTop: "1em",
-                  }}
-                >
-                  <div style={{ width: "20%" }}>
+                <div className="d-flex mt-3">
+                  <div>
                     {" "}
                     <img
                       src={check}
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                        marginLeft: "1em",
-                      }}
+                      className="abtIcon me-3"
                     ></img>
                   </div>
-                  <div style={{ width: "80%", textAlign: "left" }}>
+                  <div>
                     {" "}
-                    <p style={{ fontSize: "15px" }}>Nature</p>
-                    <p style={{ fontSize: "15px" }}>{details.collegeType}</p>
+                    <p className="mb-0">Nature</p>
+                    <p className="mb-0">{details.collegeType}</p>
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginTop: "1em",
-                  }}
-                >
-                  <div style={{ width: "20%" }}>
+                <div className="d-flex mt-3">
+                  <div>
                     {" "}
                     <img
                       src={address}
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                        marginLeft: "1em",
-                      }}
+                      className="abtIcon me-3"
                     ></img>
                   </div>
-                  <div style={{ width: "80%", textAlign: "left" }}>
+                  <div>
                     {" "}
-                    <p style={{ fontSize: "15px" }}>Address</p>
-                    <p style={{ fontSize: "15px" }}>{details.address}</p>
+                    <p className="mb-0">Address</p>
+                    <p className="mb-0">{details.address}</p>
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginTop: "1em",
-                  }}
-                >
-                  <div style={{ width: "20%" }}>
+                <div className="d-flex mt-3">
+                  <div>
                     {" "}
                     <img
                       src={phone}
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                        marginLeft: "1em",
-                      }}
+                      className="abtIcon me-3"
                     ></img>
                   </div>
-                  <div style={{ width: "80%", textAlign: "left" }}>
+                  <div>
                     {" "}
-                    <p style={{ fontSize: "15px" }}>Contact</p>
-                    <p style={{ fontSize: "15px" }}>{details.contact}</p>
+                    <p className="mb-0">Contact</p>
+                    <p className="mb-0">{details.contact}</p>
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginTop: "1em",
-                  }}
-                >
-                  <div style={{ width: "20%" }}>
+                <div className="d-flex mt-3">
+                  <div>
                     {" "}
                     <img
                       src={website}
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                        marginLeft: "1em",
-                      }}
+                      className="abtIcon me-3"
                     ></img>
                   </div>
-                  <div style={{ width: "80%", textAlign: "left" }}>
-                    <p style={{ fontSize: "15px" }}>{details.website}</p>
+                  <div>
+                    <p className="mb-0">{details.website}</p>
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginTop: "1em",
-                  }}
-                >
-                  <div style={{ width: "20%" }}>
+                <div className="d-flex mt-3">
+                  <div>
                     {" "}
                     <img
                       src={website}
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                        marginLeft: "1em",
-                      }}
+                      className="abtIcon me-3"
                     ></img>
                   </div>
-                  <div style={{ width: "80%", textAlign: "left" }}>
-                    <p style={{ fontSize: "15px" }}>{details.website}</p>
+                  <div>
+                    <p className="mb-0">{details.website}</p>
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    marginTop: "1em",
-                  }}
-                >
-                  <div style={{ width: "20%" }}>
+                <div className="d-flex mt-3">
+                  <div>
                     {" "}
                     <img
                       src={mail}
-                      style={{
-                        height: "18px",
-                        width: "18px",
-                        marginLeft: "1em",
-                      }}
+                      className="abtIcon me-3"
                     ></img>
                   </div>
-                  <div style={{ width: "80%", textAlign: "left" }}>
-                    <p style={{ fontSize: "15px" }}>{details.email}</p>
+                  <div>
+                    <p className="mb-0">{details.email}</p>
                   </div>
                 </div>
               </div>
 
 
-              <div style={{ textAlign: "center" ,marginTop:"1em",backgroundColor:"#b0d9eb"}}>
-                <div style={{display: "flex", flexWrap: "wrap",textAlign: "center"}}>  <p style={{ fontSize: "22px",fontWeight:"600",marginLeft:"25%" }}>Notice Board</p>
-                <img src={notPin} style={{width:"20px",height:"20px",marginLeft: "1em"}}></img></div>
-              
+              <div className="p-3 mt-3" style={{backgroundColor: "#b0d9eb" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", textAlign: "center" }}>  <p style={{ fontSize: "22px", fontWeight: "600", marginLeft: "25%" }}>Notice Board</p>
+                  <img src={notPin} style={{ width: "20px", height: "20px", marginLeft: "1em" }}></img></div>
+
                 <marquee direction="up" scrollamount="2" height="300px">
                   <h5>{details.description}</h5>
                 </marquee>
               </div>
             </div>
 
-            <div>
-              <p
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "500",
-                  marginLeft: "1em",
-                }}
-              >
-                Posts
-              </p>{
-                this.state.collegePosts.length>0?(
-                  <>
-                      {this.state.collegePosts.map((item, id) => {
-                return (
-                  <CollegePosts
-                    handelNewsClick={this.props.handelNewsClick}
-                    item={item}
-                  />
-                );
-              })}
-                  </>
-                ):(
+            <div className="shadow-sm col-sm-12 col-md-9">
+              <p className="fs-5 fw-bold ">Posts</p>
 
-           <div class="card" style={{width: "41rem",margin:"1em",boxShadow: "4px 10px 8px  #dbd8d7",padding:"1em",padding:"1em"}}> 
-          
-Add Post By going to Add Post Section in Top right corner
-                </div> 
-                )
+              {this.state.collegePosts.length > 0 ? (
+                <>
+                  {this.state.collegePosts.map((item, id) => {
+                    return (
+                      <CollegePosts
+                        handelNewsClick={this.props.handelNewsClick}
+                        item={item}
+                      />
+                    );
+                  })}
+                </>
+              ) : (
+
+                <div class="card">
+
+                  Add Post By going to Add Post Section in Top right corner
+                </div>
+              )
               }
 
-   
+
             </div>
           </div>
         </>
@@ -637,69 +503,69 @@ Add Post By going to Add Post Section in Top right corner
                 <div class="col-md-8 col-md-offset-2">
                   <h1>Create post</h1>
 
-                
-                    <div class="form-group">
-                      <label for="title">
-                        Title <span class="require">*</span>
-                      </label>
-                      <input onChange={(e)=>{this.setState({postTitle:e.target.value})}} type="text" class="form-control" name="title" />
-                    </div>
 
-                    <div class="form-group">
-                      <label for="description">Description</label>
-                      <textarea onChange={(e)=>{this.setState({postDescription:e.target.value})}}
-                        rows="5"
-                        class="form-control"
-                        name="description"
-                      ></textarea>
-                    </div>
+                  <div class="form-group">
+                    <label for="title">
+                      Title <span class="require">*</span>
+                    </label>
+                    <input onChange={(e) => { this.setState({ postTitle: e.target.value }) }} type="text" class="form-control" name="title" />
+                  </div>
 
-                    <div class="form-group">
-                      <StyledDropZone
-                        accept="image/*"
-                        style={{
-                          height: "auto",
-                          border: "3px dotted #9e9d9d",
-                          marginTop: "35px",
-                          borderRadius: "20px",
-                          margin: "10px",
-                          padding: "2rem 1rem",
-                        }}
-                        onDrop={(file, text) => {
-                          console.log(file);
-                          this.uploadImage(file);
-                        }}
-                      >
-                        {this.state.image.length === 0 ? (
-                          <>
-                            <div className="d-flex flex-column jcc aic">
-                              <img
-                                src={img_thumb}
-                                style={{ width: "100px" }}
-                              ></img>
-                              <p
-                                style={{ fontSize: "20px", marginTop: "1rem" }}
-                              >
-                                Click to Upload or drop your image
-                              </p>
-                            </div>
-                          </>
-                        ) : (
-                          <img
-                            src={this.state.image}
-                            style={{ height: "20em", width: "100%" }}
-                          />
-                        )}
-                      </StyledDropZone>
-                    </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea onChange={(e) => { this.setState({ postDescription: e.target.value }) }}
+                      rows="5"
+                      class="form-control"
+                      name="description"
+                    ></textarea>
+                  </div>
 
-                    <div class="">
-                      <button onClick={()=>{this.createPostForCollege()}} class="btn btn-primary">
-                        Create
-                      </button>
-                      <button class="btn btn-default">Cancel</button>
-                    </div>
-          
+                  <div class="form-group">
+                    <StyledDropZone
+                      accept="image/*"
+                      style={{
+                        height: "auto",
+                        border: "3px dotted #9e9d9d",
+                        marginTop: "35px",
+                        borderRadius: "20px",
+                        margin: "10px",
+                        padding: "2rem 1rem",
+                      }}
+                      onDrop={(file, text) => {
+                        console.log(file);
+                        this.uploadImage(file);
+                      }}
+                    >
+                      {this.state.image.length === 0 ? (
+                        <>
+                          <div className="d-flex flex-column jcc aic">
+                            <img
+                              src={img_thumb}
+                              style={{ width: "100px" }}
+                            ></img>
+                            <p
+                              style={{ fontSize: "20px", marginTop: "1rem" }}
+                            >
+                              Click to Upload or drop your image
+                            </p>
+                          </div>
+                        </>
+                      ) : (
+                        <img
+                          src={this.state.image}
+                          style={{ height: "20em", width: "100%" }}
+                        />
+                      )}
+                    </StyledDropZone>
+                  </div>
+
+                  <div class="">
+                    <button onClick={() => { this.createPostForCollege() }} class="btn btn-primary">
+                      Create
+                    </button>
+                    <button class="btn btn-default">Cancel</button>
+                  </div>
+
                 </div>
               </div>
             </div>
