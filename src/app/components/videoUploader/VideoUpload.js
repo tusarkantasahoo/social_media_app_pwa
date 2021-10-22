@@ -186,31 +186,6 @@ export default class VideoUpload extends Component {
             </div>
           </div>
         </div>
-
-        <div className="row" style={{ textAlign: "left" }}>
-          <p
-            style={{ fontSize: "25px", marginTop: "10px", marginLeft: "10px" }}
-          >
-            Describe your thoughts
-          </p>
-        </div>
-        <div className="row" style={{ textAlign: "left" }}>
-          <div style={{ padding: "10px" }}>
-            <input
-              onChange={(e) => {
-                this.setState({ description: e.target.value });
-              }}
-              placeholder="Describe something"
-              style={{
-                width: "90%",
-                height: "50px",
-                marginLeft: "5%",
-                outline: "0",
-                border: "0.5px solid black",
-              }}
-            ></input>
-          </div>
-        </div>
         <button
           onClick={() => {
             this.requestForUpload();

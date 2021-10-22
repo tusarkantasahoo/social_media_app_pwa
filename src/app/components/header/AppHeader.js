@@ -11,6 +11,7 @@ import monastreeLogo from "../../../assets/images/phase2Img/m.png";
 import home from "../../../assets/images/phase2Img/home.png"
 import bell from "../../../assets/images/phase2Img/bell.png"
 import comment from "../../../assets/images/phase2Img/msg.png";
+import college from "../../../assets/images/menu.png";
 // import NotificationsIcon from '@mui/icons-material/Notifications.js';
 // import commentIcon from '@mui/icons-material/Help.js';
 // import SettingsIcon from '@mui/icons-material/Settings.js';
@@ -25,6 +26,15 @@ export default class AppHeader extends Component {
       <>
         {this.props.isLoggedIn ? (
           <div className="container-fluid nav_wrap">
+                 <div className="pr">
+               
+            <img
+              src={college}
+              className="menuBar"
+              id="menuBar"
+              onClick={() =>{this.props._changeNavActive()}}
+            />
+          </div>
             <div className="container_custom d-flex jcsb aic">
               <div className="logo_wrapper d-flex mb-0">
                 <img src={monastreeLogo} className="img_res"></img>
@@ -52,7 +62,15 @@ export default class AppHeader extends Component {
 
           <div className="container-fluid nav_wrap px-3">
             <div className="container_custom d-flex jcsb aic">
-
+            <div className="pr">
+               
+            <img
+              src={college}
+              className="menuBar"
+              id="menuBar"
+              onClick={() =>{this.props._changeNavActive()}}
+            />
+          </div>
               <div className="logo_wrapper d-flex mb-0">
                 <img src={monastreeLogo} className="img_res"></img>
                 <p className="text-white mb-0 ms-2">MONASTREE</p>

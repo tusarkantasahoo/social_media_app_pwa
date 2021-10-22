@@ -18,11 +18,10 @@ export default class CreateSurvey extends Component {
       description: "",
       isCreateSurveyClicked: false,
       noOfOptions: 2,
-      pageContentForSurvey: "init"
+      pageContentForSurvey: "init",
     };
     this.renderSurveyPages = this.renderSurveyPages.bind(this);
     this._isCreateSurveyClicked = this._isCreateSurveyClicked.bind(this);
-
   }
 
   _isCreateSurveyClicked(name) {
@@ -30,25 +29,29 @@ export default class CreateSurvey extends Component {
   }
 
   renderSurveyPages() {
-
     switch (this.state.pageContentForSurvey) {
       case "init":
-        return <SelectSurvey _isCreateSurveyClicked={this._isCreateSurveyClicked} state={this.state} postText={this.state.postText} />
+        return (
+          <SelectSurvey
+            _isCreateSurveyClicked={this._isCreateSurveyClicked}
+            state={this.state}
+            postText={this.state.postText}
+          />
+        );
 
       case "poll":
-        return <Poll state={this.state} postText={this.state.postText} />
+        return <Poll state={this.state} postText={this.state.postText} />;
 
       case "quiz":
-        return <Quiz state={this.state} postText={this.state.postText} />
+        return <Quiz state={this.state} postText={this.state.postText} />;
 
       case "research":
-        return <Research state={this.state} postText={this.state.postText} />
+        return <Research state={this.state} postText={this.state.postText} />;
 
-      default: return null
+      default:
+        return null;
     }
   }
-
-
 
   render() {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
@@ -66,12 +69,8 @@ export default class CreateSurvey extends Component {
           ></img>
         </div>
 
-
-
-        {this.renderSurveyPages()}
-
+        <div style={{ textAlign: "center" }}>{this.renderSurveyPages()}</div>
       </>
     );
   }
 }
-

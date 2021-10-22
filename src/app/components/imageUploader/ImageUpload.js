@@ -143,27 +143,7 @@ export default class ImageUpload extends Component {
             />
           )}
         </StyledDropZone>
-        <div className="" style={{ textAlign: "left" }}>
-          <h5 className="ms-2 mb-2 mt-3">Describe your thoughts</h5>
-        </div>
-        <div className="" style={{ textAlign: "left" }}>
-          <div style={{ padding: "10px" }}>
-            <TextField
-              id="outlined-multiline-static"
-              className="image_about"
-              multiline
-              // classes={{notchedOutline:classes.input}}
-              // rows={6}
-              defaultValue="Default Value"
-              variant="outlined"
-              placeholder="Share / Ask what's on your mind?"
-              value={this.state.description}
-              onChange={(e) => {
-                this.setState({ description: e.target.value });
-              }}
-            />
-          </div>
-        </div>
+ 
         <button className="default_btn ms-2" onClick={() => { this.requestForUpload(); }}>
           POST
         </button>

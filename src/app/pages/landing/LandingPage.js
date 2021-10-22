@@ -55,7 +55,7 @@ export default class Landing extends Component {
         },
         {
           name: "Lawrence Sahoo",
-          image: girl1
+          image: girl1,
         },
         {
           name: "Emaa Watson",
@@ -71,9 +71,10 @@ export default class Landing extends Component {
         },
         {
           name: "Jenny may",
-          image: girl1
+          image: girl1,
         },
-      ]
+      ],
+      isNavActive: true,
     };
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -82,8 +83,8 @@ export default class Landing extends Component {
     this.renderScreenDependingOnSelection =
       this.renderScreenDependingOnSelection.bind(this);
     this._changeScreenRender = this._changeScreenRender.bind(this);
+    this._changeNavActive = this._changeNavActive.bind(this);
   }
-
 
   _onClickUserDashboard() {
     this.setState({ isUserDashboard: !this.state.isUserDashboard });
@@ -91,6 +92,10 @@ export default class Landing extends Component {
 
   _changeScreenRender(data) {
     this.setState({ currentOption: data });
+  }
+
+  _changeNavActive() {
+    this.setState({ isNavActive: !this.state.isNavActive });
   }
 
   renderScreenDependingOnSelection() {
@@ -102,17 +107,18 @@ export default class Landing extends Component {
             <div id="c_body" className="c_body">
               {/* <p style={{fontSize:"25px",marginLeft:"0.5em",fontWeight:"500",marginTop:"0.5em",boxShadow: "1px 1px 1px  #dbd8d7"}}>Home</p> */}
               <div>
-                <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
+                <HomeSocial
+                  props={this.state}
+                  isLoggedIn={this.props.isAuthed}
+                />
               </div>
             </div>
-
           </>
         );
 
       case "rooms":
         return (
           <>
-
             <div className="c_body">
               <HomeSocial props={this.state} isLoggedIn={this.props.isAuthed} />
             </div>
@@ -134,7 +140,6 @@ export default class Landing extends Component {
           <div className="c_body_fw">
             <Academic />
           </div>
-
         );
 
       case "survey":
@@ -142,7 +147,6 @@ export default class Landing extends Component {
           <div className="c_body">
             <Survey />
           </div>
-
         );
 
       case "surveyResponse":
@@ -150,7 +154,6 @@ export default class Landing extends Component {
           <div className="c_body">
             <SurveyResponse />
           </div>
-
         );
 
       case "college":
@@ -158,7 +161,6 @@ export default class Landing extends Component {
           <div className="c_body_fw">
             <CollegePage />
           </div>
-
         );
 
       case "collegeDetails":
@@ -166,7 +168,6 @@ export default class Landing extends Component {
           <div className="c_body_fw">
             <CollegeDetails />
           </div>
-
         );
 
       case "career":
@@ -228,8 +229,6 @@ export default class Landing extends Component {
   }
 
   render() {
-
-
     console.log("Room constructor called", this.props);
     console.log("Room constructor called2", this.state);
     return (
@@ -239,21 +238,23 @@ export default class Landing extends Component {
           _onClickUserDashboard={this._onClickUserDashboard}
           isLoggedIn={this.props.isAuthed}
           _changeScreenRender={this._changeScreenRender}
+          _changeNavActive={this._changeNavActive}
         />
-        <div className="container_custom" style={{ display: "flex", marginTop: "70px" }}>
-
-
-          <HomeOptions
-            props={this.state}
-            isLoggedIn={true}
-            setPage={this.props.setPage}
-            history={this.props.history}
-          />
-
+        <div
+          className="container_custom"
+          style={{ display: "flex", marginTop: "70px" }}
+        >
+      
+            <HomeOptions
+              props={this.state}
+              isLoggedIn={true}
+              setPage={this.props.setPage}
+              history={this.props.history}
+            />
+       
 
           {this.renderScreenDependingOnSelection()}
         </div>
-
       </>
     );
   }
