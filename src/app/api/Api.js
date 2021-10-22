@@ -45,14 +45,16 @@ export function createPostData(payload) {
   });
 }
 
-export function getPostsList() {
+export function getPostsList(postJson) {
+  console.log("post for post",postJson);
   console.log("===");
   var config = {
-    method: "get",
-    url: getBaseUrl().baseUrl + "api/social/all/",
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/social/getPostByPage/",
     headers: {
       // 'Content-Type': 'multipart/form-data'
     },
+    data: postJson
   };
 
   return new Promise((resolve, reject) => {

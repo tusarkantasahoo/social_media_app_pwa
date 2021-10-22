@@ -12,7 +12,9 @@ export default class Quiz extends Component {
         option3:"",
         option4:"",
         correctOption:"",
-        user:JSON.parse(localStorage.getItem(authResponseStoredValue))
+        user:JSON.parse(localStorage.getItem(authResponseStoredValue)),
+        noOfQus:1, 
+        questions:[]
 
     };
     this._onClickSurveySubmit = this._onClickSurveySubmit.bind(this);
@@ -72,6 +74,23 @@ export default class Quiz extends Component {
                   outline: "0",
                 }}
                 placeholder="Survey Name"
+              ></input>
+            </div>
+
+            <div style={{ width: "90%", marginLeft: "5%",marginTop:"1em" }}>
+              <input
+                value={this.state.postText}
+                onChange={(e) => {
+                  this.setState({ postText: e.target.value });
+                }}
+                style={{
+                  width: "100%",
+                  borderRadius: "10px",
+                  height: "3em",
+                  border: "0.5px solid #1da1f2",
+                  outline: "0",
+                }}
+                placeholder="Question you want to ask"
               ></input>
             </div>
         <div
@@ -207,6 +226,12 @@ export default class Quiz extends Component {
               </select>
            
             </div>
+            <div>
+
+            </div>
+            <div onClick={() => {this.setState({noOfQus:this.state.noOfQus+1})}} style={{height:"3em",marginTop:"1em",backgroundColor:"pink",cursor:"pointer"}} >
+                  Add Another +
+            </div>
              <div style={{ marginTop: "1em" }}>
               <button
                 style={{
@@ -221,6 +246,7 @@ export default class Quiz extends Component {
                 Post Survey
               </button>
             </div>
+
       </>
     )}
 }   

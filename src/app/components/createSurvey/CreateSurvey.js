@@ -57,9 +57,8 @@ export default class CreateSurvey extends Component {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
     return (
       <>
-        <div className="d-flex jcc aic">
-          <div></div>
-          <div>
+        <div className="d-flex flex-column jcc aic">
+         <div className="col">
             <p style={{ fontSize: "25px" }}>Create Your Survey</p>
           </div>
           <img
@@ -67,9 +66,10 @@ export default class CreateSurvey extends Component {
             className="close_btn"
             onClick={() => this.props.resetPostToDefault()}
           ></img>
-        </div>
+        
 
-        <div style={{ textAlign: "center" }}>{this.renderSurveyPages()}</div>
+        <div className="w-100">{this.renderSurveyPages()}</div>
+        </div>
       </>
     );
   }

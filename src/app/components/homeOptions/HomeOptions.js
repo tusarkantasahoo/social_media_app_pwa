@@ -34,7 +34,7 @@ export default class HomeOptions extends Component {
     console.log("State", this.state);
     return (
       <>
-        {this.state.width > 990 || this.props.props.isNavActive===true ? (
+        {this.state.width > 992 || this.props.props.isNavActive===true ? (
           <div className="side_bar_wrap" id="side_bar_wrap">
             {this.props.props.optionArray.map((item, index) => {
               return (
