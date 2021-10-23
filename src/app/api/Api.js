@@ -331,6 +331,30 @@ export function addLikeForPost(data) {
   });
 }
 
+export function addDislikeForPost(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/social/addDislike",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+}
+
 export function addResearchComment(data) {
   console.log("Calling get search")
   var config = {
@@ -471,6 +495,7 @@ export function createCollegePosts(data) {
       })
       .catch(function (error) {
         console.log(error);
+        resolve(error);
       });
   });
 }

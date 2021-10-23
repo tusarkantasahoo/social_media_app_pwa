@@ -22,6 +22,7 @@ export default class UserDetails extends Component {
       { name: "Books", code: "books" },
       { name: "E-notes", code: "enotes" },
     ];
+    console.log("Top")
     return (
       <>
         <div
@@ -33,15 +34,7 @@ export default class UserDetails extends Component {
             marginRight: "20px",
           }}
         >
-            <div style={{cursor: "pointer"}} onClick={()=>{
-                this.props._onClickUserDashboard();
-            }}>
-          Close
-          <img
-            src={cancel}
-            style={{ height: "22px", width: "22px", marginTop: "0em" }}
-          ></img>
-          </div>
+   
         </div>
         <div className="container" style={{ textAlign: "center" }}>
           <div
@@ -72,10 +65,10 @@ export default class UserDetails extends Component {
             </p>
           </div>
 
-          <div style={{ display: "inline-flex", float: "left" }}>
+          <div style={{ display: "flex", float: "left" }}>
             {userTopics.map((item, index) => {
               return (
-                <p style={{ width: "6em", fontSize: "22px",cursor: "pointer"}} onClick={()=>this.setState({userSelectedTopic:item})}>{item.name}</p>
+                <p style={{marginLeft:"0.5em", width: "", fontSize: "22px",cursor: "pointer"}} onClick={()=>this.setState({userSelectedTopic:item})}>{item.name}</p>
               );
             })}
           </div>

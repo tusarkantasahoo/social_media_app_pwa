@@ -68,7 +68,7 @@ export default class CreateSurvey extends Component {
           ></img>
         
 
-        <div className="w-100">{this.renderSurveyPages()}</div>
+        <div style={{textAlign: "center"}} className="w-100">{this.renderSurveyPages()}</div>
         </div>
       </>
     );

@@ -19,6 +19,7 @@ import {
   deletePostById,
   createCommentForPost,
   addLikeForPost,
+  addDislikeForPost
 } from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url";
 import send from "../../../assets/images/send.png";
@@ -32,12 +33,14 @@ export default class ImagePost extends Component {
       comment: "",
       isCommentVisible: false,
       likes: this.props.props.likes,
+      dislikes:this.props.props.dislikes
     };
 
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
     this._onClickSendComment = this._onClickSendComment.bind(this);
     this.dateFromObjectId = this.dateFromObjectId.bind(this);
     this._onClickLike = this._onClickLike.bind(this);
+    this._onClickDislike = this._onClickDislike.bind(this);
   }
 
   async _onClickDeletePost(item) {
@@ -54,7 +57,7 @@ export default class ImagePost extends Component {
     var postJson = {
       id: this.props.props._id,
       commentData: {
-        user: userData,
+        user: userData.userData,
         comment: this.state.comment,
       },
     };
@@ -70,6 +73,7 @@ export default class ImagePost extends Component {
     var postJson = {
       id: postId,
       userId: userData.userData.id,
+      data:"like"
     };
     var response = await addLikeForPost(postJson);
     if (response.status === 200) {
@@ -77,6 +81,22 @@ export default class ImagePost extends Component {
       this.setState({ likes: this.state.likes + 1 });
     }
   }
+
+  async _onClickDislike(postId) {
+    var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    var postJson = {
+      id: postId,
+      userId: userData.userData.id,
+      data:"dislike"
+    };
+    var response = await addDislikeForPost(postJson);
+    if (response.status === 200) {
+      console.log("dislke");
+      this.setState({ dislikes: this.state.dislikes + 1 });
+    }
+  }
+
+
 
   dateFromObjectId(objectId) {
     console.log("ONN id", objectId);
@@ -184,6 +204,17 @@ export default class ImagePost extends Component {
               <p className="act_count">{this.state.likes}</p>
             </div>
 
+            <div className="act_sec  pr" style={{marginLeft: "1.5em"}}>
+              <img
+                onClick={() => {
+                  this._onClickDislike(this.props.props._id);
+                }}
+                src={dislike}
+                className="action_icons"
+              />
+              <p className="act_count">{this.state.dislikes}</p>
+            </div>
+
             <div
               className="act_sec  pr ms-5"
               onClick={() =>
@@ -202,45 +233,53 @@ export default class ImagePost extends Component {
               ></img>
             </div>
           </div>
-
-          {this.state.isCommentVisible === true ? (
-            <>
-              <div style={{display :"flex"}}>
-              
-                <div style={{width:"80%"}} className="div-box-input-share-thoughts">
-                  <input
-                    onChange={(e) => {
-                      this.setState({ comment: e.target.value });
-                    }}
-                    className="input-post"
-                    placeholder="Share / Ask what's on your mind?"
-                  ></input>
-                </div>
-                <div onClick={()=>{this._onClickSendComment()}} style={{cursor:"pointer"}}>
-                  Send
-                </div>
-              </div>
-
-              {this.props.props.comments.map((item, id) => {
-                return (
+          <div style={{marginLeft:"5em",marginTop:"1em"}}>
+            {this.state.isCommentVisible === true ? (
+              <>
+                <div style={{ display: "flex" }}>
                   <div
-                    style={{
-                      textAlign: "center",
-                      fontSize: "15",
-                      display: "flex",
-                      padding: "0.5em",
-                    }}
+                    style={{ width: "80%" }}
+                    className="div-box-input-share-thoughts"
                   >
-                    <img
-                      src={item.user.userImage}
-                      style={{ height: "25px", width: "25px" }}
-                    ></img>
-                    <p>{item.comment}</p>
+                    <input
+                      onChange={(e) => {
+                        this.setState({ comment: e.target.value });
+                      }}
+                      className="input-post"
+                      placeholder="Share / Ask what's on your mind?"
+                    ></input>
                   </div>
-                );
-              })}
-            </>
-          ) : null}
+                  <div
+                    onClick={() => {
+                      this._onClickSendComment();
+                    }}
+                    style={{ cursor: "pointer",backgroundColor:"#39a1d9",textAlign: "center",fontSize: "25px",color: "white"}}
+                  >
+                    Send
+                  </div>
+                </div>
+
+                {this.props.props.comments.map((item, id) => {
+                  return (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        fontSize: "15",
+                        display: "flex",
+                        padding: "0.5em",
+                      }}
+                    >
+                      <img
+                        src={item.user.userImage}
+                        style={{ height: "25px", width: "25px" }}
+                      ></img>
+                      <p>{item.comment}</p>
+                    </div>
+                  );
+                })}
+              </>
+            ) : null}
+          </div>
         </div>
       </>
     );

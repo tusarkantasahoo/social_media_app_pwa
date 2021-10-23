@@ -3,7 +3,7 @@ import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
 import ReactPlayer from "react-player";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
-import { getFileContentById, deletePostById, addLikeForPost } from "../../api/Api.js";
+import { getFileContentById, deletePostById, addLikeForPost,createCommentForPost,addDislikeForPost } from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url";
 import send from "../../../assets/images/send.png";
 import like from "../../../assets/images/svg/like.png";
@@ -21,11 +21,17 @@ export default class VideoPost extends Component {
     this.state = {
       fileId: this.props.props.fileStorageId,
       videoUrl: "",
-      likes: this.props.props.likes
+      likes: this.props.props.likes,
+      comment: "",
+      isCommentVisible: false,
+      dislikes: this.props.props.dislikes,
+      commentsArray:this.props.props.comments
     };
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
     this.dateFromObjectId = this.dateFromObjectId.bind(this);
     this._onClickLike = this._onClickLike.bind(this);
+    this._onClickSendComment = this._onClickSendComment.bind(this);
+    this._onClickDislike = this._onClickDislike.bind(this);
   }
   async _onClickDeletePost(item) {
     var response = await deletePostById(item);
@@ -42,12 +48,52 @@ export default class VideoPost extends Component {
     var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
     var postJson = {
       id: postId,
-      userId: userData.userData.id
+      userId: userData.userData.id,
+      data:"like"
     };
     var response = await addLikeForPost(postJson);
     if (response.status === 200) {
       console.log("Liked");
       this.setState({ likes: this.state.likes + 1 })
+    }
+  }
+
+  async _onClickDislike(postId) {
+    var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    var postJson = {
+      id: postId,
+      userId: userData.userData.id,
+      data:"dislike"
+    };
+    var response = await addDislikeForPost(postJson);
+    if (response.status === 200) {
+      console.log("dislke");
+      this.setState({ dislikes: this.state.dislikes + 1 });
+    }
+  }
+  async _onClickSendComment() {
+    console.log("send comment clickewd");
+    var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    var postJson = {
+      id: this.props.props._id,
+      commentData: {
+        user: userData.userData,
+        comment: this.state.comment,
+      },
+    };
+
+    var response = await createCommentForPost(postJson);
+
+    if (response.status === 200) {
+      console.log("comment added successfully");
+
+      var data = this.state.commentsArray;
+      data.push({
+        user: userData.userData,
+        comment: this.state.comment,
+      });
+      this.setState({ commentsArray: data });
+      this.setState({ comment:""})
     }
   }
   render() {
@@ -138,14 +184,72 @@ export default class VideoPost extends Component {
               <img onClick={() => { this._onClickLike(this.props.props._id); }} src={like} className="action_icons"/>
               <p className="act_count">{this.state.likes}</p>
             </div>
+            <div className="act_sec  pr" style={{marginLeft: "1.5em"}}>
+              <img
+                onClick={() => {
+                  this._onClickDislike(this.props.props._id);
+                }}
+                src={dislike}
+                className="action_icons"
+              />
+              <p className="act_count">{this.state.dislikes}</p>
+            </div>
 
             <div className="act_sec pr ms-5" onClick={() => this.setState({isCommentVisible: !this.state.isCommentVisible,})}>
               <img src={comment} className="action_icons"/>
-              <p className="act_count">{this.state.likes}</p>
+              <p className="act_count"></p>
             </div>
             <div className="act_sec pr ms-5">
               <img src={share} className="action_icons"/>
             </div>
+          </div>
+
+          <div style={{marginLeft:"5em",marginTop:"1em"}}>
+            {this.state.isCommentVisible === true ? (
+              <>
+                <div style={{ display: "flex" }}>
+                  <div
+                    style={{ width: "80%" }}
+                    className="div-box-input-share-thoughts"
+                  >
+                    <input
+                      onChange={(e) => {
+                        this.setState({ comment: e.target.value });
+                      }}
+                      className="input-post"
+                      placeholder="Share / Ask what's on your mind?"
+                    ></input>
+                  </div>
+                  <div
+                    onClick={() => {
+                      this._onClickSendComment();
+                    }}
+                    style={{ cursor: "pointer",backgroundColor:"#39a1d9",textAlign: "center",fontSize: "25px",color: "white"}}
+                  >
+                    Send
+                  </div>
+                </div>
+
+                {this.state.commentsArray.map((item, id) => {
+                  return (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        fontSize: "15",
+                        display: "flex",
+                        padding: "0.5em",
+                      }}
+                    >
+                      <img
+                        src={item.user.userImage}
+                        style={{ height: "25px", width: "25px" }}
+                      ></img>
+                      <p>{item.comment}</p>
+                    </div>
+                  );
+                })}
+              </>
+            ) : null}
           </div>
         </div>
       </>

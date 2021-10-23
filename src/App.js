@@ -421,6 +421,34 @@ export default class App extends Component {
             }
           }}
         />
+                <Route
+          path="/userDetails"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "userDetails", code: "userDetails" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "userDetails", code: "userDetails" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
 
         <Route
           path="/repository"

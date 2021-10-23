@@ -25,7 +25,7 @@ export default class CollegeDetailsComponent extends Component {
       collegePosts: [],
       image: "",
       postTitle: "",
-      postDescription: ""
+      postDescription: "",
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.convertImageFileToBase64 = this.convertImageFileToBase64.bind(this);
@@ -47,6 +47,13 @@ export default class CollegeDetailsComponent extends Component {
     });
   }
   async uploadImage(file) {
+
+    console.log("File ",file)
+    if(file.size>111427){
+      console.log("Add a smaller file");
+      window.alert("add smaller file")
+      return
+    }
     this.setState({ file: file });
     console.log("base64 image");
     const base64Img = await this.convertImageFileToBase64(file);
@@ -63,16 +70,19 @@ export default class CollegeDetailsComponent extends Component {
       description: this.state.postDescription,
       addedBy: "",
       collegename: "AVC",
-
-    }
-
-
+    };
 
     console.log("Payload for Post", payload);
 
     var response = await createCollegePosts(payload);
+    if (response.status === 413) {
+      console.log("Alert")
+      window.alert("Image too large please minimise to 1mb");
+    }
+
     if (response.status === 200) {
       console.log("Crested", response);
+      window.location.reload();
     }
   }
 
@@ -92,16 +102,16 @@ export default class CollegeDetailsComponent extends Component {
     if (currentSelection === "info") {
       return (
         <>
-          <div
-            className="container-fluid px-0 d-flex flex-wrap">
+          <div className="container-fluid px-0 d-flex flex-wrap">
             <div className="shadow-sm col-sm-12 col-md-3">
               <p style={{ fontSize: "22px" }}>About</p>
 
               <div style={{ display: "flex", flexWrap: "wrap" }}>
-                <img src={trophy} style={{ hwight: "15px", width: "30px" }}></img>
-                <p className="fw-bold mb-0 ms-3">
-                  Ranked 1 Business School
-                </p>
+                <img
+                  src={trophy}
+                  style={{ hwight: "15px", width: "30px" }}
+                ></img>
+                <p className="fw-bold mb-0 ms-3">Ranked 1 Business School</p>
               </div>
 
               <div className="d-flex aic jcc">
@@ -115,10 +125,7 @@ export default class CollegeDetailsComponent extends Component {
               <div style={{}} className="mt-4">
                 <div className="d-flex">
                   <div>
-                    <img
-                      src={info}
-                      className="abtIcon me-3"
-                    ></img>
+                    <img src={info} className="abtIcon me-3"></img>
                   </div>
                   <div>
                     {" "}
@@ -131,10 +138,7 @@ export default class CollegeDetailsComponent extends Component {
                 <div className="d-flex mt-3">
                   <div>
                     {" "}
-                    <img
-                      src={info}
-                      className="abtIcon me-3"
-                    ></img>
+                    <img src={info} className="abtIcon me-3"></img>
                   </div>
                   <div>
                     {" "}
@@ -146,10 +150,7 @@ export default class CollegeDetailsComponent extends Component {
                 <div className="d-flex mt-3">
                   <div>
                     {" "}
-                    <img
-                      src={foundation}
-                      className="abtIcon me-3"
-                    ></img>
+                    <img src={foundation} className="abtIcon me-3"></img>
                   </div>
                   <div>
                     {" "}
@@ -161,10 +162,7 @@ export default class CollegeDetailsComponent extends Component {
                 <div className="d-flex mt-3">
                   <div>
                     {" "}
-                    <img
-                      src={check}
-                      className="abtIcon me-3"
-                    ></img>
+                    <img src={check} className="abtIcon me-3"></img>
                   </div>
                   <div>
                     {" "}
@@ -176,10 +174,7 @@ export default class CollegeDetailsComponent extends Component {
                 <div className="d-flex mt-3">
                   <div>
                     {" "}
-                    <img
-                      src={address}
-                      className="abtIcon me-3"
-                    ></img>
+                    <img src={address} className="abtIcon me-3"></img>
                   </div>
                   <div>
                     {" "}
@@ -191,10 +186,7 @@ export default class CollegeDetailsComponent extends Component {
                 <div className="d-flex mt-3">
                   <div>
                     {" "}
-                    <img
-                      src={phone}
-                      className="abtIcon me-3"
-                    ></img>
+                    <img src={phone} className="abtIcon me-3"></img>
                   </div>
                   <div>
                     {" "}
@@ -206,10 +198,7 @@ export default class CollegeDetailsComponent extends Component {
                 <div className="d-flex mt-3">
                   <div>
                     {" "}
-                    <img
-                      src={website}
-                      className="abtIcon me-3"
-                    ></img>
+                    <img src={website} className="abtIcon me-3"></img>
                   </div>
                   <div>
                     <p className="mb-0">{details.website}</p>
@@ -219,10 +208,7 @@ export default class CollegeDetailsComponent extends Component {
                 <div className="d-flex mt-3">
                   <div>
                     {" "}
-                    <img
-                      src={website}
-                      className="abtIcon me-3"
-                    ></img>
+                    <img src={website} className="abtIcon me-3"></img>
                   </div>
                   <div>
                     <p className="mb-0">{details.website}</p>
@@ -232,10 +218,7 @@ export default class CollegeDetailsComponent extends Component {
                 <div className="d-flex mt-3">
                   <div>
                     {" "}
-                    <img
-                      src={mail}
-                      className="abtIcon me-3"
-                    ></img>
+                    <img src={mail} className="abtIcon me-3"></img>
                   </div>
                   <div>
                     <p className="mb-0">{details.email}</p>
@@ -243,10 +226,29 @@ export default class CollegeDetailsComponent extends Component {
                 </div>
               </div>
 
-
-              <div className="p-3 mt-3" style={{backgroundColor: "#b0d9eb" }}>
-                <div style={{ display: "flex", flexWrap: "wrap", textAlign: "center" }}>  <p style={{ fontSize: "22px", fontWeight: "600", marginLeft: "25%" }}>Notice Board</p>
-                  <img src={notPin} style={{ width: "20px", height: "20px", marginLeft: "1em" }}></img></div>
+              <div className="p-3 mt-3" style={{ backgroundColor: "#b0d9eb" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    textAlign: "center",
+                  }}
+                >
+                  {" "}
+                  <p
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: "600",
+                      marginLeft: "25%",
+                    }}
+                  >
+                    Notice Board
+                  </p>
+                  <img
+                    src={notPin}
+                    style={{ width: "20px", height: "20px", marginLeft: "1em" }}
+                  ></img>
+                </div>
 
                 <marquee direction="up" scrollamount="2" height="300px">
                   <h5>{details.description}</h5>
@@ -269,15 +271,10 @@ export default class CollegeDetailsComponent extends Component {
                   })}
                 </>
               ) : (
-
                 <div class="card">
-
                   Add Post By going to Add Post Section in Top right corner
                 </div>
-              )
-              }
-
-
+              )}
             </div>
           </div>
         </>
@@ -503,17 +500,26 @@ export default class CollegeDetailsComponent extends Component {
                 <div class="col-md-8 col-md-offset-2">
                   <h1>Create post</h1>
 
-
                   <div class="form-group">
                     <label for="title">
                       Title <span class="require">*</span>
                     </label>
-                    <input onChange={(e) => { this.setState({ postTitle: e.target.value }) }} type="text" class="form-control" name="title" />
+                    <input
+                      onChange={(e) => {
+                        this.setState({ postTitle: e.target.value });
+                      }}
+                      type="text"
+                      class="form-control"
+                      name="title"
+                    />
                   </div>
 
                   <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea onChange={(e) => { this.setState({ postDescription: e.target.value }) }}
+                    <textarea
+                      onChange={(e) => {
+                        this.setState({ postDescription: e.target.value });
+                      }}
                       rows="5"
                       class="form-control"
                       name="description"
@@ -543,9 +549,7 @@ export default class CollegeDetailsComponent extends Component {
                               src={img_thumb}
                               style={{ width: "100px" }}
                             ></img>
-                            <p
-                              style={{ fontSize: "20px", marginTop: "1rem" }}
-                            >
+                            <p style={{ fontSize: "20px", marginTop: "1rem" }}>
                               Click to Upload or drop your image
                             </p>
                           </div>
@@ -560,12 +564,16 @@ export default class CollegeDetailsComponent extends Component {
                   </div>
 
                   <div class="">
-                    <button onClick={() => { this.createPostForCollege() }} class="btn btn-primary">
+                    <button
+                      onClick={() => {
+                        this.createPostForCollege();
+                      }}
+                      class="btn btn-primary"
+                    >
                       Create
                     </button>
                     <button class="btn btn-default">Cancel</button>
                   </div>
-
                 </div>
               </div>
             </div>

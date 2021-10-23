@@ -51,7 +51,6 @@ export default class VideoUpload extends Component {
   }
 
   async requestForUpload() {
-    debugger
     if (this.state.videoUrl !== null && this.state.videoUrl !== undefined) {
       var payload = {
         title: this.state.postText,
@@ -83,7 +82,7 @@ export default class VideoUpload extends Component {
         var responseForPostDetails = await createPostData(payload);
         if (responseForPostDetails.status === 200) {
           console.log("post details reposne", responseForPostDetails);
-          // window.location.reload();
+          window.location.reload();
         }
       }
     }

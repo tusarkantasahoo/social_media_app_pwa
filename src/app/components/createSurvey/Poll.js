@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import {createSurvey} from "../../api/Api.js";
+import history from "../../pages/history/History.js";
 export default class Poll extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +50,7 @@ export default class Poll extends Component {
     var responsePollSurvey = await createSurvey(surveyPayload)
     if(responsePollSurvey.status === 200){
       console.log("response create survey",responsePollSurvey)
+      history.push("/survey")
       window.location.reload();
     }
   }

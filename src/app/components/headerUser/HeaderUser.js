@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import userImage from "../../../assets/images/professionalImage.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 export default class HeaderUser extends Component {
   constructor(props) {
     super(props);
@@ -23,18 +24,25 @@ export default class HeaderUser extends Component {
             <div className="shadow-lg user_dd">
               <p>{userDetails.userData.email}</p>
               <p className="d-none">{userDetails.userData.phone}</p>
-              <a
+
+              <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to={"/userDetails"}
+                      >
+              <p
                 className="user_actn mb-3"
                 onClick={() => {
-                  this.props._onClickUserDashboard();
-                  this.props._changeScreenRender({
-                    name: "User Details",
-                    code: "userDetails",
-                  });
+                  // this.props._onClickUserDashboard();
+                  // this.props._changeScreenRender({
+                  //   name: "User Details",
+                  //   code: "userDetails",
+                  // });
                 }}
               >
                 User Dashboard
-              </a>
+              </p>
+              </Link>
+
               <a
                 className="user_actn"
                 onClick={() => {

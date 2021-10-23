@@ -38,7 +38,7 @@ export default class AppHeader extends Component {
             <div className="container_custom d-flex jcsb aic">
               <div className="logo_wrapper d-flex mb-0">
                 <img src={monastreeLogo} className="img_res"></img>
-                <p style={{ color: "white", marginTop: "-0.5em" }}>MONASTREE</p>
+                <p style={{ color: "white", marginTop: "-0.5em" }}></p>
               </div>
 
               <HeaderSearchBox />
@@ -73,7 +73,7 @@ export default class AppHeader extends Component {
           </div>
               <div className="logo_wrapper d-flex mb-0">
                 <img src={monastreeLogo} className="img_res"></img>
-                <p className="text-white mb-0 ms-2">MONASTREE</p>
+                <p className="text-white mb-0 ms-2"></p>
               </div>
 
               <HeaderSearchBox />

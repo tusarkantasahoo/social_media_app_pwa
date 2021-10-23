@@ -1,137 +1,271 @@
 import React, { Component } from "react";
 import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
-import like from "../../../assets/images/like.png";
-import share from "../../../assets/images/network.png";
+import like from "../../../assets/images/svg/like.png";
+import dislike from "../../../assets/images/svg/dislike.png";
+import share from "../../../assets/images/svg/share.png";
+import more from "../../../assets/images/svg/more.png";
+// import share from "../../../assets/images/network.png";
+import Tooltip from "@material-ui/core/Tooltip";
+import { Dropdown } from "react-bootstrap";
 import comment from "../../../assets/images/comment.png";
+import MaterialIcon, { colorPalette } from "material-icons-react";
+import likeTwt from "../../../assets/images/twitterlike.png";
+import twitterComment from "../../../assets/images/twitterComment.png";
+import twitterShare from "../../../assets/images/twitterShare.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
-import {getFileContentById,deletePostById} from "../../api/Api.js";
+import {
+  getFileContentById,
+  deletePostById,
+  createCommentForPost,
+  addLikeForPost,
+  addDislikeForPost
+} from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url";
 import send from "../../../assets/images/send.png";
-export default class ImagePost extends Component {
+
+export default class TextPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fileId:this.props.props.fileStorageId,
-      postImage:""
+      fileId: this.props.props.fileStorageId,
+      postImage: "",
+      comment: "",
+      isCommentVisible: false,
+      likes: this.props.props.likes,
+      dislikes:this.props.props.dislikes
     };
 
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
+    this._onClickSendComment = this._onClickSendComment.bind(this);
+    this.dateFromObjectId = this.dateFromObjectId.bind(this);
+    this._onClickLike = this._onClickLike.bind(this);
+    this._onClickDislike = this._onClickDislike.bind(this);
   }
 
-  async _onClickDeletePost(item){
-    var response = await deletePostById(item)
-    if(response.status === 200){
-      console.log("Post delete",response)
+  async _onClickDeletePost(item) {
+    var response = await deletePostById(item);
+    if (response.status === 200) {
+      console.log("Post delete", response);
+      window.location.reload();
     }
   }
+
+  async _onClickSendComment() {
+    console.log("send comment clickewd");
+    var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    var postJson = {
+      id: this.props.props._id,
+      commentData: {
+        user: userData.userData,
+        comment: this.state.comment,
+      },
+    };
+
+    var response = await createCommentForPost(postJson);
+
+    if (response.status === 200) {
+      console.log("comment added successfully");
+    }
+  }
+  async _onClickLike(postId) {
+    var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    var postJson = {
+      id: postId,
+      userId: userData.userData.id,
+      data:"like"
+    };
+    var response = await addLikeForPost(postJson);
+    if (response.status === 200) {
+      console.log("Liked");
+      this.setState({ likes: this.state.likes + 1 });
+    }
+  }
+
+  async _onClickDislike(postId) {
+    var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    var postJson = {
+      id: postId,
+      userId: userData.userData.id,
+      data:"dislike"
+    };
+    var response = await addDislikeForPost(postJson);
+    if (response.status === 200) {
+      console.log("dislke");
+      this.setState({ dislikes: this.state.dislikes + 1 });
+    }
+  }
+
+
+
+  dateFromObjectId(objectId) {
+    console.log("ONN id", objectId);
+    var dt = new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
+    return dt.toString();
+  }
+
   render() {
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
-     console.log("Incoming props",this.props.props)
+    console.log("Incoming props", this.props.props);
     return (
       <>
-        <div
-          style={{
-            textAlign: "left",
-            border: "0.5px solid #d4d1c5",
-            marginTop: "10px",
-            borderRadius: "15px",
-            padding: "10px",
-          }}
-        >
-          <div className="row">
-            <div className="col-1">
+        <div className="imagePostContainer text-left p-3 mb-4">
+          <div className="d-flex flex-row">
+            <div className="comment_icon_top">
               <img
                 src={this.props.props.user.userImage}
-                height="35px"
-                width="35px"
+                height="50px"
+                width="50px"
                 style={{ borderRadius: "25px" }}
               ></img>
             </div>
-            <div className="col-10">
-              <p style={{ fontSize: "22px", marginLeft: "-3%" }}>
-                {this.props.props.user.name}
-              </p>
-              <p style={{ fontSize: "15px", marginLeft: "-3%",marginTop: "-1.5em" }}>
-              {this.props.props.user.email}
+            <div className="ms-3">
+              <h6 className="fw-bold mb-0">{this.props.props.user.name}</h6>
+              <p style={{ fontSize: "15px" }}>
+                {/* {this.props.props.user.email} */}
+                {this.dateFromObjectId(this.props.props._id)}
               </p>
             </div>
-            <div className="col-1">
-              <p style={{ fontSize: "18px", cursor: "pointer" }}>Edit</p>
-              <p onClick={() => this._onClickDeletePost(this.props.props)} style={{ fontSize: "18px", cursor: "pointer" }}>Delete</p>
-            </div>
-          </div>
-          <p>{this.props.props.title}</p>
-         
-          <div
-            onClick={() => {
-              this.props.handelNewsClick();
-              this.props.setNewsItem(this.props.props);
-            }}
-            style={{ textAlign: "center" }}
-          >
-            {/*  */}
-          </div>
-        
+            <div className="post_action ms-auto">
+              <Dropdown>
+                <Dropdown.Toggle id="" className="action_dd">
+                  <img
+                    src={more}
+                    style={{ height: "2em", width: "2em" }}
+                    id="dropdownMenuLink"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  />
+                </Dropdown.Toggle>
 
-          <div className="row">
-            <div className="col-1" style={{ textAlign: "right" }}>
-              {this.props.isLoggedIn ? (
-                <img
-                  src={userDetails.userData.userImage}
-                  style={{
-                    width: "4em",
-                    height: "4em",
-                    borderRadius: "4em",
-                    marginTop: "0.7em",
-                    marginLeft: "2em",
-                  }}
-                ></img>
-              ) : (
-                <img
-                src={userImage}
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  borderRadius: "60px",
-                  marginTop: "0.7em",
-                  marginLeft: "2em",
-                }}
-              ></img>
-              )}
-            </div>
-            <div className="col-10" style={{ textAlign: "left" }}>
-              <div
-                style={{
-                  padding: "10px",
-                  marginLeft: "0",
-                  marginTop: "10px",
-                  textAlign: "left",
-                }}
-              >
-                <input
-                  value={this.state.postText}
-                  onChange={(e) => {}}
-                  placeholder="Comment"
-                  style={{
-                    width: "90%",
-                    height: "50px",
-                    marginLeft: "5%",
-                    outline: "0",
-                    border: "0.5px solid #d4d1c5",
-                    borderRadius: "10px",
-                  }}
-                ></input>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    <p
+                      onClick={() => this._onClickDeletePost(this.props.props)}
+                    >
+                      Delete
+                    </p>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              <div className="dropdown">
+                <div className="dots_icon"></div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <p
+                        onClick={() =>
+                          this._onClickDeletePost(this.props.props)
+                        }
+                        style={{ fontSize: "18px", cursor: "pointer" }}
+                      >
+                        Delete
+                      </p>
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div className="col-1" style={{ textAlign: "left",cursor: "pointer"}}>
-                  <img src={send} style={{height:"2.5em",width:"2.5em",marginTop: "1.5em",marginLeft:"-3em"}}>
-                  </img>
+          </div>
+          <p style={{ marginLeft: "70px",fontSize:"20px" }}>{this.props.props.title}</p>
+        
+
+          {/* Post Like Section */}
+          <div
+            style={{ display: "flex", marginTop: "2em", paddingLeft: "70px" }}
+          >
+            <div className="act_sec  pr">
+              <img
+                onClick={() => {
+                  this._onClickLike(this.props.props._id);
+                }}
+                src={like}
+                className="action_icons"
+              />
+              <p className="act_count">{this.state.likes}</p>
+            </div>
+
+            <div className="act_sec  pr" style={{marginLeft: "1.5em"}}>
+              <img
+                onClick={() => {
+                  this._onClickDislike(this.props.props._id);
+                }}
+                src={dislike}
+                className="action_icons"
+              />
+              <p className="act_count">{this.state.dislikes}</p>
+            </div>
+
+            <div
+              className="act_sec  pr ms-5"
+              onClick={() =>
+                this.setState({
+                  isCommentVisible: !this.state.isCommentVisible,
+                })
+              }
+            >
+              <img className="action_icons" src={comment}></img>
+            </div>
+            <div className="act_sec  pr ms-5">
+              <img
+                className="action_icons"
+                src={share}
+                className="action_icons"
+              ></img>
+            </div>
+          </div>
+          <div style={{marginLeft:"5em",marginTop:"1em"}}>
+            {this.state.isCommentVisible === true ? (
+              <>
+                <div style={{ display: "flex" }}>
+                  <div
+                    style={{ width: "80%" }}
+                    className="div-box-input-share-thoughts"
+                  >
+                    <input
+                      onChange={(e) => {
+                        this.setState({ comment: e.target.value });
+                      }}
+                      className="input-post"
+                      placeholder="Share / Ask what's on your mind?"
+                    ></input>
+                  </div>
+                  <div
+                    onClick={() => {
+                      this._onClickSendComment();
+                    }}
+                    style={{ cursor: "pointer",backgroundColor:"#39a1d9",textAlign: "center",fontSize: "25px",color: "white"}}
+                  >
+                    Send
+                  </div>
                 </div>
+
+                {this.props.props.comments.map((item, id) => {
+                  return (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        fontSize: "15",
+                        display: "flex",
+                        padding: "0.5em",
+                      }}
+                    >
+                      <img
+                        src={item.user.userImage}
+                        style={{ height: "25px", width: "25px" }}
+                      ></img>
+                      <p>{item.comment}</p>
+                    </div>
+                  );
+                })}
+              </>
+            ) : null}
           </div>
         </div>
       </>
     );
   }
+  async componentDidMount() {}
 
 }

@@ -516,7 +516,7 @@ font-weight: 600;
 }
 .post_box{
   padding: 1rem;
-  background-color: #dddadac2;
+  background-color: #ffffffc2;
 }
 .search_icon{
   border-radius: 3px;
@@ -557,7 +557,7 @@ font-weight: 600;
   display: none;
 }
 .home_card{
-  background: #ddddddd6;
+  background: #f9f8f8;
   border: none;
 }
 .home_card:hover{

@@ -54,6 +54,7 @@ export default class Rooms extends Component {
 
   }
   render() {
+
     console.log("state in post",this.state.dataForPostRooms)
     return (
       <>
@@ -99,7 +100,7 @@ export default class Rooms extends Component {
                     />
                   );
                 })}
-                <div onClick={()=>{this.addNewPosts()}} style={{fontSize: "22px",height:"2em",backgroundColor: "blue"}}>
+                <div onClick={()=>{this.addNewPosts()}} style={{fontSize: "22px",height:"2em",backgroundColor: "#e6e6f3",textAlign: "center",cursor: "pointer",marginBottom: "10px"}}>
                   Load more....
                 </div>
      
@@ -119,5 +120,9 @@ export default class Rooms extends Component {
         dataForPostRooms: responsePostList.data.response,
       });
     }
+
+ 
   }
+  
+  
 }

@@ -15,6 +15,7 @@ import ImageUpload from "../../imageUploader/ImageUpload.js";
 import VideoUpload from "../../videoUploader/VideoUpload.js";
 import CreateSurvey from "../../createSurvey/CreateSurvey.js";
 import { createPostData } from "../../../api/Api.js";
+import history from "../../../pages/history/History.js";
 export default class PostMessageBox extends Component {
   constructor(props) {
     super(props);
@@ -72,6 +73,7 @@ export default class PostMessageBox extends Component {
     var createPost = await createPostData(payload);
     if (createPost.status === 200) {
       console.log("Post created successfully", createPost);
+      window.location.reload()
     }
   }
 
