@@ -42,7 +42,12 @@ export default class VideoPost extends Component {
   dateFromObjectId(objectId) {
     console.log("ONN id", objectId);
     var dt = new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
-    return dt.toString();
+
+    var dateNew = dt.toString();
+    var data = dateNew.split(" ");
+    var data1 = data[0]+" "+data[1]+" "+data[2]+" "+data[3]+" at "+data[4]
+
+    return data1;
   }
   async _onClickLike(postId) {
     var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));

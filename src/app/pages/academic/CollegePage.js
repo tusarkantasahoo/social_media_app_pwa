@@ -496,21 +496,23 @@ export default class CollegePage extends Component {
                         <MenuItem value="offline">Offline</MenuItem>
                       </Select>
                     </FormControl>
-                  </div>
-                  <div className="">
+                    <div className="">
                     <Button
-                      style={{ marginTop: "1em", marginLeft: "1em" }}
+                      style={{ marginTop: "1em", marginLeft: "90%" }}
                       variant="outlined"
                       onClick={() => this.searchCollege()}
                     >
                       Search
                     </Button>
                   </div>
+                  </div>
+               
                   <div className=""
                     style={{
                       display: "flex",
                       flexWrap: "wrap",
                       backgroundColor: "#F5F4F5",
+                      marginTop: "2em",
                     }}
                   >
 
