@@ -169,7 +169,13 @@ export default class PostMessageBox extends Component {
                             className="post-box-dropdown-list-upload"
                             style={{ cursor: "pointer" }}
                             onClick={() => {
-                              this.setState({ renderWhatToPost: item.code });
+                              if(this.state.userData===null||this.state.userData===undefined){
+                                window.alert("Please login")
+                              }
+                              else{
+                                this.setState({ renderWhatToPost: item.code });
+                              }
+                              
                             }}
                           >
                             <div

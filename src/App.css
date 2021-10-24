@@ -675,5 +675,11 @@ font-weight: 600;
   .c_body_fw{
     margin-left: 0px;
   }
- 
+  
+}
+
+
+.linkStyle{
+  text-decoration: none !important;
+  color: #111820 !important;
 }

@@ -15,7 +15,7 @@ export default class Cardbox extends Component {
 
   render() {
     return (
-      <div className="p-3 col-sm-12 col-md-6 col-lg-6">
+      <div className="crdbx">
         <div className="card p-3 home_card">
           <div className="d-flex jcc aic">
             <img src={this.props.image} style={{ height: "3em", width: "3em" }}></img>
