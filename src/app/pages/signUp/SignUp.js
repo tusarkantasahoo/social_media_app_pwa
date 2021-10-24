@@ -3,6 +3,7 @@ import "./SignUp.css";
 import DatePicker from 'react-date-picker';
 import loginTree from "../../../assets/images/LoginTree.png";
 import {Signup} from "../../../auth/AuthApi.js";
+import history from "../history/History.js";
 export default class SignUp extends Component {
     constructor(props) {
         super(props);
@@ -39,7 +40,9 @@ export default class SignUp extends Component {
           console.log("User registered Succcessfully");
           console.log("Server response",responseSignupUser)
           alert("user registered successfully");
-          this.props.updateRouteToPage("login")
+          // this.props.updateRouteToPage("login")
+          history.push("/login");
+          window.location.reload();
         }
       }
 

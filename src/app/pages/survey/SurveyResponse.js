@@ -33,11 +33,13 @@ export default class Survey extends Component {
       comment: "",
       surveyId: "",
       selectedOption: "",
+      quizQuestion:[]
     };
     this.returnSurveyByType = this.returnSurveyByType.bind(this);
     this._onClickSubmitResearch = this._onClickSubmitResearch.bind(this);
     this._onClickSubmitQuiz = this._onClickSubmitQuiz.bind(this);
     this._onClickSubmitPoll = this._onClickSubmitPoll.bind(this);
+    this.updateQuizselect = this.updateQuizselect.bind(this);
   }
 
   async _onClickSubmitResearch() {
@@ -70,24 +72,13 @@ export default class Survey extends Component {
   }
 
   async _onClickSubmitQuiz() {
+    console.log("Question",this.state.quizQuestion)
     var user = JSON.parse(localStorage.getItem(authResponseStoredValue));
-    if (
-      this.state.selectedOption.length === 0 ||
-      this.state.selectedOption === null ||
-      this.state.selectedOption.length === undefined
-    ) {
-      window.alert("Please select A option");
-    }
+
     var postJson = {
       surveyId: this.state.surveyId,
-      user: {
-        name: user.userData.name,
-        email: user.userData.email,
-        id: user.userData._id,
-        image: user.userData.userImage,
-      },
-
-      optionName: this.state.selectedOption,
+      userData: user.userData,
+      response: this.state.quizQuestion,
     };
     var response = await giveQuizAnswer(postJson);
 
@@ -140,6 +131,9 @@ export default class Survey extends Component {
       }
     }
   }
+  updateQuizselect(data){
+    this.setState({quizQuestion: data})
+  }
 
   returnSurveyByType(type) {
     switch (type) {
@@ -186,10 +180,10 @@ export default class Survey extends Component {
       case "quiz":
         return (
           <>
-            {this.state.surveyDetails.quizQuestion.map((item, id) => {
+            {this.state.quizQuestion.map((item, id) => {
               return (
                 <>
-               <QuizComponents item={item}/>
+               <QuizComponents updateQuizselect={this.updateQuizselect} quizQuestion={this.state.quizQuestion} item={item} id={id}/>
                 </>
               );
             })}
@@ -310,7 +304,7 @@ export default class Survey extends Component {
     var responseSurvey = await getSurveyById(surveyId);
     if (responseSurvey.status === 200) {
       console.log("Response from survey", responseSurvey.data.response);
-      this.setState({ surveyDetails: responseSurvey.data.response });
+      this.setState({ surveyDetails: responseSurvey.data.response,quizQuestion: responseSurvey.data.response.quizQuestion });
     }
   }
 }

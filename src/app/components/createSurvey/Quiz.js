@@ -10,7 +10,7 @@ export default class Quiz extends Component {
       postText: props.postText,
       user: JSON.parse(localStorage.getItem(authResponseStoredValue)),
       noOfQus: 1,
-      questions: [{}],
+      questions: [{id:1}],
     };
 
     this._onClickSurveySubmit = this._onClickSurveySubmit.bind(this);
@@ -69,8 +69,8 @@ export default class Quiz extends Component {
         <div
           onClick={() => {
             var dummy = this.state.questions;
-            dummy.push({});
-            this.setState({ questions: dummy });
+            dummy.push({id: this.state.noOfQus+1});
+            this.setState({ questions: dummy,noOfQus: this.state.noOfQus+1});
           }}
           style={{
             height: "2em",

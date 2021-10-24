@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import userImage from "../../../assets/images/professionalImage.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
+import user_w from "../../../assets/images/user_w.png";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 export default class HeaderUser extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class HeaderUser extends Component {
     return (
       <>
         <div className="text-center px-3 pr" onClick={() => this.setState({ isUserClicked: !this.state.isUserClicked })}>
-          <img src={userDetails.userData.userImage} className="user_pic" />
+          <img src={userDetails.userData.userImage!==null&&userDetails.userData.userImage!==undefined?userDetails.userData.userImage:user_w} className="user_pic" />
           <p className="mb-0 text-light">
             {userDetails.userData.name}
           </p>

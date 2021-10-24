@@ -17,7 +17,9 @@ export default class QuizComponent extends Component {
 
 
   render() {
-      var item = this.props.item
+      var item = this.props.item;
+      var id= this.props.id;
+      var quizQuestion = this.props.quizQuestion;
       return(
         <>
         <FormControl component="fieldset">
@@ -30,9 +32,9 @@ export default class QuizComponent extends Component {
               <div>
                 <FormControlLabel
                   onChange={(e) => {
-                    this.setState({
-                      selectedOption: e.target.value,
-                    });
+                    quizQuestion[id].selected = e.target.value
+                    this.props.updateQuizselect(quizQuestion)
+
                   }}
                   value={item.option1}
                   control={<Radio color="primary" />}
@@ -42,9 +44,8 @@ export default class QuizComponent extends Component {
               <div>
                 <FormControlLabel
                   onChange={(e) => {
-                    this.setState({
-                      selectedOption: e.target.value,
-                    });
+                    quizQuestion[id].selected = e.target.value
+                    this.props.updateQuizselect(quizQuestion)
                   }}
                   value={item.option2}
                   control={<Radio color="primary" />}
@@ -54,9 +55,8 @@ export default class QuizComponent extends Component {
               <div>
                 <FormControlLabel
                   onChange={(e) => {
-                    this.setState({
-                      selectedOption: e.target.value,
-                    });
+                    quizQuestion[id].selected = e.target.value
+                    this.props.updateQuizselect(quizQuestion)
                   }}
                   value={item.option3}
                   control={<Radio color="primary" />}
@@ -66,9 +66,8 @@ export default class QuizComponent extends Component {
               <div>
                 <FormControlLabel
                   onChange={(e) => {
-                    this.setState({
-                      selectedOption: e.target.value,
-                    });
+                    quizQuestion[id].selected = e.target.value
+                    this.props.updateQuizselect(quizQuestion)
                   }}
                   value={item.option4}
                   control={<Radio color="primary" />}

@@ -16,6 +16,7 @@ import VideoUpload from "../../videoUploader/VideoUpload.js";
 import CreateSurvey from "../../createSurvey/CreateSurvey.js";
 import { createPostData } from "../../../api/Api.js";
 import history from "../../../pages/history/History.js";
+import user_w from "../../../../assets/images/user_w.png";
 export default class PostMessageBox extends Component {
   constructor(props) {
     super(props);
@@ -105,7 +106,7 @@ export default class PostMessageBox extends Component {
                   {this.props.isLoggedIn ? (
                     <img
                       className="home-page-user-image-box"
-                      src={userDetails.userData.userImage}
+                      src={userDetails.userData.userImage!==null&&userDetails.userData.userImage!==undefined?userDetails.userData.userImage:userImage}
                     />
                   ) : (
                     <img className="home-page-user-image-box" src={userImage} />

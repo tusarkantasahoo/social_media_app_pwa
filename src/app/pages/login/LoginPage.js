@@ -126,9 +126,11 @@ export default class LoginPage extends Component {
                     onChange={(e) => { this.setState({ password: e.target.value }) }}
                   />                  
                 </div>
+                <Link to="/forgotPassword" style={{textDecoration: "none"}}>
                 <div className="my-1 text-end mx-auto mw_350">
-                  <p className="forgotten-password-text" onClick={() => this.props.updateRouteToPage("forgotPassword")}>Forgotten password?</p>
+                  <p className="forgotten-password-text" >Forgotten password?</p>
                 </div>
+                </Link>
                 <button
                   className="btn btn-primary"
                   //  type="submit"
