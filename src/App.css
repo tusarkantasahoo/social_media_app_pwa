@@ -502,6 +502,7 @@ font-weight: 600;
 }
 .nav_wrap{
   display: flex;
+  flex-direction: column;
   background: linear-gradient(to right,#111820, #9e9ebb);
   height: 70px;
   position: fixed;
@@ -651,10 +652,15 @@ font-weight: 600;
   color: #1DA1F2;
 }
 .menuBar{
-  width: 35px;
+  width: 30px;
   position: absolute;
-  right: -55px;
-  top: -15px;
+  left: 0;
+  top: 10px;
+}
+.load_spinner{
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 10px;
 }
 @media only screen and (min-width: 992px) {
   .menuBar{

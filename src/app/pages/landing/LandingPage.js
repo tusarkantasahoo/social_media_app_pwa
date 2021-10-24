@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import HomeOptions from "../../components/homeOptions/HomeOptions.js";
 import HomeSocial from "../../components/homeSocial/HomeSocial.js";
 import AppHeader from "../../components/header/AppHeader.js";
+import HeaderSearchBox from "../../components/input/headerSearchBox/HeaderSearchBox.js";
 import { userReloginCheckToken } from "../../../auth/AuthApi.js";
 import UserDetails from "../../pages/userDetails/UserDetails.js";
 import Academic from "../academic/Academic.js";
@@ -74,7 +75,7 @@ export default class Landing extends Component {
           image: girl1,
         },
       ],
-      isNavActive: true,
+      isNavActive: false,
     };
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -244,14 +245,14 @@ export default class Landing extends Component {
           className="container_custom"
           style={{ display: "flex", marginTop: "70px" }}
         >
-      
-            <HomeOptions
-              props={this.state}
-              isLoggedIn={true}
-              setPage={this.props.setPage}
-              history={this.props.history}
-            />
-       
+
+          <HomeOptions
+            props={this.state}
+            isLoggedIn={true}
+            setPage={this.props.setPage}
+            history={this.props.history}
+          />
+
 
           {this.renderScreenDependingOnSelection()}
         </div>
