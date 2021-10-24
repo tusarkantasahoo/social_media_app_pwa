@@ -502,6 +502,7 @@ font-weight: 600;
 }
 .nav_wrap{
   display: flex;
+  flex-direction: column;
   background: linear-gradient(to right,#111820, #9e9ebb);
   height: 70px;
   position: fixed;
@@ -651,10 +652,15 @@ font-weight: 600;
   color: #1DA1F2;
 }
 .menuBar{
-  width: 35px;
+  width: 30px;
   position: absolute;
-  right: -55px;
-  top: -15px;
+  left: 0;
+  top: 10px;
+}
+.load_spinner{
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 10px;
 }
 @media only screen and (min-width: 992px) {
   .menuBar{
@@ -675,5 +681,46 @@ font-weight: 600;
   .c_body_fw{
     margin-left: 0px;
   }
- 
+  .c_body{
+    margin-left: 0px;
+    width: 100%;
+  }
+  .nav_wrap{
+    height: fit-content;
+  }
+  .logo_wrapper {
+    margin-left: 45px;
+  }
+  .nav_wrap{
+    padding-top: 5px;
+    /* padding-bottom: 5px; */
+  }
+}
+@media only screen and (min-width: 600px) {
+  .search_sm{
+    display: none;
+  }
+  .search_md{
+    display: flex;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .search_md{
+    display: none !important;
+  }
+  .search_sm{
+    display: flex;
+    justify-content: center;
+    margin-left: -15px;
+    margin-right: -15px;
+    background-color: #fff;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .header-search-box{
+    border: 1px solid #c4c4c4c4;
+    width: 70%;
+  }
 }

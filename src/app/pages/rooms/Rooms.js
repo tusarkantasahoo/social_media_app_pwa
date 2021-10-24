@@ -6,6 +6,9 @@ import SinglePostView from "../../components/openPosts/SinglePostView.js";
 import filterpng from "../../../assets/images/filterpng.png";
 import MaterialIcon, { colorPalette } from "material-icons-react";
 import { getPostsList } from "../../api/Api.js";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+
 export default class Rooms extends Component {
   constructor(props) {
     super(props);
@@ -32,29 +35,29 @@ export default class Rooms extends Component {
     console.log("News set", item);
   }
 
-  async addNewPosts(){
+  async addNewPosts() {
     console.log("Add post clicked")
-    var postJson = {pageNo:this.state.pageNo+1}
+    var postJson = { pageNo: this.state.pageNo + 1 }
     var response = await getPostsList(postJson)
     if (response.status === 200) {
       console.log("responsePostList", response);
 
       var data = this.state.dataForPostRooms;
-      if(response.data.response.length>0){
-        for(var i=0;i<response.data.response.length;i++){
-          data = [...data,response.data.response[i]]
-        }  
+      if (response.data.response.length > 0) {
+        for (var i = 0; i < response.data.response.length; i++) {
+          data = [...data, response.data.response[i]]
+        }
       }
       this.setState({
         dataForPostRooms: data
       });
     }
 
-    this.setState({ pageNo:this.state.pageNo + 1});
+    this.setState({ pageNo: this.state.pageNo + 1 });
 
   }
   render() {
-    console.log("state in post",this.state.dataForPostRooms)
+    console.log("state in post", this.state.dataForPostRooms)
     return (
       <>
         {/* </div> */}
@@ -88,21 +91,25 @@ export default class Rooms extends Component {
               </div>
             </div>
             <div className="row">
-  
-                {this.state.dataForPostRooms.map((item, index) => {
-                  return (
-                    <Post
-                      props={item}
-                      handelNewsClick={this.handelNewsClick}
-                      setNewsItem={this.setNewsItem}
-                      isLoggedIn={this.props.isLoggedIn}
-                    />
-                  );
-                })}
-                <div onClick={()=>{this.addNewPosts()}} style={{fontSize: "22px",height:"2em",backgroundColor: "blue"}}>
-                  Load more....
-                </div>
-     
+
+              {this.state.dataForPostRooms.map((item, index) => {
+                return (
+                  <Post
+                    props={item}
+                    handelNewsClick={this.handelNewsClick}
+                    setNewsItem={this.setNewsItem}
+                    isLoggedIn={this.props.isLoggedIn}
+                  />
+                );
+              })}
+              <div onClick={() => { this.addNewPosts() }} className="d-flex jcc">
+
+                <Button variant="contained">
+                  <CircularProgress color="light" className="load_spinner"/>
+                  Load more
+                </Button>
+              </div>
+
             </div>
           </>
         )}
@@ -111,7 +118,7 @@ export default class Rooms extends Component {
   }
 
   async componentDidMount() {
-    var postJson={pageNo:0}
+    var postJson = { pageNo: 0 }
     var responsePostList = await getPostsList(postJson);
     if (responsePostList.status === 200) {
       console.log("responsePostList", responsePostList);
