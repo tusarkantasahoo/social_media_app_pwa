@@ -8,8 +8,8 @@ import user_w from "../../../assets/images/user_w.png";
 import treepng from "../../../assets/images/treepng.png";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import monastreeLogo from "../../../assets/images/phase2Img/m.png";
-import home from "../../../assets/images/phase2Img/home.png"
-import bell from "../../../assets/images/phase2Img/bell.png"
+import home from "../../../assets/images/phase2Img/home.png";
+import bell from "../../../assets/images/phase2Img/bell.png";
 import comment from "../../../assets/images/phase2Img/msg.png";
 import college from "../../../assets/images/menu.png";
 // import NotificationsIcon from '@mui/icons-material/Notifications.js';
@@ -26,15 +26,16 @@ export default class AppHeader extends Component {
       <>
         {this.props.isLoggedIn ? (
           <div className="container-fluid nav_wrap">
-                 <div className="pr">
-               
-            <img
-              src={college}
-              className="menuBar"
-              id="menuBar"
-              onClick={() =>{this.props._changeNavActive()}}
-            />
-          </div>
+            <div className="pr">
+              <img
+                src={college}
+                className="menuBar"
+                id="menuBar"
+                onClick={() => {
+                  this.props._changeNavActive();
+                }}
+              />
+            </div>
             <div className="container_custom d-flex jcsb aic">
               <div className="logo_wrapper d-flex mb-0">
                 <img src={monastreeLogo} className="img_res"></img>
@@ -43,8 +44,26 @@ export default class AppHeader extends Component {
 
               <HeaderSearchBox />
               <div className="d-flex">
-                <img src={comment} style={{ height: "2em", width: "2em", marginTop: "1em", marginLeft: "3em" }} className="img_res"></img>
-                <img src={bell} style={{ height: "2em", width: "2em", marginTop: "1em", marginLeft: "3em" }} className="img_res"></img>
+                <img
+                  src={comment}
+                  style={{
+                    height: "2em",
+                    width: "2em",
+                    marginTop: "1em",
+                    marginLeft: "3em",
+                  }}
+                  className="img_res"
+                ></img>
+                <img
+                  src={bell}
+                  style={{
+                    height: "2em",
+                    width: "2em",
+                    marginTop: "1em",
+                    marginLeft: "3em",
+                  }}
+                  className="img_res"
+                ></img>
                 <div style={{ textAlign: "right", cursor: "pointer" }}>
                   <HeaderUser
                     updateAuthState={this.props.updateAuthState}
@@ -53,32 +72,33 @@ export default class AppHeader extends Component {
                   />
                 </div>
               </div>
-
             </div>
           </div>
-
-
         ) : (
-
-          <div className="container-fluid nav_wrap px-3">
-            <div className="container_custom d-flex jcsb aic">
+          <div className="container-fluid nav_wrap">
             <div className="pr">
-               
-            <img
-              src={college}
-              className="menuBar"
-              id="menuBar"
-              onClick={() =>{this.props._changeNavActive()}}
-            />
-          </div>
+              <img
+                src={college}
+                className="menuBar"
+                id="menuBar"
+                onClick={() => {
+                  this.props._changeNavActive();
+                }}
+              />
+            </div>
+            <div className="container_custom d-flex jcsb aic">
               <div className="logo_wrapper d-flex mb-0">
                 <img src={monastreeLogo} className="img_res"></img>
-                <p className="text-white mb-0 ms-2"></p>
+                <p style={{ color: "white", marginTop: "-0.5em" }}></p>
               </div>
 
               <HeaderSearchBox />
               <div className="d-flex">
-                <img src={comment} style={{ height: "2em", width: "2em"}} className="img_res me-3"></img>
+                <img
+                  src={comment}
+                  style={{ height: "2em", width: "2em" }}
+                  className="img_res me-3"
+                ></img>
                 <div style={{ textAlign: "right", cursor: "pointer" }}>
                   <Link to="/login" className="td_none ms-3 mb-0">
                     <img src={user_w} className="userIcon" />
@@ -87,9 +107,6 @@ export default class AppHeader extends Component {
               </div>
             </div>
           </div>
-
-
-
         )}
       </>
     );
