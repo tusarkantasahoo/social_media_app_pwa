@@ -38,7 +38,7 @@ export default class AppHeader extends Component {
             </div>
             <div className="container_custom d-flex jcsb aic">
               <div className="logo_wrapper d-flex mb-0">
-                <img src={monastreeLogo} className="img_res"></img>
+                <img src={logo} className="img_res"></img>
                 <p style={{ color: "white", marginTop: "-0.5em" }}></p>
               </div>
 
@@ -88,7 +88,7 @@ export default class AppHeader extends Component {
             </div>
             <div className="container_custom d-flex jcsb aic">
               <div className="logo_wrapper d-flex mb-0">
-                <img src={monastreeLogo} className="img_res"></img>
+                <img src={logo} className="img_res"></img>
                 <p style={{ color: "white", marginTop: "-0.5em" }}></p>
               </div>
 
