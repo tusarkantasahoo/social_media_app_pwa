@@ -14,12 +14,14 @@ import likeTwt from "../../../assets/images/twitterlike.png";
 import twitterComment from "../../../assets/images/twitterComment.png";
 import twitterShare from "../../../assets/images/twitterShare.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
+import history from "../../pages/history/History.js";
 import {
   getFileContentById,
   deletePostById,
   createCommentForPost,
   addLikeForPost,
-  addDislikeForPost
+  addDislikeForPost,
+  getResponseLikedOrDisliked
 } from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url";
 import send from "../../../assets/images/send.png";
@@ -33,7 +35,8 @@ export default class TextPost extends Component {
       comment: "",
       isCommentVisible: false,
       likes: this.props.props.likes,
-      dislikes:this.props.props.dislikes
+      dislikes: this.props.props.dislikes,
+      postliked:null
     };
 
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
@@ -72,8 +75,8 @@ export default class TextPost extends Component {
     var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
     var postJson = {
       id: postId,
-      userId: userData.userData.id,
-      data:"like"
+      userId: userData.userData._id,
+      data: "like",
     };
     var response = await addLikeForPost(postJson);
     if (response.status === 200) {
@@ -86,8 +89,8 @@ export default class TextPost extends Component {
     var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
     var postJson = {
       id: postId,
-      userId: userData.userData.id,
-      data:"dislike"
+      userId: userData.userData._id,
+      data: "dislike",
     };
     var response = await addDislikeForPost(postJson);
     if (response.status === 200) {
@@ -96,14 +99,22 @@ export default class TextPost extends Component {
     }
   }
 
-
   dateFromObjectId(objectId) {
     console.log("ONN id", objectId);
     var dt = new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
 
     var dateNew = dt.toString();
     var data = dateNew.split(" ");
-    var data1 = data[0]+" "+data[1]+" "+data[2]+" "+data[3]+" at "+data[4]
+    var data1 =
+      data[0] +
+      " " +
+      data[1] +
+      " " +
+      data[2] +
+      " " +
+      data[3] +
+      " at " +
+      data[4];
 
     return data1;
   }
@@ -129,75 +140,109 @@ export default class TextPost extends Component {
                 {this.dateFromObjectId(this.props.props._id)}
               </p>
             </div>
-            <div className="post_action ms-auto">
-              <Dropdown>
-                <Dropdown.Toggle id="" className="action_dd">
-                  <img
-                    src={more}
-                    style={{ height: "2em", width: "2em" }}
-                    id="dropdownMenuLink"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  />
-                </Dropdown.Toggle>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    <p
-                      onClick={() => this._onClickDeletePost(this.props.props)}
-                    >
-                      Delete
-                    </p>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <div className="dropdown">
-                <div className="dots_icon"></div>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li>
-                    <a class="dropdown-item" href="#">
+            {userDetails !== null &&
+            userDetails !== undefined &&
+            userDetails.userData !== null &&
+            userDetails.userData !== undefined &&
+            userDetails.userData._id !== null &&
+            userDetails.userData._id !== undefined &&
+            userDetails.userData._id === this.props.props.user._id ? (
+              <div className="post_action ms-auto">
+                <Dropdown>
+                  <Dropdown.Toggle id="" className="action_dd">
+                    <img
+                      src={more}
+                      style={{ height: "2em", width: "2em" }}
+                      id="dropdownMenuLink"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    />
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">
                       <p
                         onClick={() =>
                           this._onClickDeletePost(this.props.props)
                         }
-                        style={{ fontSize: "18px", cursor: "pointer" }}
                       >
                         Delete
                       </p>
-                    </a>
-                  </li>
-                </ul>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <div className="dropdown">
+                  <div className="dots_icon"></div>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <p
+                          onClick={() =>
+                            this._onClickDeletePost(this.props.props)
+                          }
+                          style={{ fontSize: "18px", cursor: "pointer" }}
+                        >
+                          Delete
+                        </p>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
+            ) : null}
           </div>
-          <p style={{ marginLeft: "70px",fontSize:"20px" }}>{this.props.props.title}</p>
-        
+
+          <p style={{ marginLeft: "70px", fontSize: "20px" }}>
+            {this.props.props.title}
+          </p>
 
           {/* Post Like Section */}
-          <div
+          <div onClick={() => {
+            history.push("/rooms/"+this.props.props._id);
+            window.location.reload();
+          }}
             style={{ display: "flex", marginTop: "2em", paddingLeft: "70px" }}
           >
-            <div className="act_sec  pr">
+                <div className="act_sec  pr">
               <img
                 onClick={() => {
-                  this._onClickLike(this.props.props._id);
+                  if(this.state.postliked===null&& userDetails!==null&&userDetails!==undefined){
+                    this._onClickLike(this.props.props._id);
+                    this.setState({postliked:true})
+                  }
+                 
                 }}
                 src={like}
                 className="action_icons"
               />
               <p className="act_count">{this.state.likes}</p>
+              {this.state.postliked===true?(
+                  <p style={{fontSize:"30px"}}>.</p>
+              ):(
+                null
+              )}
+              
             </div>
-
-            <div className="act_sec  pr" style={{marginLeft: "1.5em"}}>
+            <div className="act_sec  pr" style={{ marginLeft: "1.5em" }}>
               <img
                 onClick={() => {
-                  this._onClickDislike(this.props.props._id);
+                  if(this.state.postliked===null&& userDetails!==null&&userDetails!==undefined){
+                    this._onClickDislike(this.props.props._id);
+                    this.setState({postliked:false})
+                  }
+                
                 }}
                 src={dislike}
                 className="action_icons"
               />
               <p className="act_count">{this.state.dislikes}</p>
+              {this.state.postliked===false?(
+                  <p style={{fontSize:"30px"}}>.</p>
+              ):(
+                null
+              )}
             </div>
 
             <div
@@ -218,7 +263,7 @@ export default class TextPost extends Component {
               ></img>
             </div>
           </div>
-          <div style={{marginLeft:"5em",marginTop:"1em"}}>
+          <div style={{ marginLeft: "5em", marginTop: "1em" }}>
             {this.state.isCommentVisible === true ? (
               <>
                 <div style={{ display: "flex" }}>
@@ -238,7 +283,13 @@ export default class TextPost extends Component {
                     onClick={() => {
                       this._onClickSendComment();
                     }}
-                    style={{ cursor: "pointer",backgroundColor:"#39a1d9",textAlign: "center",fontSize: "25px",color: "white"}}
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor: "#39a1d9",
+                      textAlign: "center",
+                      fontSize: "25px",
+                      color: "white",
+                    }}
                   >
                     Send
                   </div>
@@ -269,6 +320,27 @@ export default class TextPost extends Component {
       </>
     );
   }
-  async componentDidMount() {}
+  async componentDidMount() {
+    var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    if(userDetails!==null&&userDetails!==undefined) {
+      var likeBody = {
+        postId:this.props.props._id,
+        userId:userDetails.userData._id
+    }
+      var responseLikeDislike = await  getResponseLikedOrDisliked(likeBody);
+      if(responseLikeDislike.status === 200){
+        console.log("Response Like dis",responseLikeDislike)
+        if(responseLikeDislike.data.userResponse==="like"){
+            this.setState({postliked:true})
+        }
+        else if(responseLikeDislike.data.userResponse==="dislike"){
+          this.setState({postliked:false})
+        }
+        else {
+          this.setState({postliked:null})
+        }
+      }
+    }
 
+  }
 }

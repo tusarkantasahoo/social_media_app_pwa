@@ -3,7 +3,7 @@ import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
 import ReactPlayer from "react-player";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
-import { getFileContentById, deletePostById, addLikeForPost,createCommentForPost,addDislikeForPost } from "../../api/Api.js";
+import { getFileContentById, deletePostById, addLikeForPost,createCommentForPost,addDislikeForPost,getResponseLikedOrDisliked } from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url";
 import send from "../../../assets/images/send.png";
 import like from "../../../assets/images/svg/like.png";
@@ -15,6 +15,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { Dropdown } from "react-bootstrap";
 import comment from "../../../assets/images/comment.png";
 import MaterialIcon, { colorPalette } from "material-icons-react";
+import history from "../../pages/history/History.js";
 export default class VideoPost extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +26,8 @@ export default class VideoPost extends Component {
       comment: "",
       isCommentVisible: false,
       dislikes: this.props.props.dislikes,
-      commentsArray:this.props.props.comments
+      commentsArray:this.props.props.comments,
+      postliked:null
     };
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
     this.dateFromObjectId = this.dateFromObjectId.bind(this);
@@ -53,7 +55,7 @@ export default class VideoPost extends Component {
     var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
     var postJson = {
       id: postId,
-      userId: userData.userData.id,
+      userId: userData.userData._id,
       data:"like"
     };
     var response = await addLikeForPost(postJson);
@@ -67,7 +69,7 @@ export default class VideoPost extends Component {
     var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
     var postJson = {
       id: postId,
-      userId: userData.userData.id,
+      userId: userData.userData._id,
       data:"dislike"
     };
     var response = await addDislikeForPost(postJson);
@@ -127,6 +129,14 @@ export default class VideoPost extends Component {
                 {this.dateFromObjectId(this.props.props._id)}
               </p>
             </div>
+
+            {userDetails !== null &&
+            userDetails !== undefined &&
+            userDetails.userData !== null &&
+            userDetails.userData !== undefined &&
+            userDetails.userData._id !== null &&
+            userDetails.userData._id !== undefined &&
+            userDetails.userData._id === this.props.props.user._id ? (
             <div className="post_action ms-auto">
               <Dropdown>
                 <Dropdown.Toggle id="" className="action_dd">
@@ -164,13 +174,15 @@ export default class VideoPost extends Component {
                 </ul>
               </div>
             </div>
+            ):null}
+
           </div>
           <p style={{ marginLeft: "70px", marginRight: "10px" }}>{this.props.props.title}</p>
           <div
             className="image-field-for-posts"
             onClick={() => {
-              // this.props.handelNewsClick();
-              // this.props.setNewsItem(this.props.props);
+              history.push("/rooms/"+this.props.props._id);
+              window.location.reload();
             }}
           >
             <ReactPlayer
@@ -185,19 +197,44 @@ export default class VideoPost extends Component {
           </div>
           <div className="d-flex " style={{marginTop: "1.5rem", marginLeft: "70px" }} >
 
-            <div className="act_sec pr">
-              <img onClick={() => { this._onClickLike(this.props.props._id); }} src={like} className="action_icons"/>
-              <p className="act_count">{this.state.likes}</p>
-            </div>
-            <div className="act_sec  pr" style={{marginLeft: "1.5em"}}>
+          <div className="act_sec  pr">
               <img
                 onClick={() => {
-                  this._onClickDislike(this.props.props._id);
+                  if(this.state.postliked===null&& userDetails!==null&&userDetails!==undefined){
+                    this._onClickLike(this.props.props._id);
+                    this.setState({postliked:true})
+                  }
+                 
+                }}
+                src={like}
+                className="action_icons"
+              />
+              <p className="act_count">{this.state.likes}</p>
+              {this.state.postliked===true?(
+                  <p style={{fontSize:"30px"}}>.</p>
+              ):(
+                null
+              )}
+              
+            </div>
+            <div className="act_sec  pr" style={{ marginLeft: "1.5em" }}>
+              <img
+                onClick={() => {
+                  if(this.state.postliked===null&& userDetails!==null&&userDetails!==undefined){
+                    this._onClickDislike(this.props.props._id);
+                    this.setState({postliked:false})
+                  }
+                
                 }}
                 src={dislike}
                 className="action_icons"
               />
               <p className="act_count">{this.state.dislikes}</p>
+              {this.state.postliked===false?(
+                  <p style={{fontSize:"30px"}}>.</p>
+              ):(
+                null
+              )}
             </div>
 
             <div className="act_sec pr ms-5" onClick={() => this.setState({isCommentVisible: !this.state.isCommentVisible,})}>
@@ -283,6 +320,26 @@ export default class VideoPost extends Component {
           videoUrl: dataUrl,
         });
       }
+    }
+    var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    if(userDetails!==null&&userDetails!==undefined) {
+    var likeBody = {
+       postId:this.props.props._id,
+       userId:userDetails.userData._id
+   }
+     var responseLikeDislike = await  getResponseLikedOrDisliked(likeBody);
+     if(responseLikeDislike.status === 200){
+       console.log("Response Like dis",responseLikeDislike)
+       if(responseLikeDislike.data.userResponse==="like"){
+           this.setState({postliked:true})
+       }
+       else if(responseLikeDislike.data.userResponse==="dislike"){
+         this.setState({postliked:false})
+       }
+       else {
+         this.setState({postliked:null})
+       }
+     }
     }
   }
 }

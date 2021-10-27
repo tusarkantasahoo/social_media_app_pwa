@@ -135,6 +135,35 @@ export default class App extends Component {
         />
 
         <Route
+          path="/rooms/:id"
+          exact
+          strict
+          render={() => {
+            if (authResponse === null || authResponse === undefined) {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Rooms", code: "postDetails" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={false}
+                />
+              );
+            } else {
+              return (
+                <Landing
+                  updateAuthState={this.updateAuthState}
+                  page={{ name: "Rooms", code: "postDetails" }}
+                  setPage={this.setPage}
+                  history={createBrowserHistory}
+                  isAuthed={true}
+                />
+              );
+            }
+          }}
+        />
+
+        <Route
           path="/academic"
           exact
           strict
@@ -192,7 +221,7 @@ export default class App extends Component {
           }}
         />
 
-<Route
+        <Route
           path="/academic/college/:id"
           exact
           strict
@@ -421,7 +450,7 @@ export default class App extends Component {
             }
           }}
         />
-                <Route
+        <Route
           path="/userDetails"
           exact
           strict
@@ -507,7 +536,7 @@ export default class App extends Component {
           }}
         />
 
-<Route
+        <Route
           path="/others"
           exact
           strict
@@ -547,7 +576,7 @@ export default class App extends Component {
           )}
         />
 
-<Route
+        <Route
           path="/signup"
           exact
           strict
@@ -559,7 +588,7 @@ export default class App extends Component {
           )}
         />
 
-<Route
+        <Route
           path="/forgotPassword"
           exact
           strict
@@ -570,7 +599,6 @@ export default class App extends Component {
             />
           )}
         />
-        
 
         <Route
           path="/forgotPasswordUpdate/:username/:token"

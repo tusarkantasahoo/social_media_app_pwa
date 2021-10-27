@@ -107,8 +107,11 @@ export default class Survey extends Component {
 
     var user = JSON.parse(localStorage.getItem(authResponseStoredValue));
     if (user !== null && user !== undefined) {
-      var responseSurveyListUser = await getSurveyCratedByUser(user.userData);
-      if (responseSurveyList.status === 200) {
+      var payload = {
+        userId:user.userData._id
+      }
+      var responseSurveyListUser = await getSurveyCratedByUser(payload);
+      if (responseSurveyListUser.status === 200) {
         console.log("Response from survey", responseSurveyListUser);
         this.setState({ userSurvey: responseSurveyListUser.data.response });
       }

@@ -26,7 +26,7 @@ import girl from "../../../assets/images/girl.jpg";
 import girl1 from "../../../assets/images/girl1.jfif";
 import girl2 from "../../../assets/images/girl2.jpg";
 import girl3 from "../../../assets/images/girl3.jpg";
-
+import PostResponse from "../../pages/postResponse/PostResponse.js";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 export default class Landing extends Component {
   constructor(props) {
@@ -125,10 +125,18 @@ export default class Landing extends Component {
             </div>
           </>
         );
+        case "postDetails":
+        return (
+          <>
+            <div className="c_body">
+              <PostResponse props={this.state} isLoggedIn={this.props.isAuthed} />
+            </div>
+          </>
+        );
 
       case "userDetails":
         return (
-          <div className="c_body" id="home-social">
+          <div className="c_body" >
             <UserDetails
               _onClickUserDashboard={this._onClickUserDashboard}
               isLoggedIn={this.props.isAuthed}

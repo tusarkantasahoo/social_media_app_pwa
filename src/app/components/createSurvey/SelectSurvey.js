@@ -14,7 +14,7 @@ export default class SelectSurvey extends Component {
   render() {
     return (
 <>
-            <div style={{ width: "90%", marginLeft: "5%" }}>
+            {/* <div style={{ width: "90%", marginLeft: "5%" }}>
               <input
                 value={this.state.postText}
                 onChange={(e) => {
@@ -29,7 +29,7 @@ export default class SelectSurvey extends Component {
                 }}
                 placeholder="Survey Name"
               ></input>
-            </div>
+            </div> */}
             <div style={{ width: "100%", marginTop: "15px" }}>
               <select
                 value={this.state.surveyType}

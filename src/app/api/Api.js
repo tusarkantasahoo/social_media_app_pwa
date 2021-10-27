@@ -500,6 +500,82 @@ export function createCollegePosts(data) {
   });
 }
 
+export function getResponseLikedOrDisliked(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/social/checkUserAlreadyLikedOrDisliked",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+        resolve(error);
+      });
+  });
+}
+
+export function getPostById(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/social/getPostById/",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+        resolve(error);
+      });
+  });
+}
+
+
+export function getUserPosts(data) {
+  console.log("Calling get search")
+  var config = {
+    method: "post",
+    url: getBaseUrl().baseUrl + "api/social/getPostForUser",
+    headers: {
+      'Content-Type': 'Application/json'
+   },
+
+   data: data,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+        resolve(error);
+      });
+  });
+}
+
 
 
 

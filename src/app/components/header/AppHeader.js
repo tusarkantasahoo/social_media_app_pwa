@@ -75,7 +75,7 @@ export default class AppHeader extends Component {
             </div>
           </div>
         ) : (
-          <div className="container-fluid nav_wrap">
+          <div className="container-fluid nav_wrap" style={{height:"58px"}}>
             <div className="pr">
               <img
                 src={college}
@@ -102,6 +102,7 @@ export default class AppHeader extends Component {
                 <div style={{ textAlign: "right", cursor: "pointer" }}>
                   <Link to="/login" className="td_none ms-3 mb-0">
                     <img src={user_w} className="userIcon" />
+                    {/* <p style={{fontSize: "15px",color: "white",marginLeft:"1em"}}>Sign in</p> */}
                   </Link>
                 </div>
               </div>
