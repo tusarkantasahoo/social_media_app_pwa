@@ -36,11 +36,11 @@ export default class CollegeSliderCard extends Component {
           </div>
           <img src={logo} className="crd_logo pr mb-2" />
           <div className="p-3">
-            <marquee>
+            {/* <marquee> */}
               <p style={{ fontSize: "12px", fontWeight: "500", color: "#116191" }}>
                 {this.limitString(this.props.item.affiliation)}
               </p>
-            </marquee>
+            {/* </marquee> */}
             <div className="d-flex flex-wrap jcsb">
               <div className="text-center">
                 <p className="clgCrdtxt">20,000</p>

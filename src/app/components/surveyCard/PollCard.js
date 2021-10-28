@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import history from "../../pages/history/History.js";
 import close from "../../../assets/images/svg/close.png";
+import { authResponseStoredValue } from "../../../utils/Constant.js";
 // import close from "../../../assets/images/svg/like.png";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 export default class PollCard extends Component {
@@ -9,11 +10,8 @@ export default class PollCard extends Component {
     this.state = {};
   }
 
-
-
-
   render() {
-    console.log("Props in survey card", this.props.item)
+    console.log("Props in survey card", this.props.item);
 
     var analytics = this.props.item.options;
     var total = 0;
@@ -21,39 +19,79 @@ export default class PollCard extends Component {
       total = total + analytics[i].vote;
     }
     console.log("Total votes", total);
+    var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    console.log("User Local Data", userData.userData._id);
+    var userData = JSON.parse(localStorage.getItem(authResponseStoredValue));
+    console.log("User Props Data", this.props.item.user._id);
     return (
       <>
         <div className="poll_card pr">
-          <img src={close} className="close_btn" />
+          {userData !== null &&
+          userData !== undefined &&
+          userData.userData !== null &&
+          userData.userData !== undefined &&
+          userData.userData._id !== null &&
+          userData.userData._id !== undefined &&
+          userData.userData._id === this.props.item.user._id ? (
+            <img  onClick={() =>this.props._deleteSurveyById(this.props.item._id)} src={close} className="close_btn" />
+          ) : null}
 
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <img src={this.props.item.user.userImage} style={{ width: "2.5em", height: "2.5em", borderRadius: "2em" }}></img>
-            <p style={{ fontSize: "22px", fontWeight: "400", marginLeft: "0.5em", fontWeight: "400" }}>Poll by {this.props.item.user.name} </p>
+            <img
+              src={this.props.item.user.userImage}
+              style={{ width: "2.5em", height: "2.5em", borderRadius: "2em" }}
+            ></img>
+            <p
+              style={{
+                fontSize: "22px",
+                fontWeight: "400",
+                marginLeft: "0.5em",
+                fontWeight: "400",
+              }}
+            >
+              Poll by {this.props.item.user.name}{" "}
+            </p>
           </div>
-          <p style={{ fontSize: "18px", fontWeight: "600" }}>{this.props.item.title} </p>
+          <p style={{ fontSize: "18px", fontWeight: "600" }}>
+            {this.props.item.title}{" "}
+          </p>
           {this.props.item.options.map((item, index) => {
             return (
               <>
-                <p style={{ fontSize: "18px", fontWeight: "400" }}>{item.name}</p>
-                <div class="progress" style={{ height: "1em", marginTop: "-0.5em" }}>
-                  <div class="progress-bar" role="progressbar" style={{ width: (item.vote / total * 100).toString() + "%" }} aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                <p style={{ fontSize: "18px", fontWeight: "400" }}>
+                  {item.name}
+                </p>
+                <div
+                  class="progress"
+                  style={{ height: "1em", marginTop: "-0.5em" }}
+                >
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style={{
+                      width: ((item.vote / total) * 100).toString() + "%",
+                    }}
+                    aria-valuenow=""
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
                 </div>
               </>
-
-            )
+            );
           })}
-          <div style={{ display: 'flex', marginTop: '1em' }}>
-            <Link style={{ textDecoration: 'none' }} to={"/survey/" + this.props.item._id}>
-              <div>
-                View Details
-              </div>
+          <div style={{ display: "flex", marginTop: "1em" }}>
+            <Link
+              style={{ textDecoration: "none" }}
+              to={"/survey/" + this.props.item._id}
+            >
+              <div>View Details</div>
             </Link>
-            <Link style={{ textDecoration: 'none', marginLeft: "50%" }} to={"/survey/" + this.props.item._id}>
-              <div>
-                Vote
-              </div>
+            <Link
+              style={{ textDecoration: "none", marginLeft: "50%" }}
+              to={"/survey/" + this.props.item._id}
+            >
+              <div>Vote</div>
             </Link>
-
           </div>
         </div>
       </>
