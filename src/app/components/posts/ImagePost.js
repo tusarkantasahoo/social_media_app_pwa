@@ -3,6 +3,7 @@ import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
 import like from "../../../assets/images/svg/like.png";
 import dislike from "../../../assets/images/svg/dislike.png";
+import likeBlue from "../../../assets/images/uploadImageIcon.png";
 import share from "../../../assets/images/svg/share.png";
 import more from "../../../assets/images/svg/more.png";
 // import share from "../../../assets/images/network.png";
@@ -37,7 +38,7 @@ export default class ImagePost extends Component {
       isCommentVisible: false,
       likes: this.props.props.likes,
       dislikes: this.props.props.dislikes,
-      postliked:null
+      postliked: null
     };
 
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
@@ -144,12 +145,12 @@ export default class ImagePost extends Component {
               </p>
             </div>
             {userDetails !== null &&
-            userDetails !== undefined &&
-            userDetails.userData !== null &&
-            userDetails.userData !== undefined &&
-            userDetails.userData._id !== null &&
-            userDetails.userData._id !== undefined &&
-            userDetails.userData._id === this.props.props.user._id ? (
+              userDetails !== undefined &&
+              userDetails.userData !== null &&
+              userDetails.userData !== undefined &&
+              userDetails.userData._id !== null &&
+              userDetails.userData._id !== undefined &&
+              userDetails.userData._id === this.props.props.user._id ? (
               <div className="post_action ms-auto">
                 <Dropdown>
                   <Dropdown.Toggle id="" className="action_dd">
@@ -200,9 +201,9 @@ export default class ImagePost extends Component {
             className="image-field-for-posts"
             style={{ paddingLeft: "70px" }}
             onClick={() => {
-          
-              history.push("/rooms/"+this.props.props._id);
-              window.location.reload();    
+
+              history.push("/rooms/" + this.props.props._id);
+              window.location.reload();
             }}
           >
             <img
@@ -222,43 +223,73 @@ export default class ImagePost extends Component {
             style={{ display: "flex", marginTop: "2em", paddingLeft: "70px" }}
           >
             <div className="act_sec  pr">
-              <img
-                onClick={() => {
-                  if(this.state.postliked===null && userDetails!==null&&userDetails!==undefined ){
-                    this._onClickLike(this.props.props._id);
-                    this.setState({postliked:true})
-                  }
-                 
-                }}
-                src={like}
-                className="action_icons"
-              />
-              <p className="act_count">{this.state.likes}</p>
-              {this.state.postliked===true?(
-                  <p style={{fontSize:"30px"}}>.</p>
-              ):(
-                null
+
+              {this.state.postliked === true ? (
+                <><img
+                  onClick={() => {
+                    if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                      this._onClickLike(this.props.props._id);
+                      this.setState({ postliked: true })
+                    }
+
+                  }}
+                  src={likeBlue}
+                  className="action_icons"
+                />
+                  <p className="act_count">{this.state.likes}</p>
+                  {/* <p style={{fontSize:"30px"}}>.</p> */}
+                </>
+              ) : (
+                <>
+                  <img
+                    onClick={() => {
+                      if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                        this._onClickLike(this.props.props._id);
+                        this.setState({ postliked: true })
+                      }
+
+                    }}
+                    src={like}
+                    className="action_icons"
+                  />
+                  <p className="act_count">{this.state.likes}</p>
+                </>
               )}
-              
+
             </div>
 
             <div className="act_sec  pr" style={{ marginLeft: "1.5em" }}>
-              <img
-                onClick={() => {
-                  if(this.state.postliked===null&& userDetails!==null&&userDetails!==undefined){
-                    this._onClickDislike(this.props.props._id);
-                    this.setState({postliked:false})
-                  }
-                
-                }}
-                src={dislike}
-                className="action_icons"
-              />
-              <p className="act_count">{this.state.dislikes}</p>
-              {this.state.postliked===false?(
-                  <p style={{fontSize:"30px"}}>.</p>
-              ):(
-                null
+
+              {this.state.postliked === false ? (
+                <>
+                  <img
+                    onClick={() => {
+                      if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                        this._onClickDislike(this.props.props._id);
+                        this.setState({ postliked: false })
+                      }
+
+                    }}
+                    src={dislike}
+                    className="action_icons"
+                  />
+                  <p className="act_count">{this.state.dislikes}</p>
+                  <p style={{ fontSize: "30px" }}>.</p>
+                </>
+              ) : (
+                <>        <img
+                  onClick={() => {
+                    if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                      this._onClickDislike(this.props.props._id);
+                      this.setState({ postliked: false })
+                    }
+
+                  }}
+                  src={dislike}
+                  className="action_icons"
+                />
+                  <p className="act_count">{this.state.dislikes}</p>
+                </>
               )}
             </div>
 
@@ -353,22 +384,22 @@ export default class ImagePost extends Component {
       });
     }
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
-    if(userDetails!==null&&userDetails!==undefined) {
+    if (userDetails !== null && userDetails !== undefined) {
       var likeBody = {
-        postId:this.props.props._id,
-        userId:userDetails.userData._id
-    }
-      var responseLikeDislike = await  getResponseLikedOrDisliked(likeBody);
-      if(responseLikeDislike.status === 200){
-        console.log("Response Like dis",responseLikeDislike)
-        if(responseLikeDislike.data.userResponse==="like"){
-            this.setState({postliked:true})
+        postId: this.props.props._id,
+        userId: userDetails.userData._id
+      }
+      var responseLikeDislike = await getResponseLikedOrDisliked(likeBody);
+      if (responseLikeDislike.status === 200) {
+        console.log("Response Like dis", responseLikeDislike)
+        if (responseLikeDislike.data.userResponse === "like") {
+          this.setState({ postliked: true })
         }
-        else if(responseLikeDislike.data.userResponse==="dislike"){
-          this.setState({postliked:false})
+        else if (responseLikeDislike.data.userResponse === "dislike") {
+          this.setState({ postliked: false })
         }
         else {
-          this.setState({postliked:null})
+          this.setState({ postliked: null })
         }
       }
     }
