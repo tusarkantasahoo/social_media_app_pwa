@@ -8,7 +8,7 @@ import more from "../../../assets/images/svg/more.png";
 // import share from "../../../assets/images/network.png";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Dropdown } from "react-bootstrap";
-import comment from "../../../assets/images/comment.png";
+import comment from "../../../assets/images/svg/comment.png";
 import MaterialIcon, { colorPalette } from "material-icons-react";
 import likeTwt from "../../../assets/images/twitterlike.png";
 import twitterComment from "../../../assets/images/twitterComment.png";
