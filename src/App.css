@@ -5,11 +5,13 @@
 :root {
   --theme: #1DA1F2;
   
+  
 }
 
 body {
   width: 100%;
   height: 100%;
+  background-color: #e9e9e9;
 }
 
 html {
@@ -102,6 +104,10 @@ select:focus{
 
 .noBar {
   overflow-x: hidden !important;
+  max-width: 650px !important;
+  overflow: scroll;
+  height: 906px;
+  margin-left: 0px;
 }
 
 #home-options {
@@ -441,12 +447,12 @@ font-weight: 600;
   font-weight: 600;
 }
 .message-container{
-  width: calc(100% - 1rem);
+  width: calc(100%);
   position: relative;
-  background-color: #f3f3f39e;
+  background-color: #ffffffff;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
   margin-top: "1rem";
-  border-radius: "15px";
+  border-radius: 15px;
 }
 .input-post{
   /* background-color: #dddddd; */
@@ -487,9 +493,11 @@ font-weight: 600;
   position: fixed;
   top: 70px;
   bottom: 0;
+  background-color: #fff;
+  border-radius: 1em;
 }
 .c_body{
-  width: calc(100% - 550px);
+  /* width: calc(100%); */
   margin-left: 250px;
   padding-left: 16px;
   padding-right: 16px;
@@ -503,14 +511,14 @@ font-weight: 600;
 .nav_wrap{
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to right,#111820, #9e9ebb);
+  background:#2887db;
   height: 70px;
   position: fixed;
   top: 0;
   z-index: 999;
 }
 .container_custom{
-  max-width: 1400px;
+  max-width: 1366px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -568,19 +576,18 @@ font-weight: 600;
   text-decoration: none;
 }
 .btn_theme{
-  background-color: #2FA1F7;
+  background-color: #2FA1F7 !important;
   padding: 6px;
   border-radius: 6px;
-  color: #fff;
+  color: #fff !important;
 }
 .btn_theme:hover{
-  background-color: #1382d6;
+  background-color: #1382d6 !important;
   color: #fff;
 }
 .act_count{
-  position: absolute;
-  top: -15px;
-  right: -11px;
+  margin-left: 0.5rem;
+  margin-bottom: 0;
 }
 .academic_card{
   border: 1px solid transparent;
@@ -700,4 +707,24 @@ font-weight: 600;
   position: absolute;
   right: 10px;
   top: 10px;
+}
+.hfc{
+  height: fit-content !important;
+}
+.user_cmnt_pic{
+  height: 35px;
+  width: 35px;
+  border-radius: 100px;
+}
+.user_crunt_pic{
+  height: 50px;
+  width: 50px;
+  border-radius: 100px;
+}
+.postActionSec{
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  /* border-bottom: 1px solid #c4c4c4c4; */
+  /* border-top: 1px solid #c4c4c4c4; */
+  margin-top:1em;
 }

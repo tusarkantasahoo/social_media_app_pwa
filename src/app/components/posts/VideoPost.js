@@ -3,11 +3,13 @@ import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
 import ReactPlayer from "react-player";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
-import { getFileContentById, deletePostById, addLikeForPost,createCommentForPost,addDislikeForPost,getResponseLikedOrDisliked } from "../../api/Api.js";
+import { getFileContentById, deletePostById, addLikeForPost, createCommentForPost, addDislikeForPost, getResponseLikedOrDisliked } from "../../api/Api.js";
 import bufferToDataUrl from "buffer-to-data-url";
 import send from "../../../assets/images/send.png";
-import like from "../../../assets/images/svg/like.png";
-import dislike from "../../../assets/images/svg/dislike.png";
+import like from "../../../assets/images/svg/upVote.png";
+import likeBlue from "../../../assets/images/svg/upVoteBlue.png";
+import dislike from "../../../assets/images/svg/downVote.png";
+import dislikeBlue from "../../../assets/images/svg/downVoteBlue.png";
 import share from "../../../assets/images/svg/share.png";
 import more from "../../../assets/images/svg/more.png";
 // import share from "../../../assets/images/network.png";
@@ -16,6 +18,9 @@ import { Dropdown } from "react-bootstrap";
 import comment from "../../../assets/images/comment.png";
 import MaterialIcon, { colorPalette } from "material-icons-react";
 import history from "../../pages/history/History.js";
+import Button from "@material-ui/core/Button";
+import userCurrent from "../../../assets/images/girl.jpg";
+
 export default class VideoPost extends Component {
   constructor(props) {
     super(props);
@@ -26,8 +31,8 @@ export default class VideoPost extends Component {
       comment: "",
       isCommentVisible: false,
       dislikes: this.props.props.dislikes,
-      commentsArray:this.props.props.comments,
-      postliked:null
+      commentsArray: this.props.props.comments,
+      postliked: null
     };
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
     this.dateFromObjectId = this.dateFromObjectId.bind(this);
@@ -47,7 +52,7 @@ export default class VideoPost extends Component {
 
     var dateNew = dt.toString();
     var data = dateNew.split(" ");
-    var data1 = data[0]+" "+data[1]+" "+data[2]+" "+data[3]+" at "+data[4]
+    var data1 = data[0] + " " + data[1] + " " + data[2] + " " + data[3] + " at " + data[4]
 
     return data1;
   }
@@ -56,7 +61,7 @@ export default class VideoPost extends Component {
     var postJson = {
       id: postId,
       userId: userData.userData._id,
-      data:"like"
+      data: "like"
     };
     var response = await addLikeForPost(postJson);
     if (response.status === 200) {
@@ -70,7 +75,7 @@ export default class VideoPost extends Component {
     var postJson = {
       id: postId,
       userId: userData.userData._id,
-      data:"dislike"
+      data: "dislike"
     };
     var response = await addDislikeForPost(postJson);
     if (response.status === 200) {
@@ -100,7 +105,7 @@ export default class VideoPost extends Component {
         comment: this.state.comment,
       });
       this.setState({ commentsArray: data });
-      this.setState({ comment:""})
+      this.setState({ comment: "" })
     }
   }
   render() {
@@ -131,57 +136,57 @@ export default class VideoPost extends Component {
             </div>
 
             {userDetails !== null &&
-            userDetails !== undefined &&
-            userDetails.userData !== null &&
-            userDetails.userData !== undefined &&
-            userDetails.userData._id !== null &&
-            userDetails.userData._id !== undefined &&
-            userDetails.userData._id === this.props.props.user._id ? (
-            <div className="post_action ms-auto">
-              <Dropdown>
-                <Dropdown.Toggle id="" className="action_dd">
-                  <img
-                    src={more}
-                    style={{ height: "2em", width: "2em" }}
-                    id="dropdownMenuLink"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  />
-                </Dropdown.Toggle>
+              userDetails !== undefined &&
+              userDetails.userData !== null &&
+              userDetails.userData !== undefined &&
+              userDetails.userData._id !== null &&
+              userDetails.userData._id !== undefined &&
+              userDetails.userData._id === this.props.props.user._id ? (
+              <div className="post_action ms-auto">
+                <Dropdown>
+                  <Dropdown.Toggle id="" className="action_dd">
+                    <img
+                      src={more}
+                      style={{ height: "2em", width: "2em" }}
+                      id="dropdownMenuLink"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    />
+                  </Dropdown.Toggle>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    <p onClick={() => this._onClickDeletePost(this.props.props)}> Delete </p>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <div className="dropdown">
-                <div className="dots_icon"></div>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      <p
-                        onClick={() =>
-                          this._onClickDeletePost(this.props.props)
-                        }
-                        style={{ fontSize: "18px", cursor: "pointer" }}
-                      >
-                        Delete
-                      </p>
-                    </a>
-                  </li>
-                </ul>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">
+                      <p onClick={() => this._onClickDeletePost(this.props.props)}> Delete </p>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <div className="dropdown">
+                  <div className="dots_icon"></div>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <p
+                          onClick={() =>
+                            this._onClickDeletePost(this.props.props)
+                          }
+                          style={{ fontSize: "18px", cursor: "pointer" }}
+                        >
+                          Delete
+                        </p>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            ):null}
+            ) : null}
 
           </div>
           <p style={{ marginLeft: "70px", marginRight: "10px" }}>{this.props.props.title}</p>
           <div
             className="image-field-for-posts"
             onClick={() => {
-              history.push("/rooms/"+this.props.props._id);
+              history.push("/rooms/" + this.props.props._id);
               window.location.reload();
             }}
           >
@@ -192,101 +197,110 @@ export default class VideoPost extends Component {
               height="25em"
               playIcon="false"
               url={this.state.videoUrl}
-              style={{ marginLeft: "70px",marginRight: "10px" , borderRadius: "2em" }}
+              style={{borderRadius: "5px" }}
             ></ReactPlayer>
           </div>
-          <div className="d-flex " style={{marginTop: "1.5rem", marginLeft: "70px" }} >
+          <div className="postActionSec">
+          <div className="d-flex jcsb" style={{width:"90%",marginLeft:"5%"}}>
 
-          <div className="act_sec  pr">
-              <img
-                onClick={() => {
-                  if(this.state.postliked===null&& userDetails!==null&&userDetails!==undefined){
-                    this._onClickLike(this.props.props._id);
-                    this.setState({postliked:true})
-                  }
-                 
-                }}
-                src={like}
-                className="action_icons"
-              />
-              <p className="act_count">{this.state.likes}</p>
-              {this.state.postliked===true?(
-                  <p style={{fontSize:"30px"}}>.</p>
-              ):(
-                null
-              )}
-              
-            </div>
-            <div className="act_sec  pr" style={{ marginLeft: "1.5em" }}>
-              <img
-                onClick={() => {
-                  if(this.state.postliked===null&& userDetails!==null&&userDetails!==undefined){
-                    this._onClickDislike(this.props.props._id);
-                    this.setState({postliked:false})
-                  }
-                
-                }}
-                src={dislike}
-                className="action_icons"
-              />
-              <p className="act_count">{this.state.dislikes}</p>
-              {this.state.postliked===false?(
-                  <p style={{fontSize:"30px"}}>.</p>
-              ):(
-                null
-              )}
+            <div className="d-flex " >
+              <div className="act_sec d-flex aic pr">
+                {this.state.postliked === true ? (
+                  <><img
+                    onClick={() => {
+                      if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                        this._onClickLike(this.props.props._id);
+                        this.setState({ postliked: true })
+                      }
+
+                    }}
+                    src={likeBlue}
+                    className="action_icons"
+                  />
+                    <p className="act_count">{this.state.likes}</p>
+                  </>
+                ) : (
+                  <>
+                    <img
+                      onClick={() => {
+                        if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                          this._onClickLike(this.props.props._id);
+                          this.setState({ postliked: true })
+                        }
+
+                      }}
+                      src={like}
+                      className="action_icons"
+                    />
+                    <p className="act_count text-secondary">{this.state.likes}</p>
+                  </>
+                )}
+              </div>
+              <div className="act_sec d-flex aic pr ms-3" style={{ marginLeft: "1.5em" }}>
+                {this.state.postliked === false ? (
+                  <>
+                    <img
+                      onClick={() => {
+                        if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                          this._onClickDislike(this.props.props._id);
+                          this.setState({ postliked: false })
+                        }
+
+                      }}
+                      src={dislikeBlue}
+                      className="action_icons"
+                    />
+                    <p className="act_count text-secondary">{this.state.dislikes}</p>
+                  </>
+                ) : (
+                  <>        <img
+                    onClick={() => {
+                      if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                        this._onClickDislike(this.props.props._id);
+                        this.setState({ postliked: false })
+                      }
+
+                    }}
+                    src={dislike}
+                    className="action_icons"
+                  />
+                    <p className="act_count text-secondary">{this.state.dislikes}</p>
+                  </>
+                )}
+              </div>
             </div>
 
-            <div className="act_sec pr ms-5" onClick={() => this.setState({isCommentVisible: !this.state.isCommentVisible,})}>
-              <img src={comment} className="action_icons"/>
-              <p className="act_count"></p>
+            <div className="act_sec d-flex aic pr ms-5" onClick={() => this.setState({ isCommentVisible: !this.state.isCommentVisible, })}>
+              <img src={comment} className="action_icons" />
+              <p className="act_count text-secondary"><span className="me-1">{this.props.props.comments.length}</span>Response</p>
             </div>
-            <div className="act_sec pr ms-5">
-              <img src={share} className="action_icons"/>
+            <div className="act_sec d-flex aic pr ms-5" style={{marginLeft:"-2em"}} >
+              <img src={share} className="action_icons" />
             </div>
           </div>
+          </div>
 
-          <div style={{marginLeft:"5em",marginTop:"1em"}}>
+          <div style={{ marginLeft: "", marginTop: "1em" }}>
             {this.state.isCommentVisible === true ? (
               <>
-                <div style={{ display: "flex" }}>
-                  <div
-                    style={{ width: "80%" }}
-                    className="div-box-input-share-thoughts"
-                  >
-                    <input
-                      onChange={(e) => {
-                        this.setState({ comment: e.target.value });
-                      }}
-                      className="input-post"
-                      placeholder="Share / Ask what's on your mind?"
-                    ></input>
+                <div className="d-flex aic mb-3">
+                  <img src={userCurrent} className="user_crunt_pic"></img>
+
+                  <div className="div-box-input-share-thoughts">
+                    <input onChange={(e) => { this.setState({ comment: e.target.value }); }} className="input-post" placeholder="Share / Ask what's on your mind?"></input>
                   </div>
-                  <div
-                    onClick={() => {
-                      this._onClickSendComment();
-                    }}
-                    style={{ cursor: "pointer",backgroundColor:"#39a1d9",textAlign: "center",fontSize: "25px",color: "white"}}
-                  >
-                    Send
-                  </div>
+                  <Button onClick={() => { this._onClickSendComment(); }} variant="contained" className="btn_theme ms-3 hfc">Send</Button>
                 </div>
 
-                {this.state.commentsArray.map((item, id) => {
+                {this.props.props.comments.map((item, id) => {
                   return (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        fontSize: "15",
-                        display: "flex",
-                        padding: "0.5em",
-                      }}
-                    >
-                      <img
-                        src={item.user.userImage}
-                        style={{ height: "25px", width: "25px" }}
-                      ></img>
-                      <p>{item.comment}</p>
+                    <div className="fs-6 d-flex p-2 ms-3">
+                      <img src={item.user.userImage} className="user_cmnt_pic"></img>
+                      <div className="ms-3">
+                        <h6 className="fw-bold mb-0">Manish</h6>
+                        <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p>
+                        <p className="">{item.comment}</p>
+                      </div>
                     </div>
                   );
                 })}
@@ -322,24 +336,24 @@ export default class VideoPost extends Component {
       }
     }
     var userDetails = JSON.parse(localStorage.getItem(authResponseStoredValue));
-    if(userDetails!==null&&userDetails!==undefined) {
-    var likeBody = {
-       postId:this.props.props._id,
-       userId:userDetails.userData._id
-   }
-     var responseLikeDislike = await  getResponseLikedOrDisliked(likeBody);
-     if(responseLikeDislike.status === 200){
-       console.log("Response Like dis",responseLikeDislike)
-       if(responseLikeDislike.data.userResponse==="like"){
-           this.setState({postliked:true})
-       }
-       else if(responseLikeDislike.data.userResponse==="dislike"){
-         this.setState({postliked:false})
-       }
-       else {
-         this.setState({postliked:null})
-       }
-     }
+    if (userDetails !== null && userDetails !== undefined) {
+      var likeBody = {
+        postId: this.props.props._id,
+        userId: userDetails.userData._id
+      }
+      var responseLikeDislike = await getResponseLikedOrDisliked(likeBody);
+      if (responseLikeDislike.status === 200) {
+        console.log("Response Like dis", responseLikeDislike)
+        if (responseLikeDislike.data.userResponse === "like") {
+          this.setState({ postliked: true })
+        }
+        else if (responseLikeDislike.data.userResponse === "dislike") {
+          this.setState({ postliked: false })
+        }
+        else {
+          this.setState({ postliked: null })
+        }
+      }
     }
   }
 }
