@@ -31,7 +31,7 @@ export default class VideoPost extends Component {
       comment: "",
       isCommentVisible: false,
       dislikes: this.props.props.dislikes,
-      commentsArray: this.props.props.comments,
+      commentsArray: this.props.props.comments.reverse(),
       postliked: null
     };
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
@@ -284,7 +284,13 @@ export default class VideoPost extends Component {
             {this.state.isCommentVisible === true ? (
               <>
                 <div className="d-flex aic mb-3">
-                  <img src={userCurrent} className="user_crunt_pic"></img>
+                <img src={userDetails !== null &&
+              userDetails !== undefined &&
+              userDetails.userData !== null &&
+              userDetails.userData !== undefined &&
+              userDetails.userData.userImage !== null &&
+              userDetails.userData.userImage !== undefined ? (
+                  userDetails.userData.userImage):userCurrent} className="user_crunt_pic"></img>
 
                   <div className="div-box-input-share-thoughts">
                     <input onChange={(e) => { this.setState({ comment: e.target.value }); }} className="input-post" placeholder="Share / Ask what's on your mind?"></input>
@@ -292,16 +298,16 @@ export default class VideoPost extends Component {
                   <Button onClick={() => { this._onClickSendComment(); }} variant="contained" className="btn_theme ms-3 hfc">Send</Button>
                 </div>
 
-                {this.props.props.comments.map((item, id) => {
+                {this.state.commentsArray.map((item, id) => {
                   return (
                     <div className="fs-6 d-flex p-2 ms-3">
-                      <img src={item.user.userImage} className="user_cmnt_pic"></img>
-                      <div className="ms-3">
-                        <h6 className="fw-bold mb-0">Manish</h6>
-                        <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p>
-                        <p className="">{item.comment}</p>
-                      </div>
+                    <img src={item.user.userImage} className="user_cmnt_pic"></img>
+                    <div className="ms-3">
+                      <h6 className="fw-bold mb-0">{item.user.name}</h6>
+                      {/* <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p> */}
+                      <p className="">{item.comment}</p>
                     </div>
+                  </div>
                   );
                 })}
               </>

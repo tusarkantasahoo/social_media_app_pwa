@@ -41,7 +41,8 @@ export default class ImagePost extends Component {
       isCommentVisible: false,
       likes: this.props.props.likes,
       dislikes: this.props.props.dislikes,
-      postliked: null
+      postliked: null,
+      commentsArray: this.props.props.comments.reverse(),
     };
 
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
@@ -74,6 +75,13 @@ export default class ImagePost extends Component {
 
     if (response.status === 200) {
       console.log("comment added successfully");
+      var data = this.state.commentsArray;
+      data.push({
+        user: userData.userData,
+        comment: this.state.comment,
+      });
+      this.setState({ commentsArray: data });
+      this.setState({ comment: "" })
     }
   }
   async _onClickLike(postId) {
@@ -319,7 +327,7 @@ export default class ImagePost extends Component {
                   <Button onClick={() => { this._onClickSendComment(); }} variant="contained" className="btn_theme ms-3 hfc">Send</Button>
                 </div>
 
-                {this.props.props.comments.map((item, id) => {
+                {this.state.commentsArray.map((item, id) => {
                   return (
                     <div className="fs-6 d-flex p-2 ms-3">
                       <img src={item.user.userImage} className="user_cmnt_pic"></img>

@@ -16,6 +16,7 @@ import twitterShare from "../../../assets/images/twitterShare.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import history from "../../pages/history/History.js";
 import Button from "@material-ui/core/Button";
+import userCurrent from "../../../assets/images/professionalImage.png";
 import {
   getFileContentById,
   deletePostById,
@@ -37,7 +38,8 @@ export default class TextPost extends Component {
       isCommentVisible: false,
       likes: this.props.props.likes,
       dislikes: this.props.props.dislikes,
-      postliked:null
+      postliked:null,
+      commentsArray: this.props.props.comments.reverse(),
     };
 
     this._onClickDeletePost = this._onClickDeletePost.bind(this);
@@ -70,6 +72,13 @@ export default class TextPost extends Component {
 
     if (response.status === 200) {
       console.log("comment added successfully");
+      var data = this.state.commentsArray;
+      data.push({
+        user: userData.userData,
+        comment: this.state.comment,
+      });
+      this.setState({ commentsArray: data });
+      this.setState({ comment: "" })
     }
   }
   async _onClickLike(postId) {
@@ -268,7 +277,13 @@ export default class TextPost extends Component {
             {this.state.isCommentVisible === true ? (
               <>
                 <div className="d-flex aic mb-3">
-                  <img src={userDetails.userData.userImage} className="user_crunt_pic"></img>
+                <img src={userDetails !== null &&
+              userDetails !== undefined &&
+              userDetails.userData !== null &&
+              userDetails.userData !== undefined &&
+              userDetails.userData.userImage !== null &&
+              userDetails.userData.userImage !== undefined ? (
+                  userDetails.userData.userImage):userCurrent} className="user_crunt_pic"></img>
 
                   <div className="div-box-input-share-thoughts">
                     <input onChange={(e) => { this.setState({ comment: e.target.value }); }} className="input-post" placeholder="Share / Ask what's on your mind?"></input>
@@ -276,16 +291,16 @@ export default class TextPost extends Component {
                   <Button onClick={() => { this._onClickSendComment(); }} variant="contained" className="btn_theme ms-3 hfc">Send</Button>
                 </div>
 
-                {this.props.props.comments.map((item, id) => {
+                {this.state.commentsArray.map((item, id) => {
                   return (
                     <div className="fs-6 d-flex p-2 ms-3">
-                      <img src={item.user.userImage} className="user_cmnt_pic"></img>
-                      <div className="ms-3">
-                        <h6 className="fw-bold mb-0">Manish</h6>
-                        <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p>
-                        <p className="">{item.comment}</p>
-                      </div>
+                    <img src={item.user.userImage} className="user_cmnt_pic"></img>
+                    <div className="ms-3">
+                      <h6 className="fw-bold mb-0">{item.user.name}</h6>
+                      {/* <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p> */}
+                      <p className="">{item.comment}</p>
                     </div>
+                  </div>
                   );
                 })}
               </>
