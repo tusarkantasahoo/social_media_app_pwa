@@ -30,7 +30,7 @@ export default class HeaderSearchBox extends Component {
   render() {
     return (
       <>
-        <div className="header-search-box col-sm-7 col-md-5 col-lg-6">
+        <div className="header-search-box col-sm-6 col-md-4 col-lg-5" style={{marginLeft:"-5em",height:"50px",marginTop:"5px"}}>
           <div className="p-1">
             <img className="search_icon" src={searchIcon} />
           </div>

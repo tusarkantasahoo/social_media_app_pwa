@@ -69,7 +69,7 @@ export default class Rooms extends Component {
         ) : (
           <>
             <PostMessageBox isLoggedIn={this.props.isLoggedIn} />
-            <div style={{ marginTop: "3%", textAlign: "left" }}>
+            <div style={{ marginTop: "3%", textAlign: "left",backgroundColor: "white",padding:"1em",borderRadius: "1em"}}>
               {/* <div className="container-fluid"> */}
               <div className="d-flex aic jcsb">
                 <div className="col-6" style={{ textAlign: "left" }}>
@@ -90,16 +90,19 @@ export default class Rooms extends Component {
                 </div>
               </div>
             </div>
+            <div style={{height:"1em"}}></div>
             <div className="row">
 
               {this.state.dataForPostRooms.map((item, index) => {
                 return (
+                  <div style={{backgroundColor: "white",marginBottom:"0.5em",borderRadius: "1em"}}>
                   <Post
                     props={item}
                     handelNewsClick={this.handelNewsClick}
                     setNewsItem={this.setNewsItem}
                     isLoggedIn={this.props.isLoggedIn}
                   />
+                  </div>
                 );
               })}
               <div onClick={() => { this.addNewPosts() }} className="d-flex jcc">

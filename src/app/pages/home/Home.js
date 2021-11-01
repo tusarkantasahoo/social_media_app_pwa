@@ -28,7 +28,7 @@ export default class Home extends Component {
     return (
       <>
         <PostMessageBox isLoggedIn={this.props.isLoggedIn} />
-        <div className="home-all-details" style={{ marginTop: "3%" }}>
+        <div className="home-all-details" style={{ marginTop: "3%",backgroundColor:"white",padding:"1em" }}>
           <h4 style={{ color: "#0089ff" }}>Who we are ?</h4>
           <p>
             Where individuals meets Education / Career / Jobs <br></br>

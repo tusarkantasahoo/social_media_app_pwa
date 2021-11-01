@@ -15,6 +15,7 @@ import twitterComment from "../../../assets/images/twitterComment.png";
 import twitterShare from "../../../assets/images/twitterShare.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import history from "../../pages/history/History.js";
+import Button from "@material-ui/core/Button";
 import {
   getFileContentById,
   deletePostById,
@@ -263,53 +264,27 @@ export default class TextPost extends Component {
               ></img>
             </div>
           </div>
-          <div style={{ marginLeft: "5em", marginTop: "1em" }}>
+          <div style={{ marginLeft: "0", marginTop: "1em" }}>
             {this.state.isCommentVisible === true ? (
               <>
-                <div style={{ display: "flex" }}>
-                  <div
-                    style={{ width: "80%" }}
-                    className="div-box-input-share-thoughts"
-                  >
-                    <input
-                      onChange={(e) => {
-                        this.setState({ comment: e.target.value });
-                      }}
-                      className="input-post"
-                      placeholder="Share / Ask what's on your mind?"
-                    ></input>
+                <div className="d-flex aic mb-3">
+                  <img src={userDetails.userData.userImage} className="user_crunt_pic"></img>
+
+                  <div className="div-box-input-share-thoughts">
+                    <input onChange={(e) => { this.setState({ comment: e.target.value }); }} className="input-post" placeholder="Share / Ask what's on your mind?"></input>
                   </div>
-                  <div
-                    onClick={() => {
-                      this._onClickSendComment();
-                    }}
-                    style={{
-                      cursor: "pointer",
-                      backgroundColor: "#39a1d9",
-                      textAlign: "center",
-                      fontSize: "25px",
-                      color: "white",
-                    }}
-                  >
-                    Send
-                  </div>
+                  <Button onClick={() => { this._onClickSendComment(); }} variant="contained" className="btn_theme ms-3 hfc">Send</Button>
                 </div>
 
                 {this.props.props.comments.map((item, id) => {
                   return (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        fontSize: "15",
-                        display: "flex",
-                        padding: "0.5em",
-                      }}
-                    >
-                      <img
-                        src={item.user.userImage}
-                        style={{ height: "25px", width: "25px" }}
-                      ></img>
-                      <p>{item.comment}</p>
+                    <div className="fs-6 d-flex p-2 ms-3">
+                      <img src={item.user.userImage} className="user_cmnt_pic"></img>
+                      <div className="ms-3">
+                        <h6 className="fw-bold mb-0">Manish</h6>
+                        <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p>
+                        <p className="">{item.comment}</p>
+                      </div>
                     </div>
                   );
                 })}

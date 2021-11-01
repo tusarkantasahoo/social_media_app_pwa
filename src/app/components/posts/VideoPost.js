@@ -200,7 +200,8 @@ export default class VideoPost extends Component {
               style={{borderRadius: "5px" }}
             ></ReactPlayer>
           </div>
-          <div className="d-flex jcsb postActionSec">
+          <div className="postActionSec">
+          <div className="d-flex jcsb" style={{width:"90%",marginLeft:"5%"}}>
 
             <div className="d-flex " >
               <div className="act_sec d-flex aic pr">
@@ -271,35 +272,35 @@ export default class VideoPost extends Component {
 
             <div className="act_sec d-flex aic pr ms-5" onClick={() => this.setState({ isCommentVisible: !this.state.isCommentVisible, })}>
               <img src={comment} className="action_icons" />
-              <p className="act_count text-secondary"><span className="me-1">500</span>Response</p>
+              <p className="act_count text-secondary"><span className="me-1">{this.props.props.comments.length}</span>Response</p>
             </div>
-            <div className="act_sec pr ms-5">
+            <div className="act_sec d-flex aic pr ms-5" style={{marginLeft:"-2em"}} >
               <img src={share} className="action_icons" />
             </div>
           </div>
+          </div>
 
-          <div style={{ marginLeft: "4em", marginTop: "1em" }}>
+          <div style={{ marginLeft: "", marginTop: "1em" }}>
             {this.state.isCommentVisible === true ? (
               <>
-                <div className="d-flex aic">
+                <div className="d-flex aic mb-3">
                   <img src={userCurrent} className="user_crunt_pic"></img>
+
                   <div className="div-box-input-share-thoughts">
-                    <input
-                      onChange={(e) => {
-                        this.setState({ comment: e.target.value });
-                      }}
-                      className="input-post"
-                      placeholder="Share / Ask what's on your mind?"
-                    ></input>
+                    <input onChange={(e) => { this.setState({ comment: e.target.value }); }} className="input-post" placeholder="Share / Ask what's on your mind?"></input>
                   </div>
                   <Button onClick={() => { this._onClickSendComment(); }} variant="contained" className="btn_theme ms-3 hfc">Send</Button>
                 </div>
 
-                {this.state.commentsArray.map((item, id) => {
+                {this.props.props.comments.map((item, id) => {
                   return (
-                    <div className="fs-6 d-flex p-2">
+                    <div className="fs-6 d-flex p-2 ms-3">
                       <img src={item.user.userImage} className="user_cmnt_pic"></img>
-                      <p className="ms-3">{item.comment}</p>
+                      <div className="ms-3">
+                        <h6 className="fw-bold mb-0">Manish</h6>
+                        <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p>
+                        <p className="">{item.comment}</p>
+                      </div>
                     </div>
                   );
                 })}

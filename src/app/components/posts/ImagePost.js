@@ -7,7 +7,7 @@ import dislike from "../../../assets/images/svg/downVote.png";
 import dislikeBlue from "../../../assets/images/svg/downVoteBlue.png";
 import share from "../../../assets/images/svg/share.png";
 import more from "../../../assets/images/svg/more.png";
-import userCurrent from "../../../assets/images/girl.jpg";
+import userCurrent from "../../../assets/images/professionalImage.png";
 // import share from "../../../assets/images/network.png";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Dropdown } from "react-bootstrap";
@@ -214,7 +214,7 @@ export default class ImagePost extends Component {
                 width: "100%",
                 height: "25em",
                 overflow: "hidden",
-                borderRadius: "30px",
+                borderRadius: "",
               }}
               className=""
               src={this.state.postImage}
@@ -222,27 +222,13 @@ export default class ImagePost extends Component {
           </div>
 
           {/* Post Like Section */}
-          <div style={{ display: "flex", marginTop: "2em", paddingLeft: "70px" }}>
-            <div className="act_sec  pr">
+          <div className="postActionSec">
+          <div className="d-flex jcsb" style={{width:"90%",marginLeft:"5%"}}>
 
-              {this.state.postliked === true ? (
-                <><img
-                  onClick={() => {
-                    if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
-                      this._onClickLike(this.props.props._id);
-                      this.setState({ postliked: true })
-                    }
-
-                  }}
-                  src={likeBlue}
-                  className="action_icons"
-                />
-                  <p className="act_count">{this.state.likes}</p>
-                  {/* <p style={{fontSize:"30px"}}>.</p> */}
-                </>
-              ) : (
-                <>
-                  <img
+            <div className="d-flex " >
+              <div className="act_sec d-flex aic pr">
+                {this.state.postliked === true ? (
+                  <><img
                     onClick={() => {
                       if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
                         this._onClickLike(this.props.props._id);
@@ -250,20 +236,46 @@ export default class ImagePost extends Component {
                       }
 
                     }}
-                    src={like}
+                    src={likeBlue}
                     className="action_icons"
                   />
-                  <p className="act_count">{this.state.likes}</p>
-                </>
-              )}
+                    <p className="act_count">{this.state.likes}</p>
+                  </>
+                ) : (
+                  <>
+                    <img
+                      onClick={() => {
+                        if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                          this._onClickLike(this.props.props._id);
+                          this.setState({ postliked: true })
+                        }
 
-            </div>
+                      }}
+                      src={like}
+                      className="action_icons"
+                    />
+                    <p className="act_count text-secondary">{this.state.likes}</p>
+                  </>
+                )}
+              </div>
+              <div className="act_sec d-flex aic pr ms-3" style={{ marginLeft: "1.5em" }}>
+                {this.state.postliked === false ? (
+                  <>
+                    <img
+                      onClick={() => {
+                        if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
+                          this._onClickDislike(this.props.props._id);
+                          this.setState({ postliked: false })
+                        }
 
-            <div className="act_sec  pr ms-5" style={{ marginLeft: "1.5em" }}>
-
-              {this.state.postliked === false ? (
-                <>
-                  <img
+                      }}
+                      src={dislikeBlue}
+                      className="action_icons"
+                    />
+                    <p className="act_count text-secondary">{this.state.dislikes}</p>
+                  </>
+                ) : (
+                  <>        <img
                     onClick={() => {
                       if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
                         this._onClickDislike(this.props.props._id);
@@ -271,51 +283,35 @@ export default class ImagePost extends Component {
                       }
 
                     }}
-                    src={dislikeBlue}
+                    src={dislike}
                     className="action_icons"
                   />
-                  <p className="act_count">{this.state.dislikes}</p>
-                </>
-              ) : (
-                <>        <img
-                  onClick={() => {
-                    if (this.state.postliked === null && userDetails !== null && userDetails !== undefined) {
-                      this._onClickDislike(this.props.props._id);
-                      this.setState({ postliked: false })
-                    }
-
-                  }}
-                  src={dislike}
-                  className="action_icons"
-                />
-                  <p className="act_count">{this.state.dislikes}</p>
-                </>
-              )}
+                    <p className="act_count text-secondary">{this.state.dislikes}</p>
+                  </>
+                )}
+              </div>
             </div>
 
-            <div
-              className="act_sec  pr ms-5"
-              onClick={() =>
-                this.setState({
-                  isCommentVisible: !this.state.isCommentVisible,
-                })
-              }
-            >
-              <img className="action_icons" src={comment}></img>
+            <div className="act_sec d-flex aic pr ms-5" onClick={() => this.setState({ isCommentVisible: !this.state.isCommentVisible, })}>
+              <img src={comment} className="action_icons" />
+              <p className="act_count text-secondary"><span className="me-1">{this.props.props.comments.length}</span>Response</p>
             </div>
-            <div className="act_sec  pr ms-5">
-              <img
-                className="action_icons"
-                src={share}
-                className="action_icons"
-              ></img>
+            <div className="act_sec d-flex aic pr ms-5" style={{marginLeft:"-2em"}} >
+              <img src={share} className="action_icons" />
             </div>
           </div>
-          <div style={{ marginLeft: "4em", marginTop: "1em" }}>
+          </div>
+          <div style={{ marginLeft: "0", marginTop: "1em" }}>
             {this.state.isCommentVisible === true ? (
               <>
                 <div className="d-flex aic mb-3">
-                  <img src={userCurrent} className="user_crunt_pic"></img>
+                <img src={userDetails !== null &&
+              userDetails !== undefined &&
+              userDetails.userData !== null &&
+              userDetails.userData !== undefined &&
+              userDetails.userData.userImage !== null &&
+              userDetails.userData.userImage !== undefined ? (
+                  userDetails.userData.userImage):userCurrent} className="user_crunt_pic"></img>
 
                   <div className="div-box-input-share-thoughts">
                     <input onChange={(e) => { this.setState({ comment: e.target.value }); }} className="input-post" placeholder="Share / Ask what's on your mind?"></input>
@@ -328,8 +324,8 @@ export default class ImagePost extends Component {
                     <div className="fs-6 d-flex p-2 ms-3">
                       <img src={item.user.userImage} className="user_cmnt_pic"></img>
                       <div className="ms-3">
-                        <h6 className="fw-bold mb-0">Manish</h6>
-                        <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p>
+                        <h6 className="fw-bold mb-0">{item.user.name}</h6>
+                        {/* <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p> */}
                         <p className="">{item.comment}</p>
                       </div>
                     </div>
