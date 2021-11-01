@@ -102,6 +102,10 @@ select:focus{
 
 .noBar {
   overflow-x: hidden !important;
+  max-width: 600px !important;
+  overflow: scroll;
+  height: 906px;
+  margin-left: 0px;
 }
 
 #home-options {
@@ -510,7 +514,7 @@ font-weight: 600;
   z-index: 999;
 }
 .container_custom{
-  max-width: 1400px;
+  max-width: 1366px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -568,19 +572,18 @@ font-weight: 600;
   text-decoration: none;
 }
 .btn_theme{
-  background-color: #2FA1F7;
+  background-color: #2FA1F7 !important;
   padding: 6px;
   border-radius: 6px;
-  color: #fff;
+  color: #fff !important;
 }
 .btn_theme:hover{
-  background-color: #1382d6;
+  background-color: #1382d6 !important;
   color: #fff;
 }
 .act_count{
-  position: absolute;
-  top: -15px;
-  right: -11px;
+  margin-left: 0.5rem;
+  margin-bottom: 0;
 }
 .academic_card{
   border: 1px solid transparent;
@@ -700,4 +703,23 @@ font-weight: 600;
   position: absolute;
   right: 10px;
   top: 10px;
+}
+.hfc{
+  height: fit-content !important;
+}
+.user_cmnt_pic{
+  height: 35px;
+  width: 35px;
+  border-radius: 100px;
+}
+.user_crunt_pic{
+  height: 50px;
+  width: 50px;
+  border-radius: 100px;
+}
+.postActionSec{
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  border-bottom: 1px solid #c4c4c4c4;
+  border-top: 1px solid #c4c4c4c4;
 }

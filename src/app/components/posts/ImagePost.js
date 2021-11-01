@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import userImage from "../../../assets/images/professionalImage.png";
 import "./Post.css";
-import like from "../../../assets/images/svg/like.png";
-import dislike from "../../../assets/images/svg/dislike.png";
-import likeBlue from "../../../assets/images/uploadImageIcon.png";
+import like from "../../../assets/images/svg/upVote.png";
+import likeBlue from "../../../assets/images/svg/upVoteBlue.png";
+import dislike from "../../../assets/images/svg/downVote.png";
+import dislikeBlue from "../../../assets/images/svg/downVoteBlue.png";
 import share from "../../../assets/images/svg/share.png";
 import more from "../../../assets/images/svg/more.png";
+import userCurrent from "../../../assets/images/girl.jpg";
 // import share from "../../../assets/images/network.png";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Dropdown } from "react-bootstrap";
@@ -17,6 +19,7 @@ import twitterShare from "../../../assets/images/twitterShare.png";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import history from "../../pages/history/History.js";
+import Button from "@material-ui/core/Button";
 import {
   getFileContentById,
   deletePostById,
@@ -219,9 +222,7 @@ export default class ImagePost extends Component {
           </div>
 
           {/* Post Like Section */}
-          <div
-            style={{ display: "flex", marginTop: "2em", paddingLeft: "70px" }}
-          >
+          <div style={{ display: "flex", marginTop: "2em", paddingLeft: "70px" }}>
             <div className="act_sec  pr">
 
               {this.state.postliked === true ? (
@@ -258,7 +259,7 @@ export default class ImagePost extends Component {
 
             </div>
 
-            <div className="act_sec  pr" style={{ marginLeft: "1.5em" }}>
+            <div className="act_sec  pr ms-5" style={{ marginLeft: "1.5em" }}>
 
               {this.state.postliked === false ? (
                 <>
@@ -270,11 +271,10 @@ export default class ImagePost extends Component {
                       }
 
                     }}
-                    src={dislike}
+                    src={dislikeBlue}
                     className="action_icons"
                   />
                   <p className="act_count">{this.state.dislikes}</p>
-                  <p style={{ fontSize: "30px" }}>.</p>
                 </>
               ) : (
                 <>        <img
@@ -311,53 +311,27 @@ export default class ImagePost extends Component {
               ></img>
             </div>
           </div>
-          <div style={{ marginLeft: "5em", marginTop: "1em" }}>
+          <div style={{ marginLeft: "4em", marginTop: "1em" }}>
             {this.state.isCommentVisible === true ? (
               <>
-                <div style={{ display: "flex" }}>
-                  <div
-                    style={{ width: "80%" }}
-                    className="div-box-input-share-thoughts"
-                  >
-                    <input
-                      onChange={(e) => {
-                        this.setState({ comment: e.target.value });
-                      }}
-                      className="input-post"
-                      placeholder="Share / Ask what's on your mind?"
-                    ></input>
+                <div className="d-flex aic mb-3">
+                  <img src={userCurrent} className="user_crunt_pic"></img>
+
+                  <div className="div-box-input-share-thoughts">
+                    <input onChange={(e) => { this.setState({ comment: e.target.value }); }} className="input-post" placeholder="Share / Ask what's on your mind?"></input>
                   </div>
-                  <div
-                    onClick={() => {
-                      this._onClickSendComment();
-                    }}
-                    style={{
-                      cursor: "pointer",
-                      backgroundColor: "#39a1d9",
-                      textAlign: "center",
-                      fontSize: "25px",
-                      color: "white",
-                    }}
-                  >
-                    Send
-                  </div>
+                  <Button onClick={() => { this._onClickSendComment(); }} variant="contained" className="btn_theme ms-3 hfc">Send</Button>
                 </div>
 
                 {this.props.props.comments.map((item, id) => {
                   return (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        fontSize: "15",
-                        display: "flex",
-                        padding: "0.5em",
-                      }}
-                    >
-                      <img
-                        src={item.user.userImage}
-                        style={{ height: "25px", width: "25px" }}
-                      ></img>
-                      <p>{item.comment}</p>
+                    <div className="fs-6 d-flex p-2 ms-3">
+                      <img src={item.user.userImage} className="user_cmnt_pic"></img>
+                      <div className="ms-3">
+                        <h6 className="fw-bold mb-0">Manish</h6>
+                        <p className="text-secondary mb-0">Sat Oct 30 2021 at 23:50</p>
+                        <p className="">{item.comment}</p>
+                      </div>
                     </div>
                   );
                 })}

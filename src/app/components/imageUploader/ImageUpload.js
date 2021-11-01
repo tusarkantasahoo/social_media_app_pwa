@@ -132,7 +132,7 @@ export default class ImageUpload extends Component {
               <div className="d-flex flex-column jcc aic">
                 <img src={img_thumb} style={{ width: "100px" }}></img>
                 <p style={{ fontSize: "20px", marginTop: "1rem" }}>
-                  Click to Upload or drop your image
+                  Click to Upload or drop your imagesss
                 </p>
               </div>
             </>
