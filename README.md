@@ -3,6 +3,8 @@ Currently there are some active features like Posts, Colleges, Surveys, Career e
 
 Production URL - https://monastreesocialapp.z29.web.core.windows.net/
 
+Please Note - backend code is in https://github.com/tusarkantasahoo/social_app_backend
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
