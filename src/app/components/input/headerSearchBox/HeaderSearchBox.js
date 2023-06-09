@@ -15,7 +15,7 @@ export default class HeaderSearchBox extends Component {
   }
 
   async searchFromHeader(data) {
-    console.log(data)
+    console.log(data);
     var postJson = {
       term: data,
     };
@@ -30,7 +30,10 @@ export default class HeaderSearchBox extends Component {
   render() {
     return (
       <>
-        <div className="header-search-box col-sm-6 col-md-4 col-lg-5" style={{marginLeft:"-5em",height:"50px",marginTop:"5px"}}>
+        <div
+          className="header-search-box col-sm-6 col-md-4 col-lg-5"
+          style={{ marginLeft: "-5em", height: "50px", marginTop: "5px" }}
+        >
           <div className="p-1">
             <img className="search_icon" src={searchIcon} />
           </div>
@@ -38,20 +41,20 @@ export default class HeaderSearchBox extends Component {
             value={this.state.searchText}
             onChange={(e) => {
               this.searchFromHeader(e.target.value);
-              console.log("change in header", e.target.value)
+              console.log("change in header", e.target.value);
               // this.searchFromHeader(e.target.value);
             }}
+            style={{ width: "100%" }}
             type="text"
-            value={this.state.postText}
+            // value={this.state.postText}
             className="header-search-input-component"
-            placeholder="Search Academics"
+            placeholder="Search College/Schools/Academics"
           />
-
         </div>
         {this.state.searchText.length !== 0 &&
-          this.state.collegeList !== null &&
-          this.state.collegeList !== undefined &&
-          this.state.collegeList.length !== 0 ? (
+        this.state.collegeList !== null &&
+        this.state.collegeList !== undefined &&
+        this.state.collegeList.length !== 0 ? (
           <div
             style={{
               textAlign: "left",

@@ -3,7 +3,7 @@
         "core": ""
     },
     "PROD": {
-        "core": ""
+        "core": "https://monastree-backend-prod.azurewebsites.net/"
     },
     "LOCAL":{
         "core":"http://localhost:5000/"

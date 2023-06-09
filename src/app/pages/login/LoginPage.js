@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 import "./LoginPage.css";
-import "../../../App.css"
+import "../../../App.css";
 import loginTree from "../../../assets/images/LoginTree.png";
 import graduate from "../../../assets/images/graduates.jpg";
 import degree from "../../../assets/images/degree.jpg";
 import { Login, signinUserFromSocialSites } from "../../../auth/AuthApi.js";
 import { authResponseStoredValue } from "../../../utils/Constant.js";
-import { facebookProvider, googleProvider } from "../../../config/authMethod.js";
+import {
+  facebookProvider,
+  googleProvider,
+} from "../../../config/authMethod.js";
 import socialMediaAuth from "../../../service/auth.js";
 import googlelogin from "../../../assets/images/googlelogin.png";
 import facebook from "../../../assets/images/facebook.png";
-import history from '../../pages/history/History.js';
+import history from "../../pages/history/History.js";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
-
 
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
     };
 
     this._onClickLoginSubmit = this._onClickLoginSubmit.bind(this);
@@ -29,27 +31,28 @@ export default class LoginPage extends Component {
   async _onClickLoginSubmit() {
     var postJsonLogin = {
       username: this.state.username,
-      password: this.state.password
-    }
-    console.log("Logindata", postJsonLogin)
+      password: this.state.password,
+    };
+    console.log("Logindata", postJsonLogin);
     var loginResponse = await Login(postJsonLogin);
     if (loginResponse.status === 200) {
       console.log("loginResponse:", loginResponse);
       if (loginResponse.data.message === "Login successful") {
-        localStorage.setItem(authResponseStoredValue, JSON.stringify(loginResponse.data));
+        localStorage.setItem(
+          authResponseStoredValue,
+          JSON.stringify(loginResponse.data)
+        );
         this.props.updateAuthState(loginResponse.data);
         history.push("/");
         window.location.reload();
-      }
-      else {
+      } else {
         console.log("Unsuccessful", loginResponse.data);
-        alert(loginResponse.data.message)
+        alert(loginResponse.data.message);
       }
-
     }
   }
   async handelOnClick(provider) {
-    const res = await socialMediaAuth(provider)
+    const res = await socialMediaAuth(provider);
     console.log(res);
     if (res !== null && res !== undefined) {
       var userData = {
@@ -57,8 +60,8 @@ export default class LoginPage extends Component {
         email: res.email,
         phone: res.phoneNumber,
         image: res.photoURL,
-        dataFrom: "google"
-      }
+        dataFrom: "google",
+      };
 
       console.log("user data", userData);
 
@@ -66,30 +69,28 @@ export default class LoginPage extends Component {
       if (responseForUser.status === 200) {
         console.log("loginResponse:", responseForUser);
         if (responseForUser.data.message === "Login successful") {
-          localStorage.setItem(authResponseStoredValue, JSON.stringify(responseForUser.data));
+          localStorage.setItem(
+            authResponseStoredValue,
+            JSON.stringify(responseForUser.data)
+          );
           this.props.updateAuthState(responseForUser.data);
           history.push("/home");
           window.location.reload();
-
-        }
-        else {
+        } else {
           console.log("Unsuccessful", responseForUser.data);
-          alert(responseForUser.data.message)
+          alert(responseForUser.data.message);
         }
-
       }
     }
   }
   render() {
     console.log(this.props);
     return (
-
       <div className="login_container d-flex jcc aic w-100 h-100 pr">
-
         <img className="login_bg w-100 h-100" src={graduate}></img>
 
         <div className="container glassy m-3">
-          <div className="d-flex" >
+          <div className="d-flex">
             {/* <div className="col-lg-6 col-sm-12" id="namePart-loginfield">
               <div className="d-flex">
                 <div className="col-4" >
@@ -114,7 +115,9 @@ export default class LoginPage extends Component {
                     type="text"
                     name="name"
                     placeholder="Email, username or Phone No"
-                    onChange={(e) => { this.setState({ username: e.target.value }) }}
+                    onChange={(e) => {
+                      this.setState({ username: e.target.value });
+                    }}
                   />
                 </div>
                 <div className="d-flex jcc">
@@ -123,13 +126,17 @@ export default class LoginPage extends Component {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    onChange={(e) => { this.setState({ password: e.target.value }) }}
-                  />                  
+                    onChange={(e) => {
+                      this.setState({ password: e.target.value });
+                    }}
+                  />
                 </div>
-                <Link to="/forgotPassword" style={{textDecoration: "none"}}>
-                <div className="my-1 text-end mx-auto mw_350">
-                  <p className="forgotten-password-text" >Forgotten password?</p>
-                </div>
+                <Link to="/forgotPassword" style={{ textDecoration: "none" }}>
+                  <div className="my-1 text-end mx-auto mw_350">
+                    <p className="forgotten-password-text">
+                      Forgotten password?
+                    </p>
+                  </div>
                 </Link>
                 <button
                   className="btn btn-primary"
@@ -140,25 +147,30 @@ export default class LoginPage extends Component {
                   <p className="fw-bold mb-0">Login</p>
                 </button>
 
-                <div className="d-flex mt-4" onClick={() => this.handelOnClick(googleProvider)}
+                <div
+                  className="d-flex mt-4"
+                  onClick={() => this.handelOnClick(googleProvider)}
                 >
                   <div className="col d-flex jcc">
                     <img src={googlelogin} className="social_icon me-3"></img>
-                    <img src={facebook} className="social_icon"></img>
+                    {/* <img src={facebook} className="social_icon"></img> */}
                   </div>
                 </div>
-
-
 
                 {/* <p onClick={()=>{this.props.history.push('/signup');}}>Login</p> */}
                 <div className="hr_devider"></div>
                 <div className="container-new-account">
-                <Link to="/signup" style={{textDecoration: "none"}}>
-                  <p className="text-new-account" onClick={() => {
-                    // this.props.history.push("/signup")
-                    console.log("props", this.props);
-                    // this.props.updateRouteToPage("signup")
-                  }}>New Account?</p>
+                  <Link to="/signup" style={{ textDecoration: "none" }}>
+                    <p
+                      className="text-new-account"
+                      onClick={() => {
+                        // this.props.history.push("/signup")
+                        console.log("props", this.props);
+                        // this.props.updateRouteToPage("signup")
+                      }}
+                    >
+                      New Account?
+                    </p>
                   </Link>
                 </div>
               </div>
@@ -166,8 +178,6 @@ export default class LoginPage extends Component {
           </div>
         </div>
       </div>
-
     );
   }
-
 }

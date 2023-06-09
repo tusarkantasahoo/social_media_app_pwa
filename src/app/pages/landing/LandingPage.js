@@ -125,18 +125,21 @@ export default class Landing extends Component {
             </div>
           </>
         );
-        case "postDetails":
+      case "postDetails":
         return (
           <>
             <div className="c_body">
-              <PostResponse props={this.state} isLoggedIn={this.props.isAuthed} />
+              <PostResponse
+                props={this.state}
+                isLoggedIn={this.props.isAuthed}
+              />
             </div>
           </>
         );
 
       case "userDetails":
         return (
-          <div className="c_body" >
+          <div className="c_body">
             <UserDetails
               _onClickUserDashboard={this._onClickUserDashboard}
               isLoggedIn={this.props.isAuthed}
@@ -253,7 +256,6 @@ export default class Landing extends Component {
           className="container_custom"
           style={{ display: "flex", marginTop: "70px" }}
         >
-
           <HomeOptions
             props={this.state}
             isLoggedIn={true}
@@ -261,8 +263,17 @@ export default class Landing extends Component {
             history={this.props.history}
           />
 
-
           {this.renderScreenDependingOnSelection()}
+
+          {(this.state.currentOption.code === "rooms" ||
+            this.state.currentOption.code === "home") && (
+            <div>
+              <iframe
+                style={{ height: "80em", width: "150%" }}
+                src="https://scroll.in/magazine/"
+              ></iframe>
+            </div>
+          )}
         </div>
       </>
     );
